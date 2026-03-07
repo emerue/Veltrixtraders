@@ -1,0 +1,840 @@
+{% load static %}
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=1024" />
+
+    <base data-react-helmet="true" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut-icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/styledb6.css' %}" rel="stylesheet" />
+
+    <meta name="generator" content="Gatsby 3.9.1" />
+    <meta property="og:title" content="Veltrixtraders" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:image"
+      content="https://miragetraders.com/assets/pexels-alphatradezone-5833756.jpg"
+    />
+    <meta property="og:url" content="https://Veltrixtraders.com" />
+    <style>
+      .gatsby-image-wrapper {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .gatsby-image-wrapper img {
+        all: inherit;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        margin: 0;
+        max-width: none;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .gatsby-image-wrapper [data-main-image] {
+        opacity: 0;
+        transform: translateZ(0);
+        transition: opacity 0.25s linear;
+        will-change: opacity;
+      }
+
+      .gatsby-image-wrapper-constrained {
+        display: inline-block;
+      }
+    </style>
+    <noscript>
+      <style>
+        .gatsby-image-wrapper noscript [data-main-image] {
+          opacity: 1 !important;
+        }
+
+        .gatsby-image-wrapper [data-placeholder-image] {
+          opacity: 0 !important;
+        }
+      </style>
+    </noscript>
+
+    <title data-react-helmet="true">
+      Veltrixtraders: the online trading and investment platform
+    </title>
+    <meta
+      data-react-helmet="true"
+      namxe="title"
+      property="og:title"
+      content="Veltrixtraders: the online trading and investment platform"
+    />
+    <meta name="keywords" content="Veltrixtraders" />
+    <link rel="canonical" href="index.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Veltrixtraders - Discover investment possibilities"
+    />
+    <meta
+      property="og:description"
+      content="A trading platform for online trading and investments from the broker Veltrixtraders. Start earning money with millions of traders worldwide!"
+    />
+    <meta property="og:url" content="https://veltrixtraders.com" />
+    <meta property="og:site_name" content="Veltrixtraders" />
+    <meta
+      property="og:image"
+      content="https://miragetraders.com/assets/pexels-tima-miroshnichenko-7567565.jpg"
+    />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="1279" />
+    <meta name="twitter:site" content="https://veltrixtraders.com" />
+    <meta name="twitter:title" content="Veltrixtraders" />
+    <meta
+      name="twitter:description"
+      content="A trading platform for online trading and investments from the broker Veltrixtraders. Start earning money with millions of traders worldwide!"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image:src"
+      content="https://miragetraders.com/assets/pexels-tima-miroshnichenko-7567565.jpg"
+    />
+    <style>
+      .extr-hero {
+        height: 350px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
+      .extr-hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        display: block;
+        background-image: linear-gradient(
+          90deg,
+          rgba(29, 87, 172, 1) 0%,
+          rgba(9, 56, 124, 1) 37%,
+          rgba(9, 56, 124, 0.6741290266106443) 100%
+        );
+      }
+
+      .extra-inner-bg {
+        background-image: url("{% static 'img/hero-bg.png' %}");
+        background-position: right;
+        background-size: 500px;
+        background-repeat: no-repeat;
+        bottom: 0;
+        position: absolute;
+        top: 0;
+      }
+
+      .comp-img {
+        background-color: #fff;
+        width: 50%;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body data-theme="dark">
+    <div id="___gatsby">
+      <div style="outline: none" tabindex="-1" id="gatsby-focus-wrapper">
+        <div class="page page--en">
+          <div class="page__header">
+            {% include 'base/header.html' %}
+          </div>
+
+          <div class="page-main">
+            <section class="page-m-intro extr-hero">
+              <div class="page__container extra-inner-bg"></div>
+              <div
+                class="page__container"
+                style="position: absolute; z-index: 10"
+              >
+                <div class="page-m-intro__content">
+                  <div
+                    class="page-m-intro__background page-m-intro__background--ltr"
+                    style="position: absolute"
+                  >
+                    <h1
+                      data-trans="about_page_intro_title"
+                      class="page-c-title page-m-intro__title"
+                    >
+                      About Us
+                    </h1>
+                    <p
+                      class="page-m-intro__description text"
+                      data-trans="about_page_intro_description"
+                    >
+                      Veltrixtraders has been sharing financial freedom with
+                      traders since 2014. In a continuous effort to give traders
+                      a more comfortable and safe experience, its experts have
+                      been improving the platform ensuring traders can enjoy and
+                      make use of that freedom to trade whenever and wherever
+                      they like.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section
+              class="p-home-m-seo-become-a-trader p-home__section p-home-m-seo-become-a-trader--ltr"
+              style="margin-top: 50px"
+            >
+              <div class="page__container">
+                <div class="p-home-m-seo-become-a-trader__content-wrap">
+                  <h2
+                    class="com-c-title p-home-m-seo-become-a-trader__title"
+                    data-trans="become_a_trader_title"
+                  >
+                    About Us
+                  </h2>
+                  <div
+                    class="p-home-m-seo-become-a-trader__content"
+                    style="display: flex; height: 650px"
+                  >
+                    <div
+                      class="p-home-m-seo-become-a-trader__item-wrap"
+                      style="max-width: 50%; width: 50%; height: 100%"
+                    >
+                      <div
+                        class="p-home-m-seo-become-a-trader__item-wrap-content"
+                      >
+                        <h2
+                          class="com-c-title p-home-m-seo-become-a-trader__item-head"
+                          data-trans="become_a_trader_item_1_head"
+                        >
+                          Time to take action with the international
+                          Veltrixtraders broker
+                        </h2>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_1"
+                        >
+                          Trading will bring you profit with proper support,
+                          constant education, and a reasonable approach.
+                          Veltrixtraders is a broker platform that has created
+                          all the conditions to help you improve your trading
+                          life in every possible way.
+                        </p>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_2"
+                        >
+                          From educational broker’s tools, demo accounts, and
+                          24/7 support to your financial success, Veltrixtraders
+                          works tirelessly to remain at the forefront in trading
+                          online. Join now! Take full advantage of this online
+                          trading leader and make your way into the world of
+                          professional trading.
+                        </p>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_2"
+                        >
+                          Our people are our greatest asset - we say it often
+                          and with good reason. It is only with the
+                          determination and dedication of our people that we can
+                          serve our clients, generate long-term value for our
+                          shareholders and contribute to the broader public. At
+                          every step of our employees careers we invest in them,
+                          and ensure their interests remain focused on the long
+                          term and closely aligned with those of our clients and
+                          shareholders.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      style="
+                        background-image: url({% static 'img/pexels-vlada-karpovich-7433853.jpg' %});
+                        width: 50%;
+                        height: 100%;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        border-radius: 20px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div class="page__container">
+              <h2
+                class="com-c-title p-home-m-seo-become-a-trader__title"
+                data-trans="become_a_trader_title"
+              >
+                Our Values
+              </h2>
+            </div>
+            <section
+              class="p-home-m-seo-become-a-trader p-home__section p-home-m-seo-become-a-trader--ltr"
+              style="padding: 20px 0"
+            >
+              <div class="page__container">
+                <div class="p-home-m-seo-become-a-trader__content-wrap">
+                  <div
+                    class="p-home-m-seo-become-a-trader__content"
+                    style="display: flex"
+                  >
+                    <div
+                      class="p-home-m-seo-become-a-trader__item-wrap"
+                      style="
+                        max-width: 50%;
+                        width: 50%;
+                        height: 100%;
+                        background-image: url('{% static "img/social-bg.jpg" %}') !important;
+                      "
+                    >
+                      <div
+                        class="p-home-m-seo-become-a-trader__item-wrap-content"
+                      >
+                        <h2
+                          class="com-c-title p-home-m-seo-become-a-trader__item-head"
+                          data-trans="become_a_trader_item_1_head"
+                        >
+                          CORPORATE GOVERNANCE
+                        </h2>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_1"
+                        >
+                          The Board of Directors and management of Veltrixtraders
+                          have long recognized the importance of corporate
+                          governance practices that help ensure an environment
+                          of effective oversight and strong accountability. Our
+                          goal at Fenway Partners is to generate superior
+                          financial returns for our investors by building
+                          stronger and more valuable businesses.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-home-m-seo-become-a-trader__item-wrap"
+                      style="
+                        max-width: 50%;
+                        width: 50%;
+                        height: 100%;
+                        background-image: url('{% static "img/chat-bg.jpg" %}') !important;
+                      "
+                    >
+                      <div
+                        class="p-home-m-seo-become-a-trader__item-wrap-content"
+                      >
+                        <h2
+                          class="com-c-title p-home-m-seo-become-a-trader__item-head"
+                          data-trans="become_a_trader_item_1_head"
+                          style="color: #000000"
+                        >
+                          GLOBAL IMPACT
+                        </h2>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_1"
+                        >
+                          Powering a World of Difference As a major global
+                          financial institution, we must consider the effects
+                          our business has on the environment and the people
+                          around the world. That's why we strive to uncover new
+                          ways of ensuring sustainable economic growth that
+                          protects healthy markets and delivers value not only
+                          to our clients but also to communities, businesses,
+                          governments and people everywhere.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section
+              class="p-home-m-seo-become-a-trader p-home__section p-home-m-seo-become-a-trader--ltr"
+              style="padding: 20px 0"
+            >
+              <div class="page__container">
+                <div class="p-home-m-seo-become-a-trader__content-wrap">
+                  <div
+                    class="p-home-m-seo-become-a-trader__content"
+                    style="display: flex"
+                  >
+                    <div
+                      class="p-home-m-seo-become-a-trader__item-wrap"
+                      style="
+                        max-width: 50%;
+                        width: 50%;
+                        height: 100%;
+                        background-image: url('{% static "img/social-bg.jpg" %}') !important;
+                      "
+                    >
+                      <div
+                        class="p-home-m-seo-become-a-trader__item-wrap-content"
+                      >
+                        <h2
+                          class="com-c-title p-home-m-seo-become-a-trader__item-head"
+                          data-trans="become_a_trader_item_1_head"
+                        >
+                          ESG
+                        </h2>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_1"
+                        >
+                          ESG AT Veltrixtraders At Veltrixtraders, we aim to
+                          accelerate the evolution of ESG - on behalf of
+                          clients, investors, communities and all the
+                          stakeholders - to make a positive impact on people and
+                          the planet. With our size, scale and significance at
+                          the heart of the financial system, we touch many
+                          points along the financial value chain-giving us an
+                          unparalleled view of the continuous shifts in ESG.
+                          We're uniquely positioned to collaborate with clients
+                          to drive transparency, insight and impact.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-home-m-seo-become-a-trader__item-wrap"
+                      style="
+                        max-width: 50%;
+                        width: 50%;
+                        height: 100%;
+                        background-image: url('{% static "img/chat-bg.jpg" %}') !important;
+                      "
+                    >
+                      <div
+                        class="p-home-m-seo-become-a-trader__item-wrap-content"
+                      >
+                        <h2
+                          class="com-c-title p-home-m-seo-become-a-trader__item-head"
+                          data-trans="become_a_trader_item_1_head"
+                          style="color: #000000"
+                        >
+                          INVESTMENT PHILOSOPHY
+                        </h2>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_1"
+                        >
+                          We know that the best way to achieve this objective is
+                          to be disciplined in our approach, and that we will be
+                          more successful when we thoroughly understand a
+                          business, its challenges and opportunities. We begin
+                          by investing in portfolio's that meet well-defined
+                          criteria in industries where we have relevant
+                          knowledge. We leverage our accumulated experience and
+                          work closely with the managers of our portfolio's to
+                          implement strategies to energize our businesses.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section
+              class="p-home-m-seo-become-a-trader p-home__section p-home-m-seo-become-a-trader--ltr"
+              style="padding: 20px 0"
+            >
+              <div class="page__container">
+                <div class="p-home-m-seo-become-a-trader__content-wrap">
+                  <div
+                    class="p-home-m-seo-become-a-trader__content"
+                    style="display: flex; height: 650px"
+                  >
+                    <div
+                      style="
+                        background: #000000;
+                        width: 50%;
+                        height: 100%;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        border-radius: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <img src="{% static 'img/logo.png' %}" width="350" />
+                    </div>
+                    <div
+                      class="p-home-m-seo-become-a-trader__item-wrap"
+                      style="max-width: 50%; width: 50%; height: 100%"
+                    >
+                      <div
+                        class="p-home-m-seo-become-a-trader__item-wrap-content"
+                      >
+                        <h2
+                          class="com-c-title p-home-m-seo-become-a-trader__item-head"
+                          data-trans="become_a_trader_item_1_head"
+                        >
+                          RISK MANAGEMENT AT THE CENTER
+                        </h2>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_1"
+                        >
+                          We seek to manage risk in order to capitalize on
+                          opportunities and improve our performance. Disciplined
+                          risk estimation and management are deeply integrated
+                          components of the investment process across each one
+                          of our strategies. We believe a well-constructed
+                          portfolio upfront will outperform in good markets and
+                          protect our client's capital in difficult markets. For
+                          this reason, Veltrixtraders has spent over a quarter of
+                          a century establishing risk management as a core
+                          discipline. This approach begins with a dedicated
+                          governance group that oversees risk management. An
+                          emphasis on liquid markets, proprietary risk models
+                          and a diversified funding structure seeks to further
+                          strengthen our approach.
+                        </p>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_1"
+                        >
+                          At Veltrixtraders, we advance sustainable economic
+                          growth and financial opportunity. Drawing on over
+                          eight years of experience working with the world's
+                          leading businesses, entrepreneurs, and institutions,
+                          we mobilize our people, culture, technologies, and
+                          ideas to advance the success of our clients, broaden
+                          individual prosperity, and accelerate economic
+                          progress for all. Our purpose comes to life through
+                          our four core values: Client Service, Excellence,
+                          Integrity, and Partnership.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section
+              class="p-home-m-seo-become-a-trader p-home__section p-home-m-seo-become-a-trader--ltr"
+              style="padding-top: 20px"
+            >
+              <div class="page__container">
+                <div class="p-home-m-seo-become-a-trader__content-wrap">
+                  <div
+                    class="p-home-m-seo-become-a-trader__content"
+                    style="display: flex; height: 650px"
+                  >
+                    <div
+                      id="sec-inv-bus-container"
+                      style="
+                        background: rgb(0, 0, 0) 0% 0% / cover no-repeat;
+                        width: 50%;
+                        height: 100%;
+                        border-radius: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: default;
+                        position: relative;
+                      "
+                    >
+                      <div
+                        id="sec-inv-bus-placeholder"
+                        class="image-placeholder"
+                        style="
+                          display: none;
+                          flex-direction: column;
+                          align-items: center;
+                          justify-content: center;
+                          color: white;
+                          text-align: center;
+                          transform: scale(1.05);
+                          transition: opacity 0.3s ease-out;
+                          opacity: 0;
+                        "
+                      >
+                        <div style="font-size: 48px; margin-bottom: 15px">
+                          🖼️
+                        </div>
+                        <div
+                          style="
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin-bottom: 8px;
+                          "
+                        >
+                          Investment Business Licence
+                        </div>
+                        <div style="font-size: 14px; opacity: 0.8">
+                          Click to view certificate
+                        </div>
+                      </div>
+                      <img
+                        id="sec-inv-bus-image"
+                        src="{% static 'img/sec-inv-bus.png' %}"
+                        width="350"
+                        alt="sec-inv-bus"
+                        style="
+                          display: block;
+                          opacity: 1;
+                          transition: opacity 0.5s ease-in;
+                        "
+                      />
+                    </div>
+                    <div
+                      class="p-home-m-seo-become-a-trader__item-wrap"
+                      style="max-width: 50%; width: 50%; height: 100%"
+                    >
+                      <div
+                        class="p-home-m-seo-become-a-trader__item-wrap-content"
+                      >
+                        <h2
+                          class="com-c-title p-home-m-seo-become-a-trader__item-head"
+                          data-trans="become_a_trader_item_1_head"
+                        >
+                          INVESTMENT BUSINESS LICENCE
+                        </h2>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_1"
+                        >
+                          Veltrixtraders operates under a comprehensive
+                          Investment Business Licence, ensuring full regulatory
+                          compliance and adherence to the highest industry
+                          standards. Our licence authorizes us to provide a wide
+                          range of investment services including portfolio
+                          management, investment advisory services, and
+                          securities trading. This regulatory framework provides
+                          our clients with the confidence that their investments
+                          are managed by a fully licensed and regulated
+                          financial institution committed to transparency,
+                          accountability, and investor protection.
+                        </p>
+                        <p
+                          class="p-home-m-seo-become-a-trader__item-text"
+                          data-trans="become_a_trader_item_1_text_1"
+                        >
+                          Our Investment Business Licence demonstrates our
+                          commitment to maintaining the highest standards of
+                          financial conduct and regulatory compliance. We are
+                          subject to regular audits and oversight by financial
+                          regulatory authorities, ensuring that our operations
+                          meet stringent requirements for capital adequacy, risk
+                          management, and client asset protection. This
+                          regulatory oversight provides an additional layer of
+                          security and trust for our valued clients and their
+                          investment portfolios.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- <section class="p-home-m-new-features p-home__section">
+                    <div class="page__container">
+                      <h2 class="com-c-title p-home-m-new-features__title" data-trans="home_new_features_title">The Latest from
+                        Veltrixtraders</h2>
+                      <p class="com-c-description p-home-m-new-features__desc" data-trans="home_new_features_desc">New features,
+                        latest webinars and more...</p>
+                      <ul class="p-home-m-new-features__list" style="padding: 0;">
+                        <li class="p-home-m-new-features-c-card p-home-m-new-features-c-card--ltr p-home-m-new-features-c-card_type_index p-home-m-new-features__card">
+
+                          <div class="p-home-m-new-features-c-card__content"><span data-trans="home_new_features_item_new_assets_title" class="p-home-m-new-features-c-card__title">30 new assets</span><span class="p-home-m-new-features-c-card__extra"></span></div>
+                        </li>
+                        <li class="p-home-m-new-features-c-card p-home-m-new-features-c-card--ltr p-home-m-new-features-c-card_color_positive p-home-m-new-features-c-card_type_experience p-home-m-new-features__card">
+                          <div class="p-home-m-new-features-c-card__content"><span data-trans="home_new_features_item_experience_title" class="p-home-m-new-features-c-card__title">Experience points (XP)</span>
+                            <p data-trans="home_new_features_item_experience_desc" class="p-home-m-new-features-c-card__desc">
+                              Our new rewards system offers active traders even more perks and privileges.</p><span class="p-home-m-new-features-c-card__extra"></span>
+                          </div>
+                        </li>
+                        <li class="p-home-m-new-features-c-card p-home-m-new-features-c-card--ltr p-home-m-new-features-c-card_type_profit-line p-home-m-new-features__card">
+
+                          <div class="p-home-m-new-features-c-card__content"><span data-trans="home_new_features_profit_line_title" class="p-home-m-new-features-c-card__title">Profit line</span>
+                            <p data-trans="home_new_features_profit_line_desc" class="p-home-m-new-features-c-card__desc">A tool
+                              to help you identify the breakeven point of a trade.</p><span class="p-home-m-new-features-c-card__extra"></span>
+                          </div>
+                        </li>
+                        <li class="p-home-m-new-features-c-card p-home-m-new-features-c-card--ltr p-home-m-new-features-c-card_type_advisor p-home-m-new-features__card">
+
+                          <div class="p-home-m-new-features-c-card__content"><span data-trans="home_new_features_item_7_title" class="p-home-m-new-features-c-card__title">Adviser</span>
+                            <p data-trans="home_new_features_item_7_desc" class="p-home-m-new-features-c-card__desc">Analyzes
+                              several indicators according to trading strategies.</p><span class="p-home-m-new-features-c-card__extra"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </section> -->
+          </div>
+        </div>
+        <div class="home-page-pixe-container"></div>
+        <style>
+          .com-footer_dir_ltr {
+            position: relative;
+            z-index: 1;
+          }
+
+          .com-footer_dir_ltr::before {
+            content: "";
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            background-image: url("pages/asset/header-campus.webp");
+            z-index: -1;
+            opacity: 0.9;
+          }
+        </style>
+
+        <script>
+          // Click-to-show image functionality for Investment Business Licence
+          document.addEventListener("DOMContentLoaded", function () {
+            const container = document.getElementById("sec-inv-bus-container");
+            const placeholder = document.getElementById(
+              "sec-inv-bus-placeholder",
+            );
+            const image = document.getElementById("sec-inv-bus-image");
+
+            if (container && placeholder && image) {
+              // Add click event listener to the container
+              container.addEventListener("click", function () {
+                // Hide the placeholder with a smooth transition
+                placeholder.style.transition = "opacity 0.3s ease-out";
+                placeholder.style.opacity = "0";
+
+                // After the fade out, hide placeholder and show image
+                setTimeout(function () {
+                  placeholder.style.display = "none";
+                  image.style.display = "block";
+                  image.style.opacity = "0";
+                  image.style.transition = "opacity 0.5s ease-in";
+
+                  // Fade in the image
+                  setTimeout(function () {
+                    image.style.opacity = "1";
+                  }, 50);
+                }, 300);
+
+                // Remove cursor pointer after click
+                container.style.cursor = "default";
+              });
+
+              // Add hover effect to the placeholder
+              container.addEventListener("mouseenter", function () {
+                if (placeholder.style.display !== "none") {
+                  placeholder.style.transform = "scale(1.05)";
+                  placeholder.style.transition = "transform 0.2s ease";
+                }
+              });
+
+              container.addEventListener("mouseleave", function () {
+                if (placeholder.style.display !== "none") {
+                  placeholder.style.transform = "scale(1)";
+                }
+              });
+            }
+          });
+        </script>
+
+        {% include 'base/footer.html' %}
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = "4f3dcfc04c5f4a15b6a0ef9f6b75a5281651a1a1";
+      window.smartsupp ||
+        (function (d) {
+          var s,
+            c,
+            o = (smartsupp = function () {
+              o._.push(arguments);
+            });
+          o._ = [];
+          s = d.getElementsByTagName("script")[0];
+          c = d.createElement("script");
+          c.type = "text/javascript";
+          c.charset = "utf-8";
+          c.async = true;
+          c.src = "https://www.smartsuppchat.com/loader.js?";
+          s.parentNode.insertBefore(c, s);
+        })(document);
+    </script>
+
+    <iframe
+      id="chat-application-iframe"
+      title="Smartsupp"
+      aria-hidden="true"
+      style="
+        display: block;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        border: medium;
+        z-index: -1;
+        pointer-events: none;
+      "
+    ></iframe>
+    <div id="smartsupp-widget-container">
+      <!----><!----><!---->
+      <!----><!---->
+      <!---->
+      <div
+        style="
+          border-radius: 9999px;
+          box-shadow:
+            rgba(0, 0, 0, 0.06) 0px 1px 6px,
+            rgba(0, 0, 0, 0.12) 0px 2px 32px;
+          color-scheme: normal;
+          height: 56px;
+          position: fixed;
+          bottom: 24px;
+          left: initial;
+          right: 12px;
+          z-index: 10000000;
+          width: 56px;
+        "
+        data-testid="widgetButtonFrame"
+      >
+        <iframe
+          allowfullscreen=""
+          scrolling="no"
+          id="widgetButtonFrame"
+          title="Smartsupp widget button"
+          style="
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: medium;
+            display: block;
+            text-align: left;
+            margin: 0px;
+            padding: 0px;
+            top: 0px;
+            left: 0px;
+            opacity: 1;
+          "
+        ></iframe
+        ><!---->
+      </div>
+      <!---->
+      <!----><!---->
+      <!----><!----><!---->
+    </div>
+  </body>
+</html>

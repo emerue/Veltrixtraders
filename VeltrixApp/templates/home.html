@@ -19,11 +19,8 @@
     <meta name="generator" content="Gatsby 3.9.1" />
     <meta property="og:title" content="VeltrixTraders" />
     <meta property="og:type" content="article" />
-    <!--<meta
-      property="og:image"
-      content="https://Veltrixtraders.com/assets/pexels-alphatradezone-5833756.jpg"
-    />-->
     <meta property="og:url" content="https://Veltrixtraders.com" />
+    
     <style>
       .gatsby-image-wrapper {
         position: relative;
@@ -55,60 +52,7 @@
       .gatsby-image-wrapper-constrained {
         display: inline-block;
       }
-    </style>
-    <noscript>
-      <style>
-        .gatsby-image-wrapper noscript [data-main-image] {
-          opacity: 1 !important;
-        }
-
-        .gatsby-image-wrapper [data-placeholder-image] {
-          opacity: 0 !important;
-        }
-      </style>
-    </noscript>
-
-    <title data-react-helmet="true">
-      VeltrixTraders: the online trading and investment platform
-    </title>
-    <meta
-      data-react-helmet="true"
-      namxe="title"
-      property="og:title"
-      content="VeltrixTraders: the online trading and investment platform"
-    />
-    <meta name="keywords" content="VeltrixTraders" />
-    <link rel="canonical" href="{% url 'construction' %}" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="VeltrixTraders - Discover investment possibilities"
-    />
-    <meta
-      property="og:description"
-      content="A trading platform for online trading and investments from the broker VeltrixTraders. Start earning money with millions of traders worldwide!"
-    />
-    <meta property="og:url" content="https://veltrixtraders.com" />
-    <meta property="og:site_name" content="VeltrixTraders" />
-    <!--<meta
-      property="og:image"
-      content="https://miragetraders.com/assets/pexels-tima-miroshnichenko-7567565.jpg"
-    />-->
-    <meta property="og:image:width" content="2000" />
-    <meta property="og:image:height" content="1279" />
-    <meta name="twitter:site" content="https://Veltrixtraders.com" />
-    <meta name="twitter:title" content="Veltrixtraders" />
-    <meta
-      name="twitter:description"
-      content="A trading platform for online trading and investments from the broker Veltrixtraders. Start earning money with millions of traders worldwide!"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:image:src"
-      content="https://miragetraders.com/assets/pexels-tima-miroshnichenko-7567565.jpg"
-    />
-    <style>
+      
       .extr-hero {
         height: 350px;
         position: relative;
@@ -154,7 +98,313 @@
         justify-content: center;
         align-items: center;
       }
+      
+      .wrapper {
+        width: 95%;
+        max-width: 1200px;
+        margin: 30px auto;
+      }
+
+      .pricing-table h2 {
+        font-size: 1.5em;
+        padding: 35px 10px;
+        margin: 0;
+      }
+
+      .description {
+        margin-top: 20px;
+        font-size: 0.85em;
+        padding: 0 40px;
+        font-style: italic;
+      }
+
+      .price,
+      .pricing-box {
+        -webkit-transition: all ease-out 0.2s;
+        transition: all ease-out 0.2s;
+      }
+
+      .price {
+        background: linear-gradient(
+          -225deg,
+          #4c87de 0%,
+          #2b7acc 53%,
+          #2375b3 100%
+        );
+        color: #fff;
+        font-size: 2em;
+        font-weight: 600;
+        position: relative;
+        padding: 20px 10px;
+        display: block;
+      }
+
+      .pricing-box:nth-child(2) .price {
+        background: linear-gradient(
+          -225deg,
+          #4c87de 0%,
+          #2b7acc 53%,
+          #2375b3 100%
+        );
+      }
+
+      .pricing-box:nth-child(3) .price {
+        background: linear-gradient(
+          -225deg,
+          #4c87de 0%,
+          #2b7acc 53%,
+          #2375b3 100%
+        );
+      }
+
+      .pricing-box:hover .price {
+        background: #ff0;
+        box-shadow: inset 0 0 100px 0 rgba(0, 0, 0, 0.3);
+        color: #000;
+      }
+
+      .btn {
+        background: #000000;
+        border: 1px solid #000000;
+        color: #fff;
+        -webkit-transition: all ease-out 0.2s;
+        transition: all ease-out 0.2s;
+        border-radius: 30px;
+        padding: 7px 40px;
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      .btn:hover {
+        background: linear-gradient(
+          -225deg,
+          #65379b 0%,
+          #886aea 53%,
+          #6457c6 100%
+        );
+        border: 1px solid #6c0ba9;
+        color: #fff !important;
+      }
+
+      .pricing-table-divider {
+        display: block;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.08);
+        max-width: 80%;
+        margin: 20px auto 0;
+      }
+
+      .pricing-table {
+        border-radius: 3px;
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: (1fr) [3];
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+        text-align: center;
+      }
+
+      .pricing-box-2 {
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.13);
+        border: 2px solid rgba(10, 123, 183, 0.14);
+      }
+
+      .pricing-box-2:hover {
+        -webkit-transform: scale(1.01);
+        transform: scale(1.01);
+      }
+
+      .pricing-table ul li {
+        padding: 3px 0;
+        font-size: 0.95em;
+      }
+
+      .pricing-table ul {
+        color: #ffffff;
+        padding: 15px 60px;
+        text-align: left;
+      }
+
+      .price-tab.active {
+        display: block;
+      }
+
+      .price-tab {
+        display: none;
+      }
+
+      @media (max-width: 750px) {
+        .pricing-table {
+          -ms-grid-columns: 1fr;
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-table > div:nth-child(3) {
+          -ms-grid-row: 1;
+          grid-row-start: 1;
+        }
+
+        .pricing-table > div:nth-child(2) {
+          -ms-grid-row: 2;
+          grid-row-start: 2;
+        }
+
+        .pricing-table > div {
+          -ms-flex-item-align: top;
+          -ms-grid-row-align: top;
+          align-self: top;
+        }
+      }
+
+      fieldset {
+        border: none;
+      }
+
+      fieldset div {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+        justify-content: center;
+      }
+
+      input[type="radio"] {
+        clip: rect(0 0 0 0);
+        clip-path: inset(100%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+
+      input[type="radio"]:checked + span {
+        box-shadow: 0 0 0 0.0625em #0043ed;
+        background-color: #dee7ff;
+        z-index: 1;
+        color: #0043ed;
+      }
+
+      label span {
+        display: block;
+        cursor: pointer;
+        background-color: #fff;
+        padding: 0.375em 0.75em;
+        position: relative;
+        margin-left: 0.0625em;
+        box-shadow: 0 0 0 0.0625em #b5bfd9;
+        letter-spacing: 0.05em;
+        color: #3e4963;
+        text-align: center;
+        transition: background-color 0.5s ease;
+      }
+
+      label:first-child span {
+        border-radius: 0.375em 0 0 0.375em;
+      }
+
+      label:last-child span {
+        border-radius: 0 0.375em 0.375em 0;
+      }
+
+      /* General Box Styling for Reviews */
+      .review-box {
+        border: 1px solid #eaeaea;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+
+      .review-stars {
+        color: green;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .star {
+        margin-right: 2px;
+      }
+
+      .review-text {
+        font-style: italic;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .review-author {
+        color: #555;
+        font-weight: bold;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+      }
+
+      .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      @media (min-width: 768px) {
+        .col-md-3 {
+          flex: 0 0 25%;
+          max-width: 25%;
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+      }
     </style>
+
+    <title data-react-helmet="true">
+      VeltrixTraders: the online trading and investment platform
+    </title>
+    <meta
+      data-react-helmet="true"
+      name="title"
+      property="og:title"
+      content="VeltrixTraders: the online trading and investment platform"
+    />
+    <meta name="keywords" content="VeltrixTraders" />
+    <link rel="canonical" href="{% url 'home' %}" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="VeltrixTraders - Discover investment possibilities"
+    />
+    <meta
+      property="og:description"
+      content="A trading platform for online trading and investments from the broker VeltrixTraders. Start earning money with millions of traders worldwide!"
+    />
+    <meta property="og:url" content="https://veltrixtraders.com" />
+    <meta property="og:site_name" content="VeltrixTraders" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="1279" />
+    <meta name="twitter:site" content="https://Veltrixtraders.com" />
+    <meta name="twitter:title" content="Veltrixtraders" />
+    <meta
+      name="twitter:description"
+      content="A trading platform for online trading and investments from the broker Veltrixtraders. Start earning money with millions of traders worldwide!"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image:src"
+      content="https://miragetraders.com/assets/pexels-tima-miroshnichenko-7567565.jpg"
+    />
   </head>
 
   <body data-theme="dark">
@@ -162,300 +412,7 @@
       <div style="outline: none" tabindex="-1" id="gatsby-focus-wrapper">
         <div class="page page--en">
           <div class="page__header">
-            <script
-              type="text/javascript"
-              charset="utf-8"
-              async=""
-              src="https://www.smartsuppchat.com/loader.js?"
-            ></script>
-            <script>
-              window.addEventListener("load", (event) => {
-                const els = document.querySelectorAll(".drp-menu");
-                els.forEach((el, i) => {
-                  el.addEventListener("mouseover", function (e) {
-                    els[i].querySelector(
-                      ".com-header-nav-links-item__list-wrap",
-                    ).style.display = "block";
-                  });
-                  el.addEventListener("mouseout", (e) => {
-                    els[i].querySelector(
-                      ".com-header-nav-links-item__list-wrap",
-                    ).style.display = "none";
-                  });
-                });
-              });
-            </script>
-            <header class="page__container">
-              <div
-                class="FvJ-85Xh7Y"
-                style="
-                  padding: 16px 0px 16px 0px;
-                  width: 100%;
-                  align-items: center;
-                  justify-content: space-between;
-                  flex-direction: row;
-                  gap: 12px;
-                "
-              >
-                <div class="com-header__wrap">
-                  <div class="com-header__box">
-                    <a
-                      class="com-header__logo-link"
-                      href="{% url 'construction' %}"
-                    >
-                      <img src="{% static 'img/logo.png' %}" width="220" />
-                    </a>
-                  </div>
-                  <nav
-                    style="
-                      display: flex;
-                      flex-direction: row;
-                      gap: 40px;
-                      margin: 0 36px;
-                    "
-                    class="com-header-links"
-                  >
-                    <div class="com-header-nav-links-item">
-                      <div class="com-header-nav-links-item__main-wrap">
-                        <div class="com-header-nav-links-item__main">
-                          <a
-                            data-trans="site_about_company"
-                            href="{% url 'construction' %}"
-                            >About Us</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="com-header-nav-links-item drp-menu"
-                      style="position: relative"
-                    >
-                      <div class="com-header-nav-links-item__main-wrap">
-                        <div class="com-header-nav-links-item__main">
-                          Mirror trading
-                        </div>
-                      </div>
-                      <div
-                        class="com-header-nav-links-item__list-wrap"
-                        style="
-                          position: absolute;
-                          background-color: #1a1d21;
-                          padding: 20px;
-                          display: none;
-                          border-radius: 15px;
-                        "
-                      >
-                        <ul
-                          class="com-header-nav-links-item__list"
-                          style="padding: 0"
-                        >
-                          <li class="com-header-nav-links-item__item">
-                            <a
-                              data-trans="navigation_item_apps"
-                              href="{% url 'construction' %}"
-                            >
-                              Options copy trading
-                            </a>
-                          </li>
-                          <li class="com-header-nav-links-item__item">
-                            <a
-                              data-trans="user_tpl_support"
-                              href="{% url 'construction' %}"
-                            >
-                              Advanced trading account above PDT
-                            </a>
-                          </li>
-                          <li class="com-header-nav-links-item__item">
-                            <a
-                              data-trans="user_tpl_regulation"
-                              href="{% url 'construction' %}"
-                            >
-                              Live trading interface
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div
-                      class="com-header-nav-links-item drp-menu"
-                      style="position: relative"
-                    >
-                      <div class="com-header-nav-links-item__main-wrap">
-                        <div class="com-header-nav-links-item__main">
-                          Stocks
-                        </div>
-                      </div>
-                      <div
-                        class="com-header-nav-links-item__list-wrap"
-                        style="
-                          position: absolute;
-                          background-color: #1a1d21;
-                          padding: 20px;
-                          display: none;
-                          border-radius: 15px;
-                        "
-                      >
-                        <ul
-                          class="com-header-nav-links-item__list"
-                          style="padding: 0"
-                        >
-                          <li class="com-header-nav-links-item__item">
-                            <a
-                              data-trans="navigation_item_apps"
-                              href="{% url 'construction' %}"
-                            >
-                              Swing trading
-                            </a>
-                          </li>
-                          <li class="com-header-nav-links-item__item">
-                            <a
-                              data-trans="user_tpl_support"
-                              href="{% url 'construction' %}"
-                            >
-                              Futures
-                            </a>
-                          </li>
-                          <li class="com-header-nav-links-item__item">
-                            <a
-                              data-trans="user_tpl_regulation"
-                              href="{% url 'construction' %}"
-                            >
-                              Options
-                            </a>
-                          </li>
-                          <li class="com-header-nav-links-item__item">
-                            <a
-                              data-trans="site_law_info"
-                              href="{% url 'construction' %}"
-                            >
-                              Oil and gas
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="com-header-nav-links-item">
-                      <div class="com-header-nav-links-item__main-wrap">
-                        <div class="com-header-nav-links-item__main">
-                          <a
-                            data-trans="stocksup_assets"
-                            href="{% url 'construction' %}"
-                            >Software</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                    <div class="com-header-nav-links-item">
-                      <div class="com-header-nav-links-item__main-wrap">
-                        <div class="com-header-nav-links-item__main">
-                          <a
-                            data-trans="stocksup_assets"
-                            href="{% url 'construction' %}"
-                            >Insight</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </nav>
-                </div>
-                <div class="com-header__buttons-wrap">
-                  <div class="com-header__button-login">
-                    <button
-                      class="d8xr7lLwBE FgFzN3XuSe o9rFZdBYLp BRenn248Ra n8TxI6D5e-"
-                      data-test="action-sign-in"
-                      type="button"
-                    >
-                      <div
-                        class="FvJ-85Xh7Y"
-                        style="
-                          padding: 8px 16px;
-                          width: 100%;
-                          max-height: 100%;
-                          max-width: 100%;
-                          align-items: center;
-                          justify-content: center;
-                          flex-direction: row;
-                        "
-                      >
-                        <div class="OtK37B0dgM">
-                          <div
-                            class="FvJ-85Xh7Y"
-                            style="
-                              width: 100%;
-                              align-items: center;
-                              justify-content: center;
-                              flex-direction: row;
-                              gap: 8px;
-                            "
-                          >
-                            <div class="ZfdK6Ae8Lh _9kNVmQo8-7">
-                              <a
-                                href="{% url 'construction' %}"
-                                class="ekkZvIsihs"
-                                data-align="start"
-                                data-size="M Compact"
-                                data-style="Bold"
-                                data-test="Text"
-                                style="color: inherit; display: block"
-                              >
-                                Login
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                  <div class="com-header__button-register">
-                    <button
-                      class="d8xr7lLwBE _8ZKU0a0qtS LbsoNgWf67 BRenn248Ra n8TxI6D5e-"
-                      data-test="action-sign-up"
-                      type="button"
-                    >
-                      <div
-                        class="FvJ-85Xh7Y"
-                        style="
-                          padding: 8px 16px;
-                          width: 100%;
-                          max-height: 100%;
-                          max-width: 100%;
-                          align-items: center;
-                          justify-content: center;
-                          flex-direction: row;
-                        "
-                      >
-                        <div class="OtK37B0dgM">
-                          <div
-                            class="FvJ-85Xh7Y"
-                            style="
-                              width: 100%;
-                              align-items: center;
-                              justify-content: center;
-                              flex-direction: row;
-                              gap: 8px;
-                            "
-                          >
-                            <div class="ZfdK6Ae8Lh _9kNVmQo8-7">
-                              <a
-                                href="{% url 'construction' %}"
-                                class="ekkZvIsihs"
-                                data-align="start"
-                                data-size="M Compact"
-                                data-style="Bold"
-                                data-test="Text"
-                                style="color: inherit; display: block"
-                              >
-                                Registration
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </header>
+            {% include 'base/header.html' %}
           </div>
 
           <div class="page-main">
@@ -469,7 +426,7 @@
                 loop=""
                 playsinline=""
                 preload="none"
-                src="{% static 'img/bg-1.mp4' %}"
+                src="https://res.cloudinary.com/doqvyf78f/video/upload/v1772905605/bg-1_f6chyw.mp4"
                 style="position: absolute; width: 100%; left: 0; opacity: 0.4"
               ></video>
               <div class="p-home-m-welcome__content">
@@ -487,7 +444,7 @@
                 </p>
                 <div style="display: flex">
                   <a
-                    href="{% url 'construction' %}"
+                    href="{% url 'register' %}"
                     class="_633ZZh0WP6 com-c-button com-c-button_color_accent p-home-c-button-desktop p-home-m-devices__button"
                     type="button"
                     style="
@@ -499,7 +456,7 @@
                     >Register</a
                   >
                   <a
-                    href="{% url 'construction' %}"
+                    href="{% url 'login' %}"
                     class="_633ZZh0WP6 com-c-button com-c-button_color_accent p-home-c-button-desktop p-home-m-devices__button"
                     type="button"
                     style="
@@ -515,6 +472,7 @@
               </div>
               <div class="p-home-m-welcome__img"></div>
             </section>
+            
             <section
               class="p-home-m-seo-become-a-trader p-home__section p-home-m-seo-become-a-trader--ltr"
               style="margin-top: 50px"
@@ -558,7 +516,7 @@
                             class="p-home-m-seo-become-a-trader__item-text"
                             data-trans="become_a_trader_item_1_text_2"
                           >
-                            From educational broker’s tools, demo accounts, and
+                            From educational broker's tools, demo accounts, and
                             24/7 support to your financial success,
                             Veltrixtraders works tirelessly to remain at the
                             forefront in trading online. Join now! Take full
@@ -579,12 +537,12 @@
                             >Certificate of Incorporation</a
                           >
                         </div>
-                        <!-- <img src="/pages/asset/1_3leh0M048y_wZrfggrF9Qw.gif" width="200" height="200" /> -->
                         <div style="width: 30%">
                           <img
                             src="{% static 'img/pexels-tima-miroshnichenko-7567565.jpg' %}"
                             width="100%"
                             style="border-radius: 8px"
+                            alt="Trading"
                           />
                         </div>
                       </div>
@@ -593,6 +551,7 @@
                 </div>
               </div>
             </section>
+            
             <section
               class="p-home-m-seo-numbers p-home__section p-home-m-seo-numbers--ltr"
             >
@@ -665,7 +624,7 @@
                   <div class="p-home-m-seo-numbers-item__content">
                     <div class="p-home-m-seo-numbers-item__icon">
                       <img
-                        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS45OTk5IDNDOS4yMzg1MSAzIDYuOTk5OTQgNS4yMzg1OCA2Ljk5OTk0IDhDNi45OTk5NCA5LjQyMDYgNy41OTIzOSAxMC43MDI4IDguNTQzNjkgMTEuNjEzMUM2LjY0OTM4IDEyLjM1MjQgNS4zNjk5OCAxMy42NTg1IDQuNTMzNzcgMTQuOTU5MkMzLjkwOTU0IDE1LjkzMDMgMy41MzIxNSAxNi44OTM4IDMuMzEwMjggMTcuNjEwNkMzLjE5ODgzIDE3Ljk3MDcgMy4xMjUxOCAxOC4yNzMyIDMuMDc4NzggMTguNDg5N0MzLjA1NTU2IDE4LjU5ODEgMy4wMzkwOCAxOC42ODUzIDMuMDI4MDUgMTguNzQ3OUMzLjAyMjU0IDE4Ljc3OTIgMy4wMTgzOSAxOC44MDQzIDMuMDE1NDMgMTguODIyOUwzLjAxMTg3IDE4Ljg0NThMMy4wMTA3MyAxOC44NTM1TDMuMDEwMzEgMTguODU2NEwzLjAwOTk5IDE4Ljg1ODZDMi45MzE4OSAxOS40MDUzIDMuMzExNzkgMTkuOTExOCAzLjg1ODUyIDE5Ljk5QzQuNDA0NCAyMC4wNjc5IDQuOTEwMTkgMTkuNjg5NCA0Ljk4OTUyIDE5LjE0NEw0Ljk5MDYyIDE5LjEzNjlDNC45OTE4OCAxOS4xMjkgNC45OTQxOSAxOS4xMTQ5IDQuOTk3NzEgMTkuMDk0OUM1LjAwNDc2IDE5LjA1NDkgNS4wMTY2IDE4Ljk5MTggNS4wMzQzOSAxOC45MDg3QzUuMDcwMDIgMTguNzQyNSA1LjEyOTE5IDE4LjQ5ODEgNS4yMjA4NiAxOC4yMDE5QzUuNDA1MjMgMTcuNjA2MiA1LjcxNTM1IDE2LjgxOTcgNi4yMTYxMiAxNi4wNDA4QzcuMTk3NDMgMTQuNTE0MyA4LjkwODU5IDEzIDExLjk5OTkgMTNDMTUuMDkxMyAxMyAxNi44MDI1IDE0LjUxNDMgMTcuNzgzOCAxNi4wNDA4QzE4LjI4NDUgMTYuODE5NyAxOC41OTQ3IDE3LjYwNjIgMTguNzc5IDE4LjIwMTlDMTguODcwNyAxOC40OTgxIDE4LjkyOTkgMTguNzQyNSAxOC45NjU1IDE4LjkwODdDMTguOTgzMyAxOC45OTE4IDE4Ljk5NTEgMTkuMDU0OSAxOS4wMDIyIDE5LjA5NDlDMTkuMDA0OCAxOS4xMDk4IDE5LjAwNjggMTkuMTIxNSAxOS4wMDgxIDE5LjEyOThDMTkuMDA4NiAxOS4xMzI1IDE5LjAwODkgMTkuMTM0OSAxOS4wMDkzIDE5LjEzNjlMMTkuMDEwMSAxOS4xNDIzTDE5LjAxMDQgMTkuMTQ0QzE5LjA4OTcgMTkuNjg5NCAxOS41OTU1IDIwLjA2NzkgMjAuMTQxNCAxOS45OUMyMC42ODgxIDE5LjkxMTggMjEuMDY4IDE5LjQwNTMgMjAuOTg5OSAxOC44NTg2TDIwLjk4OTYgMTguODU2NEwyMC45ODkyIDE4Ljg1MzVMMjAuOTg4IDE4Ljg0NThMMjAuOTg0NSAxOC44MjI5QzIwLjk4MTUgMTguODA0MyAyMC45NzczIDE4Ljc3OTIgMjAuOTcxOCAxOC43NDc5QzIwLjk2MDggMTguNjg1MyAyMC45NDQzIDE4LjU5ODEgMjAuOTIxMSAxOC40ODk3QzIwLjg3NDcgMTguMjczMiAyMC44MDExIDE3Ljk3MDcgMjAuNjg5NiAxNy42MTA2QzIwLjQ2NzcgMTYuODkzOCAyMC4wOTAzIDE1LjkzMDMgMTkuNDY2MSAxNC45NTkyQzE4LjYyOTkgMTMuNjU4NSAxNy4zNTA1IDEyLjM1MjQgMTUuNDU2MiAxMS42MTMxQzE2LjQwNzUgMTAuNzAyOCAxNi45OTk5IDkuNDIwNiAxNi45OTk5IDhDMTYuOTk5OSA1LjIzODU4IDE0Ljc2MTQgMyAxMS45OTk5IDNaTTguOTk5OTQgOEM4Ljk5OTk0IDYuMzQzMTUgMTAuMzQzMSA1IDExLjk5OTkgNUMxMy42NTY4IDUgMTQuOTk5OSA2LjM0MzE1IDE0Ljk5OTkgOEMxNC45OTk5IDkuNjU2ODUgMTMuNjU2OCAxMSAxMS45OTk5IDExQzEwLjM0MzEgMTEgOC45OTk5NCA5LjY1Njg1IDguOTk5OTQgOFoiIGZpbGw9IiMwMDk0RkYiLz4KPC9zdmc+Cg=="
+                        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS45OTk5IDNDOS4yMzg1MSAzIDYuOTk5OTQgNS4yMzg1OCA2Ljk5OTk0IDhDNi45OTk5NCA5LjQyMDYgNy41OTIzOSAxMC43MDI4IDguNTQzNjkgMTEuNjEzMUM2LjY0OTM4IDEyLjM1MjQgNS4zNjk5OCAxMy42NTg1IDQuNTMzNzcgMTQuOTU5MkMzLjkwOTU0IDE1LjkzMDMgMy41MzIxNSAxNi44OTM4IDMuMzEwMjggMTcuNjEwNkMzLjE5ODgzIDE3Ljk3MDcgMy4xMjUxOCAxOC4yNzMyIDMuMDc4NzggMTguNDg5N0MzLjA1NTU2IDE4LjU5ODEgMy4wMzkwOCAxOC42ODUzIDMuMDI4MDUgMTguNzQ3OUMzLjAyMjU0IDE4Ljc3OTIgMy4wMTgzOSAxOC44MDQzIDMuMDE1NDMgMTguODIyOUwzLjAxMTg3IDE4Ljg0NThMMy4wMTA3MyAxOC44NTM1TDMuMDEwMzEgMTguODU2NEwzLjAwOTk5IDE4Ljg1ODZDMi45MzE4OSAxOS40MDUzIDMuMzExNzkgMTkuOTExOCAzLjg1ODUyIDE5Ljk5QzQuNDA0NCAyMC4wNjc5IDQuOTEwMTkgMTkuNjg5NCA0Ljk4OTUyIDE5LjE0NEw0Ljk5MDYyIDE5LjEzNjlDNC45OTE4OCAxOS4xMjkgNC45OTQxOSAxOS4xMTQ5IDQuOTk3NzEgMTkuMDk0OUM1LjAwNDc2IDE5LjA0OTkgNS4wMTY2IDE4Ljk5MTggNS4wMzQzOSAxOC45MDg3QzUuMDcwMDIgMTguNzQyNSA1LjEyOTE5IDE4LjQ5ODEgNS4yMjA4NiAxOC4yMDE5QzUuNDA1MjMgMTcuNjA2MiA1LjcxNTM1IDE2LjgxOTcgNi4yMTYxMiAxNi4wNDA4QzcuMTk3NDMgMTQuNTE0MyA4LjkwODU5IDEzIDExLjk5OTkgMTNDMTUuMDkxMyAxMyAxNi44MDI1IDE0LjUxNDMgMTcuNzgzOCAxNi4wNDA4QzE4LjI4NDUgMTYuODE5NyAxOC41OTQ3IDE3LjYwNjIgMTguNzc5IDE4LjIwMTlDMTguODcwNyAxOC40OTgxIDE4LjkyOTkgMTguNzQyNSAxOC45NjU1IDE4LjkwODdDMTguOTgzMyAxOC45OTE4IDE4Ljk5NTEgMTkuMDU0OSAxOS4wMDIyIDE5LjA5NDlDMTkuMDA0OCAxOS4xMDk4IDE5LjAwNjggMTkuMTIxNSAxOS4wMDgxIDE5LjEyOThDMTkuMDA4NiAxOS4xMzI1IDE5LjAwODkgMTkuMTM0OSAxOS4wMDkzIDE5LjEzNjlMMTkuMDEwMSAxOS4xNDIzTDE5LjAxMDQgMTkuMTQ0QzE5LjA4OTcgMTkuNjg5NCAxOS41OTU1IDIwLjA2NzkgMjAuMTQxNCAxOS45OUMyMC42ODgxIDE5LjkxMTggMjEuMDY4IDE5LjQwNTMgMjAuOTg5OSAxOC44NTg2TDIwLjk4OTYgMTguODU2NEwyMC45ODkyIDE4Ljg1MzVMMjAuOTg4IDE4Ljg0NThMMjAuOTg0NSAxOC44MjI5QzIwLjk4MTUgMTguODA0MyAyMC45NzczIDE4Ljc3OTIgMjAuOTcxOCAxOC43NDc5QzIwLjk2MDggMTguNjg1MyAyMC45NDQzIDE4LjU5ODEgMjAuOTIxMSAxOC40ODk3QzIwLjg3NDcgMTguMjczMiAyMC44MDExIDE3Ljk3MDcgMjAuNjg5NiAxNy42MTA2QzIwLjQ2NzcgMTYuODkzOCAyMC4wOTAzIDE1LjkzMDMgMTkuNDY2MSAxNC45NTkyQzE4LjYyOTkgMTMuNjU4NSAxNy4zNTA1IDEyLjM1MjQgMTUuNDU2MiAxMS42MTMxQzE2LjQwNzUgMTAuNzAyOCAxNi45OTk5IDkuNDIwNiAxNi45OTk5IDhDMTYuOTk5OSA1LjIzODU4IDE0Ljc2MTQgMyAxMS45OTk5IDNaTTguOTk5OTQgOEM4Ljk5OTk0IDYuMzQzMTUgMTAuMzQzMSA1IDExLjk5OTkgNUMxMy42NTY4IDUgMTQuOTk5OSA2LjM0MzE1IDE0Ljk5OTkgOEMxNC45OTk5IDkuNjU2ODUgMTMuNjU2OCAxMSAxMS45OTk5IDExQzEwLjM0MzEgMTEgOC45OTk5NCA5LjY1Njg1IDguOTk5OTQgOFoiIGZpbGw9IiMwMDk0RkYiLz4KPC9zdmc+Cg=="
                       />
                     </div>
                     <div class="p-home-m-seo-numbers-item__textcontent">
@@ -763,16 +722,13 @@
                   >
                     Mirror Trading
                   </h2>
-                  <!-- <p class="com-c-description p-home-m-seoblog__desc" data-trans="seoblog_desc">All you need to become a
-                                                      trading guru gathered in one place: education, analytics, video lessons,<br /> trading tips, market
-                                                      news, and so much more!</p> -->
                 </div>
               </div>
               <div class="p-home-m-seoblog__list-wrap">
                 <ul class="p-home-m-seoblog__list" style="padding: 0">
                   <li class="p-home-m-seoblog__link" style="min-height: 425px">
                     <a
-                      href="{% url 'construction' %}"
+                      href="{% url 'copy_trading' %}"
                       class="p-home-m-seoblog__link-card"
                     >
                       <div class="p-home-m-seoblog__link-card-img-wrap">
@@ -782,6 +738,7 @@
                         >
                           <img
                             src="{% static 'img/pexels-anna-nekrashevich-6801647.jpg' %}"
+                            alt="Copy Option Trading"
                           />
                         </div>
                         <div class="p-home-m-seoblog__link-card-title-wrap">
@@ -798,7 +755,7 @@
                   </li>
                   <li class="p-home-m-seoblog__link">
                     <a
-                      href="{% url 'construction' %}"
+                      href="{% url 'advance_trading' %}"
                       class="p-home-m-seoblog__link-card"
                     >
                       <div class="p-home-m-seoblog__link-card-img-wrap">
@@ -808,6 +765,7 @@
                         >
                           <img
                             src="{% static 'img/pexels-george-morina-4960396.jpg' %}"
+                            alt="Advance Trading"
                           />
                         </div>
                       </div>
@@ -835,6 +793,7 @@
                         >
                           <img
                             src="{% static 'img/pexels-alphatradezone-5831671.jpg' %}"
+                            alt="Cryptocurrency Market"
                           />
                         </div>
                       </div>
@@ -849,6 +808,7 @@
                 </ul>
               </div>
             </section>
+            
             <section class="p-home-m-seoblog p-home__section page__container">
               <div class="p-home-m-seoblog__head-wrap">
                 <div class="p-home-m-seoblog__head-text-wrap">
@@ -858,16 +818,13 @@
                   >
                     Stocks
                   </h2>
-                  <!-- <p class="com-c-description p-home-m-seoblog__desc" data-trans="seoblog_desc">All you need to become a
-                                                      trading guru gathered in one place: education, analytics, video lessons,<br /> trading tips, market
-                                                      news, and so much more!</p> -->
                 </div>
               </div>
               <div class="p-home-m-seoblog__list-wrap">
                 <ul class="p-home-m-seoblog__list" style="padding: 0">
                   <li class="p-home-m-seoblog__link" style="min-height: 425px">
                     <a
-                      href="{% url 'construction' %}"
+                      href="{% url 'swing_trading' %}"
                       class="p-home-m-seoblog__link-card"
                     >
                       <div class="p-home-m-seoblog__link-card-img-wrap">
@@ -877,6 +834,7 @@
                         >
                           <img
                             src="{% static 'img/pexels-alphatradezone-5833756.jpg' %}"
+                            alt="Swing Trading"
                           />
                         </div>
                         <div class="p-home-m-seoblog__link-card-title-wrap">
@@ -895,7 +853,7 @@
                   </li>
                   <li class="p-home-m-seoblog__link">
                     <a
-                      href="{% url 'construction' %}"
+                      href="{% url 'feature_trading' %}"
                       class="p-home-m-seoblog__link-card"
                     >
                       <div class="p-home-m-seoblog__link-card-img-wrap">
@@ -905,6 +863,7 @@
                         >
                           <img
                             src="{% static 'img/pexels-karolina-grabowska-7876672.jpg' %}"
+                            alt="Futures"
                           />
                         </div>
                       </div>
@@ -923,7 +882,7 @@
                   </li>
                   <li class="p-home-m-seoblog__link">
                     <a
-                      href="{% url 'construction' %}"
+                      href="{% url 'options_trading' %}"
                       class="p-home-m-seoblog__link-card"
                     >
                       <div class="p-home-m-seoblog__link-card-img-wrap">
@@ -933,6 +892,7 @@
                         >
                           <img
                             src="{% static 'img/pexels-leeloo-thefirst-7873553.jpg' %}"
+                            alt="Options"
                           />
                         </div>
                       </div>
@@ -950,7 +910,7 @@
                   </li>
                   <li class="p-home-m-seoblog__link">
                     <a
-                      href="{% url 'construction' %}"
+                      href="{% url 'oil_and_gas' %}"
                       class="p-home-m-seoblog__link-card"
                     >
                       <div class="p-home-m-seoblog__link-card-img-wrap">
@@ -960,6 +920,7 @@
                         >
                           <img
                             src="{% static 'img/pexels-janrune-smenes-reite-3207536.jpg' %}"
+                            alt="Oil and Gas"
                           />
                         </div>
                         <div class="p-home-m-seoblog__link-card-title-wrap">
@@ -974,6 +935,7 @@
                 </ul>
               </div>
             </section>
+            
             <section
               class="p-home-m-seo-for-everyone p-home__section page__container"
             >
@@ -1095,11 +1057,12 @@
                 data-trans="home_start_trading"
                 type="button"
                 data-test="home-page-achievements"
-                onclick="window.location.href='{% url 'construction' %}'"
+                onclick="window.location.href='{% url 'register' %}'"
               >
                 Get Started
               </button>
             </section>
+            
             <section class="p-home-m-seodevices p-home__section">
               <div class="page__container">
                 <div class="p-home-m-seodevices__head-wrap">
@@ -1146,7 +1109,7 @@
                         href="https://www.tradingview.com/markets/currencies/forex-heat-map/?utm_source=miragetraders.com&amp;utm_medium=widget_new&amp;utm_campaign=forex-heat-map"
                         rel="noopener"
                         target="_blank"
-                        ><span class="blue-text">Forex market heatmap</span></a
+                      ><span class="blue-text">Forex market heatmap</span></a
                       >
                       by TradingView
                     </div>
@@ -1157,7 +1120,6 @@
                         line-height: 32px !important;
                         text-align: center !important;
                         vertical-align: middle !important;
-                        /* @mixin sf-pro-display-font; */
                         font-family:
                           -apple-system, BlinkMacSystemFont, "Trebuchet MS",
                           Roboto, Ubuntu, sans-serif !important;
@@ -1194,6 +1156,7 @@
                 </div>
               </div>
             </section>
+            
             <section class="p-home-m-new-features p-home__section">
               <div class="page__container">
                 <h2
@@ -1238,12 +1201,14 @@
                       <img
                         style="width: 100%; border-radius: 8px"
                         src="{% static 'img/pexels-burak-the-weekender-187041.jpg' %}"
+                        alt="Trading Platform"
                       />
                     </div>
                   </div>
                 </div>
               </div>
             </section>
+            
             <section
               class="p-home-m-seo-become-a-trader p-home__section p-home-m-seo-become-a-trader--ltr"
             >
@@ -1269,300 +1234,18 @@
                     <hr />
                     Benefits:<br />
                     Streaming live with your trader Getting your portfolio up to
-                    Millions Learning from other chamber’s investors across the
+                    Millions Learning from other chamber's investors across the
                     countries
                     <hr />
                     Rules:<br />
                     You will need to get your account up to the requirements for
                     you to participate on the chambers level, more details will
                     be explained to you by trader due to every traders have
-                    their yearly target level. Add this at the down
+                    their yearly target level.
                   </div>
                 </div>
               </div>
             </section>
-            <style>
-              .wrapper {
-                width: 95%;
-                max-width: 1200px;
-                margin: 30px auto;
-              }
-
-              .pricing-table h2 {
-                font-size: 1.5em;
-                padding: 35px 10px;
-                margin: 0;
-              }
-
-              .description {
-                margin-top: 20px;
-                font-size: 0.85em;
-                padding: 0 40px;
-                font-style: italic;
-              }
-
-              .description {
-                margin-top: 20px;
-                font-size: 0.85em;
-                padding: 0 40px;
-                font-style: italic;
-              }
-
-              .price,
-              .pricing-box {
-                -webkit-transition: all ease-out 0.2s;
-                transition: all ease-out 0.2s;
-              }
-
-              .price {
-                background: linear-gradient(
-                  -225deg,
-                  #4c87de 0%,
-                  #2b7acc 53%,
-                  #2375b3 100%
-                );
-                color: #fff;
-                font-size: 2em;
-                font-weight: 600;
-                position: relative;
-                padding: 20px 10px;
-                display: block;
-              }
-
-              .pricing-box:nth-child(2) .price {
-                background: linear-gradient(
-                  -225deg,
-                  #4c87de 0%,
-                  #2b7acc 53%,
-                  #2375b3 100%
-                );
-              }
-
-              .pricing-box:nth-child(3) .price {
-                background: linear-gradient(
-                  -225deg,
-                  #4c87de 0%,
-                  #2b7acc 53%,
-                  #2375b3 100%
-                );
-              }
-
-              .pricing-box:hover .price {
-                background: #ff0;
-                box-shadow: inset 0 0 100px 0 rgba(0, 0, 0, 0.3);
-                color: #000;
-              }
-
-              .btn {
-                background: #000000;
-                border: 1px solid #000000;
-                color: #fff;
-                -webkit-transition: all ease-out 0.2s;
-                transition: all ease-out 0.2s;
-                border-radius: 30px;
-                padding: 7px 40px;
-                display: inline-block;
-                margin-top: 20px;
-              }
-
-              .btn:hover {
-                background: linear-gradient(
-                  -225deg,
-                  #65379b 0%,
-                  #886aea 53%,
-                  #6457c6 100%
-                );
-                border: 1px solid #6c0ba9;
-                color: #fff !important;
-              }
-
-              .pricing-table-divider {
-                display: block;
-                height: 1px;
-                background: rgba(0, 0, 0, 0.08);
-                max-width: 80%;
-                margin: 20px auto 0;
-              }
-
-              .pricing-table {
-                border-radius: 3px;
-                display: -ms-grid;
-                display: grid;
-                -ms-grid-columns: (1fr) [3];
-                grid-template-columns: repeat(3, 1fr);
-                grid-column-gap: 20px;
-                grid-row-gap: 20px;
-                text-align: center;
-              }
-
-              .pricing-box-2 {
-                overflow: hidden;
-                border-radius: 10px;
-                box-shadow: 0 0 30px rgba(0, 0, 0, 0.13);
-                border: 2px solid rgba(10, 123, 183, 0.14);
-              }
-
-              .pricing-box-2:hover {
-                -webkit-transform: scale(1.01);
-                transform: scale(1.01);
-              }
-
-              .pricing-table ul li {
-                padding: 3px 0;
-                font-size: 0.95em;
-              }
-
-              .pricing-table ul {
-                color: #ffffff;
-                padding: 15px 60px;
-                text-align: left;
-              }
-
-              .price-tab.active {
-                display: block;
-              }
-
-              .price-tab {
-                display: none;
-              }
-
-              @media (max-width: 750px) {
-                .pricing-table {
-                  -ms-grid-columns: 1fr;
-                  grid-template-columns: 1fr;
-                }
-
-                .pricing-table > div:nth-child(3) {
-                  -ms-grid-row: 1;
-                  grid-row-start: 1;
-                }
-
-                .pricing-table > div:nth-child(2) {
-                  -ms-grid-row: 2;
-                  grid-row-start: 2;
-                }
-
-                .pricing-table > div {
-                  -ms-flex-item-align: top;
-                  -ms-grid-row-align: top;
-                  align-self: top;
-                }
-              }
-
-              fieldset {
-                border: none;
-              }
-
-              fieldset div {
-                display: flex;
-                flex-wrap: wrap;
-                margin-top: 0.5rem;
-                justify-content: center;
-              }
-
-              input[type="radio"] {
-                clip: rect(0 0 0 0);
-                clip-path: inset(100%);
-                height: 1px;
-                overflow: hidden;
-                position: absolute;
-                white-space: nowrap;
-                width: 1px;
-              }
-
-              input[type="radio"]:checked + span {
-                box-shadow: 0 0 0 0.0625em #0043ed;
-                background-color: #dee7ff;
-                z-index: 1;
-                color: #0043ed;
-              }
-
-              label span {
-                display: block;
-                cursor: pointer;
-                background-color: #fff;
-                padding: 0.375em 0.75em;
-                position: relative;
-                margin-left: 0.0625em;
-                box-shadow: 0 0 0 0.0625em #b5bfd9;
-                letter-spacing: 0.05em;
-                color: #3e4963;
-                text-align: center;
-                transition: background-color 0.5s ease;
-              }
-
-              label:first-child span {
-                border-radius: 0.375em 0 0 0.375em;
-              }
-
-              label:last-child span {
-                border-radius: 0 0.375em 0.375em 0;
-              }
-
-              /* General Box Styling for Reviews */
-              .review-box {
-                border: 1px solid #eaeaea;
-                padding: 20px;
-                border-radius: 8px;
-                background-color: #fff;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                margin-bottom: 20px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
-                /* Ensures uniform height */
-              }
-
-              /* Star Rating Styling */
-              .review-stars {
-                color: green;
-                /* Trustpilot's star yellow color */
-                font-size: 20px;
-                margin-bottom: 10px;
-              }
-
-              .star {
-                margin-right: 2px;
-              }
-
-              /* Review Text Styling */
-              .review-text {
-                font-style: italic;
-                color: #333;
-                margin-bottom: 10px;
-              }
-
-              .review-author {
-                color: #555;
-                font-weight: bold;
-              }
-
-              /* Responsive Layout Adjustments */
-              .row {
-                display: flex;
-                flex-wrap: wrap;
-                margin-right: -15px;
-                margin-left: -15px;
-              }
-
-              .col-12 {
-                flex: 0 0 100%;
-                max-width: 100%;
-                padding-right: 15px;
-                padding-left: 15px;
-              }
-
-              @media (min-width: 768px) {
-                .col-md-3 {
-                  flex: 0 0 25%;
-                  max-width: 25%;
-                  padding-right: 15px;
-                  padding-left: 15px;
-                }
-              }
-            </style>
 
             <section class="p-home-m-new-features p-home__section">
               <div class="page__container">
@@ -1642,37 +1325,6 @@
                 </div>
               </div>
 
-              <script>
-                window.onload = function () {
-                  var el = document.getElementsByClassName("price-tab");
-                  for (i = 0; i < el.length; i++) {
-                    el[0].classList.add("active");
-                    if (el[i].classList.contains("active")) {
-                      el[i].style.display = "block";
-                      el[i].classList.add(
-                        "animate__animated",
-                        "animate__fadeIn",
-                      );
-                    }
-                  }
-                };
-
-                function selectPlan(plan) {
-                  var el = document.getElementsByClassName("price-tab");
-                  console.log(plan);
-                  for (i = 0; i < el.length; i++) {
-                    if (el[i].classList.contains(plan)) {
-                      el[i].style.display = "block";
-                      el[i].classList.add(
-                        "animate__animated",
-                        "animate__fadeIn",
-                      );
-                    } else {
-                      el[i].style.display = "none";
-                    }
-                  }
-                }
-              </script>
               <section
                 class="p-home-m-seo-become-a-trader p-home__section p-home-m-seo-become-a-trader--ltr"
               >
@@ -1707,7 +1359,7 @@
                               data-trans="become_a_trader_item_2_text_1"
                             >
                               Every trader wants to profit in the best
-                              conditions and doesn’t want to fear for the safety
+                              conditions and doesn't want to fear for the safety
                               of personal funds. The first obvious thing a
                               novice trader does is to study different online
                               trading sites.
@@ -1726,7 +1378,6 @@
                             </p>
                           </div>
                         </div>
-                        <!-- <button class="p-home-m-seo-become-a-trader__item-wrap-button p-home-m-seo-become-a-trader__item-wrap-button--ltr"></button> -->
                       </div>
                       <div
                         class="p-home-m-seo-become-a-trader__item-wrap"
@@ -1757,7 +1408,6 @@
                             </p>
                           </div>
                         </div>
-                        <!-- <button class="p-home-m-seo-become-a-trader__item-wrap-button p-home-m-seo-become-a-trader__item-wrap-button--ltr"></button> -->
                       </div>
                       <div
                         class="p-home-m-seo-become-a-trader__image-wrap"
@@ -1775,103 +1425,8 @@
           </div>
         </div>
         <div class="home-page-pixe-container"></div>
-        <style>
-          .com-footer_dir_ltr {
-            position: relative;
-            z-index: 1;
-          }
-
-          .com-footer_dir_ltr::before {
-            content: "";
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            bottom: 0px;
-            left: 0px;
-            background-image: url("{% static 'img/header-campus.webp' %}");
-            z-index: -1;
-            opacity: 0.9;
-          }
-        </style>
-
-        <footer class="com-footer com-footer_dir_ltr">
-          <div
-            class="com-footer-top com-footer__container"
-            style="padding: 40px"
-          >
-            <div class="com-footer-m-main-info com-footer-top__info">
-              <div class="com-footer-m-main-info__content">
-                <div class="com-footer-m-main-info__data">
-                  <a
-                    class="com-footer-m-main-info__logo"
-                    href="{% url 'construction' %}"
-                  >
-                    <img src="{% static 'img/logo.png' %}" width="200" />
-                  </a>
-                  <div class="com-footer-m-main-info__copy">
-                    ©2026 Veltrixtraders
-                  </div>
-                  <hr />
-
-                  <h4>Email</h4>
-                  <div class="com-footer-m-main-info__copy">
-                    support@Veltrixtraders.com
-                  </div>
-                  <hr />
-
-                  <h4>Address</h4>
-                  <div class="com-footer-m-main-info__copy">
-                    - Lower Mount Royal, AB T2T 5H7, Canada
-                  </div>
-                  <div class="com-footer-m-main-info__copy">
-                    - 100 Pall Mall, St. James’s London SW1Y 5NQ, United Kingdom
-                  </div>
-                  <div class="com-footer-m-main-info__copy">
-                    - 1007, N American way, Miami,FL33132, United States
-                  </div>
-                </div>
-              </div>
-              <div class="com-footer-m-main-info__text">
-                <p
-                  data-trans="footer_text_part_1"
-                  data-test="footer_text_part_1"
-                >
-                  The Transactions offered by this Website can be executed only
-                  by fully competent adults. Transactions with financial
-                  instruments offered on the Website involve substantial risk
-                  and trading may be very risky. If you make Transactions with
-                  the financial instruments offered on this Website, you might
-                  incur substantial losses or even lose everything in your
-                  Account. Before you decide to start Transactions with the
-                  financial instruments offered on the Website, you must review
-                  the Service Agreement and Risk Disclosure Information.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="com-footer-bottom com-footer-bottom_dir_ltr">
-            <div class="com-footer-bottom__content com-footer__container">
-              <div class="com-footer-bottom__langs"></div>
-              <nav class="com-footer-bottom__nav">
-                <a
-                  data-trans="user_tpl_regulation"
-                  class="com-footer-c-nav-link com-footer-bottom__link"
-                  href="{% url 'construction' %}"
-                  style="padding-right: 20px"
-                >
-                  Regulation
-                </a>
-                <a
-                  data-trans="site_law_info"
-                  class="com-footer-c-nav-link com-footer-bottom__link"
-                  href="{% url 'construction' %}"
-                >
-                  Legal Information
-                </a>
-              </nav>
-            </div>
-          </div>
-        </footer>
+        
+        {% include 'base/footer.html' %}
       </div>
     </div>
 
@@ -1894,70 +1449,34 @@
           c.src = "https://www.smartsuppchat.com/loader.js?";
           s.parentNode.insertBefore(c, s);
         })(document);
-    </script>
+        
+      window.onload = function () {
+        var el = document.getElementsByClassName("price-tab");
+        for (i = 0; i < el.length; i++) {
+          el[0].classList.add("active");
+          if (el[i].classList.contains("active")) {
+            el[i].style.display = "block";
+            el[i].classList.add(
+              "animate__animated", "animate__fadeIn"
+            );
+          }
+        }
+      };
 
-    <iframe
-      id="chat-application-iframe"
-      title="Smartsupp"
-      aria-hidden="true"
-      style="
-        display: block;
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        width: 1px;
-        height: 1px;
-        opacity: 0;
-        border: medium;
-        z-index: -1;
-        pointer-events: none;
-      "
-    ></iframe>
-    <div id="smartsupp-widget-container">
-      <!----><!----><!---->
-      <!----><!---->
-      <!---->
-      <div
-        style="
-          border-radius: 9999px;
-          box-shadow:
-            rgba(0, 0, 0, 0.06) 0px 1px 6px,
-            rgba(0, 0, 0, 0.12) 0px 2px 32px;
-          color-scheme: normal;
-          height: 56px;
-          position: fixed;
-          bottom: 24px;
-          left: initial;
-          right: 12px;
-          z-index: 10000000;
-          width: 56px;
-        "
-        data-testid="widgetButtonFrame"
-      >
-        <iframe
-          allowfullscreen=""
-          scrolling="no"
-          id="widgetButtonFrame"
-          title="Smartsupp widget button"
-          style="
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: medium;
-            display: block;
-            text-align: left;
-            margin: 0px;
-            padding: 0px;
-            top: 0px;
-            left: 0px;
-            opacity: 1;
-          "
-        ></iframe
-        ><!---->
-      </div>
-      <!---->
-      <!----><!---->
-      <!----><!----><!---->
-    </div>
+      function selectPlan(plan) {
+        var el = document.getElementsByClassName("price-tab");
+        console.log(plan);
+        for (i = 0; i < el.length; i++) {
+          if (el[i].classList.contains(plan)) {
+            el[i].style.display = "block";
+            el[i].classList.add(
+              "animate__animated", "animate__fadeIn"
+            );
+          } else {
+            el[i].style.display = "none";
+          }
+        }
+      }
+    </script>
   </body>
 </html>

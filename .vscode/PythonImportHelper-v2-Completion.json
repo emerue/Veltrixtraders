@@ -229,7 +229,7 @@
         "kind": 5,
         "importPath": "VeltrixApp.urls",
         "description": "VeltrixApp.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.home, name='home'),\n    path('construction/', views.construction, name='construction'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', views.home, name='home'),\n    path('construction/', views.construction, name='construction'),\n    path('login/', views.login, name='login'),\n    path('register/', views.register, name='register'),\n    path('about/', views.about, name='about'),\n    path('software/', views.software, name='software'),\n    path('insight/', views.insight, name='insight'),\n    path('option-copy-trading/', views.copy_trading, name='copy_trading'),\n    path('advance-trading/', views.advance_trading, name='advance_trading'),",
         "detail": "VeltrixApp.urls",
         "documentation": {}
     },
@@ -238,7 +238,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def home(request):\n    return render(request, 'home.html')\ndef construction(request):\n    return render(request, 'construction.html')",
+        "peekOfCode": "def home(request):\n    return render(request, 'home.html')\ndef construction(request):\n    return render(request, 'construction.html')\ndef login(request):\n    return render(request, 'login.html')\ndef register(request):\n    return render(request, 'register.html')\ndef about(request):\n    return render(request, 'about.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -247,7 +247,142 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def construction(request):\n    return render(request, 'construction.html')",
+        "peekOfCode": "def construction(request):\n    return render(request, 'construction.html')\ndef login(request):\n    return render(request, 'login.html')\ndef register(request):\n    return render(request, 'register.html')\ndef about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def login(request):\n    return render(request, 'login.html')\ndef register(request):\n    return render(request, 'register.html')\ndef about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def register(request):\n    return render(request, 'register.html')\ndef about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')\ndef copy_trading(request):\n    return render(request, 'option-copy-trading.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "about",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')\ndef copy_trading(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "software",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')\ndef copy_trading(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "insight",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def insight(request):\n    return render(request, 'insight.html')\ndef copy_trading(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')\ndef swing_trading(request):\n    return render(request, 'swing-trading.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "copy_trading",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def copy_trading(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')\ndef swing_trading(request):\n    return render(request, 'swing-trading.html')\ndef feature_trading(request):\n    return render(request, 'futures.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "advance_trading",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')\ndef swing_trading(request):\n    return render(request, 'swing-trading.html')\ndef feature_trading(request):\n    return render(request, 'futures.html')\ndef options_trading(request):\n    return render(request, 'option-trading.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "live_trading",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def live_trading(request):\n    return render(request, 'live-trading.html')\ndef swing_trading(request):\n    return render(request, 'swing-trading.html')\ndef feature_trading(request):\n    return render(request, 'futures.html')\ndef options_trading(request):\n    return render(request, 'option-trading.html')\ndef oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "swing_trading",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def swing_trading(request):\n    return render(request, 'swing-trading.html')\ndef feature_trading(request):\n    return render(request, 'futures.html')\ndef options_trading(request):\n    return render(request, 'option-trading.html')\ndef oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "feature_trading",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def feature_trading(request):\n    return render(request, 'futures.html')\ndef options_trading(request):\n    return render(request, 'option-trading.html')\ndef oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "options_trading",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def options_trading(request):\n    return render(request, 'option-trading.html')\ndef oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "oil_and_gas",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "terms_and_conditions",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "privacy_policy",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "forgot_password",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def forgot_password(request):\n    return render(request, 'forgot-password.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },

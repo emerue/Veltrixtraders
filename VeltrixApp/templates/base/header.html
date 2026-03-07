@@ -1,0 +1,267 @@
+{% load static %}
+<header class="page__container">
+  <div
+    class="FvJ-85Xh7Y"
+    style="
+      padding: 16px 0px 16px 0px;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      gap: 12px;
+    "
+  >
+    <div class="com-header__wrap">
+      <div class="com-header__box">
+        <a class="com-header__logo-link" href="{% url 'home' %}">
+          <img
+            src="{% static 'img/logo.png' %}"
+            width="220"
+            alt="VeltrixTraders"
+          />
+        </a>
+      </div>
+      <nav
+        style="display: flex; flex-direction: row; gap: 40px; margin: 0 36px"
+        class="com-header-links"
+      >
+        <div class="com-header-nav-links-item">
+          <div class="com-header-nav-links-item__main-wrap">
+            <div class="com-header-nav-links-item__main">
+              <a data-trans="site_about_company" href="{% url 'about' %}"
+                >About Us</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="com-header-nav-links-item drp-menu"
+          style="position: relative"
+        >
+          <div class="com-header-nav-links-item__main-wrap">
+            <div class="com-header-nav-links-item__main">Mirror trading</div>
+          </div>
+          <div
+            class="com-header-nav-links-item__list-wrap"
+            style="
+              position: absolute;
+              background-color: #1a1d21;
+              padding: 20px;
+              display: none;
+              border-radius: 15px;
+            "
+          >
+            <ul class="com-header-nav-links-item__list" style="padding: 0">
+              <li class="com-header-nav-links-item__item">
+                <a
+                  data-trans="navigation_item_apps"
+                  href="{% url 'copy_trading' %}"
+                >
+                  Options copy trading
+                </a>
+              </li>
+              <li class="com-header-nav-links-item__item">
+                <a
+                  data-trans="user_tpl_support"
+                  href="{% url 'advance_trading' %}"
+                >
+                  Advanced trading account above PDT
+                </a>
+              </li>
+              <li class="com-header-nav-links-item__item">
+                <a
+                  data-trans="user_tpl_regulation"
+                  href="{% url 'live_trading' %}"
+                >
+                  Live trading interface
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="com-header-nav-links-item drp-menu"
+          style="position: relative"
+        >
+          <div class="com-header-nav-links-item__main-wrap">
+            <div class="com-header-nav-links-item__main">Stocks</div>
+          </div>
+          <div
+            class="com-header-nav-links-item__list-wrap"
+            style="
+              position: absolute;
+              background-color: #1a1d21;
+              padding: 20px;
+              display: none;
+              border-radius: 15px;
+            "
+          >
+            <ul class="com-header-nav-links-item__list" style="padding: 0">
+              <li class="com-header-nav-links-item__item">
+                <a
+                  data-trans="navigation_item_apps"
+                  href="{% url 'swing_trading' %}"
+                >
+                  Swing trading
+                </a>
+              </li>
+              <li class="com-header-nav-links-item__item">
+                <a
+                  data-trans="user_tpl_support"
+                  href="{% url 'feature_trading' %}"
+                >
+                  Futures
+                </a>
+              </li>
+              <li class="com-header-nav-links-item__item">
+                <a
+                  data-trans="user_tpl_regulation"
+                  href="{% url 'options_trading' %}"
+                >
+                  Options
+                </a>
+              </li>
+              <li class="com-header-nav-links-item__item">
+                <a data-trans="site_law_info" href="{% url 'oil_and_gas' %}">
+                  Oil and gas
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="com-header-nav-links-item">
+          <div class="com-header-nav-links-item__main-wrap">
+            <div class="com-header-nav-links-item__main">
+              <a data-trans="stocksup_assets" href="{% url 'software' %}"
+                >Software</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="com-header-nav-links-item">
+          <div class="com-header-nav-links-item__main-wrap">
+            <div class="com-header-nav-links-item__main">
+              <a data-trans="stocksup_assets" href="{% url 'insight' %}"
+                >Insight</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="com-header__buttons-wrap">
+      <div class="com-header__button-login">
+        <button
+          class="d8xr7lLwBE FgFzN3XuSe o9rFZdBYLp BRenn248Ra n8TxI6D5e-"
+          data-test="action-sign-in"
+          type="button"
+        >
+          <div
+            class="FvJ-85Xh7Y"
+            style="
+              padding: 8px 16px;
+              width: 100%;
+              max-height: 100%;
+              max-width: 100%;
+              align-items: center;
+              justify-content: center;
+              flex-direction: row;
+            "
+          >
+            <div class="OtK37B0dgM">
+              <div
+                class="FvJ-85Xh7Y"
+                style="
+                  width: 100%;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: row;
+                  gap: 8px;
+                "
+              >
+                <div class="ZfdK6Ae8Lh _9kNVmQo8-7">
+                  <a
+                    href="{% url 'login' %}"
+                    class="ekkZvIsihs"
+                    data-align="start"
+                    data-size="M Compact"
+                    data-style="Bold"
+                    data-test="Text"
+                    style="color: inherit; display: block"
+                  >
+                    Login
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="com-header__button-register">
+        <button
+          class="d8xr7lLwBE _8ZKU0a0qtS LbsoNgWf67 BRenn248Ra n8TxI6D5e-"
+          data-test="action-sign-up"
+          type="button"
+        >
+          <div
+            class="FvJ-85Xh7Y"
+            style="
+              padding: 8px 16px;
+              width: 100%;
+              max-height: 100%;
+              max-width: 100%;
+              align-items: center;
+              justify-content: center;
+              flex-direction: row;
+            "
+          >
+            <div class="OtK37B0dgM">
+              <div
+                class="FvJ-85Xh7Y"
+                style="
+                  width: 100%;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: row;
+                  gap: 8px;
+                "
+              >
+                <div class="ZfdK6Ae8Lh _9kNVmQo8-7">
+                  <a
+                    href="{% url 'register' %}"
+                    class="ekkZvIsihs"
+                    data-align="start"
+                    data-size="M Compact"
+                    data-style="Bold"
+                    data-test="Text"
+                    style="color: inherit; display: block"
+                  >
+                    Registration
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  window.addEventListener("load", (event) => {
+    const els = document.querySelectorAll(".drp-menu");
+    els.forEach((el, i) => {
+      el.addEventListener("mouseover", function (e) {
+        els[i].querySelector(
+          ".com-header-nav-links-item__list-wrap",
+        ).style.display = "block";
+      });
+      el.addEventListener("mouseout", (e) => {
+        els[i].querySelector(
+          ".com-header-nav-links-item__list-wrap",
+        ).style.display = "none";
+      });
+    });
+  });
+</script>

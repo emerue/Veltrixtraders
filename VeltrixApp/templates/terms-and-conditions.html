@@ -1,0 +1,875 @@
+{% load static %}
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=1024" />
+
+    <base data-react-helmet="true" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut-icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/styledb6.css' %}" rel="stylesheet" />
+
+    <meta name="generator" content="Gatsby 3.9.1" />
+    <meta property="og:title" content="Veltrixtraders" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:image"
+      content="https://miragetraders.com/assets/pexels-alphatradezone-5833756.jpg"
+    />
+    <meta property="og:url" content="https://Veltrixtraders.com" />
+    <style>
+      .gatsby-image-wrapper {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .gatsby-image-wrapper img {
+        all: inherit;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        margin: 0;
+        max-width: none;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .gatsby-image-wrapper [data-main-image] {
+        opacity: 0;
+        transform: translateZ(0);
+        transition: opacity 0.25s linear;
+        will-change: opacity;
+      }
+
+      .gatsby-image-wrapper-constrained {
+        display: inline-block;
+      }
+    </style>
+    <noscript>
+      <style>
+        .gatsby-image-wrapper noscript [data-main-image] {
+          opacity: 1 !important;
+        }
+
+        .gatsby-image-wrapper [data-placeholder-image] {
+          opacity: 0 !important;
+        }
+      </style>
+    </noscript>
+
+    <title data-react-helmet="true">
+      Veltrixtraders: the online trading and investment platform
+    </title>
+    <meta
+      data-react-helmet="true"
+      namxe="title"
+      property="og:title"
+      content="Veltrixtraders: the online trading and investment platform"
+    />
+    <meta name="keywords" content="Veltrixtraders" />
+    <link rel="canonical" href="index.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Veltrixtraders - Discover investment possibilities"
+    />
+    <meta
+      property="og:description"
+      content="A trading platform for online trading and investments from the broker Veltrixtraders. Start earning money with millions of traders worldwide!"
+    />
+    <meta property="og:url" content="https://Veltrixtraders.com" />
+    <meta property="og:site_name" content="Veltrixtraders" />
+    <meta
+      property="og:image"
+      content="https://miragetraders.com/assets/pexels-tima-miroshnichenko-7567565.jpg"
+    />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="1279" />
+    <meta name="twitter:site" content="https://Veltrixtraders.com" />
+    <meta name="twitter:title" content="Veltrixtraders" />
+    <meta
+      name="twitter:description"
+      content="A trading platform for online trading and investments from the broker Veltrixtraders. Start earning money with millions of traders worldwide!"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image:src"
+      content="https://miragetraders.com/assets/pexels-tima-miroshnichenko-7567565.jpg"
+    />
+    <style>
+      .extr-hero {
+        height: 350px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
+      .extr-hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        display: block;
+        background-image: linear-gradient(
+          90deg,
+          rgba(29, 87, 172, 1) 0%,
+          rgba(9, 56, 124, 1) 37%,
+          rgba(9, 56, 124, 0.6741290266106443) 100%
+        );
+      }
+
+      .extra-inner-bg {
+        background-image: url('{% static "img/hero-bg.png" %}');
+        background-position: right;
+        background-size: 500px;
+        background-repeat: no-repeat;
+        bottom: 0;
+        position: absolute;
+        top: 0;
+      }
+
+      .comp-img {
+        background-color: #fff;
+        width: 50%;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+
+    <link rel="stylesheet" crossorigin="" href="{% static 'css/index-main.css' %}" />
+  </head>
+
+  <body data-theme="dark">
+    <div id="___gatsby">
+      <div style="outline: none" tabindex="-1" id="gatsby-focus-wrapper">
+        <div class="page page--en">
+          <div class="page__header">
+            {% include 'base/header.html' %}
+          </div>
+
+          <div class="page-main">
+            <div
+              class="bg-gradient-to-r from-slate-900 to-slate-800 border-b border-slate-700"
+            >
+              <div class="max-w-6xl mx-auto px-6 py-12">
+                <div class="flex items-center gap-4 mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-file-text w-8 h-8 text-blue-400"
+                  >
+                    <path
+                      d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                    ></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" x2="8" y1="13" y2="13"></line>
+                    <line x1="16" x2="8" y1="17" y2="17"></line>
+                    <line x1="10" x2="8" y1="9" y2="9"></line>
+                  </svg>
+                  <h1 class="text-4xl font-bold text-slate-100">
+                    Client Agreement - Terms and Conditions
+                  </h1>
+                </div>
+                <p class="text-xl text-slate-300 max-w-3xl">
+                  Veltrixtraders Ltd. Client Agreement - Please read these terms
+                  carefully before using our services. By using our platform,
+                  you agree to be bound by these terms and conditions.
+                </p>
+              </div>
+            </div>
+            <div
+              class="bg-red-950/30 border-l-4 border-red-500 mx-6 mt-8 p-6 rounded-r-lg"
+            >
+              <div class="flex items-start gap-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-alert-triangle w-6 h-6 text-red-400 mt-1 flex-shrink-0"
+                >
+                  <path
+                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+                  ></path>
+                  <path d="M12 9v4"></path>
+                  <path d="M12 17h.01"></path>
+                </svg>
+                <div>
+                  <h3 class="text-lg font-semibold text-red-300 mb-2">
+                    RISK WARNING
+                  </h3>
+                  <p class="text-red-200 leading-relaxed">
+                    Trading leveraged derivative products such as Foreign
+                    Exchange (Forex), Contracts for Difference (CFDs), or other
+                    financial derivative products carry a high level of risk to
+                    your capital. All these products, which are leveraged
+                    derivative products, may not be appropriate for all
+                    investors without an expert. The effect of leverage is that
+                    both gains and losses are magnified. The prices of leveraged
+                    derivative products may change to your disadvantage very
+                    quickly, you can lose more than your invested capital, and
+                    you may be required to make further payments. Before
+                    deciding to invest in any financial product, you should
+                    carefully consider your investment objectives, trading
+                    knowledge and experience, and affordability. You should only
+                    trade in Forex and CFDs if you have sufficient knowledge and
+                    experience of the risky nature of the products, the risks
+                    involved in trading such products, and if you are dealing
+                    with money that you can afford to lose. You should seek
+                    independent professional financial advice if you are in any
+                    doubt.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="max-w-6xl mx-auto px-6 py-12">
+              <div class="space-y-6">
+                <div
+                  class="border border-slate-700 rounded-lg bg-slate-900/50 backdrop-blur-sm"
+                >
+                  <button
+                    class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-slate-800/50 transition-colors rounded-t-lg"
+                  >
+                    <div class="flex items-center gap-3">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-file-text w-5 h-5 text-blue-400"
+                      >
+                        <path
+                          d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                        ></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" x2="8" y1="13" y2="13"></line>
+                        <line x1="16" x2="8" y1="17" y2="17"></line>
+                        <line x1="10" x2="8" y1="9" y2="9"></line>
+                      </svg>
+                      <h2 class="text-xl font-semibold text-slate-100">
+                        1. THIS AGREEMENT
+                      </h2>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-chevron-down w-5 h-5 text-slate-400"
+                    >
+                      <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                  </button>
+                  <div class="px-6 pb-6 text-slate-300 leading-relaxed">
+                    <div class="mt-6">
+                      <h3 class="text-lg font-semibold text-slate-200 mb-3">
+                        1.1. INTRODUCTION
+                      </h3>
+                      <div class="space-y-3 text-sm">
+                        <p>
+                          a) These Terms together with your completed and
+                          submitted Application Form comprise the Client
+                          Agreement between Veltrixtraders Ltd. ("we", "us" or
+                          "Veltrixtraders"), an international business company
+                          regulated by U.S Securities And Exchange under
+                          registration number: 4342-345462.
+                        </p>
+                        <p>
+                          b) If the Client is comprised of two or more legal
+                          persons, then a reference to a right or obligation of
+                          the Client under this Agreement or a transaction
+                          contemplated by this Agreement confers that right or
+                          imposes that obligation jointly and severally on those
+                          persons.
+                        </p>
+                        <p>
+                          c) This is a master agreement and sets out the terms
+                          and conditions upon which dealings between you and us
+                          relating to the provision of advice to the Client or
+                          the execution of Orders.
+                        </p>
+                        <p>
+                          d) The Client may forfeit part or all any Deposit in
+                          the event of cancellation. Where Veltrixtraders has
+                          suffered loss, it reserves the right to set off
+                          against the Client's Deposit or any other funds
+                          received from the Client, any charges, fees or losses
+                          sustained by Veltrixtraders in closing out the Order.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mt-6">
+                      <h3 class="text-lg font-semibold text-slate-200 mb-3">
+                        3.3. CURRENCY CONVERSIONS
+                      </h3>
+                      <div class="text-sm space-y-3">
+                        <p>
+                          a) Money can be paid under the Agreements in these
+                          currencies: Australian Dollars (AUD), United States
+                          Dollars (USD), British Pound Sterling (GBP), Euro
+                          (EUR), Canadian Dollars (CAD), Japanese Yen (JPY), New
+                          Zealand Dollars (NZD), Singapore Dollars (SGD) or Hong
+                          Kong Dollars (HKD).
+                        </p>
+                        <p>
+                          b) Realized profits and losses will be converted into
+                          the currency specified for the trade and will be
+                          converted into the Base Currency of the Account at the
+                          current spot rate immediately on closing-Out a
+                          Position.
+                        </p>
+                        <p>
+                          c) If the Client makes a payment to Veltrixtraders in a
+                          different currency than the Base Currency of the
+                          Account, the payment will be converted into the Base
+                          Currency of the Account at the spot rate given by
+                          Veltrixtraders' financial provider.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mt-6">
+                      <h3 class="text-lg font-semibold text-slate-200 mb-3">
+                        3.4. TRADING CONFIRMATIONS AND STATEMENTS
+                      </h3>
+                      <div class="text-sm space-y-3">
+                        <p>
+                          a) Each time the Client places an Order with
+                          Veltrixtraders, a confirmation of the executed trade
+                          will appear in the Veltrixtraders Trading Platform.
+                        </p>
+                        <p>
+                          b) The Client consents to receive Trade Confirmations
+                          by electronic means including, for example, through
+                          any Online Service.
+                        </p>
+                        <p>
+                          c) Veltrixtraders will make available Daily and Monthly
+                          Statements via Veltrixtraders Trading Platform or
+                          online service.
+                        </p>
+                        <p>
+                          d) Following the end of day settlement time, provided
+                          the Client has transacted or has an open Position,
+                          Veltrixtraders Trading Platform will produce a Daily
+                          Statement which will be emailed to the Client at their
+                          registered email address and then made available on
+                          the Veltrixtraders Trading Platform.
+                        </p>
+                        <p>
+                          e) Following month-end, Veltrixtraders will produce an
+                          electronic version of the Client's trading statement
+                          which will be emailed to the Client and be available
+                          on the Veltrixtraders Trading Platform.
+                        </p>
+                        <p>
+                          f) The Client is responsible for promptly checking all
+                          contents of Confirmations and the Daily and Monthly
+                          Statements. The client must immediately notify
+                          Veltrixtraders if they become aware that there is an
+                          error in the Confirmation or the Statements.
+                          Veltrixtraders is entitled to assume that the
+                          Confirmations and Statements are correct unless the
+                          Client notifies Veltrixtraders of any error within 48
+                          hours following us giving the Confirmation or the
+                          Statements becoming available to the Client.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mt-6">
+                      <h3 class="text-lg font-semibold text-slate-200 mb-3">
+                        3.5. TELEPHONE AND EMAIL TRANSACTIONS
+                      </h3>
+                      <div class="text-sm space-y-3">
+                        <p>
+                          a) An Authorized User may request Veltrixtraders to
+                          accept Instructions and enter Orders by telephone.
+                          Veltrixtraders has sole discretion to accept
+                          Instructions and enter Orders by telephone.
+                        </p>
+                        <p>
+                          b) Veltrixtraders may check the authority of the caller
+                          by requesting the caller give his or her name and
+                          confirming that such name has been notified to
+                          Veltrixtraders by the Client as an Authorized User.
+                        </p>
+                        <p>
+                          c) The Client acknowledges and agrees that
+                          Veltrixtraders may make a recording of each telephone
+                          Instruction and any other conversation received from a
+                          Client or an Authorized User. The recording remains
+                          the property of Veltrixtraders and can be used to
+                          confirm terms and conditions of any transaction where
+                          there is a dispute, and for training and monitoring
+                          purposes.
+                        </p>
+                        <p>
+                          d) An Authorized User may request Veltrixtraders to
+                          accept Instructions and enter Orders by email. The
+                          Client acknowledges and agrees that upon the
+                          acceptance by Veltrixtraders of the Client's
+                          Instructions, the Client shall be bound by those
+                          Instructions.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mt-6">
+                      <h3 class="text-lg font-semibold text-slate-200 mb-3">
+                        3.6. ONLINE SERVICES
+                      </h3>
+                      <div class="text-sm space-y-3">
+                        <p>
+                          a) If the Client or the Client's Authorized User uses
+                          any of the Online Services, the Client or Authorized
+                          User will be able to:
+                        </p>
+                        <ul class="list-disc ml-6 space-y-1">
+                          <li>
+                            place your Orders or issue Instructions to
+                            Veltrixtraders
+                          </li>
+                          <li>
+                            enquire as to the availability or pricing or value
+                            of one or more Financial Products
+                          </li>
+                          <li>
+                            receive market data and other information in
+                            relation to one or more Financial Products
+                          </li>
+                          <li>monitor your obligations under this Agreement</li>
+                          <li>
+                            receive Confirmations, Account balances or other
+                            information in connection with your Account
+                          </li>
+                          <li>
+                            use such other facilities as Veltrixtraders may from
+                            time to time make available through the Online
+                            services
+                          </li>
+                        </ul>
+                        <p>
+                          b) The Client must provide Veltrixtraders on request
+                          with a list of Authorized User(s) and is responsible
+                          for informing Veltrixtraders with any changes to that
+                          list.
+                        </p>
+                        <p>
+                          c) An Online Service may be a proprietary service
+                          provided by Veltrixtraders or a service provided to you
+                          by a third party pursuant to an arrangement with
+                          Veltrixtraders.
+                        </p>
+                        <p>
+                          d) The Client is responsible for complying with the
+                          operations aspects of Online Services provided by
+                          Veltrixtraders or the provider of the Online Services.
+                        </p>
+                        <p>
+                          e) Veltrixtraders may at any time without notice
+                          suspend, withdraw or deny access to the Online
+                          Services to a Client or one or more of the Client's
+                          Authorized Users for any reason including security,
+                          quality of service, failure to pay amounts when due or
+                          breach of any provision of this Agreement.
+                        </p>
+                        <p>
+                          f) Clients can contact Veltrixtraders in writing to
+                          terminate their access to an Online Service.
+                        </p>
+                        <p>
+                          g) Veltrixtraders can delay, decline or reverse any
+                          Order if Veltrixtraders reasonably suspects that the
+                          transaction might be unlawful, associated with
+                          financial crime, that the Client has engaged in
+                          Suspicious Trading Activity, believes that carrying
+                          out the transaction might breach compliance
+                          obligations, or believes that the Client is in breach
+                          of this Agreement.
+                        </p>
+                        <p>k) The Client must not:</p>
+                        <ul class="list-disc ml-6 space-y-1">
+                          <li>
+                            permit any person (other than an Authorized User) to
+                            use the Security Details or to access the Online
+                            Service
+                          </li>
+                          <li>
+                            provide, disclose or make available the Security
+                            Details to any person (other than an Authorized
+                            User)
+                          </li>
+                          <li>
+                            misuse any of the Online Services by knowingly
+                            introducing viruses, trojans, worms, logic bombs or
+                            other malicious material
+                          </li>
+                          <li>
+                            attempt to gain unauthorized access to any of the
+                            Online Services or any connected server, computer or
+                            database
+                          </li>
+                          <li>
+                            attack any of the Online Services via a
+                            denial-of-service attack or a distributed
+                            denial-of-service attack
+                          </li>
+                        </ul>
+                        <p>l) The Client acknowledges and agrees that:</p>
+                        <ul class="list-disc ml-6 space-y-1">
+                          <li>
+                            Access to Online Services can only be granted using
+                            the Security Details
+                          </li>
+                          <li>
+                            The Client is responsible for the consequences of
+                            any unauthorized disclosure or use of the Security
+                            Details
+                          </li>
+                          <li>
+                            Veltrixtraders is entitled to rely on all
+                            Instructions given using the Security Details
+                          </li>
+                          <li>
+                            Veltrixtraders is not liable for any loss caused by
+                            it acting on Instructions using the Security Details
+                          </li>
+                          <li>
+                            There may be delays in processing, execution,
+                            amendment or cancellation of Orders
+                          </li>
+                          <li>
+                            Any Online Service is provided on an "as is" basis
+                          </li>
+                          <li>
+                            There are significant risks in trading through
+                            Online Services due to computer and
+                            telecommunications systems
+                          </li>
+                          <li>
+                            The Client will be liable for all Orders made when
+                            using Online Services including instances of misuse,
+                            fraud or abuse
+                          </li>
+                          <li>
+                            Veltrixtraders may change minimum specifications and
+                            make operational changes at any time
+                          </li>
+                          <li>
+                            The Client is responsible for ensuring alternative
+                            arrangements if Online Services cease to be
+                            available
+                          </li>
+                        </ul>
+                        <p>
+                          m) Clients are responsible for obtaining, maintaining
+                          and ensuring compatibility of their electronic
+                          software, devices and equipment. Veltrixtraders will
+                          not be responsible for any loss of or damage to a
+                          client's data, software, computer, or equipment unless
+                          directly and solely caused by our negligence.
+                        </p>
+                        <p>
+                          n) Clients are responsible for ensuring that their
+                          electronic devices are free from viruses and other
+                          malware. Veltrixtraders cannot guarantee that Online
+                          Services will be free from infection.
+                        </p>
+                        <p>
+                          o) By breaching this provision, a Client may also
+                          commit a criminal offence. Veltrixtraders may report
+                          any such breach to law enforcement authorities and
+                          will co-operate by disclosing a Client's identity to
+                          them.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mt-6">
+                      <h3 class="text-lg font-semibold text-slate-200 mb-3">
+                        3.7. HEDGED POSITIONS
+                      </h3>
+                      <div class="text-sm space-y-3">
+                        <p>
+                          a) Veltrixtraders may allow you to execute Hedged
+                          Positions on some Financial Products from time to
+                          time. A Hedged Position is an Open Position that is
+                          opposite of another Open Position. In other words, it
+                          is the same Financial Product, but the opposite
+                          direction (i.e., you are the Long Party and the Short
+                          Party). A Hedged Position may be a Fully Hedged
+                          Position or a Partially Hedged Position.
+                        </p>
+                        <p>
+                          b) Veltrixtraders reserves the right to reduce the
+                          Deposit to zero for Fully Hedged Positions. We also
+                          reserve the right to reduce the Deposit for Partially
+                          Hedged Positions. If we choose to reduce the Deposit,
+                          we do not waive the right to require a deposit at any
+                          given time.
+                        </p>
+                        <p>
+                          c) You acknowledge and agree that if the Deposit for a
+                          Hedged Position has been reduced and you close any
+                          Open Position that forms part of the Hedged Position,
+                          it will immediately trigger the full Deposit for the
+                          Open Position. If you do not have sufficient Deposit
+                          such Open Position will be closed in accordance with
+                          clause 3.2 (c).
+                        </p>
+                        <p>
+                          d) Veltrixtraders may close all or part of any Hedged
+                          Position at any time without notice at the Close-Out
+                          Value where we reasonably believe that the Hedged
+                          Position is being abused by a Client including where
+                          we reasonably believe that such Hedged Positions are
+                          not in the ordinary course of trading, or where it
+                          constitutes Suspicious Trading Activity. The Company
+                          reserves the right to proceed with immediate account
+                          termination, with or without prior notification to the
+                          client. The Company is further entitled to reverse any
+                          profits accrued from suspicious trading and/or
+                          terminate the trading account.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mt-6">
+                      <h3 class="text-lg font-semibold text-slate-200 mb-3">
+                        3.8. DELAYS AND QUOTING ERRORS
+                      </h3>
+                      <div class="text-sm space-y-3">
+                        <p>
+                          a) While Veltrixtraders will make every reasonable
+                          effort to process the Client's Order promptly, in the
+                          absence of gross negligence or wilful misconduct,
+                          Veltrixtraders cannot be held liable for delays,
+                          damages, failures, or errors in the completion of the
+                          Order, including instances of off quotes situations.
+                        </p>
+                        <p>
+                          b) In the event of a quoting or off quote error,
+                          Veltrixtraders: i. is not liable and responsible for
+                          any damages, claims, losses, liabilities, or costs
+                          arising from the error; ii. reserves the right to
+                          restrict or suspend the trading activities of the
+                          involved Client until further notice; and iii.
+                          reserves the right to make the required adjustments to
+                          rectify the error.
+                        </p>
+                        <p>
+                          c) Any dispute arising from a quoting or off quote
+                          error will be resolved based on the fair market value,
+                          as determined by Veltrixtraders acting reasonably, of
+                          the relevant currency at the time such quoting error
+                          occurred.
+                        </p>
+                        <p>
+                          d) If Veltrixtraders is unable to perform its
+                          obligations under this Agreement or an Order because
+                          of factors beyond its control or because of a Force
+                          Majeure Event, Veltrixtraders will notify the Client as
+                          soon as is reasonably practicable and will use
+                          reasonable endeavors to secure the return of any money
+                          paid by the Client.
+                        </p>
+                        <p>
+                          e) Veltrixtraders may give a Notice to the Client at
+                          any time if it forms the view that market conditions
+                          in the relevant financial market for the currency
+                          concerned are seriously disturbed. When such Notice is
+                          given, Veltrixtraders's obligations will be suspended
+                          while it and the Client negotiate alternative
+                          arrangements.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mt-6">
+                      <h3 class="text-lg font-semibold text-slate-200 mb-3">
+                        3.9. TRADING HOURS
+                      </h3>
+                      <div class="text-sm space-y-3">
+                        <p>
+                          a) Trading hours for Margin FX Contracts and CFDs vary
+                          and will depend on the relevant Underlying
+                          Instrument's hours of operation. The trading hours are
+                          published on our website.
+                        </p>
+                        <p>
+                          b) We are under no obligation to quote prices or
+                          accept Orders on a public holiday in any jurisdiction
+                          which, in our reasonable opinion, affects the relevant
+                          value of the underlying asset or assets to the OTC
+                          derivative contract Veltrixtraders offers. We give
+                          notice of such public holidays and the underlying
+                          asset or assets affected on the Online Service.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-16 pt-8 border-t border-slate-700">
+                <div class="bg-slate-900/50 rounded-lg p-6">
+                  <h3 class="text-lg font-semibold text-slate-200 mb-4">
+                    Important Notice
+                  </h3>
+                  <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                    By using Veltrixtraders services, you acknowledge that you
+                    have read, understood, and agree to be bound by these Terms
+                    and Conditions. If you do not agree with any part of these
+                    terms, you should not use our services. These terms may be
+                    updated from time to time, and continued use of our services
+                    constitutes acceptance of any changes.
+                  </p>
+                  <div class="bg-slate-800/50 rounded-lg p-4 mb-4">
+                    <h4 class="font-semibold text-slate-200 mb-2">
+                      Contact Information
+                    </h4>
+                    <div class="text-xs text-slate-400 space-y-1">
+                      <p>Veltrixtraders Ltd.</p>
+                      <p>Registration Number: 4342-345462</p>
+                      <p>Regulated by U.S Securities And Exchange</p>
+                      <p>
+                        For questions about these terms, please contact our
+                        support team.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="text-xs text-slate-500">
+                    <p>
+                      This document contains the complete terms and conditions
+                      for using Veltrixtraders services. Please ensure you
+                      understand all sections before proceeding with any trading
+                      activities.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% include 'base/footer.html' %}
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = "4f3dcfc04c5f4a15b6a0ef9f6b75a5281651a1a1";
+        window.smartsupp ||
+          (function (d) {
+            var s,
+              c,
+              o = (smartsupp = function () {
+                o._.push(arguments);
+              });
+            o._ = [];
+            s = d.getElementsByTagName("script")[0];
+            c = d.createElement("script");
+            c.type = "text/javascript";
+            c.charset = "utf-8";
+            c.async = true;
+            c.src = "https://www.smartsuppchat.com/loader.js?";
+            s.parentNode.insertBefore(c, s);
+          })(document);
+      </script>
+    </div>
+    <iframe
+      id="chat-application-iframe"
+      title="Smartsupp"
+      aria-hidden="true"
+      style="
+        display: block;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        border: medium;
+        z-index: -1;
+        pointer-events: none;
+      "
+    ></iframe>
+    <div id="smartsupp-widget-container">
+      <!----><!----><!---->
+      <!----><!---->
+      <!---->
+      <div
+        style="
+          border-radius: 9999px;
+          box-shadow:
+            rgba(0, 0, 0, 0.06) 0px 1px 6px,
+            rgba(0, 0, 0, 0.12) 0px 2px 32px;
+          color-scheme: normal;
+          height: 56px;
+          position: fixed;
+          bottom: 24px;
+          left: initial;
+          right: 12px;
+          z-index: 10000000;
+          width: 56px;
+        "
+        data-testid="widgetButtonFrame"
+      >
+        <iframe
+          allowfullscreen=""
+          scrolling="no"
+          id="widgetButtonFrame"
+          title="Smartsupp widget button"
+          style="
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: medium;
+            display: block;
+            text-align: left;
+            margin: 0px;
+            padding: 0px;
+            top: 0px;
+            left: 0px;
+            opacity: 1;
+          "
+        ></iframe
+        ><!---->
+      </div>
+      <!---->
+      <!----><!---->
+      <!----><!----><!---->
+    </div>
+  </body>
+</html>

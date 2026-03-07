@@ -1,0 +1,90 @@
+{% load static %}
+<style>
+  .com-footer_dir_ltr {
+    position: relative;
+    z-index: 1;
+  }
+
+  .com-footer_dir_ltr::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url("{% static 'img/header-campus.webp' %}");
+    z-index: -1;
+    opacity: 0.9;
+  }
+</style>
+
+<footer class="com-footer com-footer_dir_ltr">
+  <div class="com-footer-top com-footer__container" style="padding: 40px">
+    <div class="com-footer-m-main-info com-footer-top__info">
+      <div class="com-footer-m-main-info__content">
+        <div class="com-footer-m-main-info__data">
+          <a class="com-footer-m-main-info__logo" href="{% url 'home' %}">
+            <img
+              src="{% static 'img/logo.png' %}"
+              width="200"
+              alt="VeltrixTraders"
+            />
+          </a>
+          <div class="com-footer-m-main-info__copy">©2026 Veltrixtraders</div>
+          <hr />
+
+          <h4>Email</h4>
+          <div class="com-footer-m-main-info__copy">
+            support@Veltrixtraders.com
+          </div>
+          <hr />
+
+          <h4>Address</h4>
+          <div class="com-footer-m-main-info__copy">
+            - Lower Mount Royal, AB T2T 5H7, Canada
+          </div>
+          <div class="com-footer-m-main-info__copy">
+            - 100 Pall Mall, St. James’s London SW1Y 5NQ, United Kingdom
+          </div>
+          <div class="com-footer-m-main-info__copy">
+            - 1007, N American way, Miami,FL33132, United States
+          </div>
+        </div>
+      </div>
+      <div class="com-footer-m-main-info__text">
+        <p data-trans="footer_text_part_1" data-test="footer_text_part_1">
+          The Transactions offered by this Website can be executed only by fully
+          competent adults. Transactions with financial instruments offered on
+          the Website involve substantial risk and trading may be very risky. If
+          you make Transactions with the financial instruments offered on this
+          Website, you might incur substantial losses or even lose everything in
+          your Account. Before you decide to start Transactions with the
+          financial instruments offered on the Website, you must review the
+          Service Agreement and Risk Disclosure Information.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="com-footer-bottom com-footer-bottom_dir_ltr">
+    <div class="com-footer-bottom__content com-footer__container">
+      <div class="com-footer-bottom__langs"></div>
+      <nav class="com-footer-bottom__nav">
+        <a
+          data-trans="user_tpl_regulation"
+          class="com-footer-c-nav-link com-footer-bottom__link"
+          href="{% url 'privacy_policy' %}"
+          style="padding-right: 20px"
+        >
+          Regulation
+        </a>
+        <a
+          data-trans="site_law_info"
+          class="com-footer-c-nav-link com-footer-bottom__link"
+          href="{% url 'terms_and_conditions' %}"
+        >
+          Legal Information
+        </a>
+      </nav>
+    </div>
+  </div>
+</footer>
