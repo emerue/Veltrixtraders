@@ -1,0 +1,101 @@
+{% extends "user/includes/header.html" %}
+{% load static %}
+
+{% block title %}Demo Trade History - Veltrixtraders{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    <div class="w-full bg-white dark:bg-gray-950 rounded-lg shadow-sm overflow-hidden">
+        <div class="p-4 border-b border-gray-200 dark:border-gray-900">
+            <div class="flex items-center justify-between">
+                <h2 class="text-sm font-semibold text-gray-800 dark:text-white">
+                    Demo Trades
+                </h2>
+                <div class="flex items-center text-[10px] text-gray-500 dark:text-gray-400">
+                    <span>Updated {% now "H:i" %}</span>
+                    <button class="ml-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none disabled:opacity-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw h-3.5 w-3.5 text-gray-400">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                            <path d="M21 3v5h-5"></path>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                            <path d="M8 16H3v5"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="mt-2 relative">
+                <input type="text" placeholder="Search symbol, direction, or date..." 
+                       class="w-full pl-8 pr-3 py-1.5 bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-gray-800 rounded-md text-xs text-gray-700 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-2 top-2 h-3.5 w-3.5 text-gray-400">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="max-h-96 overflow-y-auto">
+            {% if demo_trades %}
+            <ul class="divide-y divide-gray-100 dark:divide-gray-700">
+                {% for trade in demo_trades %}
+                <li class="px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-150 ease-in-out">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="h-6 w-6 flex items-center justify-center rounded {% if trade.direction == 'BUY' %}bg-green-600/10{% else %}bg-red-600/10{% endif %}">
+                                <span class="font-bold text-[10px] {% if trade.direction == 'BUY' %}text-green-600{% else %}text-red-600{% endif %}">{{ trade.symbol|slice:":2"|upper }}</span>
+                            </div>
+                            <div class="min-w-0">
+                                <div class="flex items-center space-x-1.5">
+                                    <h3 class="text-xs font-medium text-gray-800 dark:text-white">{{ trade.symbol }}</h3>
+                                    <span class="px-1 py-0 text-[10px] font-medium rounded {% if trade.direction == 'BUY' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% else %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+                                        {{ trade.direction }}
+                                    </span>
+                                </div>
+                                <div class="flex items-center text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-2.5 w-2.5 mr-0.5">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    {{ trade.date|date:"m/d H:i" }}<span class="mx-1">•</span><span>{{ trade.duration }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex items-center justify-end space-x-1.5">
+                                <span class="text-xs font-medium text-gray-800 dark:text-white">${{ trade.amount|floatformat:2 }}</span>
+                                <span class="flex items-center text-[10px] font-medium {% if trade.profit > 0 %}text-green-500 dark:text-green-400{% else %}text-red-500 dark:text-red-400{% endif %}">
+                                    {% if trade.profit > 0 %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-2.5 w-2.5 mr-0.5">
+                                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                        <polyline points="16 7 22 7 22 13"></polyline>
+                                    </svg>
+                                    {% else %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-2.5 w-2.5 mr-0.5">
+                                        <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline>
+                                        <polyline points="16 17 22 17 22 11"></polyline>
+                                    </svg>
+                                    {% endif %}
+                                    {% if trade.profit > 0 %}+{% endif %}${{ trade.profit|floatformat:2 }}
+                                </span>
+                            </div>
+                            <div class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">{{ trade.win_rate }}% rate</div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-6 w-6 mb-2 text-gray-300 dark:text-gray-600">
+                    <path d="M3 3v18h18"></path>
+                    <path d="M18 17V9"></path>
+                    <path d="M13 17V5"></path>
+                    <path d="M8 17v-3"></path>
+                </svg>
+                <p class="text-sm">No demo trades found</p>
+                <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Try adjusting your search</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

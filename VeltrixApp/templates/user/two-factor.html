@@ -1,0 +1,80 @@
+{% extends "user/includes/header.html" %}
+{% load static %}
+
+{% block title %}Two-Factor Authentication - Veltrixtraders{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    <div class="min-h-screen transition-colors duration-200">
+        <div class="grid grid-cols-1 gap-6">
+            <!-- Settings Navigation -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="{% url 'profile' %}" class="flex items-center justify-center py-4 px-6 w-full rounded-md transition-colors bg-gray-800 text-gray-300 hover:bg-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>Profile</span>
+                    </div>
+                </a>
+                <a href="{% url 'referral' %}" class="flex items-center justify-center py-4 px-6 w-full rounded-md transition-colors bg-gray-800 text-gray-300 hover:bg-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                        <span>Referrals</span>
+                    </div>
+                </a>
+                <a href="{% url 'password' %}" class="flex items-center justify-center py-4 px-6 w-full rounded-md transition-colors bg-gray-800 text-gray-300 hover:bg-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <span>Password</span>
+                    </div>
+                </a>
+                <a href="{% url 'two_factor' %}" class="flex items-center justify-center py-4 px-6 w-full rounded-md transition-colors bg-blue-500 text-white">
+                    <div class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                            <path d="m9 12 2 2 4-4"></path>
+                        </svg>
+                        <span>2FA</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Two-Factor Authentication Content -->
+            <div>
+                <div class="w-full md:flex justify-center items-center gap-10 my-4 max-[900px]:flex-col">
+                    <div class="flex-none">
+                        <img src="data:image/png;base64,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" alt="qrcode" class="rounded-xl mx-auto mb-6 md:mb-0" width="250" />
+                    </div>
+                    <div class="flex-auto shadow-1">
+                        <div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+                            <form class="space-y-6" action="#" method="POST">
+                                {% csrf_token %}
+                                <h5 class="text-xl font-medium text-gray-900 dark:text-white">
+                                    Enter the six digit code
+                                </h5>
+                                <div>
+                                    <label for="otp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        OTP
+                                    </label>
+                                    <input type="text" id="otp" name="otp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="******" required="" />
+                                </div>
+                                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Submit code
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

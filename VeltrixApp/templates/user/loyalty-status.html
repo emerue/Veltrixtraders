@@ -1,0 +1,36 @@
+{% extends "user/includes/header.html" %}
+{% load static %}
+
+{% block title %}Loyalty Status - Veltrixtraders{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    <div class="flex items-center justify-center flex-wrap gap-14 p-5 mb-4 rounded-[40px] bg-gray-50 dark:bg-gray-950">
+        {% for level in loyalty_levels %}
+        <div x-data="{ showTooltip: false }" @mouseenter="showTooltip = true" @mouseleave="showTooltip = false" class="relative">
+            <div class="w-30 h-30 p-7 bg-gray-900 rounded-3xl overflow-hidden transition-transform transform-gpu hover:scale-105">
+                <img src="{% static level.icon %}" alt="{{ level.name }}" 
+                     class="w-full h-full object-cover hover:grayscale-0 grayscale"
+                     :class="{ 'grayscale': !showTooltip, 'grayscale-0': showTooltip }" />
+            </div>
+            <h3 class="w-fit m-auto mt-2 text-gray-800 font-normal capitalize text-base font-satoshi dark:text-gray-100">
+                {{ level.name }}
+            </h3>
+            <div x-bind:class="{ 'invisible opacity-0': !showTooltip, 'visible opacity-100': showTooltip }" 
+                 class="absolute -left-16 top-[120px] z-10 inline-block w-64 text-sm text-white transition-opacity duration-300 bg-gray-800 border border-gray-700 rounded-lg shadow-sm dark:text-gray-500 dark:border-gray-200 dark:bg-white invisible opacity-0">
+                <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                    <h3 class="font-semibold text-gray-900 dark:text-white">{{ level.name|title }}</h3>
+                </div>
+                <div class="px-3 py-2 flex flex-col gap-1">
+                    <p class="flex gap-3"><span class="font-bold">Level:</span><span>{{ level.level }}</span></p>
+                    <p class="flex gap-3"><span class="font-bold">Minimum Deposit:</span><span class="amount">${{ level.min_deposit|floatformat:0 }}</span></p>
+                    <p class="flex gap-3"><span class="font-bold">Direct Referral:</span><span>{{ level.direct_referral }}</span></p>
+                    <p class="flex gap-3"><span class="font-bold">Referral Deposits:</span><span class="amount">${{ level.referral_deposits|floatformat:0 }}</span></p>
+                    <p class="flex gap-3"><span class="font-bold">Bonus:</span><span class="amount">${{ level.bonus|floatformat:0 }}</span></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

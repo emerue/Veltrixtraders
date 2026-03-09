@@ -89,12 +89,45 @@
         "documentation": {}
     },
     {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "os",
         "description": "os",
         "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -148,15 +181,6 @@
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
         "label": "argparse",
         "kind": 6,
         "isExtraImport": true,
@@ -205,14 +229,6 @@
         "description": "django.core.mail",
         "isExtraImport": true,
         "detail": "django.core.mail",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -355,7 +371,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')",
+        "peekOfCode": "def oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\ndef setup_user_info(request):\n    return render(request, 'setup-user-info.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -364,7 +380,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')",
+        "peekOfCode": "def terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\ndef setup_user_info(request):\n    return render(request, 'setup-user-info.html')\ndef setup_contact(request):\n    return render(request, 'setup-contact.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -373,7 +389,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')",
+        "peekOfCode": "def privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\ndef setup_user_info(request):\n    return render(request, 'setup-user-info.html')\ndef setup_contact(request):\n    return render(request, 'setup-contact.html')\ndef setup_experience(request):\n    return render(request, 'setup-experience.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -382,7 +398,232 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def forgot_password(request):\n    return render(request, 'forgot-password.html')",
+        "peekOfCode": "def forgot_password(request):\n    return render(request, 'forgot-password.html')\ndef setup_user_info(request):\n    return render(request, 'setup-user-info.html')\ndef setup_contact(request):\n    return render(request, 'setup-contact.html')\ndef setup_experience(request):\n    return render(request, 'setup-experience.html')\ndef setup_earnings(request):\n    return render(request, 'setup-earnings.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "setup_user_info",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def setup_user_info(request):\n    return render(request, 'setup-user-info.html')\ndef setup_contact(request):\n    return render(request, 'setup-contact.html')\ndef setup_experience(request):\n    return render(request, 'setup-experience.html')\ndef setup_earnings(request):\n    return render(request, 'setup-earnings.html')\ndef setup_declaration(request):\n    return render(request, 'setup-declaration.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "setup_contact",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def setup_contact(request):\n    return render(request, 'setup-contact.html')\ndef setup_experience(request):\n    return render(request, 'setup-experience.html')\ndef setup_earnings(request):\n    return render(request, 'setup-earnings.html')\ndef setup_declaration(request):\n    return render(request, 'setup-declaration.html')\ndef logout(request):\n    # Implement logout logic here",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "setup_experience",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def setup_experience(request):\n    return render(request, 'setup-experience.html')\ndef setup_earnings(request):\n    return render(request, 'setup-earnings.html')\ndef setup_declaration(request):\n    return render(request, 'setup-declaration.html')\ndef logout(request):\n    # Implement logout logic here\n    return render(request, 'index.html')\nimport json",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "setup_earnings",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def setup_earnings(request):\n    return render(request, 'setup-earnings.html')\ndef setup_declaration(request):\n    return render(request, 'setup-declaration.html')\ndef logout(request):\n    # Implement logout logic here\n    return render(request, 'index.html')\nimport json\nimport os\nfrom django.conf import settings",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "setup_declaration",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def setup_declaration(request):\n    return render(request, 'setup-declaration.html')\ndef logout(request):\n    # Implement logout logic here\n    return render(request, 'index.html')\nimport json\nimport os\nfrom django.conf import settings\nfrom django.shortcuts import render\ndef dashboard(request):",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def logout(request):\n    # Implement logout logic here\n    return render(request, 'index.html')\nimport json\nimport os\nfrom django.conf import settings\nfrom django.shortcuts import render\ndef dashboard(request):\n    # Load traders from JSON file\n    traders = []",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "dashboard",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def dashboard(request):\n    # Load traders from JSON file\n    traders = []\n    json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n    try:\n        with open(json_file_path, 'r') as file:\n            data = json.load(file)\n            traders = data.get('traders', [])\n    except FileNotFoundError:\n        # Handle file not found - you might want to log this",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "copy_trading",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def copy_trading(request):\n    # Load traders from JSON file\n    traders = []\n    json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n    try:\n        with open(json_file_path, 'r') as file:\n            data = json.load(file)\n            traders = data.get('traders', [])\n    except FileNotFoundError:\n        # Handle file not found - you might want to log this",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "copy_traders",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def copy_traders(request):\n    # Load traders from JSON file\n    traders = []\n    json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n    try:\n        with open(json_file_path, 'r') as file:\n            data = json.load(file)\n            traders = data.get('traders', [])\n    except FileNotFoundError:\n        # Handle file not found - you might want to log this",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "deposit",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def deposit(request):\n    return render(request, 'user/deposit.html')\ndef withdrawal(request):\n    return render(request, 'user/withdrawal.html')\ndef technical_insights(request):\n    return render(request, 'user/technical-insights.html')\ndef economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\ndef loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "withdrawal",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def withdrawal(request):\n    return render(request, 'user/withdrawal.html')\ndef technical_insights(request):\n    return render(request, 'user/technical-insights.html')\ndef economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\ndef loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')\ndef deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "technical_insights",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def technical_insights(request):\n    return render(request, 'user/technical-insights.html')\ndef economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\ndef loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')\ndef deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address\n    context = {\n        'wallet_address': wallet_address,",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "economic_calendar",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\ndef loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')\ndef deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address\n    context = {\n        'wallet_address': wallet_address,\n    }\n    return render(request, 'user/deposit-confirmation.html', context)",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "loyalty_status",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')\ndef deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address\n    context = {\n        'wallet_address': wallet_address,\n    }\n    return render(request, 'user/deposit-confirmation.html', context)\ndef transactions(request):\n    return render(request, 'user/transactions.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "deposit_confirmation",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address\n    context = {\n        'wallet_address': wallet_address,\n    }\n    return render(request, 'user/deposit-confirmation.html', context)\ndef transactions(request):\n    return render(request, 'user/transactions.html')\ndef verification(request):\n    return render(request, 'user/verification.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "transactions",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def transactions(request):\n    return render(request, 'user/transactions.html')\ndef verification(request):\n    return render(request, 'user/verification.html')\ndef login_history(request):\n    return render(request, 'user/login-history.html')\ndef profile(request):\n    return render(request, 'user/profile.html')\ndef referral(request):\n    return render(request, 'user/referral.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "verification",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def verification(request):\n    return render(request, 'user/verification.html')\ndef login_history(request):\n    return render(request, 'user/login-history.html')\ndef profile(request):\n    return render(request, 'user/profile.html')\ndef referral(request):\n    return render(request, 'user/referral.html')\ndef password(request):\n    return render(request, 'user/password.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "login_history",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def login_history(request):\n    return render(request, 'user/login-history.html')\ndef profile(request):\n    return render(request, 'user/profile.html')\ndef referral(request):\n    return render(request, 'user/referral.html')\ndef password(request):\n    return render(request, 'user/password.html')\ndef two_factor(request):\n    return render(request, 'user/two-factor.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "profile",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def profile(request):\n    return render(request, 'user/profile.html')\ndef referral(request):\n    return render(request, 'user/referral.html')\ndef password(request):\n    return render(request, 'user/password.html')\ndef two_factor(request):\n    return render(request, 'user/two-factor.html')\ndef copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "referral",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def referral(request):\n    return render(request, 'user/referral.html')\ndef password(request):\n    return render(request, 'user/password.html')\ndef two_factor(request):\n    return render(request, 'user/two-factor.html')\ndef copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')\ndef demo_history(request):\n    return render(request, 'user/demo-history.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "password",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def password(request):\n    return render(request, 'user/password.html')\ndef two_factor(request):\n    return render(request, 'user/two-factor.html')\ndef copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')\ndef demo_history(request):\n    return render(request, 'user/demo-history.html')\ndef demo(request):\n    return render(request, 'user/demo.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "two_factor",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def two_factor(request):\n    return render(request, 'user/two-factor.html')\ndef copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')\ndef demo_history(request):\n    return render(request, 'user/demo-history.html')\ndef demo(request):\n    return render(request, 'user/demo.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "copy_trading_history",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')\ndef demo_history(request):\n    return render(request, 'user/demo-history.html')\ndef demo(request):\n    return render(request, 'user/demo.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "demo_history",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def demo_history(request):\n    return render(request, 'user/demo-history.html')\ndef demo(request):\n    return render(request, 'user/demo.html')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "demo",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def demo(request):\n    return render(request, 'user/demo.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },

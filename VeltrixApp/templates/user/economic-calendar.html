@@ -1,0 +1,261 @@
+{% extends "user/includes/header.html" %}
+{% load static %}
+
+{% block title %}Economic Calendar - Veltrixtraders{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    <div class="w-full p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar mr-3">
+                        <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                        <line x1="16" x2="16" y1="2" y2="6"></line>
+                        <line x1="8" x2="8" y1="2" y2="6"></line>
+                        <line x1="3" x2="21" y1="10" y2="10"></line>
+                    </svg>
+                    Economic Calendar
+                </h1>
+                <button onclick="window.location.reload()" 
+                        class="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw mr-2">
+                        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                        <path d="M21 3v5h-5"></path>
+                        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                        <path d="M8 16H3v5"></path>
+                    </svg>
+                    Refresh
+                </button>
+            </div>
+            
+            <!-- Filters -->
+            <div class="bg-white border border-gray-200 rounded-lg shadow p-6 dark:bg-gray-800 dark:border-gray-700 mb-6">
+                <div class="flex items-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-filter mr-2">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Filters</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+                        <input type="date" id="filter-date" 
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white" 
+                               value="{{ today_date|date:'Y-m-d' }}" />
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label>
+                        <select id="filter-country" 
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                            <option value="all">🌍 All Countries</option>
+                            {% for country in countries %}
+                            <option value="{{ country.code }}">{{ country.flag }} {{ country.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Impact Level</label>
+                        <select id="filter-impact" 
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                            <option value="all">All Impact Levels</option>
+                            <option value="high">High Impact</option>
+                            <option value="medium">Medium Impact</option>
+                            <option value="low">Low Impact</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Today's Events -->
+                <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock mr-2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            Today's Events ({{ today_events|length }})
+                        </h3>
+                    </div>
+                    <div class="p-4 max-h-96 overflow-y-auto">
+                        <div class="space-y-4">
+                            {% for event in today_events %}
+                            <div class="border-l-4 {% if event.impact == 'HIGH' %}border-red-500{% elif event.impact == 'MEDIUM' %}border-yellow-500{% else %}border-blue-500{% endif %} pl-4 py-2 bg-gray-50 dark:bg-gray-700 rounded-r-lg">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-sm font-bold text-gray-900 dark:text-white">{{ event.time }}</span>
+                                        <span class="text-lg">{{ event.country_flag }}</span>
+                                        <span class="px-2 py-1 rounded-full text-xs font-medium 
+                                            {% if event.impact == 'HIGH' %}bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300
+                                            {% elif event.impact == 'MEDIUM' %}bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300
+                                            {% else %}bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300{% endif %}">
+                                            {{ event.impact }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-gray-900 dark:text-white mb-2">{{ event.name }}</h4>
+                                <div class="grid grid-cols-3 gap-2 text-sm">
+                                    <div>
+                                        <span class="text-gray-600 dark:text-gray-300">Forecast:</span>
+                                        <div class="font-medium text-gray-900 dark:text-white">{{ event.forecast }}</div>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600 dark:text-gray-300">Previous:</span>
+                                        <div class="font-medium text-gray-900 dark:text-white">{{ event.previous }}</div>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600 dark:text-gray-300">Actual:</span>
+                                        <div class="font-medium {% if event.actual > event.forecast %}text-green-600{% elif event.actual < event.forecast %}text-red-600{% else %}text-gray-500{% endif %}">
+                                            {{ event.actual|default:"TBD" }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="py-8 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-x h-8 w-8 mb-2 text-gray-300 dark:text-gray-600">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                                    <line x1="3" x2="21" y1="10" y2="10"></line>
+                                    <line x1="8" x2="16" y1="14" y2="18"></line>
+                                    <line x1="16" x2="8" y1="14" y2="18"></line>
+                                </svg>
+                                <p class="text-sm">No events scheduled for today</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Global Economic Events (TradingView Widget) -->
+                <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe mr-2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                <path d="M2 12h20"></path>
+                            </svg>
+                            Global Economic Events
+                        </h3>
+                    </div>
+                    <div id="tradingview_events" class="rounded-b-lg">
+                        <div style="width: 100%; height: 400px">
+                            <iframe scrolling="no" allowtransparency="true" frameborder="0" 
+                                    src='https://www.tradingview-widget.com/embed-widget/events/?locale=en#{"colorTheme": "dark","isTransparent": false,"locale": "en","importanceFilter": "-1,0,1","width": 400,"height": 550,"countryFilter":"us,eu,jp,gb,au,ca,cn,de,it,nz,sg,fr,hk,se,ch,es","utm_medium":"widget","utm_campaign":"events"}'
+                                    title="events TradingView widget" lang="en"
+                                    style="box-sizing: border-box; display: block; height: 100%; width: 100%;">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Market Impact Summary -->
+            <div class="mt-6 bg-white border border-gray-200 rounded-lg shadow p-6 dark:bg-gray-800 dark:border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up mr-2">
+                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                        <polyline points="16 7 22 7 22 13"></polyline>
+                    </svg>
+                    Market Impact Summary
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-4 bg-red-50 dark:bg-red-900/30 rounded-lg border border-red-200 dark:border-red-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-red-800 dark:text-red-200">High Impact</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-circle text-red-600">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" x2="12" y1="8" y2="12"></line>
+                                <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div class="text-2xl font-bold text-red-900 dark:text-red-100">{{ impact_counts.high|default:0 }}</div>
+                        <div class="text-sm text-red-700 dark:text-red-300">Events today</div>
+                    </div>
+                    <div class="p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg border border-yellow-200 dark:border-yellow-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-yellow-800 dark:text-yellow-200">Medium Impact</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-circle text-yellow-600">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" x2="12" y1="8" y2="12"></line>
+                                <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div class="text-2xl font-bold text-yellow-900 dark:text-yellow-100">{{ impact_counts.medium|default:0 }}</div>
+                        <div class="text-sm text-yellow-700 dark:text-yellow-300">Events today</div>
+                    </div>
+                    <div class="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-green-800 dark:text-green-200">Positive Surprise</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up text-green-600">
+                                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                <polyline points="16 7 22 7 22 13"></polyline>
+                            </svg>
+                        </div>
+                        <div class="text-2xl font-bold text-green-900 dark:text-green-100">{{ impact_counts.positive|default:0 }}</div>
+                        <div class="text-sm text-green-700 dark:text-green-300">Above forecast</div>
+                    </div>
+                    <div class="p-4 bg-blue-50 dark:bg-blue-900 rounded-lg border border-blue-200 dark:border-blue-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-blue-800 dark:text-blue-200">Pending</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock text-blue-600">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="text-2xl font-bold text-blue-900 dark:text-blue-100">{{ impact_counts.pending|default:0 }}</div>
+                        <div class="text-sm text-blue-700 dark:text-blue-300">Awaiting results</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Currency Impact Analysis -->
+            <div class="mt-6 bg-white border border-gray-200 rounded-lg shadow p-6 dark:bg-gray-800 dark:border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                    Currency Impact Analysis
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {% for currency in currency_impact %}
+                    <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-gray-900 dark:text-white">{{ currency.name }} Events</span>
+                            <span class="text-lg">{{ currency.flag }}</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 dark:text-white mb-1">{{ currency.total }}</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-300">
+                            High impact: {{ currency.high_impact }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Filter functionality
+        const dateFilter = document.getElementById('filter-date');
+        const countryFilter = document.getElementById('filter-country');
+        const impactFilter = document.getElementById('filter-impact');
+        
+        function applyFilters() {
+            // This would typically make an AJAX request to filter events
+            console.log('Filters applied:', {
+                date: dateFilter?.value,
+                country: countryFilter?.value,
+                impact: impactFilter?.value
+            });
+        }
+        
+        dateFilter?.addEventListener('change', applyFilters);
+        countryFilter?.addEventListener('change', applyFilters);
+        impactFilter?.addEventListener('change', applyFilters);
+    });
+</script>
+{% endblock %}

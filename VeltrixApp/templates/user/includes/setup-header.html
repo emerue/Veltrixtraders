@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <!-- Viewport Meta Tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="csrf-token" content="{{ csrf_token }}" />
+
+    <!-- SEO Basic Tags -->
+    <title>{% block title %}Veltrixtraders - Setup Wizard{% endblock %}</title>
+    <meta name="description" content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance." />
+    <meta name="keywords" content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="https://protradercopy.com/wp-content/themes/ProTrader-Copy/images/moneta-logo-icon.png" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://Veltrixtraders.com" />
+    <meta property="og:title" content="Veltrixtraders - Innovative Finance Technologies" />
+    <meta property="og:description" content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance" />
+    <meta property="og:image" content="/pages/assets/livetrade.gif" />
+    <meta property="og:image:type" content="image/gif" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://Veltrixtraders.com" />
+    <meta name="twitter:title" content="Veltrixtraders - Innovative Reflection Technologies" />
+    <meta name="twitter:description" content="Discover cutting-edge reflection technologies that redefine digital interactions." />
+    <meta name="twitter:image" content="/pages/assets/livetrade.gif" />
+
+    <!-- Additional SEO and Accessibility Tags -->
+    <link rel="canonical" href="https://Veltrixtraders.com" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="stylesheet" crossorigin="" href="{% static 'css/index-main.css' %}" />
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body style="font-family: 'Montserrat', sans-serif; overflow: unset" class="dark">
+    <div id="root">
+        <div>
+            <div class="bg-gray-900 min-h-screen">
+                <div class="bg-black py-4 px-6 flex justify-between items-center">
+                    <div class="flex items-center">
+                        <a href="/">
+                            <img src="{% static 'img/logo.svg' %}" alt="Logo" class="hidden sm:block h-10 w-auto" />
+                            <img src="{% static 'img/favicon.png' %}" alt="Logo" class="block sm:hidden h-10 w-auto" />
+                        </a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        
+
+                        <form method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button onclick="event.preventDefault(); this.closest('form').submit();" class="text-white bg-transparent px-2 py-1.5 border border-gray-700 rounded">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="max-w-7xl mx-auto flex-col px-4 pt-8 gap-8"></div>
+
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

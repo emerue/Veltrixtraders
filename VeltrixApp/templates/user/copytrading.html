@@ -1,0 +1,172 @@
+{% extends "user/includes/header.html" %}
+{% load static %}
+
+{% block title %}Copy Trading - Veltrixtraders{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    <!-- Balance Card and Chart Section -->
+    <div class="w-full flex gap-5 my-4 max-[900px]:flex-col">
+        <div class="flex-none">
+            <div class="w-96 h-56 rounded-3xl overflow-hidden shadow-xl bgRadial">
+                <div class="h-full w-full p-6 relative">
+                    <div class="absolute top-0 left-0 w-full h-full bg-white/60 opacity-5 z-0"></div>
+                    <div class="w-full z-10 relative flex justify-between">
+                        <div class="flex flex-col items-baseline mb-1">
+                            <p class="text-xs text-gray-400 font-light">Total Balance</p>
+                            <h1 class="text-4xl font-semibold text-white tracking-tight">
+                                0<span class="text-lg font-mono text-gray-300 ml-1">$</span>
+                            </h1>
+                        </div>
+                        <img src="{% static 'img/fav.svg' %}" alt="logo" class="w-8">
+                    </div>
+                    <div class="flex justify-between mt-5 mb-6 z-10 relative">
+                        <div class="flex flex-col">
+                            <div class="flex items-center gap-1 mb-1"><div class="w-2 h-2 rounded-full bg-emerald-500"></div><span class="text-xs text-gray-400">Deposit</span></div>
+                            <span class="text-sm font-medium text-white">$0</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex items-center gap-1 mb-1"><div class="w-2 h-2 rounded-full bg-blue-500"></div><span class="text-xs text-gray-400">Interest</span></div>
+                            <span class="text-sm font-medium text-white">$0</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex items-center gap-1 mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity text-gray-400">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                </svg>
+                                <span class="text-xs text-gray-400">Trades</span>
+                            </div>
+                            <span class="text-sm font-medium text-white">0</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between z-10 relative">
+                        <a href="{% url 'withdrawal' %}" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-gray-700 text-white transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+                                <path d="M7 7h10v10"></path><path d="M7 17 17 7"></path>
+                            </svg>
+                            <span class="text-xs font-medium">Withdraw</span>
+                        </a>
+                        <a href="{% url 'deposit' %}" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-brandblue hover:bg-opacity-20 text-white transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-left">
+                                <path d="M17 7 7 17"></path><path d="M17 17H7V7"></path>
+                            </svg>
+                            <span class="text-xs font-medium">Deposit</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TradingView Widget -->
+        <div class="w-full h-56 flex items-center justify-center mb-4 rounded-3xl shadow-1 bg-white bg-opacity-90 dark:bg-gray-950">
+            <div class="tradingview-widget-container" style="width: 100%; height: 100%">
+                <style>
+                    .tradingview-widget-copyright { font-size: 13px !important; line-height: 32px !important; text-align: center !important; vertical-align: middle !important; font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif !important; color: #b2b5be !important; }
+                    .tradingview-widget-copyright .blue-text { color: #2962ff !important; }
+                    .tradingview-widget-copyright a { text-decoration: none !important; color: #b2b5be !important; }
+                    .tradingview-widget-copyright a:visited { color: #b2b5be !important; }
+                    .tradingview-widget-copyright a:hover .blue-text { color: #1e53e5 !important; }
+                    .tradingview-widget-copyright a:active .blue-text { color: #1848cc !important; }
+                    .tradingview-widget-copyright a:visited .blue-text { color: #2962ff !important; }
+                </style>
+                <iframe scrolling="no" allowtransparency="true" frameborder="0" 
+                        src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=en#%7B%22symbols%22%3A%5B%5B%22Apple%22%2C%22AAPL%7C1M%22%5D%2C%5B%22Google%22%2C%22GOOGL%7C1M%22%5D%2C%5B%22Microsoft%22%2C%22MSFT%7C1M%22%5D%2C%5B%22NASDAQ%3ANVDA%7C1M%22%5D%2C%5B%22NASDAQ%3AAMZN%7C1M%22%5D%2C%5B%22NASDAQ%3ATSLA%7C1M%22%5D%2C%5B%22NASDAQ%3AMETA%7C1M%22%5D%5D%2C%22chartOnly%22%3Afalse%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22colorTheme%22%3A%22dark%22%2C%22showVolume%22%3Afalse%2C%22showMA%22%3Afalse%2C%22hideDateRanges%22%3Atrue%2C%22hideMarketStatus%22%3Afalse%2C%22hideSymbolLogo%22%3Atrue%2C%22scalePosition%22%3A%22right%22%2C%22scaleMode%22%3A%22Normal%22%2C%22fontFamily%22%3A%22-apple-system%2C%20BlinkMacSystemFont%2C%20Trebuchet%20MS%2C%20Roboto%2C%20Ubuntu%2C%20sans-serif%22%2C%22fontSize%22%3A%228%22%2C%22noTimeScale%22%3Afalse%2C%22valuesTracking%22%3A%221%22%2C%22changeMode%22%3A%22price-and-percent%22%2C%22chartType%22%3A%22line%22%2C%22maLineColor%22%3A%22%232962FF%22%2C%22maLineWidth%22%3A1%2C%22maLength%22%3A9%2C%22backgroundColor%22%3A%22rgba(255%2C%20255%2C%20255%2C%200)%22%2C%22widgetFontColor%22%3A%22rgba(149%2C%20152%2C%20161%2C%201)%22%2C%22lineWidth%22%3A2%2C%22lineType%22%3A0%2C%22dateRanges%22%3A%5B%221d%7C1%22%2C%221m%7C30%22%2C%223m%7C60%22%2C%2212m%7C1D%22%2C%2260m%7C1W%22%2C%22all%7C1M%22%5D%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22symbol-overview%22%7D"
+                        title="symbol overview TradingView widget" lang="en"
+                        style="box-sizing: border-box; display: block; height: 100%; width: 100%;">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Traders Carousel -->
+    <div class="py-8">
+        <div class="max-ctn flex gap-2 overflow-x-auto no-scrollbar">
+            {% for trader in traders|slice:":15" %}
+            <div class="min-w-90 h-fit flex-shrink-0">
+                 <div class="relative rounded-xl shadow-sm transition-all duration-200 overflow-hidden h-full border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md bg-white dark:bg-gray-900/30">
+                    <div class="absolute top-3 right-3 z-10">
+                        <span class="px-2.5 py-1 text-xs font-semibold rounded-lg uppercase tracking-wide bg-green-50 text-green-700 ring-1 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30">
+                            Active
+                        </span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-900 flex-shrink-0 ring-1 ring-slate-200 dark:ring-slate-700">
+                                <img src="{{ trader.image_url }}" alt="{{ trader.name }}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-base font-bold text-slate-900 dark:text-white truncate">{{ trader.name }}</h3>
+                                <div class="flex flex-wrap gap-1 mt-1">
+                                    <span class="px-1.5 py-0.5 text-xs font-semibold rounded {% if trader.risk == 'Low' %}bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30{% elif trader.risk == 'Medium' %}bg-amber-50 text-amber-700 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-400/30{% else %}bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-950/50 dark:text-red-300 dark:ring-red-400/30{% endif %}">
+                                        {{ trader.risk }}
+                                    </span>
+                                    <span class="px-1.5 py-0.5 text-xs font-semibold rounded bg-blue-50 text-blue-700 ring-1 ring-blue-600/20 dark:bg-blue-950/50 dark:text-blue-300 dark:ring-blue-400/30">
+                                        {{ trader.specialty }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Monthly</span><span class="font-bold text-green-400">+{{ trader.monthly_return }}%</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Yearly</span><span class="font-bold text-green-400">+{{ trader.yearly_return }}%</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Win Rate</span><span class="font-bold text-green-400">{{ trader.win_rate }}%</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Experience</span><span class="font-bold text-green-400">{{ trader.experience }} Yrs</span></div>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed mb-4">{{ trader.description }}</p>
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex flex-col gap-1 text-xs">
+                                <div class="flex items-center gap-1"><span class="text-slate-500 dark:text-slate-400">Fee:</span><span class="font-semibold text-slate-900 dark:text-white">{{ trader.fee }}%</span></div>
+                                <div class="flex items-center gap-3">
+                                    <div class="flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet w-3 h-3 text-blue-500">
+                                            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                                            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                                            <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                                        </svg>
+                                        <span class="font-bold text-slate-900 dark:text-white">${{ trader.min_investment|floatformat:0 }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-3 h-3 text-blue-500">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        </svg>
+                                        <span class="font-bold text-slate-900 dark:text-white">{{ trader.followers }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <form action="{% url 'copy_trading' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="trader_id" value="{{ trader.id }}">
+                                    <button type="submit" class="px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-200 min-w-[70px] bg-slate-100 hover:bg-slate-200 text-slate-900 shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white hover:shadow-md">
+                                        Copy
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Empty Table -->
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-950 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-s-lg">Stock</th>
+                    <th scope="col" class="px-6 py-3">Date</th>
+                    <th scope="col" class="px-6 py-3 rounded-e-lg">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Empty table body -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

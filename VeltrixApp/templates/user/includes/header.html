@@ -1,0 +1,464 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <!-- SEO Basic Tags -->
+    <title>{% block title %}Veltrixtraders - Innovative Finance Technologies{% endblock %}</title>
+    <meta name="description" content="{% block description %}Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance.{% endblock %}" />
+    <meta name="keywords" content="{% block keywords %}Veltrixtraders, finance technology, digital finance, trading platform{% endblock %}" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'img/fav.svg' %}" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://{{ request.get_host }}" />
+    <meta property="og:title" content="Veltrixtraders - Innovative Finance Technologies" />
+    <meta property="og:description" content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance" />
+    <meta property="og:image" content="{% static 'img/livetrade.gif' %}" />
+    <meta property="og:image:type" content="image/gif" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://{{ request.get_host }}" />
+    <meta name="twitter:title" content="Veltrixtraders - Innovative Finance Technologies" />
+    <meta name="twitter:description" content="Discover cutting-edge technologies that redefine digital interactions." />
+    <meta name="twitter:image" content="{% static 'img/livetrade.gif' %}" />
+
+    <!-- Additional SEO and Accessibility Tags -->
+    <link rel="canonical" href="https://{{ request.get_host }}" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/index-main.css' %}" />
+    
+    <style>
+        [x-cloak] { display: none !important; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body style="font-family: Montserrat, sans-serif; overflow: unset" class="dark" x-data="themeManager()" x-init="initTheme()">
+    <!-- Google Translate Script -->
+    <script>
+        window.gtranslateSettings = {
+            default_language: "en",
+            wrapper_selector: ".gtranslate_wrapper",
+            switcher_horizontal_position: "inline",
+            float_switcher_open_direction: "bottom",
+            alt_flags: { en: "usa" },
+        };
+    </script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+
+    <div x-data="{ sidebarOpen: window.innerWidth >= 1024 }" 
+         @keydown.window.escape="sidebarOpen = false"
+         class="bg-gray-100 dark:bg-bodydark">
+        <div class="flex h-screen overflow-hidden">
+            <!-- Sidebar Navigation -->
+            <aside x-show="sidebarOpen" 
+                   x-cloak
+                   @click.outside="window.innerWidth < 1024 && (sidebarOpen = false)"
+                   x-transition:enter="transform transition-transform duration-200 ease-linear"
+                   x-transition:enter-start="-translate-x-full"
+                   x-transition:enter-end="translate-x-0"
+                   x-transition:leave="transform transition-transform duration-200 ease-linear"
+                   x-transition:leave-start="translate-x-0"
+                   x-transition:leave-end="-translate-x-full"
+                   class="text-xs absolute left-0 top-0 z-999999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-gray-950 lg:static lg:translate-x-0">
+                
+                <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'img/logo.svg' %}" alt="Veltrixtraders Logo" class="h-12 w-auto" />
+                    </a>
+                    <button @click="sidebarOpen = false" aria-controls="sidebar" aria-expanded="false" class="block lg:hidden">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
+                    <nav class="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
+                        <ul class="mb-10 flex flex-col gap-1.5">
+                            <li>
+                                <a href="{% url 'dashboard' %}" 
+                                   class="text-xs group relative flex items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black {% if request.path == '/dashboard/' %}bg-blue-500/5{% endif %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home text-xl text-blue-400">
+                                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                    </svg>
+                                    Dashboard
+                                </a>
+                            </li>
+
+                            <!-- Payments Dropdown -->
+                            <li x-data="{ open: false }">
+                                <button @click="open = !open" class="text-xs group relative flex w-full items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-landmark text-xl text-blue-400">
+                                        <line x1="3" x2="21" y1="22" y2="22"></line>
+                                        <line x1="6" x2="6" y1="18" y2="11"></line>
+                                        <line x1="10" x2="10" y1="18" y2="11"></line>
+                                        <line x1="14" x2="14" y1="18" y2="11"></line>
+                                        <line x1="18" x2="18" y1="18" y2="11"></line>
+                                        <polygon points="12 2 20 7 4 7"></polygon>
+                                    </svg>
+                                    Payments
+                                    <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 15 15" class="ml-auto transform" :class="{ 'rotate-180': open }" height="1em" width="1em">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor"></path>
+                                    </svg>
+                                </button>
+                                <div x-show="open" x-cloak class="text-xs translate transform overflow-hidden">
+                                    <ul class="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                                        <li><a href="{% url 'deposit' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Deposit</a></li>
+                                        <li><a href="{% url 'withdrawal' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Withdrawal</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'copy_trading' %}" class="text-xs group relative flex items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart2 text-xl text-blue-400">
+                                        <line x1="18" x2="18" y1="20" y2="10"></line>
+                                        <line x1="12" x2="12" y1="20" y2="4"></line>
+                                        <line x1="6" x2="6" y1="20" y2="14"></line>
+                                    </svg>
+                                    Copytrading
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'copy_traders' %}" class="text-xs group relative flex items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-xl text-blue-400">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                    Traders
+                                </a>
+                            </li>
+
+                            <!-- Trade History Dropdown -->
+                            <li x-data="{ open: false }">
+                                <button @click="open = !open" class="text-xs group relative flex w-full items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers text-xl text-blue-400">
+                                        <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path>
+                                        <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path>
+                                        <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>
+                                    </svg>
+                                    Trade History
+                                    <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 15 15" class="ml-auto transform" :class="{ 'rotate-180': open }" height="1em" width="1em">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor"></path>
+                                    </svg>
+                                </button>
+                                <div x-show="open" x-cloak class="text-xs translate transform overflow-hidden">
+                                    <ul class="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                                        <li><a href="{% url 'copy_trading_history' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Copy Trade History</a></li>
+                                        <li><a href="{% url 'demo_history' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Demo Trade History</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'transactions' %}" class="text-xs group relative flex items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coins text-xl text-blue-400">
+                                        <circle cx="8" cy="8" r="6"></circle>
+                                        <path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path>
+                                        <path d="M7 6h1v4"></path>
+                                        <path d="m16.71 13.88.7.71-2.82 2.82"></path>
+                                    </svg>
+                                    All Transactions
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Market Tools Section -->
+                        <ul class="flex flex-col gap-1.5">
+                            <li x-data="{ open: false }">
+                                <button @click="open = !open" class="text-xs group relative flex w-full items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-combine text-xl text-blue-400">
+                                        <rect width="8" height="8" x="2" y="2" rx="2"></rect>
+                                        <path d="M14 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2"></path>
+                                        <path d="M20 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2"></path>
+                                        <path d="M10 18H5c-1.7 0-3-1.3-3-3v-1"></path>
+                                        <polyline points="7 21 10 18 7 15"></polyline>
+                                        <rect width="8" height="8" x="14" y="14" rx="2"></rect>
+                                    </svg>
+                                    Market Tools
+                                    <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 15 15" class="ml-auto transform" :class="{ 'rotate-180': open }" height="1em" width="1em">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor"></path>
+                                    </svg>
+                                </button>
+                                <div x-show="open" x-cloak class="text-xs translate transform overflow-hidden">
+                                    <ul class="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                                        <li><a href="{% url 'technical_insights' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Technical Insights</a></li>
+                                        {% comment %} <li><a href="{% url 'trading_courses' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Trading Courses</a></li> {% endcomment %}
+                                        <li><a href="{% url 'economic_calendar' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Economic Calendar</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="{% url 'loyalty_status' %}" class="text-xs group relative flex items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award text-xl text-blue-400">
+                                        <circle cx="12" cy="8" r="6"></circle>
+                                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+                                    </svg>
+                                    Loyalty Status
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- More Section -->
+                        <ul class="flex flex-col gap-1.5">
+                            <li x-data="{ open: false }">
+                                <button @click="open = !open" class="text-xs group relative flex w-full items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-tree text-xl text-blue-400">
+                                        <path d="M21 12h-8"></path>
+                                        <path d="M21 6H8"></path>
+                                        <path d="M21 18h-8"></path>
+                                        <path d="M3 6v4c0 1.1.9 2 2 2h3"></path>
+                                        <path d="M3 10v6c0 1.1.9 2 2 2h3"></path>
+                                    </svg>
+                                    More
+                                    <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 15 15" class="ml-auto transform" :class="{ 'rotate-180': open }" height="1em" width="1em">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor"></path>
+                                    </svg>
+                                </button>
+                                <div x-show="open" x-cloak class="text-xs translate transform overflow-hidden">
+                                    <ul class="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                                        <li><a href="{% url 'profile' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Settings</a></li>
+                                        <li><a href="{% url 'transactions' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">All Notifications</a></li>
+                                        <li><a href="{% url 'verification' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Account Verification</a></li>
+                                        <li><a href="{% url 'login_history' %}" class="group relative flex items-center gap-2.5 rounded-md px-7.5 text-white/30 duration-300 ease-in-out hover:text-white">Login History</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <form method="POST" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <li>
+                                    <a href="#" onclick="event.preventDefault(); this.closest('form').submit();" class="text-xs group relative flex items-center gap-2.5 rounded-sm py-2.5 px-7.5 text-gray-300 font-montserrat duration-300 ease-in-out hover:bg-black">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out text-xl text-blue-400">
+                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                            <polyline points="16 17 21 12 16 7"></polyline>
+                                            <line x1="21" x2="9" y1="12" y2="12"></line>
+                                        </svg>
+                                        Sign out
+                                    </a>
+                                </li>
+                            </form>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+                <!-- Header -->
+                <header class="bg-white dark:bg-gray-950 shadow-sm z-10 px-4 rounded-xl mx-3 my-3">
+                    <div class="flex items-center gap-2 justify-between h-14 px-2">
+                        <!-- Mobile Menu Button -->
+<button @click="sidebarOpen = !sidebarOpen" 
+        aria-controls="sidebar" 
+        class="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-gray-950 lg:hidden">
+    <span class="relative block h-5.5 w-5.5 cursor-pointer">
+        <!-- Three horizontal lines (default) -->
+        <span class="du-block absolute right-0 h-full w-full" x-show="!sidebarOpen">
+            <span class="relative top-0 left-0 my-1 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out dark:bg-white"></span>
+            <span class="relative top-0 left-0 my-1 block h-0.5 w-full rounded-sm bg-black delay-150 duration-200 ease-in-out dark:bg-white"></span>
+            <span class="relative top-0 left-0 my-1 block h-0.5 w-full rounded-sm bg-black delay-200 duration-200 ease-in-out dark:bg-white"></span>
+        </span>
+        
+        <!-- X shape (when open) -->
+        <span class="absolute right-0 h-full w-full" x-show="sidebarOpen" x-cloak>
+            <span class="absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black dark:bg-white rotate-45"></span>
+            <span class="absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black dark:bg-white -rotate-45"></span>
+        </span>
+    </span>
+</button>
+
+                        <!-- Referral Link -->
+                        <div x-data="{ copied: false, address: 'https://{{ request.get_host }}{% url 'register' %}?ref={{ user.referral_code|default:'SAGGIO' }}' }" class="flex items-center space-x-2 px-4 py-1 border dark:border-gray-800 border-gray-400 rounded">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-300">Copy Referral Link</span>
+                            <button class="text-gray-600 max-lg:text-gray-400 p-1 flex items-center justify-center" 
+                                    @click="navigator.clipboard.writeText(address); copied = true; setTimeout(() => copied = false, 2000)"
+                                    :class="{ 'bg-green-100 dark:bg-green-900/30 rounded-md': copied }">
+                                <template x-if="!copied">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy">
+                                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                                    </svg>
+                                </template>
+                                <template x-if="copied">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy-check-icon lucide-copy-check text-green-500">
+                                        <path d="m12 15 2 2 4-4"></path>
+                                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                                    </svg>
+                                </template>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center space-x-2">
+                            <a href="{% url 'demo' %}" class="text-xs px-4 py-1.5 text-white max-sm:hidden rounded hover:bg-gray-800 bg-blue-500 font-semibold">Practice Area</a>
+                            
+                            <!-- Notifications -->
+                            <div class="relative max-sm:hidden" x-data="{ open: false }">
+                                <button @click="open = !open" class="relative p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell">
+                                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                                    </svg>
+                                </button>
+                                <div x-show="open" @click.outside="open = false" x-cloak x-transition class="absolute right-0 mt-2 w-64 bg-white dark:bg-bodydark1/90 customBlur rounded-md shadow-lg overflow-hidden z-20 border border-gray-200 dark:border-gray-700">
+                                    <div class="py-2">
+                                        <h3 class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">Notifications</h3>
+                                        <div class="border-t border-gray-200 dark:border-gray-700 mt-2 pt-2">
+                                            <a href="{% url 'transactions' %}" class="block px-4 py-2 text-sm text-green-600 dark:text-green-400 font-medium">View all transactions</a>
+                                            <a href="{% url 'copy_trading_history' %}" class="block px-4 py-2 text-sm text-blue-600 dark:text-blue-400 font-medium">View all trades</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Google Translate - Desktop & Tablet only -->
+<div class="w-[68px] h-[24px] py-1 relative bg-gray-50 rounded max-sm:hidden">
+    <div class="gtranslate_wrapper absolute left-1 top-[0px]"></div>
+</div>
+
+                            <!-- Theme Toggle -->
+                            <div class="grid place-content-center">
+                                <label :class="{ 'bg-black border-gray-800': isDark, 'bg-gray-300 border-gray-300': !isDark }" class="relative m-0 block h-6.5 w-12 rounded-full border-2 bg-black border-gray-800">
+                                    <input type="checkbox" @click="toggleTheme()" class="dur absolute top-0 z-50 m-0 h-full w-full cursor-pointer opacity-0" />
+                                    <span :class="{ '!right-[2px] !translate-x-[110%]': isDark, 'translate-x-0': !isDark }" class="absolute top-1/2 left-[2px] flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-white dark:bg-gray-800 duration-75 ease-linear">
+                                        <span class="dark:hidden">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun">
+                                                <circle cx="12" cy="12" r="4"></circle>
+                                                <path d="M12 2v2"></path>
+                                                <path d="M12 20v2"></path>
+                                                <path d="m4.93 4.93 1.41 1.41"></path>
+                                                <path d="m17.66 17.66 1.41 1.41"></path>
+                                                <path d="M2 12h2"></path>
+                                                <path d="M20 12h2"></path>
+                                                <path d="m6.34 17.66-1.41 1.41"></path>
+                                                <path d="m19.07 4.93-1.41 1.41"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="hidden dark:inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon text-gray-200">
+                                                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <!-- User Menu -->
+                            <div class="relative" x-data="{ open: false }">
+                                <button @click="open = !open" class="flex items-center space-x-2 text-gray-700 dark:text-gray-200 focus:outline-none">
+                                    <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user">
+                                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                    </div>
+                                </button>
+                                <div x-show="open" @click.outside="open = false" x-cloak x-transition class="absolute right-0 mt-2 w-48 bg-white dark:bg-bodydark/70 customBlur rounded-md shadow-lg overflow-hidden z-20 border border-gray-200 dark:border-gray-800">
+                                    <div class="py-1">
+                                        <a href="{% url 'dashboard' %}" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard mr-2">
+                                                <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+                                                <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+                                                <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+                                                <rect width="7" height="5" x="3" y="16" rx="1"></rect>
+                                            </svg>
+                                            Dashboard
+                                        </a>
+                                        <form method="POST" action="{% url 'logout' %}">
+                                            {% csrf_token %}
+                                            <div onclick="event.preventDefault(); this.closest('form').submit();" class="flex cursor-pointer items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out mr-2">
+                                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                                    <line x1="21" x2="9" y1="12" y2="12"></line>
+                                                </svg>
+                                                Logout
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <main>
+                    {% block content %}{% endblock %}
+                </main>
+
+                {% block extra_content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Smartsupp Chat -->
+    <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = "4f3dcfc04c5f4a15b6a0ef9f6b75a5281651a1a1";
+        window.smartsupp || (function(d) {
+            var s,c,o=smartsupp=function(){ o._.push(arguments)}; o._=[];
+            s=d.getElementsByTagName("script")[0];
+            c=d.createElement("script");
+            c.type="text/javascript"; c.charset="utf-8"; c.async=true;
+            c.src="https://www.smartsuppchat.com/loader.js?";
+            s.parentNode.insertBefore(c,s);
+        })(document);
+    </script>
+
+    <!-- JavaScript -->
+    <script>
+        function themeManager() {
+            return {
+                isDark: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches),
+                initTheme() {
+                    if (this.isDark) {
+                        document.documentElement.classList.add('dark');
+                        document.body.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        document.body.classList.remove('dark');
+                    }
+                },
+                toggleTheme() {
+                    this.isDark = !this.isDark;
+                    if (this.isDark) {
+                        document.documentElement.classList.add('dark');
+                        document.body.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        document.body.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
+                    }
+                }
+            }
+        }
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

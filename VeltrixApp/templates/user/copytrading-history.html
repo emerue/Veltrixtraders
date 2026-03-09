@@ -1,0 +1,61 @@
+{% extends "user/includes/header.html" %}
+{% load static %}
+
+{% block title %}Trades History - Veltrixtraders{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    <div class="w-full bg-white dark:bg-gray-950 rounded-lg shadow-sm overflow-hidden">
+        <div class="p-4 border-b border-gray-200 dark:border-gray-900">
+            <div class="flex items-center justify-between">
+                <h2 class="text-base font-semibold text-gray-800 dark:text-white">
+                    Trades History
+                </h2>
+                <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                    <span>Updated {% now "H:i" %}</span>
+                    <button onclick="window.location.reload()" class="ml-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                        <svg class="h-3.5 w-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-2 relative">
+                <input type="text" placeholder="Search symbol or name..." 
+                       class="w-full pl-8 pr-3 py-1.5 bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-gray-800 rounded-md text-xs text-gray-700 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-400">
+                <svg class="absolute left-2 top-2 h-3.5 w-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="max-h-96 overflow-y-auto">
+            {% if trades %}
+                <!-- Trade items would go here -->
+                <div class="py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-6 w-6 mb-2 text-gray-300 dark:text-gray-600">
+                        <path d="M3 3v18h18"></path>
+                        <path d="M18 17V9"></path>
+                        <path d="M13 17V5"></path>
+                        <path d="M8 17v-3"></path>
+                    </svg>
+                    <p class="text-sm">No trades found</p>
+                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Try adjusting your search</p>
+                </div>
+            {% else %}
+                <div class="py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-6 w-6 mb-2 text-gray-300 dark:text-gray-600">
+                        <path d="M3 3v18h18"></path>
+                        <path d="M18 17V9"></path>
+                        <path d="M13 17V5"></path>
+                        <path d="M8 17v-3"></path>
+                    </svg>
+                    <p class="text-sm">No trades found</p>
+                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Try adjusting your search</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
