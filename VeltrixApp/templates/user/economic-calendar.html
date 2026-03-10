@@ -5,6 +5,16 @@
 
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    {% if messages %}
+    <div class="mb-6">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="w-full p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-center mb-8">
@@ -79,52 +89,51 @@
                             Today's Events ({{ today_events|length }})
                         </h3>
                     </div>
-                    <div class="p-4 max-h-96 overflow-y-auto">
-                        <div class="space-y-4">
-                            {% for event in today_events %}
-                            <div class="border-l-4 {% if event.impact == 'HIGH' %}border-red-500{% elif event.impact == 'MEDIUM' %}border-yellow-500{% else %}border-blue-500{% endif %} pl-4 py-2 bg-gray-50 dark:bg-gray-700 rounded-r-lg">
-                                <div class="flex justify-between items-start mb-2">
-                                    <div class="flex items-center space-x-2">
-                                        <span class="text-sm font-bold text-gray-900 dark:text-white">{{ event.time }}</span>
-                                        <span class="text-lg">{{ event.country_flag }}</span>
-                                        <span class="px-2 py-1 rounded-full text-xs font-medium 
-                                            {% if event.impact == 'HIGH' %}bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300
-                                            {% elif event.impact == 'MEDIUM' %}bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300
-                                            {% else %}bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300{% endif %}">
-                                            {{ event.impact }}
-                                        </span>
-                                    </div>
+                    <div class="p-4 max-h-96 overflow-y-auto" id="today-events">
+                        {% for event in today_events %}
+                        <div class="event-item border-l-4 {% if event.impact == 'HIGH' %}border-red-500{% elif event.impact == 'MEDIUM' %}border-yellow-500{% else %}border-blue-500{% endif %} pl-4 py-2 mb-4 bg-gray-50 dark:bg-gray-700 rounded-r-lg" 
+                             data-country="{{ event.country_code }}" data-impact="{{ event.impact|lower }}">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-sm font-bold text-gray-900 dark:text-white">{{ event.time }}</span>
+                                    <span class="text-lg">{{ event.country_flag }}</span>
+                                    <span class="px-2 py-1 rounded-full text-xs font-medium 
+                                        {% if event.impact == 'HIGH' %}bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300
+                                        {% elif event.impact == 'MEDIUM' %}bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300
+                                        {% else %}bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300{% endif %}">
+                                        {{ event.impact }}
+                                    </span>
                                 </div>
-                                <h4 class="font-semibold text-gray-900 dark:text-white mb-2">{{ event.name }}</h4>
-                                <div class="grid grid-cols-3 gap-2 text-sm">
-                                    <div>
-                                        <span class="text-gray-600 dark:text-gray-300">Forecast:</span>
-                                        <div class="font-medium text-gray-900 dark:text-white">{{ event.forecast }}</div>
-                                    </div>
-                                    <div>
-                                        <span class="text-gray-600 dark:text-gray-300">Previous:</span>
-                                        <div class="font-medium text-gray-900 dark:text-white">{{ event.previous }}</div>
-                                    </div>
-                                    <div>
-                                        <span class="text-gray-600 dark:text-gray-300">Actual:</span>
-                                        <div class="font-medium {% if event.actual > event.forecast %}text-green-600{% elif event.actual < event.forecast %}text-red-600{% else %}text-gray-500{% endif %}">
-                                            {{ event.actual|default:"TBD" }}
-                                        </div>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">{{ event.name }}</h4>
+                            <div class="grid grid-cols-3 gap-2 text-sm">
+                                <div>
+                                    <span class="text-gray-600 dark:text-gray-400">Forecast:</span>
+                                    <div class="font-medium text-gray-900 dark:text-white">{{ event.forecast }}</div>
+                                </div>
+                                <div>
+                                    <span class="text-gray-600 dark:text-gray-400">Previous:</span>
+                                    <div class="font-medium text-gray-900 dark:text-white">{{ event.previous }}</div>
+                                </div>
+                                <div>
+                                    <span class="text-gray-600 dark:text-gray-400">Actual:</span>
+                                    <div class="font-medium {% if event.actual > event.forecast %}text-green-600{% elif event.actual < event.forecast %}text-red-600{% else %}text-gray-500{% endif %}">
+                                        {{ event.actual|default:"TBD" }}
                                     </div>
                                 </div>
                             </div>
-                            {% empty %}
-                            <div class="py-8 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-x h-8 w-8 mb-2 text-gray-300 dark:text-gray-600">
-                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
-                                    <line x1="3" x2="21" y1="10" y2="10"></line>
-                                    <line x1="8" x2="16" y1="14" y2="18"></line>
-                                    <line x1="16" x2="8" y1="14" y2="18"></line>
-                                </svg>
-                                <p class="text-sm">No events scheduled for today</p>
-                            </div>
-                            {% endfor %}
                         </div>
+                        {% empty %}
+                        <div class="py-8 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-x h-8 w-8 mb-2 text-gray-300 dark:text-gray-600">
+                                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                                <line x1="3" x2="21" y1="10" y2="10"></line>
+                                <line x1="8" x2="16" y1="14" y2="18"></line>
+                                <line x1="16" x2="8" y1="14" y2="18"></line>
+                            </svg>
+                            <p class="text-sm">No events scheduled for today</p>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 
@@ -234,23 +243,49 @@
         </div>
     </div>
 </div>
-{% endblock %}
 
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Filter functionality
         const dateFilter = document.getElementById('filter-date');
         const countryFilter = document.getElementById('filter-country');
         const impactFilter = document.getElementById('filter-impact');
+        const events = document.querySelectorAll('.event-item');
         
         function applyFilters() {
-            // This would typically make an AJAX request to filter events
-            console.log('Filters applied:', {
-                date: dateFilter?.value,
-                country: countryFilter?.value,
-                impact: impactFilter?.value
+            const selectedDate = dateFilter?.value;
+            const selectedCountry = countryFilter?.value;
+            const selectedImpact = impactFilter?.value;
+            
+            events.forEach(event => {
+                const eventCountry = event.dataset.country;
+                const eventImpact = event.dataset.impact;
+                
+                let show = true;
+                
+                if (selectedCountry && selectedCountry !== 'all' && eventCountry !== selectedCountry) {
+                    show = false;
+                }
+                
+                if (selectedImpact && selectedImpact !== 'all' && eventImpact !== selectedImpact) {
+                    show = false;
+                }
+                
+                event.style.display = show ? '' : 'none';
             });
+            
+            // Update visible count
+            const visibleEvents = Array.from(events).filter(e => e.style.display !== 'none').length;
+            const eventContainer = document.getElementById('today-events');
+            if (eventContainer) {
+                const header = eventContainer.previousElementSibling;
+                if (header) {
+                    const titleSpan = header.querySelector('h3 span:last-child');
+                    if (titleSpan) {
+                        titleSpan.textContent = `(${visibleEvents})`;
+                    }
+                }
+            }
         }
         
         dateFilter?.addEventListener('change', applyFilters);
@@ -258,4 +293,5 @@
         impactFilter?.addEventListener('change', applyFilters);
     });
 </script>
+{% endblock %}
 {% endblock %}

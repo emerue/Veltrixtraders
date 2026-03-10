@@ -5,37 +5,50 @@
 
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    {% if messages %}
+    <div class="mb-6">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="max-w-7xl mx-auto p-6">
         <div class="mb-8">
             <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">
                 Copy Traders
             </h1>
             <p class="text-slate-600 dark:text-slate-400">
-                Choose from 15 professional traders and copy their strategies
+                Choose from {{ total_traders }} professional traders and copy their strategies
             </p>
         </div>
         
-        <div class="mb-6 space-y-4" x-data="{ show: false }">
+        <div class="mb-6 space-y-4" x-data="{ show: false, filters: { risk: [], status: ['active'], specialty: [], minMonthly: 0, maxFee: 100 } }">
             <div class="flex flex-col sm:flex-row gap-4">
                 <div class="relative flex-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.3-4.3"></path>
                     </svg>
-                    <input type="text" placeholder="Search traders by name, bio, or specialization..." 
-                           class="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900/50 text-slate-900 dark:text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <input type="text" id="search-input" placeholder="Search traders by name, bio, or specialization..." 
+                           class="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900/50 text-slate-900 dark:text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           x-model="searchQuery">
                 </div>
                 <div class="flex gap-2">
-                    <select class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500">
-                        <option value="profitMonthly">Monthly Profit</option>
-                        <option value="profitYearly">Yearly Profit</option>
-                        <option value="winRate">Win Rate</option>
-                        <option value="experience">Experience</option>
-                        <option value="copiers">Copiers</option>
+                    <select id="sort-select" class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500" x-model="sortBy">
+                        <option value="monthly_return">Monthly Profit</option>
+                        <option value="yearly_return">Yearly Profit</option>
+                        <option value="win_rate">Win Rate</option>
+                        <option value="experience_years">Experience</option>
+                        <option value="followers">Copiers</option>
                         <option value="name">Name</option>
                     </select>
-                    <button class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700">
-                        ↓
+                    <button @click="sortDirection = sortDirection === 'desc' ? 'asc' : 'desc'" 
+                            class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700">
+                        <span x-show="sortDirection === 'desc'">↓</span>
+                        <span x-show="sortDirection === 'asc'">↑</span>
                     </button>
                 </div>
                 <button @click="show = !show" class="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700">
@@ -49,50 +62,71 @@
             <div x-show="show" x-cloak class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900/50">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="font-semibold text-slate-900 dark:text-white">Filters</h3>
-                    <button class="text-sm text-blue-600 dark:text-blue-400 hover:underline">Clear All</button>
+                    <button @click="filters = { risk: [], status: ['active'], specialty: [], minMonthly: 0, maxFee: 100 }" 
+                            class="text-sm text-blue-600 dark:text-blue-400 hover:underline">Clear All</button>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Risk Level</label>
                         <div class="space-y-1">
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"><span class="text-sm text-slate-600 dark:text-slate-400">Medium</span></label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"><span class="text-sm text-slate-600 dark:text-slate-400">Low</span></label>
+                            <label class="flex items-center">
+                                <input type="checkbox" value="Medium" x-model="filters.risk" class="mr-2 rounded text-blue-600">
+                                <span class="text-sm text-slate-600 dark:text-slate-400">Medium</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" value="Low" x-model="filters.risk" class="mr-2 rounded text-blue-600">
+                                <span class="text-sm text-slate-600 dark:text-slate-400">Low</span>
+                            </label>
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Status</label>
                         <div class="space-y-1">
-                            <label class="flex items-center"><input type="checkbox" class="mr-2" checked><span class="text-sm text-slate-600 dark:text-slate-400 capitalize">active</span></label>
+                            <label class="flex items-center">
+                                <input type="checkbox" value="active" x-model="filters.status" class="mr-2 rounded text-blue-600" checked>
+                                <span class="text-sm text-slate-600 dark:text-slate-400 capitalize">active</span>
+                            </label>
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Specialization</label>
                         <div class="space-y-1">
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"><span class="text-sm text-slate-600 dark:text-slate-400">Stocks</span></label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"><span class="text-sm text-slate-600 dark:text-slate-400">Mixed</span></label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"><span class="text-sm text-slate-600 dark:text-slate-400">Forex</span></label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"><span class="text-sm text-slate-600 dark:text-slate-400">Options</span></label>
+                            <label class="flex items-center">
+                                <input type="checkbox" value="Stocks" x-model="filters.specialty" class="mr-2 rounded text-blue-600">
+                                <span class="text-sm text-slate-600 dark:text-slate-400">Stocks</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" value="Mixed" x-model="filters.specialty" class="mr-2 rounded text-blue-600">
+                                <span class="text-sm text-slate-600 dark:text-slate-400">Mixed</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" value="Forex" x-model="filters.specialty" class="mr-2 rounded text-blue-600">
+                                <span class="text-sm text-slate-600 dark:text-slate-400">Forex</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" value="Options" x-model="filters.specialty" class="mr-2 rounded text-blue-600">
+                                <span class="text-sm text-slate-600 dark:text-slate-400">Options</span>
+                            </label>
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Min Monthly Profit (%)</label>
-                        <input type="number" class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="0">
+                        <input type="number" x-model="filters.minMonthly" class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white" min="0" max="100">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Max Fee (%)</label>
-                        <input type="number" class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="100">
+                        <input type="number" x-model="filters.maxFee" class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white" min="0" max="100" value="100">
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="mb-4">
-            <p class="text-sm text-slate-600 dark:text-slate-400">Showing 15 of 15 traders</p>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Showing {{ traders|length }} of {{ total_traders }} traders</p>
         </div>
         
         <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Trader Cards - First 3 as examples, rest would be looped -->
-            {% for trader in traders|slice:":3" %}
+            {% for trader in traders %}
             <div class="h-fit">
                 <div class="relative rounded-xl shadow-sm transition-all duration-200 overflow-hidden h-full border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md bg-white dark:bg-gray-900/30">
                     <div class="absolute top-3 right-3 z-10">
@@ -108,8 +142,8 @@
                             <div class="flex-1 min-w-0">
                                 <h3 class="text-base font-bold text-slate-900 dark:text-white truncate">{{ trader.name }}</h3>
                                 <div class="flex flex-wrap gap-1 mt-1">
-                                    <span class="px-1.5 py-0.5 text-xs font-semibold rounded {% if trader.risk == 'Low' %}bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30{% elif trader.risk == 'Medium' %}bg-amber-50 text-amber-700 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-400/30{% else %}bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-950/50 dark:text-red-300 dark:ring-red-400/30{% endif %}">
-                                        {{ trader.risk }}
+                                    <span class="px-1.5 py-0.5 text-xs font-semibold rounded {% if trader.risk_level == 'Low' %}bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30{% elif trader.risk_level == 'Medium' %}bg-amber-50 text-amber-700 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-400/30{% else %}bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-950/50 dark:text-red-300 dark:ring-red-400/30{% endif %}">
+                                        {{ trader.risk_level }}
                                     </span>
                                     <span class="px-1.5 py-0.5 text-xs font-semibold rounded bg-blue-50 text-blue-700 ring-1 ring-blue-600/20 dark:bg-blue-950/50 dark:text-blue-300 dark:ring-blue-400/30">
                                         {{ trader.specialty }}
@@ -121,12 +155,12 @@
                             <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Monthly</span><span class="font-bold text-green-400">+{{ trader.monthly_return }}%</span></div>
                             <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Yearly</span><span class="font-bold text-green-400">+{{ trader.yearly_return }}%</span></div>
                             <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Win Rate</span><span class="font-bold text-green-400">{{ trader.win_rate }}%</span></div>
-                            <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Experience</span><span class="font-bold text-green-400">{{ trader.experience }} Yrs</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Experience</span><span class="font-bold text-green-400">{{ trader.experience_years }} Yrs</span></div>
                         </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed mb-4">{{ trader.description }}</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed mb-4">{{ trader.description|default:"Professional trader" }}</p>
                         <div class="flex items-center justify-between gap-2">
                             <div class="flex flex-col gap-1 text-xs">
-                                <div class="flex items-center gap-1"><span class="text-slate-500 dark:text-slate-400">Fee:</span><span class="font-semibold text-slate-900 dark:text-white">{{ trader.fee }}%</span></div>
+                                <div class="flex items-center gap-1"><span class="text-slate-500 dark:text-slate-400">Fee:</span><span class="font-semibold text-slate-900 dark:text-white">{{ trader.fee_percentage }}%</span></div>
                                 <div class="flex items-center gap-3">
                                     <div class="flex items-center gap-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet w-3 h-3 text-blue-500">
@@ -160,8 +194,60 @@
                     </div>
                 </div>
             </div>
+            {% empty %}
+            <div class="col-span-full py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users mb-4 text-gray-300 dark:text-gray-600">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <p class="text-lg">No traders found</p>
+                <p class="text-sm text-gray-400 dark:text-gray-500 mt-1">Try adjusting your filters</p>
+            </div>
             {% endfor %}
         </div>
+        
+        {% if traders.has_other_pages %}
+        <div class="flex justify-center mt-8">
+            <nav class="inline-flex rounded-md shadow">
+                {% if traders.has_previous %}
+                <a href="?page={{ traders.previous_page_number }}" class="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-l-md">
+                    Previous
+                </a>
+                {% endif %}
+                
+                <span class="px-3 py-2 bg-blue-600 border border-gray-300 dark:border-gray-600 text-sm font-medium text-white">
+                    Page {{ traders.number }} of {{ traders.paginator.num_pages }}
+                </span>
+                
+                {% if traders.has_next %}
+                <a href="?page={{ traders.next_page_number }}" class="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-r-md">
+                    Next
+                </a>
+                {% endif %}
+            </nav>
+        </div>
+        {% endif %}
     </div>
 </div>
+
+{% block extra_js %}
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('traderFilters', () => ({
+            searchQuery: '',
+            sortBy: 'monthly_return',
+            sortDirection: 'desc',
+            filters: {
+                risk: [],
+                status: ['active'],
+                specialty: [],
+                minMonthly: 0,
+                maxFee: 100
+            }
+        }))
+    })
+</script>
+{% endblock %}
 {% endblock %}

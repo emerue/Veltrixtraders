@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django.urls import path
 import VeltrixApp.views as views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('construction/', views.construction, name='construction'),
-    path('login/', views.login, name='login'),
+    path('login/', views.login_view, name='login'),
     path('register/', views.register, name='register'),
     path('about/', views.about, name='about'),
     path('software/', views.software, name='software'),
@@ -20,12 +22,12 @@ urlpatterns = [
     path('terms-and-conditions/', views.terms_and_conditions, name='terms_and_conditions'),
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
     path('forgot-password/', views.forgot_password, name='forgot_password'),
-    path('setup/', views.setup_user_info, name='setup_personal'),
+    path('setup/', views.setup_personal, name='setup_personal'),
     path('setup-contact/', views.setup_contact, name='setup_contact'),
     path('setup-experience/', views.setup_experience, name='setup_experience'),
     path('setup-earnings/', views.setup_earnings, name='setup_earnings'),
     path('setup-declaration/', views.setup_declaration, name='setup_declaration'),
-    path('logout/', views.logout, name='logout'),
+    path('logout/', views.logout_view, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('copy-trading/', views.copy_trading, name='copy_trading'),
     path('traders/', views.copy_traders, name='copy_traders'),
@@ -34,7 +36,8 @@ urlpatterns = [
     path('technical-insights/', views.technical_insights, name='technical_insights'),
     path('economic-calendar/', views.economic_calendar, name='economic_calendar'),
     path('loyalty-status/', views.loyalty_status, name='loyalty_status'),
-    path('deposit-confirmation/', views.deposit_confirmation, name='deposit_confirmation'),
+    path('deposit-confirmation/<int:deposit_id>/', views.deposit_confirmation, name='deposit_confirmation'),
+    path('deposit-proof/<int:deposit_id>/', views.upload_deposit_proof, name='upload_deposit_proof'),
     path('transactions/', views.transactions, name='transactions'),
     path('verification/', views.verification, name='verification'),
     path('login-history/', views.login_history, name='login_history'),
@@ -45,4 +48,7 @@ urlpatterns = [
     path('copytrading/history/', views.copy_trading_history, name='copy_trading_history'),
     path('demo/history/', views.demo_history, name='demo_history'),
     path('demo/', views.demo, name='demo'),
+    path('stop-copy-trade/<int:trade_id>/', views.stop_copy_trade, name='stop_copy_trade'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

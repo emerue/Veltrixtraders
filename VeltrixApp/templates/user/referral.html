@@ -6,6 +6,16 @@
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
     <div class="min-h-screen transition-colors duration-200">
+        {% if messages %}
+        <div class="mb-6">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         <div class="grid grid-cols-1 gap-6">
             <!-- Settings Navigation -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">

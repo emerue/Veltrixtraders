@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Status Update - Veltrixtraders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin: 20px 0;
+        }
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status-failed {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        .status-processing {
+            background: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+        .details-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: bold;
+            color: #666;
+        }
+        .value {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Deposit Status Update</h1>
+        </div>
+        <div class="content">
+            <p>Dear {{ user.get_full_name|default:user.username }},</p>
+            
+            <p>Your deposit request has been <strong>{{ deposit.status }}</strong>.</p>
+            
+            <div class="status-badge status-{{ deposit.status }}">
+                {{ deposit.status|upper }}
+            </div>
+            
+            <div class="details-box">
+                <h3>Transaction Details:</h3>
+                
+                <div class="detail-row">
+                    <span class="label">Transaction ID:</span>
+                    <span class="value">{{ deposit.transaction_id }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="label">Amount:</span>
+                    <span class="value">${{ deposit.amount_usd|floatformat:2 }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="label">Payment Method:</span>
+                    <span class="value">{{ deposit.payment_method.name }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="label">Date:</span>
+                    <span class="value">{{ deposit.created_at|date:"F j, Y, g:i a" }}</span>
+                </div>
+                
+                {% if deposit.completed_at %}
+                <div class="detail-row">
+                    <span class="label">Processed Date:</span>
+                    <span class="value">{{ deposit.completed_at|date:"F j, Y, g:i a" }}</span>
+                </div>
+                {% endif %}
+                
+                {% if deposit.status == 'completed' %}
+                <div class="detail-row">
+                    <span class="label">Updated Balance:</span>
+                    <span class="value">${{ user.balance|floatformat:2 }}</span>
+                </div>
+                {% endif %}
+                
+                {% if deposit.status == 'failed' and deposit.notes %}
+                <div class="detail-row">
+                    <span class="label">Reason:</span>
+                    <span class="value">{{ deposit.notes }}</span>
+                </div>
+                {% endif %}
+            </div>
+            
+            {% if deposit.status == 'completed' %}
+            <p>Your funds have been successfully added to your account and are ready for trading.</p>
+            {% elif deposit.status == 'failed' %}
+            <p>Unfortunately, your deposit could not be processed. Please contact support for assistance or try again.</p>
+            {% endif %}
+            
+            <div style="text-align: center;">
+                <a href="{{ site_url }}/user/deposit-history/" class="button">View Transaction History</a>
+            </div>
+            
+            <p>If you have any questions, please don't hesitate to contact our support team.</p>
+            
+            <p>Best regards,<br>The Veltrixtraders Team</p>
+        </div>
+        <div class="footer">
+            <p>&copy; {% now "Y" %} Veltrixtraders. All rights reserved.</p>
+            <p>This is an automated message, please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>

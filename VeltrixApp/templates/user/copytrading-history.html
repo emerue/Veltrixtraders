@@ -5,11 +5,21 @@
 
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    {% if messages %}
+    <div class="mb-6">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="w-full bg-white dark:bg-gray-950 rounded-lg shadow-sm overflow-hidden">
         <div class="p-4 border-b border-gray-200 dark:border-gray-900">
             <div class="flex items-center justify-between">
                 <h2 class="text-base font-semibold text-gray-800 dark:text-white">
-                    Trades History
+                    Copy Trades History
                 </h2>
                 <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
                     <span>Updated {% now "H:i" %}</span>
@@ -22,7 +32,7 @@
             </div>
             
             <div class="mt-2 relative">
-                <input type="text" placeholder="Search symbol or name..." 
+                <input type="text" id="search-input" placeholder="Search by trader name..." 
                        class="w-full pl-8 pr-3 py-1.5 bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-gray-800 rounded-md text-xs text-gray-700 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-400">
                 <svg class="absolute left-2 top-2 h-3.5 w-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -31,31 +41,78 @@
         </div>
         
         <div class="max-h-96 overflow-y-auto">
-            {% if trades %}
-                <!-- Trade items would go here -->
-                <div class="py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-6 w-6 mb-2 text-gray-300 dark:text-gray-600">
-                        <path d="M3 3v18h18"></path>
-                        <path d="M18 17V9"></path>
-                        <path d="M13 17V5"></path>
-                        <path d="M8 17v-3"></path>
-                    </svg>
-                    <p class="text-sm">No trades found</p>
-                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Try adjusting your search</p>
-                </div>
+            {% if copy_trades %}
+            <table class="w-full text-sm text-left">
+                <thead class="bg-gray-50 dark:bg-gray-900 text-xs text-gray-700 dark:text-gray-400 uppercase">
+                    <tr>
+                        <th class="px-4 py-3">Trader</th>
+                        <th class="px-4 py-3">Amount</th>
+                        <th class="px-4 py-3">Started</th>
+                        <th class="px-4 py-3">Status</th>
+                        <!--<th class="px-4 py-3">Actions</th>-->
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+                    {% for trade in copy_trades %}
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-900/50">
+                        <td class="px-4 py-3">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
+                                    <img src="{{ trade.trader.image_url }}" alt="{{ trade.trader.name }}" class="w-full h-full object-cover">
+                                </div>
+                                <span class="font-medium text-gray-900 dark:text-white">{{ trade.trader.name }}</span>
+                            </div>
+                        </td>
+                        <td class="px-4 py-3">${{ trade.amount|floatformat:2 }}</td>
+                        <td class="px-4 py-3">{{ trade.started_at|date:"M d, Y H:i" }}</td>
+                        <td class="px-4 py-3">
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full 
+                                {% if trade.status == 'active' %}bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400
+                                {% elif trade.status == 'paused' %}bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400
+                                {% else %}bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400{% endif %}">
+                                {{ trade.status|title }}
+                            </span>
+                        </td>
+                        <!--<td class="px-4 py-3">
+                            <a href="#" onclick="alert('Trade details view coming soon')" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-xs font-medium">
+                                View Details
+                            </a>
+                        </td>-->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
             {% else %}
-                <div class="py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-6 w-6 mb-2 text-gray-300 dark:text-gray-600">
-                        <path d="M3 3v18h18"></path>
-                        <path d="M18 17V9"></path>
-                        <path d="M13 17V5"></path>
-                        <path d="M8 17v-3"></path>
-                    </svg>
-                    <p class="text-sm">No trades found</p>
-                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Try adjusting your search</p>
-                </div>
+            <div class="py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-6 w-6 mb-2 text-gray-300 dark:text-gray-600">
+                    <path d="M3 3v18h18"></path>
+                    <path d="M18 17V9"></path>
+                    <path d="M13 17V5"></path>
+                    <path d="M8 17v-3"></path>
+                </svg>
+                <p class="text-sm">No copy trades found</p>
+                <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Start copying a trader to see history</p>
+            </div>
             {% endif %}
         </div>
     </div>
 </div>
+
+{% block extra_js %}
+<script>
+    document.getElementById('search-input')?.addEventListener('keyup', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const rows = document.querySelectorAll('tbody tr');
+        
+        rows.forEach(row => {
+            const traderName = row.querySelector('td:first-child span')?.textContent.toLowerCase() || '';
+            if (traderName.includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}
 {% endblock %}

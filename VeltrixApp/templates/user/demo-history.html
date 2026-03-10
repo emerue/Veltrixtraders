@@ -5,15 +5,25 @@
 
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    {% if messages %}
+    <div class="mb-6">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="w-full bg-white dark:bg-gray-950 rounded-lg shadow-sm overflow-hidden">
         <div class="p-4 border-b border-gray-200 dark:border-gray-900">
             <div class="flex items-center justify-between">
                 <h2 class="text-sm font-semibold text-gray-800 dark:text-white">
-                    Demo Trades
+                    Demo Trades History
                 </h2>
                 <div class="flex items-center text-[10px] text-gray-500 dark:text-gray-400">
                     <span>Updated {% now "H:i" %}</span>
-                    <button class="ml-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none disabled:opacity-50">
+                    <button onclick="window.location.reload()" class="ml-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw h-3.5 w-3.5 text-gray-400">
                             <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
                             <path d="M21 3v5h-5"></path>
@@ -24,7 +34,7 @@
                 </div>
             </div>
             <div class="mt-2 relative">
-                <input type="text" placeholder="Search symbol, direction, or date..." 
+                <input type="text" id="search-input" placeholder="Search symbol, direction, or date..." 
                        class="w-full pl-8 pr-3 py-1.5 bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-gray-800 rounded-md text-xs text-gray-700 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-2 top-2 h-3.5 w-3.5 text-gray-400">
                     <circle cx="11" cy="11" r="8"></circle>
@@ -55,7 +65,7 @@
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <polyline points="12 6 12 12 16 14"></polyline>
                                     </svg>
-                                    {{ trade.date|date:"m/d H:i" }}<span class="mx-1">•</span><span>{{ trade.duration }}</span>
+                                    {{ trade.created_at|date:"m/d H:i" }}<span class="mx-1">•</span><span>{{ trade.duration }}</span>
                                 </div>
                             </div>
                         </div>
@@ -92,10 +102,28 @@
                     <path d="M8 17v-3"></path>
                 </svg>
                 <p class="text-sm">No demo trades found</p>
-                <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Try adjusting your search</p>
+                <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Try making some demo trades first</p>
             </div>
             {% endif %}
         </div>
     </div>
 </div>
+
+{% block extra_js %}
+<script>
+    document.getElementById('search-input')?.addEventListener('keyup', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const items = document.querySelectorAll('ul li');
+        
+        items.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(searchTerm)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}
 {% endblock %}

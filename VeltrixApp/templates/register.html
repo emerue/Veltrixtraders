@@ -10,21 +10,21 @@
     />
 
     <!-- SEO Basic Tags -->
-    <title>Veltrixtraders - Innovative Finance Technologies</title>
+    <title>Register - Veltrixtraders</title>
     <meta
       name="description"
-      content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance."
+      content="Join Veltrixtraders today and start earning with expert traders."
     />
     <meta
       name="keywords"
-      content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance"
+      content="Veltrixtraders, register, sign up, trading platform"
     />
 
     <!-- Favicon -->
     <link
       rel="icon"
       type="image/svg+xml"
-      href="https://protradercopy.com/wp-content/themes/ProTrader-Copy/images/moneta-logo-icon.png"
+      href="{% static 'img/fav.svg' %}"
     />
 
     <!-- Google Fonts -->
@@ -35,35 +35,23 @@
 
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://Veltrixtraders.com" />
-    <meta
-      property="og:title"
-      content="Veltrixtraders - Innovative Finance Technologies"
-    />
-    <meta
-      property="og:description"
-      content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance"
-    />
-    <meta property="og:image" content="/pages/assets/livetrade.gif" />
+    <meta property="og:url" content="https://{{ request.get_host }}" />
+    <meta property="og:title" content="Veltrixtraders - Register" />
+    <meta property="og:description" content="Join Veltrixtraders today and start earning with expert traders." />
+    <meta property="og:image" content="{% static 'img/livetrade.gif' %}" />
     <meta property="og:image:type" content="image/gif" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://Veltrixtraders.com" />
-    <meta
-      name="twitter:title"
-      content="Veltrixtraders - Innovative Reflection Technologies"
-    />
-    <meta
-      name="twitter:description"
-      content="Discover cutting-edge reflection technologies that redefine digital interactions."
-    />
-    <meta name="twitter:image" content="/pages/assets/livetrade.gif" />
+    <meta name="twitter:url" content="https://{{ request.get_host }}" />
+    <meta name="twitter:title" content="Veltrixtraders - Register" />
+    <meta name="twitter:description" content="Join Veltrixtraders today and start earning with expert traders." />
+    <meta name="twitter:image" content="{% static 'img/livetrade.gif' %}" />
 
     <!-- Additional SEO and Accessibility Tags -->
-    <link rel="canonical" href="https://Veltrixtraders.com" />
+    <link rel="canonical" href="https://{{ request.get_host }}" />
     <meta name="robots" content="index, follow" />
 
     <link rel="stylesheet" crossorigin="" href="{% static 'css/index-main.css' %}" />
@@ -147,6 +135,57 @@
       div.skiptranslate, #google_translate_element2 {
         display: none !important;
       }
+      
+      /* Message Styles */
+      .messages {
+        margin-bottom: 20px;
+      }
+      .alert {
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+      .alert-error {
+        background-color: #fee2e2;
+        border: 1px solid #ef4444;
+        color: #991b1b;
+      }
+      .alert-success {
+        background-color: #dcfce7;
+        border: 1px solid #22c55e;
+        color: #166534;
+      }
+      .alert-info {
+        background-color: #dbeafe;
+        border: 1px solid #3b82f6;
+        color: #1e3a8a;
+      }
+      .dark .alert-error {
+        background-color: #7f1d1d;
+        border-color: #ef4444;
+        color: #fee2e2;
+      }
+      .dark .alert-success {
+        background-color: #14532d;
+        border-color: #22c55e;
+        color: #dcfce7;
+      }
+      .dark .alert-info {
+        background-color: #1e3a8a;
+        border-color: #3b82f6;
+        color: #dbeafe;
+      }
+      .errorlist {
+        color: #ef4444;
+        font-size: 12px;
+        margin-top: 4px;
+        list-style: none;
+        padding: 0;
+      }
+      .dark .errorlist {
+        color: #f87171;
+      }
     </style>
   </head>
 
@@ -193,27 +232,11 @@
         </div>
         <div class="md:col-span-3 col-span-5 p-8 space-y-6">
           <div class="flex items-center justify-end gap-3">
-            <a class="text-sm font-semibold text-brandblue" href="/login">
+            <a class="text-sm font-semibold text-brandblue" href="{% url 'login' %}">
               Login
             </a>
             
-            <!-- Translator - Fixed Version -->
-            <!--<div class="relative">
-              <div class="gtranslate_wrapper"></div>
-              <script>
-                window.gtranslateSettings = {
-                  default_language: "en",
-                  wrapper_selector: ".gtranslate_wrapper",
-                  switcher_horizontal_position: "inline",
-                  float_switcher_open_direction: "down",
-                  alt_flags: { en: "usa" },
-                  native_language_names: true
-                };
-              </script>
-              <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
-            </div>-->
-            
-            <!-- Theme Toggle - Fixed Version -->
+            <!-- Theme Toggle -->
             <div class="grid place-content-center">
               <label
                 :class="{
@@ -278,19 +301,42 @@
               </label>
             </div>
           </div>
+          
           <div class="w-full max-w-100 mx-auto">
+            <!-- Messages -->
+            {% if messages %}
+            <div class="messages">
+              {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+            
             <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">
               Sign Up
             </h2>
             <p class="text-gray-500 text-sm dark:text-gray-500 mb-6">
               Join the community and unleash endless possibilities
             </p>
+            
             <form
               class="space-y-4"
               method="POST"
-              action="{% url 'register' %}"
+              action="{% url 'register' %}{% if request.GET.ref %}?ref={{ request.GET.ref }}{% endif %}"
             >
               {% csrf_token %}
+              
+              <!-- Form Errors -->
+              {% if form.non_field_errors %}
+              <div class="alert alert-error">
+                {% for error in form.non_field_errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              {% endif %}
+              
               <div class="grid md:grid-cols-2 gap-4">
                 <div>
                   <label for="username" class="inputLabel">Username</label>
@@ -300,9 +346,16 @@
                     name="username"
                     placeholder="Choose a username"
                     class="w-full px-4 py-2 rounded-md border text-sm border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 placeholder:opacity-50"
-                    value=""
-                    required=""
+                    value="{{ form.username.value|default:'' }}"
+                    required
                   />
+                  {% if form.username.errors %}
+                  <ul class="errorlist">
+                    {% for error in form.username.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
                 </div>
                 <div>
                   <label for="email" class="inputLabel">Email Address</label>
@@ -312,22 +365,30 @@
                     name="email"
                     placeholder="Your email address"
                     class="w-full px-4 py-2 rounded-md border text-sm border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 placeholder:opacity-50"
-                    value=""
-                    required=""
+                    value="{{ form.email.value|default:'' }}"
+                    required
                   />
+                  {% if form.email.errors %}
+                  <ul class="errorlist">
+                    {% for error in form.email.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
                 </div>
               </div>
+              
               <div>
                 <label for="password" class="inputLabel">Password</label>
                 <div x-data="{ showPassword: false }" class="relative">
                   <input
                     :type="showPassword ? 'text' : 'password'"
                     id="password"
-                    name="password"
+                    name="password1"
                     placeholder="Create a strong password"
                     class="w-full px-4 py-2 rounded-md border text-sm border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 placeholder:opacity-50 pr-12"
                     autocomplete="new-password"
-                    required=""
+                    required
                   />
                   <button
                     type="button"
@@ -369,18 +430,26 @@
                     </svg>
                   </button>
                 </div>
+                {% if form.password1.errors %}
+                <ul class="errorlist">
+                  {% for error in form.password1.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
               </div>
+              
               <div>
                 <label for="password_confirmation" class="inputLabel">Confirm Password</label>
                 <div x-data="{ showConfirmPassword: false }" class="relative">
                   <input
                     :type="showConfirmPassword ? 'text' : 'password'"
                     id="password_confirmation"
-                    name="password_confirmation"
+                    name="password2"
                     placeholder="Confirm password"
                     class="w-full px-4 py-2 rounded-md border text-sm border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 placeholder:opacity-50 pr-12"
                     autocomplete="new-password"
-                    required=""
+                    required
                   />
                   <button
                     type="button"
@@ -422,36 +491,53 @@
                     </svg>
                   </button>
                 </div>
+                {% if form.password2.errors %}
+                <ul class="errorlist">
+                  {% for error in form.password2.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
               </div>
-              <div>
+              
+              {% comment %} <div>
                 <div
                   class="cf-turnstile"
                   data-sitekey="0x4AAAAAABeIjDYPy9gdTHfJ"
                   data-size="flexible"
                 ></div>
-              </div>
+              </div> {% endcomment %}
+              
               <div class="flex items-center">
                 <input
                   type="checkbox"
                   id="termsAccepted"
-                  name="termsAccepted"
+                  name="terms_accepted"
                   class="mr-2 rounded text-blue-600 focus:ring-blue-500"
-                  required=""
+                  required
                 />
                 <label
                   for="termsAccepted"
                   class="text-xs tracking-tight font-medium text-gray-500 dark:text-gray-300"
                 >
                   I've read and accept the
-                  <a class="text-brandblue" href="/terms-and-conditions">
+                  <a class="text-brandblue hover:underline" href="{% url 'terms_and_conditions' %}">
                     Terms &amp; Conditions
                   </a>
-                  with
-                  <a class="text-brandblue" href="/privacy-policy"
+                  and
+                  <a class="text-brandblue hover:underline" href="{% url 'privacy_policy' %}"
                     >Privacy Policy</a
                   >
                 </label>
               </div>
+              {% if form.termsAccepted.errors %}
+              <ul class="errorlist">
+                {% for error in form.termsAccepted.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              
               <button
                 type="submit"
                 class="font-semibold w-full hover:bg-blue-600 bg-brandblue text-white py-2 rounded-md transition-colors duration-300 flex items-center justify-center"
@@ -496,7 +582,7 @@
     <!-- Smartsupp -->
     <script type="text/javascript">
       var _smartsupp = _smartsupp || {};
-      _smartsupp.key = "4f3dcfc04c5f4a15b6a0ef9f6b75a5281651a1a1";
+      _smartsupp.key = "95bfba2dee330f927f8596cb05bd6e0e0b69874f";
       window.smartsupp ||
         (function (d) {
           var s,

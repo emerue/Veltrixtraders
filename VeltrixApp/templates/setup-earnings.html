@@ -4,181 +4,211 @@
 {% block title %}Annual Earnings - Veltrixtraders{% endblock %}
 
 {% block content %}
-<form action="{% url 'setup_earnings' %}" method="POST">
-    {% csrf_token %}
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row px-4 py-8 gap-8">
-        <div class="w-full md:w-2/3 bg-gray-800 rounded-lg p-6 shadow-lg">
-            <div style="opacity: 1; transform: none">
-                <h2 class="text-white text-xl font-semibold mb-2">
-                    Annual Earnings
-                </h2>
-            </div>
-            <div class="w-full bg-gray-700 h-1 mt-4 mb-6 rounded-full overflow-hidden">
-                <div class="h-full bg-green-500 transition-all duration-700 ease-in-out" style="width: 58%"></div>
-            </div>
-            <div class="flex items-center mb-6 text-cyan-400">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M12 16v-4"></path>
-                    <path d="M12 8h.01"></path>
-                </svg>
-                <span class="ml-2 text-sm text-gray-300">
-                    In order to start trading, you must first complete your profile.
-                </span>
-            </div>
-            <div class="border-t border-gray-700 py-4">
-                <div style="opacity: 1; transform: none">
-                    <div class="mb-4 md:flex md:flex-row md:gap-4">
-                        <div class="mb-4 md:mb-0 md:w-1/2">
-                            <label class="block text-sm font-medium text-gray-300 mb-1">
-                                Annual Income (USD) <span class="text-red-500">*</span>
-                            </label>
-                            <div class="relative">
-                                <select name="annual_income" class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required="">
-                                    <option value="">Select Annual Income (USD)</option>
-                                    <option value="Under 50k">Under 50k</option>
-                                    <option value="50k - 100k">50k - 100k</option>
-                                    <option value="100k - 200k">100k - 200k</option>
-                                    <option value="200k - 500k">200k - 500k</option>
-                                    <option value="Over 500k">Over 500k</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="md:w-1/2">
-                            <label class="block text-sm font-medium text-gray-300 mb-1">
-                                Primary Source of Income <span class="text-red-500">*</span>
-                            </label>
-                            <div class="relative">
-                                <select name="source_of_income" class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required="">
-                                    <option value="">Select Primary Source of Income</option>
-                                    <option value="Employment">Employment</option>
-                                    <option value="Self-Employment">Self-Employment</option>
-                                    <option value="Investments">Investments</option>
-                                    <option value="Trading Profits">Trading Profits</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="opacity: 1; transform: none">
-                    <div class="mb-4 md:flex md:flex-row md:gap-4">
-                        <div class="w-full">
-                            <label class="block text-sm font-medium text-gray-300 mb-1">
-                                Country of Tax Residency <span class="text-red-500">*</span>
-                            </label>
-                            <div class="relative">
-                                <select name="tax_residence" class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required="">
-                                    <option value="">Select Country of Tax Residency</option>
-                                    <option value="Afghanistan">Afghanistan</option>
-                                    <option value="Albania">Albania</option>
-                                    <option value="Algeria">Algeria</option>
-                                    <option value="Argentina">Argentina</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Austria">Austria</option>
-                                    <option value="Bangladesh">Bangladesh</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Brazil">Brazil</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="China">China</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="Egypt">Egypt</option>
-                                    <option value="Finland">Finland</option>
-                                    <option value="France">France</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="Greece">Greece</option>
-                                    <option value="Hong Kong">Hong Kong</option>
-                                    <option value="Hungary">Hungary</option>
-                                    <option value="India">India</option>
-                                    <option value="Indonesia">Indonesia</option>
-                                    <option value="Ireland">Ireland</option>
-                                    <option value="Israel">Israel</option>
-                                    <option value="Italy">Italy</option>
-                                    <option value="Japan">Japan</option>
-                                    <option value="Malaysia">Malaysia</option>
-                                    <option value="Mexico">Mexico</option>
-                                    <option value="Netherlands">Netherlands</option>
-                                    <option value="New Zealand">New Zealand</option>
-                                    <option value="Nigeria">Nigeria</option>
-                                    <option value="Norway">Norway</option>
-                                    <option value="Pakistan">Pakistan</option>
-                                    <option value="Philippines">Philippines</option>
-                                    <option value="Poland">Poland</option>
-                                    <option value="Portugal">Portugal</option>
-                                    <option value="Russia">Russia</option>
-                                    <option value="Saudi Arabia">Saudi Arabia</option>
-                                    <option value="Singapore">Singapore</option>
-                                    <option value="South Africa">South Africa</option>
-                                    <option value="South Korea">South Korea</option>
-                                    <option value="Spain">Spain</option>
-                                    <option value="Sweden">Sweden</option>
-                                    <option value="Switzerland">Switzerland</option>
-                                    <option value="Taiwan">Taiwan</option>
-                                    <option value="Thailand">Thailand</option>
-                                    <option value="Turkey">Turkey</option>
-                                    <option value="UAE">UAE</option>
-                                    <option value="UK">UK</option>
-                                    <option value="USA">USA</option>
-                                    <option value="Vietnam">Vietnam</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-between mt-8">
-                <a href="{% url 'setup_experience' %}" class="flex items-center justify-center px-4 py-2 font-medium text-sm bg-transparent border border-cyan-500 text-cyan-400 rounded w-48 hover:bg-cyan-900 hover:bg-opacity-20 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left">
-                        <path d="m15 18-6-6 6-6"></path>
-                    </svg>
-                    <span class="ml-2">Back</span>
-                </a>
-                <button type="submit" class="ml-auto px-4 py-2 font-medium text-sm bg-cyan-500 text-white rounded w-48 transition-all hover:bg-cyan-600">
-                    NEXT
-                </button>
-            </div>
+<div class="max-w-7xl mx-auto px-4 py-8">
+    {% if messages %}
+    <div class="mb-6">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+            {{ message }}
         </div>
-        <div class="w-full md:w-1/3 bg-gray-800 rounded-lg p-6 shadow-lg h-min">
-            <h3 class="text-white text-lg font-semibold mb-4">
-                Upload Account
-            </h3>
-            <ul class="space-y-4">
-                <li class="flex items-center">
-                    <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 bg-green-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-white">
-                            <path d="M20 6 9 17l-5-5"></path>
-                        </svg>
-                    </div>
-                    <span class="text-sm text-white">Personal Information</span>
-                </li>
-                <li class="flex items-center">
-                    <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 bg-green-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-white">
-                            <path d="M20 6 9 17l-5-5"></path>
-                        </svg>
-                    </div>
-                    <span class="text-sm text-white">Contact and Address Information</span>
-                </li>
-                <li class="flex items-center">
-                    <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 bg-green-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-white">
-                            <path d="M20 6 9 17l-5-5"></path>
-                        </svg>
-                    </div>
-                    <span class="text-sm text-white">Trading Experience</span>
-                </li>
-                <li class="flex items-center">
-                    <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 bg-cyan-400">
-                        <div class="animate-pulse w-3 h-3 bg-white rounded-full"></div>
-                    </div>
-                    <span class="text-sm text-cyan-400">Annual Earnings</span>
-                </li>
-                <li class="flex items-center">
-                    <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 border border-gray-600"></div>
-                    <span class="text-sm text-gray-400">Client Declaration</span>
-                </li>
-            </ul>
-        </div>
+        {% endfor %}
     </div>
-</form>
+    {% endif %}
+
+    <form action="{% url 'setup_earnings' %}" method="POST">
+        {% csrf_token %}
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row px-4 py-8 gap-8">
+            <div class="w-full md:w-2/3 bg-gray-800 rounded-lg p-6 shadow-lg">
+                <div style="opacity: 1; transform: none">
+                    <h2 class="text-white text-xl font-semibold mb-2">
+                        Annual Earnings
+                    </h2>
+                </div>
+                <div class="w-full bg-gray-700 h-1 mt-4 mb-6 rounded-full overflow-hidden">
+                    <div class="h-full bg-green-500 transition-all duration-700 ease-in-out" style="width: 58%"></div>
+                </div>
+                <div class="flex items-center mb-6 text-cyan-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 16v-4"></path>
+                        <path d="M12 8h.01"></path>
+                    </svg>
+                    <span class="ml-2 text-sm text-gray-300">
+                        In order to start trading, you must first complete your profile.
+                    </span>
+                </div>
+                
+                {% if form.non_field_errors %}
+                <div class="mb-4 p-3 bg-red-900/30 border border-red-500 rounded text-red-400 text-sm">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <div class="border-t border-gray-700 py-4">
+                    <div style="opacity: 1; transform: none">
+                        <div class="mb-4 md:flex md:flex-row md:gap-4">
+                            <div class="mb-4 md:mb-0 md:w-1/2">
+                                <label class="block text-sm font-medium text-gray-300 mb-1">
+                                    Annual Income (USD) <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <select name="annual_income" class="w-full p-3 bg-gray-800 text-white border {% if form.annual_income.errors %}border-red-500{% else %}border-gray-700{% endif %} rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                                        <option value="">Select Annual Income (USD)</option>
+                                        <option value="Under 50k" {% if form.annual_income.value == 'Under 50k' %}selected{% endif %}>Under 50k</option>
+                                        <option value="50k - 100k" {% if form.annual_income.value == '50k - 100k' %}selected{% endif %}>50k - 100k</option>
+                                        <option value="100k - 200k" {% if form.annual_income.value == '100k - 200k' %}selected{% endif %}>100k - 200k</option>
+                                        <option value="200k - 500k" {% if form.annual_income.value == '200k - 500k' %}selected{% endif %}>200k - 500k</option>
+                                        <option value="Over 500k" {% if form.annual_income.value == 'Over 500k' %}selected{% endif %}>Over 500k</option>
+                                    </select>
+                                </div>
+                                {% if form.annual_income.errors %}
+                                <p class="text-red-400 text-xs mt-1">{{ form.annual_income.errors.0 }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="md:w-1/2">
+                                <label class="block text-sm font-medium text-gray-300 mb-1">
+                                    Primary Source of Income <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <select name="source_of_income" class="w-full p-3 bg-gray-800 text-white border {% if form.source_of_income.errors %}border-red-500{% else %}border-gray-700{% endif %} rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                                        <option value="">Select Primary Source of Income</option>
+                                        <option value="Employment" {% if form.source_of_income.value == 'Employment' %}selected{% endif %}>Employment</option>
+                                        <option value="Self-Employment" {% if form.source_of_income.value == 'Self-Employment' %}selected{% endif %}>Self-Employment</option>
+                                        <option value="Investments" {% if form.source_of_income.value == 'Investments' %}selected{% endif %}>Investments</option>
+                                        <option value="Trading Profits" {% if form.source_of_income.value == 'Trading Profits' %}selected{% endif %}>Trading Profits</option>
+                                        <option value="Other" {% if form.source_of_income.value == 'Other' %}selected{% endif %}>Other</option>
+                                    </select>
+                                </div>
+                                {% if form.source_of_income.errors %}
+                                <p class="text-red-400 text-xs mt-1">{{ form.source_of_income.errors.0 }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="opacity: 1; transform: none">
+                        <div class="mb-4 md:flex md:flex-row md:gap-4">
+                            <div class="w-full">
+                                <label class="block text-sm font-medium text-gray-300 mb-1">
+                                    Country of Tax Residency <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <select name="tax_residence" class="w-full p-3 bg-gray-800 text-white border {% if form.tax_residence.errors %}border-red-500{% else %}border-gray-700{% endif %} rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                                        <option value="">Select Country of Tax Residency</option>
+                                        <option value="Afghanistan" {% if form.tax_residence.value == 'Afghanistan' %}selected{% endif %}>Afghanistan</option>
+                                        <option value="Albania" {% if form.tax_residence.value == 'Albania' %}selected{% endif %}>Albania</option>
+                                        <option value="Algeria" {% if form.tax_residence.value == 'Algeria' %}selected{% endif %}>Algeria</option>
+                                        <option value="Argentina" {% if form.tax_residence.value == 'Argentina' %}selected{% endif %}>Argentina</option>
+                                        <option value="Australia" {% if form.tax_residence.value == 'Australia' %}selected{% endif %}>Australia</option>
+                                        <option value="Austria" {% if form.tax_residence.value == 'Austria' %}selected{% endif %}>Austria</option>
+                                        <option value="Bangladesh" {% if form.tax_residence.value == 'Bangladesh' %}selected{% endif %}>Bangladesh</option>
+                                        <option value="Belgium" {% if form.tax_residence.value == 'Belgium' %}selected{% endif %}>Belgium</option>
+                                        <option value="Brazil" {% if form.tax_residence.value == 'Brazil' %}selected{% endif %}>Brazil</option>
+                                        <option value="Canada" {% if form.tax_residence.value == 'Canada' %}selected{% endif %}>Canada</option>
+                                        <option value="China" {% if form.tax_residence.value == 'China' %}selected{% endif %}>China</option>
+                                        <option value="Denmark" {% if form.tax_residence.value == 'Denmark' %}selected{% endif %}>Denmark</option>
+                                        <option value="Egypt" {% if form.tax_residence.value == 'Egypt' %}selected{% endif %}>Egypt</option>
+                                        <option value="Finland" {% if form.tax_residence.value == 'Finland' %}selected{% endif %}>Finland</option>
+                                        <option value="France" {% if form.tax_residence.value == 'France' %}selected{% endif %}>France</option>
+                                        <option value="Germany" {% if form.tax_residence.value == 'Germany' %}selected{% endif %}>Germany</option>
+                                        <option value="Greece" {% if form.tax_residence.value == 'Greece' %}selected{% endif %}>Greece</option>
+                                        <option value="Hong Kong" {% if form.tax_residence.value == 'Hong Kong' %}selected{% endif %}>Hong Kong</option>
+                                        <option value="Hungary" {% if form.tax_residence.value == 'Hungary' %}selected{% endif %}>Hungary</option>
+                                        <option value="India" {% if form.tax_residence.value == 'India' %}selected{% endif %}>India</option>
+                                        <option value="Indonesia" {% if form.tax_residence.value == 'Indonesia' %}selected{% endif %}>Indonesia</option>
+                                        <option value="Ireland" {% if form.tax_residence.value == 'Ireland' %}selected{% endif %}>Ireland</option>
+                                        <option value="Israel" {% if form.tax_residence.value == 'Israel' %}selected{% endif %}>Israel</option>
+                                        <option value="Italy" {% if form.tax_residence.value == 'Italy' %}selected{% endif %}>Italy</option>
+                                        <option value="Japan" {% if form.tax_residence.value == 'Japan' %}selected{% endif %}>Japan</option>
+                                        <option value="Malaysia" {% if form.tax_residence.value == 'Malaysia' %}selected{% endif %}>Malaysia</option>
+                                        <option value="Mexico" {% if form.tax_residence.value == 'Mexico' %}selected{% endif %}>Mexico</option>
+                                        <option value="Netherlands" {% if form.tax_residence.value == 'Netherlands' %}selected{% endif %}>Netherlands</option>
+                                        <option value="New Zealand" {% if form.tax_residence.value == 'New Zealand' %}selected{% endif %}>New Zealand</option>
+                                        <option value="Nigeria" {% if form.tax_residence.value == 'Nigeria' %}selected{% endif %}>Nigeria</option>
+                                        <option value="Norway" {% if form.tax_residence.value == 'Norway' %}selected{% endif %}>Norway</option>
+                                        <option value="Pakistan" {% if form.tax_residence.value == 'Pakistan' %}selected{% endif %}>Pakistan</option>
+                                        <option value="Philippines" {% if form.tax_residence.value == 'Philippines' %}selected{% endif %}>Philippines</option>
+                                        <option value="Poland" {% if form.tax_residence.value == 'Poland' %}selected{% endif %}>Poland</option>
+                                        <option value="Portugal" {% if form.tax_residence.value == 'Portugal' %}selected{% endif %}>Portugal</option>
+                                        <option value="Russia" {% if form.tax_residence.value == 'Russia' %}selected{% endif %}>Russia</option>
+                                        <option value="Saudi Arabia" {% if form.tax_residence.value == 'Saudi Arabia' %}selected{% endif %}>Saudi Arabia</option>
+                                        <option value="Singapore" {% if form.tax_residence.value == 'Singapore' %}selected{% endif %}>Singapore</option>
+                                        <option value="South Africa" {% if form.tax_residence.value == 'South Africa' %}selected{% endif %}>South Africa</option>
+                                        <option value="South Korea" {% if form.tax_residence.value == 'South Korea' %}selected{% endif %}>South Korea</option>
+                                        <option value="Spain" {% if form.tax_residence.value == 'Spain' %}selected{% endif %}>Spain</option>
+                                        <option value="Sweden" {% if form.tax_residence.value == 'Sweden' %}selected{% endif %}>Sweden</option>
+                                        <option value="Switzerland" {% if form.tax_residence.value == 'Switzerland' %}selected{% endif %}>Switzerland</option>
+                                        <option value="Taiwan" {% if form.tax_residence.value == 'Taiwan' %}selected{% endif %}>Taiwan</option>
+                                        <option value="Thailand" {% if form.tax_residence.value == 'Thailand' %}selected{% endif %}>Thailand</option>
+                                        <option value="Turkey" {% if form.tax_residence.value == 'Turkey' %}selected{% endif %}>Turkey</option>
+                                        <option value="UAE" {% if form.tax_residence.value == 'UAE' %}selected{% endif %}>UAE</option>
+                                        <option value="UK" {% if form.tax_residence.value == 'UK' %}selected{% endif %}>UK</option>
+                                        <option value="USA" {% if form.tax_residence.value == 'USA' %}selected{% endif %}>USA</option>
+                                        <option value="Vietnam" {% if form.tax_residence.value == 'Vietnam' %}selected{% endif %}>Vietnam</option>
+                                    </select>
+                                </div>
+                                {% if form.tax_residence.errors %}
+                                <p class="text-red-400 text-xs mt-1">{{ form.tax_residence.errors.0 }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between mt-8">
+                    <a href="{% url 'setup_experience' %}" class="flex items-center justify-center px-4 py-2 font-medium text-sm bg-transparent border border-cyan-500 text-cyan-400 rounded w-48 hover:bg-cyan-900 hover:bg-opacity-20 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left">
+                            <path d="m15 18-6-6 6-6"></path>
+                        </svg>
+                        <span class="ml-2">Back</span>
+                    </a>
+                    <button type="submit" class="ml-auto px-4 py-2 font-medium text-sm bg-cyan-500 text-white rounded w-48 transition-all hover:bg-cyan-600">
+                        NEXT
+                    </button>
+                </div>
+            </div>
+            <div class="w-full md:w-1/3 bg-gray-800 rounded-lg p-6 shadow-lg h-min">
+                <h3 class="text-white text-lg font-semibold mb-4">
+                    Upload Account
+                </h3>
+                <ul class="space-y-4">
+                    <li class="flex items-center">
+                        <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 bg-green-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-white">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-white">Personal Information</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 bg-green-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-white">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-white">Contact and Address Information</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 bg-green-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-white">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-white">Trading Experience</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 bg-cyan-400">
+                            <div class="animate-pulse w-3 h-3 bg-white rounded-full"></div>
+                        </div>
+                        <span class="text-sm text-cyan-400">Annual Earnings</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="w-6 h-6 rounded-full flex items-center justify-center mr-3 border border-gray-600"></div>
+                        <span class="text-sm text-gray-400">Client Declaration</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

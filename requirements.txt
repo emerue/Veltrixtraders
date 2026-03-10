@@ -42,3 +42,5 @@ django-widget-tweaks
 django_crontab
 django-jazzmin
 dnspython
+pyotp
+qrcode

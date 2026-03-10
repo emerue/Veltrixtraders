@@ -5,6 +5,19 @@
 
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 space-y-2"></div>
+
+    {% if messages %}
+    <div class="mb-6">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <!-- Balance Card and Chart Section -->
     <div class="w-full flex gap-5 my-4 max-[900px]:flex-col">
         <div class="flex-none">
@@ -14,8 +27,8 @@
                     <div class="w-full z-10 relative flex justify-between">
                         <div class="flex flex-col items-baseline mb-1">
                             <p class="text-xs text-gray-400 font-light">Total Balance</p>
-                            <h1 class="text-4xl font-semibold text-white tracking-tight">
-                                0<span class="text-lg font-mono text-gray-300 ml-1">$</span>
+                            <h1 class="text-4xl font-semibold text-white tracking-tight" data-balance>
+                                {{ user.balance|floatformat:2 }}<span class="text-lg font-mono text-gray-300 ml-1">$</span>
                             </h1>
                         </div>
                         <img src="{% static 'img/fav.svg' %}" alt="logo" class="w-8">
@@ -23,11 +36,11 @@
                     <div class="flex justify-between mt-5 mb-6 z-10 relative">
                         <div class="flex flex-col">
                             <div class="flex items-center gap-1 mb-1"><div class="w-2 h-2 rounded-full bg-emerald-500"></div><span class="text-xs text-gray-400">Deposit</span></div>
-                            <span class="text-sm font-medium text-white">$0</span>
+                            <span class="text-sm font-medium text-white">${{ user.total_deposit|floatformat:2 }}</span>
                         </div>
                         <div class="flex flex-col">
                             <div class="flex items-center gap-1 mb-1"><div class="w-2 h-2 rounded-full bg-blue-500"></div><span class="text-xs text-gray-400">Interest</span></div>
-                            <span class="text-sm font-medium text-white">$0</span>
+                            <span class="text-sm font-medium text-white">${{ user.bonus_balance|floatformat:2 }}</span>
                         </div>
                         <div class="flex flex-col">
                             <div class="flex items-center gap-1 mb-1">
@@ -36,7 +49,7 @@
                                 </svg>
                                 <span class="text-xs text-gray-400">Trades</span>
                             </div>
-                            <span class="text-sm font-medium text-white">0</span>
+                            <span class="text-sm font-medium text-white">{{ copy_trades_count|default:0 }}</span>
                         </div>
                     </div>
                     <div class="flex justify-between z-10 relative">
@@ -81,8 +94,8 @@
     <!-- Traders Carousel -->
     <div class="py-8">
         <div class="max-ctn flex gap-2 overflow-x-auto no-scrollbar">
-            {% for trader in traders|slice:":15" %}
-            <div class="min-w-90 h-fit flex-shrink-0">
+            {% for trader in traders %}
+            <div class="min-w-90 h-fit flex-shrink-0" id="trader-{{ trader.id }}">
                  <div class="relative rounded-xl shadow-sm transition-all duration-200 overflow-hidden h-full border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md bg-white dark:bg-gray-900/30">
                     <div class="absolute top-3 right-3 z-10">
                         <span class="px-2.5 py-1 text-xs font-semibold rounded-lg uppercase tracking-wide bg-green-50 text-green-700 ring-1 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30">
@@ -97,8 +110,8 @@
                             <div class="flex-1 min-w-0">
                                 <h3 class="text-base font-bold text-slate-900 dark:text-white truncate">{{ trader.name }}</h3>
                                 <div class="flex flex-wrap gap-1 mt-1">
-                                    <span class="px-1.5 py-0.5 text-xs font-semibold rounded {% if trader.risk == 'Low' %}bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30{% elif trader.risk == 'Medium' %}bg-amber-50 text-amber-700 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-400/30{% else %}bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-950/50 dark:text-red-300 dark:ring-red-400/30{% endif %}">
-                                        {{ trader.risk }}
+                                    <span class="px-1.5 py-0.5 text-xs font-semibold rounded {% if trader.risk_level == 'Low' %}bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30{% elif trader.risk_level == 'Medium' %}bg-amber-50 text-amber-700 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-400/30{% else %}bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-950/50 dark:text-red-300 dark:ring-red-400/30{% endif %}">
+                                        {{ trader.risk_level }}
                                     </span>
                                     <span class="px-1.5 py-0.5 text-xs font-semibold rounded bg-blue-50 text-blue-700 ring-1 ring-blue-600/20 dark:bg-blue-950/50 dark:text-blue-300 dark:ring-blue-400/30">
                                         {{ trader.specialty }}
@@ -110,12 +123,12 @@
                             <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Monthly</span><span class="font-bold text-green-400">+{{ trader.monthly_return }}%</span></div>
                             <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Yearly</span><span class="font-bold text-green-400">+{{ trader.yearly_return }}%</span></div>
                             <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Win Rate</span><span class="font-bold text-green-400">{{ trader.win_rate }}%</span></div>
-                            <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Experience</span><span class="font-bold text-green-400">{{ trader.experience }} Yrs</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-slate-400">Experience</span><span class="font-bold text-green-400">{{ trader.experience_years }} Yrs</span></div>
                         </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed mb-4">{{ trader.description }}</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed mb-4">{{ trader.description|default:"Professional trader" }}</p>
                         <div class="flex items-center justify-between gap-2">
                             <div class="flex flex-col gap-1 text-xs">
-                                <div class="flex items-center gap-1"><span class="text-slate-500 dark:text-slate-400">Fee:</span><span class="font-semibold text-slate-900 dark:text-white">{{ trader.fee }}%</span></div>
+                                <div class="flex items-center gap-1"><span class="text-slate-500 dark:text-slate-400">Fee:</span><span class="font-semibold text-slate-900 dark:text-white">{{ trader.fee_percentage }}%</span></div>
                                 <div class="flex items-center gap-3">
                                     <div class="flex items-center gap-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet w-3 h-3 text-blue-500">
@@ -137,36 +150,312 @@
                                 </div>
                             </div>
                             <div class="flex-shrink-0">
-                                <form action="{% url 'copy_trading' %}" method="POST">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="trader_id" value="{{ trader.id }}">
-                                    <button type="submit" class="px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-200 min-w-[70px] bg-slate-100 hover:bg-slate-200 text-slate-900 shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white hover:shadow-md">
+                                <!-- Copy button with amount input field -->
+                                <div class="flex items-center gap-2">
+                                    <input type="number" 
+                                           id="amount-{{ trader.id }}" 
+                                           placeholder="Amount"
+                                           value="{{ trader.min_investment }}"
+                                           class="w-20 px-2 py-1 text-xs border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                           min="{{ trader.min_investment }}"
+                                           step="0.01" readonly>
+                                    <button onclick="copyTrader('{{ trader.id }}', '{{ trader.name }}', {{ trader.min_investment }})" 
+                                            class="px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-200 min-w-[70px] bg-slate-100 hover:bg-slate-200 text-slate-900 shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white hover:shadow-md">
                                         Copy
                                     </button>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% empty %}
+            <div class="w-full py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users mb-4 text-gray-300 dark:text-gray-600">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <p class="text-lg">No traders available</p>
+            </div>
             {% endfor %}
         </div>
     </div>
     
-    <!-- Empty Table -->
-    <div class="relative overflow-x-auto">
+    <!-- Active Copy Trades Table -->
+    <div class="relative overflow-x-auto mt-8">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Your Active Copy Trades</h2>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-950 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3 rounded-s-lg">Stock</th>
-                    <th scope="col" class="px-6 py-3">Date</th>
-                    <th scope="col" class="px-6 py-3 rounded-e-lg">Status</th>
+                    <th scope="col" class="px-6 py-3 rounded-s-lg">Trader</th>
+                    <th scope="col" class="px-6 py-3">Amount</th>
+                    <th scope="col" class="px-6 py-3">Started</th>
+                    <th scope="col" class="px-6 py-3">Status</th>
+                    <!--<th scope="col" class="px-6 py-3 rounded-e-lg">Actions</th>-->
                 </tr>
             </thead>
-            <tbody>
-                <!-- Empty table body -->
+            <tbody id="active-trades-table">
+                {% for copy_trade in active_copy_trades %}
+                <tr class="border-b border-gray-200 dark:border-gray-700" id="trade-{{ copy_trade.id }}">
+                    <td class="px-6 py-4">{{ copy_trade.trader.name }}</td>
+                    <td class="px-6 py-4">${{ copy_trade.amount|floatformat:2 }}</td>
+                    <td class="px-6 py-4">{{ copy_trade.started_at|date:"M d, Y" }}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                            {{ copy_trade.status|title }}
+                        </span>
+                    </td>
+                   <!--<td class="px-6 py-4">
+                        <button onclick="stopCopyTrade('{{ copy_trade.id }}')" 
+                                class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 text-xs font-medium">
+                            Stop Copying
+                        </button>
+                    </td>-->
+                </tr>
+                {% empty %}
+                <tr id="no-trades-row">
+                    <td colspan="5" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                        You are not copying any traders yet.
+                    </td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+// Toast notification function
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    
+    const bgColor = type === 'success' ? 'bg-green-500' : 
+                    type === 'error' ? 'bg-red-500' : 
+                    type === 'warning' ? 'bg-yellow-500' : 'bg-blue-500';
+    
+    toast.className = `${bgColor} text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 translate-x-0 opacity-100 flex items-center justify-between min-w-[300px]`;
+    
+    const icon = type === 'success' ? '✓' : 
+                 type === 'error' ? '✗' : 
+                 type === 'warning' ? '⚠' : 'ℹ';
+    
+    toast.innerHTML = `
+        <span class="mr-3 font-bold text-lg">${icon}</span>
+        <span class="flex-1">${message}</span>
+        <button onclick="this.parentElement.remove()" class="ml-3 text-white hover:text-gray-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    `;
+    
+    container.appendChild(toast);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => toast.remove(), 500);
+    }, 5000);
+}
+
+// Copy trader function
+async function copyTrader(traderId, traderName, minInvestment) {
+    const amountInput = document.getElementById(`amount-${traderId}`);
+    const amount = parseFloat(amountInput.value);
+    const balance = parseFloat(document.querySelector('[data-balance]').textContent);
+    
+    // Validate amount
+    if (!amount || amount <= 0) {
+        showToast('Please enter a valid amount', 'error');
+        amountInput.focus();
+        return;
+    }
+    
+    if (amount < minInvestment) {
+        showToast(`Minimum investment for ${traderName} is $${minInvestment}`, 'warning');
+        amountInput.focus();
+        return;
+    }
+    
+    if (amount > balance) {
+        showToast(`Insufficient balance. You need $${(amount - balance).toFixed(2)} more.`, 'error');
+        amountInput.focus();
+        return;
+    }
+    
+    // Confirm with user
+    if (!confirm(`Are you sure you want to copy ${traderName} with $${amount.toFixed(2)}?`)) {
+        return;
+    }
+    
+    // Show loading state
+    const button = event.target;
+    const originalText = button.textContent;
+    button.textContent = 'Processing...';
+    button.disabled = true;
+    
+    try {
+        const formData = new FormData();
+        formData.append('trader_id', traderId);
+        formData.append('amount', amount);
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+        
+        const response = await fetch('{% url "copy_trading" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            showToast(data.message, 'success');
+            
+            // Update balance display
+            if (data.new_balance) {
+                document.querySelector('[data-balance]').textContent = data.new_balance.toFixed(2);
+            }
+            
+            // Clear input
+            amountInput.value = '';
+            
+            // Add new trade to table if it doesn't exist
+            if (data.copy_trade && document.getElementById('no-trades-row')) {
+                const noTradesRow = document.getElementById('no-trades-row');
+                if (noTradesRow) {
+                    noTradesRow.remove();
+                }
+                
+                const tbody = document.getElementById('active-trades-table');
+                const newRow = document.createElement('tr');
+                newRow.id = `trade-${data.copy_trade.id}`;
+                newRow.className = 'border-b border-gray-200 dark:border-gray-700';
+                newRow.innerHTML = `
+                    <td class="px-6 py-4">${data.copy_trade.trader}</td>
+                    <td class="px-6 py-4">$${data.copy_trade.amount.toFixed(2)}</td>
+                    <td class="px-6 py-4">${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                            Active
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <button onclick="stopCopyTrade('${data.copy_trade.id}')" 
+                                class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 text-xs font-medium">
+                            Stop Copying
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(newRow);
+            }
+        } else {
+            showToast(data.error, data.type || 'error');
+        }
+    } catch (error) {
+        showToast('An error occurred. Please try again.', 'error');
+        console.error('Error:', error);
+    } finally {
+        // Reset button state
+        button.textContent = originalText;
+        button.disabled = false;
+    }
+}
+
+// Stop copy trade function
+async function stopCopyTrade(tradeId) {
+    if (!confirm('Are you sure you want to stop copying this trader? The remaining balance will be refunded.')) {
+        return;
+    }
+    
+    try {
+        const formData = new FormData();
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+        
+        const response = await fetch(`/stop-copy-trade/${tradeId}/`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            showToast(data.message, 'success');
+            
+            // Update balance
+            if (data.new_balance) {
+                document.querySelector('[data-balance]').textContent = data.new_balance.toFixed(2);
+            }
+            
+            // Remove row from table
+            const tradeRow = document.getElementById(`trade-${tradeId}`);
+            if (tradeRow) {
+                tradeRow.remove();
+            }
+            
+            // Check if table is empty
+            const tbody = document.getElementById('active-trades-table');
+            if (tbody.children.length === 0) {
+                tbody.innerHTML = `
+                    <tr id="no-trades-row">
+                        <td colspan="5" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                            You are not copying any traders yet.
+                        </td>
+                    </tr>
+                `;
+            }
+        } else {
+            showToast(data.error, 'error');
+        }
+    } catch (error) {
+        showToast('An error occurred. Please try again.', 'error');
+        console.error('Error:', error);
+    }
+}
+
+// Enter key to submit
+document.querySelectorAll('input[id^="amount-"]').forEach(input => {
+    input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const traderId = this.id.replace('amount-', '');
+            const traderName = this.closest('.min-w-90').querySelector('h3').textContent;
+            const minInvestment = parseFloat(this.min);
+            copyTrader(traderId, traderName, minInvestment);
+        }
+    });
+});
+</script>
+
+<style>
+    /* Toast animations */
+    #toast-container > div {
+        animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    /* Loading state */
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+</style>
 {% endblock %}

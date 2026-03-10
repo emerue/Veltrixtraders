@@ -5,13 +5,56 @@
 
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
-    <div class="flex items-center justify-center flex-wrap gap-14 p-5 mb-4 rounded-[40px] bg-gray-50 dark:bg-gray-950">
+    {% if messages %}
+    <div class="mb-6">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Current Loyalty Level Card -->
+    <div class="mb-8 p-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-lg text-white">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center gap-4 mb-4 md:mb-0">
+                <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center">
+                    <img src="{% static current_level.icon %}" alt="{{ current_level.name }}" class="w-12 h-12">
+                </div>
+                <div>
+                    <p class="text-sm opacity-90 text-gray-600 dark:text-gray-400">Your Current Level</p>
+                    <h3 class="text-2xl font-bold text-gray-600 dark:text-gray-400">{{ current_level.name }}</h3>
+                    <p class="text-sm opacity-90 text-gray-600 dark:text-gray-400">Level {{ current_level.level }}</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <p class="text-sm opacity-90 text-gray-600 dark:text-gray-400">Total Deposits</p>
+                <p class="text-3xl font-bold text-gray-600 dark:text-gray-400">${{ total_deposits|floatformat:2 }}</p>
+                <p class="text-sm opacity-90 text-gray-600 dark:text-gray-400">Next Level: ${{ next_level_needed|floatformat:0 }} more</p>
+            </div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="mt-6">
+            <div class="flex justify-between text-sm mb-1">
+                <span class="text-gray-600 dark:text-gray-400">{{ current_level.name }}</span>
+                <span class="text-gray-600 dark:text-gray-400">{{ next_level_progress|floatformat:1 }}% to {{ next_level.name }}</span>
+            </div>
+            <div class="w-full bg-white/20 rounded-full h-2.5">
+                <div class="bg-white h-2.5 rounded-full" style="width: {{ next_level_progress }}%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Loyalty Levels -->
+    <div class="flex items-center justify-center flex-wrap gap-8 p-6 mb-4 rounded-[40px] bg-gray-50 dark:bg-gray-950">
         {% for level in loyalty_levels %}
         <div x-data="{ showTooltip: false }" @mouseenter="showTooltip = true" @mouseleave="showTooltip = false" class="relative">
-            <div class="w-30 h-30 p-7 bg-gray-900 rounded-3xl overflow-hidden transition-transform transform-gpu hover:scale-105">
+            <div class="w-30 h-30 p-7 bg-gray-900 rounded-3xl overflow-hidden transition-transform transform-gpu hover:scale-105 {% if level.level <= current_level.level %}opacity-100{% else %}opacity-40{% endif %}">
                 <img src="{% static level.icon %}" alt="{{ level.name }}" 
-                     class="w-full h-full object-cover hover:grayscale-0 grayscale"
-                     :class="{ 'grayscale': !showTooltip, 'grayscale-0': showTooltip }" />
+                     class="w-full h-full object-cover"
+                     :class="{ 'grayscale': !showTooltip && {{ level.level }} > {{ current_level.level }}, 'grayscale-0': showTooltip || {{ level.level }} <= {{ current_level.level }}" />
             </div>
             <h3 class="w-fit m-auto mt-2 text-gray-800 font-normal capitalize text-base font-satoshi dark:text-gray-100">
                 {{ level.name }}
@@ -31,6 +74,44 @@
             </div>
         </div>
         {% endfor %}
+    </div>
+
+    <!-- Loyalty Benefits -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up text-blue-600 dark:text-blue-400">
+                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                    <polyline points="16 7 22 7 22 13"></polyline>
+                </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Higher Returns</h3>
+            <p class="text-gray-600 dark:text-gray-400">Get up to {{ max_bonus_percentage }}% bonus on your deposits based on your loyalty level.</p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-green-600 dark:text-green-400">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Referral Bonuses</h3>
+            <p class="text-gray-600 dark:text-gray-400">Earn up to ${{ max_referral_bonus|floatformat:0 }} for each referral at higher levels.</p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award text-purple-600 dark:text-purple-400">
+                    <circle cx="12" cy="8" r="6"></circle>
+                    <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+                </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Exclusive Perks</h3>
+            <p class="text-gray-600 dark:text-gray-400">Access to VIP events, priority support, and exclusive trading signals.</p>
+        </div>
     </div>
 </div>
 {% endblock %}

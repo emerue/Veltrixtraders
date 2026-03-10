@@ -10,21 +10,21 @@
     />
 
     <!-- SEO Basic Tags -->
-    <title>Veltrixtraders - Innovative Finance Technologies</title>
+    <title>Login - Veltrixtraders</title>
     <meta
       name="description"
-      content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance."
+      content="Login to your Veltrixtraders account and start trading."
     />
     <meta
       name="keywords"
-      content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance"
+      content="Veltrixtraders, login, sign in, trading platform"
     />
 
     <!-- Favicon -->
     <link
       rel="icon"
       type="image/svg+xml"
-      href="https://protradercopy.com/wp-content/themes/ProTrader-Copy/images/moneta-logo-icon.png"
+      href="{% static 'img/fav.svg' %}"
     />
 
     <!-- Google Fonts -->
@@ -35,41 +35,25 @@
 
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://Veltrixtraders.com" />
-    <meta
-      property="og:title"
-      content="Veltrixtraders - Innovative Finance Technologies"
-    />
-    <meta
-      property="og:description"
-      content="Veltrixtraders: Cutting-edge technologies transform how you interact with digital finance"
-    />
-    <meta property="og:image" content="/pages/assets/livetrade.gif" />
+    <meta property="og:url" content="https://{{ request.get_host }}" />
+    <meta property="og:title" content="Veltrixtraders - Login" />
+    <meta property="og:description" content="Login to your Veltrixtraders account and start trading." />
+    <meta property="og:image" content="{% static 'img/livetrade.gif' %}" />
     <meta property="og:image:type" content="image/gif" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://Veltrixtraders.com" />
-    <meta
-      name="twitter:title"
-      content="Veltrixtraders - Innovative Reflection Technologies"
-    />
-    <meta
-      name="twitter:description"
-      content="Discover cutting-edge reflection technologies that redefine digital interactions."
-    />
-    <meta name="twitter:image" content="/pages/assets/livetrade.gif" />
+    <meta name="twitter:url" content="https://{{ request.get_host }}" />
+    <meta name="twitter:title" content="Veltrixtraders - Login" />
+    <meta name="twitter:description" content="Login to your Veltrixtraders account and start trading." />
+    <meta name="twitter:image" content="{% static 'img/livetrade.gif' %}" />
 
     <!-- Additional SEO and Accessibility Tags -->
-    <link rel="canonical" href="https://Veltrixtraders.com" />
+    <link rel="canonical" href="https://{{ request.get_host }}" />
     <meta name="robots" content="index, follow" />
 
-    <link
-      rel="modulepreload"
-      href="https://miragetraders.com/build/assets/app-Ce30iX-l.js"
-    />
     <link
       rel="stylesheet"
       crossorigin=""
@@ -162,12 +146,62 @@
       #google_translate_element2 {
         display: none !important;
       }
+      
+      /* Message Styles */
+      .messages {
+        margin-bottom: 20px;
+      }
+      .alert {
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+      .alert-error {
+        background-color: #fee2e2;
+        border: 1px solid #ef4444;
+        color: #991b1b;
+      }
+      .alert-success {
+        background-color: #dcfce7;
+        border: 1px solid #22c55e;
+        color: #166534;
+      }
+      .alert-info {
+        background-color: #dbeafe;
+        border: 1px solid #3b82f6;
+        color: #1e3a8a;
+      }
+      .dark .alert-error {
+        background-color: #7f1d1d;
+        border-color: #ef4444;
+        color: #fee2e2;
+      }
+      .dark .alert-success {
+        background-color: #14532d;
+        border-color: #22c55e;
+        color: #dcfce7;
+      }
+      .dark .alert-info {
+        background-color: #1e3a8a;
+        border-color: #3b82f6;
+        color: #dbeafe;
+      }
+      .errorlist {
+        color: #ef4444;
+        font-size: 12px;
+        margin-top: 4px;
+        list-style: none;
+        padding: 0;
+      }
+      .dark .errorlist {
+        color: #f87171;
+      }
     </style>
   </head>
 
   <body
     style="font-family: Montserrat, sans-serif; overflow: unset"
-    class="dark"
     x-data="themeHandler()"
     x-init="initTheme()"
     :class="{ 'dark': isDark }"
@@ -209,23 +243,7 @@
               >Register</a
             >
 
-            <!-- Translator - Fixed Version -->
-            <!--<div class="relative">
-              <div class="gtranslate_wrapper"></div>
-              <script>
-                window.gtranslateSettings = {
-                  default_language: "en",
-                  wrapper_selector: ".gtranslate_wrapper",
-                  switcher_horizontal_position: "inline",
-                  float_switcher_open_direction: "down",
-                  alt_flags: { en: "usa" },
-                  native_language_names: true
-                };
-              </script>
-              <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
-            </div>-->
-
-            <!-- Theme Toggle - Fixed Version -->
+            <!-- Theme Toggle -->
             <div class="grid place-content-center">
               <label
                 :class="{
@@ -292,6 +310,17 @@
           </div>
 
           <div class="w-full max-w-100 mx-auto">
+            <!-- Messages -->
+            {% if messages %}
+            <div class="messages">
+              {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+            
             <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">
               Login
             </h2>
@@ -301,25 +330,43 @@
 
             <form class="space-y-4" method="POST" action="{% url 'login' %}">
               {% csrf_token %}
+              
+              <!-- Form Errors -->
+              {% if form.non_field_errors %}
+              <div class="alert alert-error">
+                {% for error in form.non_field_errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              {% endif %}
+              
               <div>
-                <label for="email" class="inputLabel">Email or Username</label>
+                <label for="email" class="inputLabel">Username or Email</label>
                 <input
                   type="text"
                   id="email"
-                  name="email"
+                  name="username"
                   placeholder="Enter your email or username"
                   class="w-full px-4 py-2 rounded-md border text-sm border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 placeholder:opacity-50"
-                  value=""
+                  value="{{ form.username.value|default:'' }}"
                   required
                   autofocus
                 />
+                {% if form.username.errors %}
+                <ul class="errorlist">
+                  {% for error in form.username.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
               </div>
+              
               <div>
                 <div class="flex justify-between">
                   <label for="password" class="inputLabel">Password</label>
                   <a
                     class="text-xs text-brandblue hover:underline"
-                    href="{% url 'construction' %}"
+                    href="{% url 'forgot_password' %}"
                   >
                     Forgot Password?
                   </a>
@@ -379,7 +426,15 @@
                     </svg>
                   </button>
                 </div>
+                {% if form.password.errors %}
+                <ul class="errorlist">
+                  {% for error in form.password.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
               </div>
+              
               <div class="flex justify-between items-center flex-wrap">
                 <div class="flex items-center">
                   <input
@@ -404,6 +459,7 @@
                   >
                 </p>
               </div>
+              
               <button
                 type="submit"
                 class="font-semibold w-full hover:bg-blue-600 bg-brandblue text-white py-2 rounded-md transition-colors duration-300 flex items-center justify-center"
@@ -451,7 +507,7 @@
     <!-- Smartsupp -->
     <script type="text/javascript">
       var _smartsupp = _smartsupp || {};
-      _smartsupp.key = "4f3dcfc04c5f4a15b6a0ef9f6b75a5281651a1a1";
+      _smartsupp.key = "95bfba2dee330f927f8596cb05bd6e0e0b69874f";
       window.smartsupp ||
         (function (d) {
           var s,

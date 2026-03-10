@@ -6,6 +6,16 @@
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
     <div class="min-h-screen transition-colors duration-200">
+        {% if messages %}
+        <div class="mb-6">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         <div class="grid grid-cols-1 gap-6">
             <!-- Settings Navigation -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -98,49 +108,78 @@
                             {% csrf_token %}
                             <input type="hidden" name="_method" value="PATCH" />
                             
+                            {% if form.non_field_errors %}
+                            <div class="mb-4 p-3 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg">
+                                {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">First Name</label>
-                                    <input type="text" name="first_name" value="{{ user.first_name|default:'' }}"
-                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white border-gray-300 dark:border-gray-700" />
+                                    <input type="text" name="first_name" value="{{ form.first_name.value|default:user.first_name|default:'' }}"
+                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white {% if form.first_name.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-700{% endif %}" />
+                                    {% if form.first_name.errors %}
+                                    <p class="text-red-500 text-xs mt-1">{{ form.first_name.errors.0 }}</p>
+                                    {% endif %}
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Last Name</label>
-                                    <input type="text" name="last_name" value="{{ user.last_name|default:'' }}"
-                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white border-gray-300 dark:border-gray-700" />
+                                    <input type="text" name="last_name" value="{{ form.last_name.value|default:user.last_name|default:'' }}"
+                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white {% if form.last_name.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-700{% endif %}" />
+                                    {% if form.last_name.errors %}
+                                    <p class="text-red-500 text-xs mt-1">{{ form.last_name.errors.0 }}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                             
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Phone Number</label>
-                                    <input type="tel" name="phone_no" placeholder="e.g., +1234567890" value="{{ user.phone|default:'' }}"
-                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white border-gray-300 dark:border-gray-700" />
+                                    <input type="tel" name="phone" placeholder="e.g., +1234567890" value="{{ form.phone.value|default:user.phone|default:'' }}"
+                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white {% if form.phone.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-700{% endif %}" />
+                                    {% if form.phone.errors %}
+                                    <p class="text-red-500 text-xs mt-1">{{ form.phone.errors.0 }}</p>
+                                    {% endif %}
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Province</label>
-                                    <input type="text" name="province" value="{{ user.province|default:'' }}"
-                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white border-gray-300 dark:border-gray-700" />
+                                    <input type="text" name="province" value="{{ form.province.value|default:user.province|default:'' }}"
+                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white {% if form.province.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-700{% endif %}" />
+                                    {% if form.province.errors %}
+                                    <p class="text-red-500 text-xs mt-1">{{ form.province.errors.0 }}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                             
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">City</label>
-                                    <input type="text" name="city" value="{{ user.city|default:'' }}"
-                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white border-gray-300 dark:border-gray-700" />
+                                    <input type="text" name="city" value="{{ form.city.value|default:user.city|default:'' }}"
+                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white {% if form.city.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-700{% endif %}" />
+                                    {% if form.city.errors %}
+                                    <p class="text-red-500 text-xs mt-1">{{ form.city.errors.0 }}</p>
+                                    {% endif %}
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Zip Code</label>
-                                    <input type="text" name="zip_code" placeholder="12345 or 12345-6789" value="{{ user.zip_code|default:'' }}"
-                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white border-gray-300 dark:border-gray-700" />
+                                    <input type="text" name="zip_code" placeholder="12345 or 12345-6789" value="{{ form.zip_code.value|default:user.zip_code|default:'' }}"
+                                           class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white {% if form.zip_code.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-700{% endif %}" />
+                                    {% if form.zip_code.errors %}
+                                    <p class="text-red-500 text-xs mt-1">{{ form.zip_code.errors.0 }}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                             
                             <div class="mb-6">
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Street Address</label>
-                                <input type="text" name="address" value="{{ user.address|default:'' }}"
-                                       class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white border-gray-300 dark:border-gray-700" />
+                                <input type="text" name="address" value="{{ form.address.value|default:user.address|default:'' }}"
+                                       class="w-full p-3 bg-gray-50 dark:bg-gray-800 border rounded-md text-gray-900 dark:text-white {% if form.address.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-700{% endif %}" />
+                                {% if form.address.errors %}
+                                <p class="text-red-500 text-xs mt-1">{{ form.address.errors.0 }}</p>
+                                {% endif %}
                             </div>
                             
                             <div class="mb-6">
@@ -163,6 +202,9 @@
                                 <p class="text-gray-500 dark:text-gray-500 text-xs mt-1">
                                     Maximum file size: 5MB. Supported formats: JPG, JPEG, PNG
                                 </p>
+                                {% if form.profile_image.errors %}
+                                <p class="text-red-500 text-xs mt-1">{{ form.profile_image.errors.0 }}</p>
+                                {% endif %}
                             </div>
                             
                             <!-- Notification Preferences -->
@@ -177,22 +219,22 @@
                                     </h3>
                                     <div class="space-y-3">
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="email-deposit" name="email_deposit" {% if user.email_deposit %}checked{% endif %}
+                                            <input type="checkbox" id="email-deposit" name="email_deposit" {% if form.email_deposit.value or user.email_deposit %}checked{% endif %}
                                                    class="w-4 h-4 text-blue-500 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded focus:ring-blue-500" />
                                             <label for="email-deposit" class="ml-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">Deposit Notifications</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="email-withdrawal" name="email_withdrawal" {% if user.email_withdrawal %}checked{% endif %}
+                                            <input type="checkbox" id="email-withdrawal" name="email_withdrawal" {% if form.email_withdrawal.value or user.email_withdrawal %}checked{% endif %}
                                                    class="w-4 h-4 text-blue-500 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded focus:ring-blue-500" />
                                             <label for="email-withdrawal" class="ml-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">Withdrawal Notifications</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="email-trade" name="email_trade" {% if user.email_trade %}checked{% endif %}
+                                            <input type="checkbox" id="email-trade" name="email_trade" {% if form.email_trade.value or user.email_trade %}checked{% endif %}
                                                    class="w-4 h-4 text-blue-500 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded focus:ring-blue-500" />
                                             <label for="email-trade" class="ml-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">Trade Notifications</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="email-accountUpdate" name="email_account_update" {% if user.email_account_update %}checked{% endif %}
+                                            <input type="checkbox" id="email-accountUpdate" name="email_account_update" {% if form.email_account_update.value or user.email_account_update %}checked{% endif %}
                                                    class="w-4 h-4 text-blue-500 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded focus:ring-blue-500" />
                                             <label for="email-accountUpdate" class="ml-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">Account Updates</label>
                                         </div>
@@ -209,17 +251,17 @@
                                     </h3>
                                     <div class="space-y-3">
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="notification-deposit" name="push_deposit" {% if user.push_deposit %}checked{% endif %}
+                                            <input type="checkbox" id="notification-deposit" name="push_deposit" {% if form.push_deposit.value or user.push_deposit %}checked{% endif %}
                                                    class="w-4 h-4 text-blue-500 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded focus:ring-blue-500" />
                                             <label for="notification-deposit" class="ml-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">Deposit Notifications</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="notification-withdrawal" name="push_withdrawal" {% if user.push_withdrawal %}checked{% endif %}
+                                            <input type="checkbox" id="notification-withdrawal" name="push_withdrawal" {% if form.push_withdrawal.value or user.push_withdrawal %}checked{% endif %}
                                                    class="w-4 h-4 text-blue-500 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded focus:ring-blue-500" />
                                             <label for="notification-withdrawal" class="ml-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">Withdrawal Notifications</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="notification-trade" name="push_trade" {% if user.push_trade %}checked{% endif %}
+                                            <input type="checkbox" id="notification-trade" name="push_trade" {% if form.push_trade.value or user.push_trade %}checked{% endif %}
                                                    class="w-4 h-4 text-blue-500 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded focus:ring-blue-500" />
                                             <label for="notification-trade" class="ml-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">Trade Notifications</label>
                                         </div>

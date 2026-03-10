@@ -5,103 +5,150 @@
 
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
+    {% if messages %}
+    <div class="mb-6">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif message.tags == 'error' %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="w-full p-4 sm:p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
         <div class="max-w-7xl mx-auto">
             <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
                 Technical Insight Dashboard
             </h1>
+            
             <div class="flex flex-col sm:flex-row gap-4 mb-6">
                 <div class="flex-1 min-w-0">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                        Symbol</label>
-                    <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:text-white">
-                        <option value="AAPL">Apple Inc. (AAPL) (AAPL)</option>
-                        <option value="MSFT">Microsoft Corp. (MSFT) (MSFT)</option>
-                        <option value="GOOGL">Alphabet Inc. (GOOGL) (GOOGL)</option>
-                        <option value="AMZN">Amazon.com Inc. (AMZN) (AMZN)</option>
-                        <option value="TSLA">Tesla Inc. (TSLA) (TSLA)</option>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Symbol</label>
+                    <select id="symbol-select" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                        {% for symbol in symbols %}
+                        <option value="{{ symbol.symbol }}" {% if selected_symbol == symbol.symbol %}selected{% endif %}>{{ symbol.name }} ({{ symbol.symbol }})</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="flex-1 min-w-0">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Timeframe</label>
-                    <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:text-white">
-                        <option value="1m">1m</option>
-                        <option value="5m">5m</option>
-                        <option value="15m">15m</option>
-                        <option value="1h">1h</option>
-                        <option value="4h">4h</option>
-                        <option value="1D">1D</option>
-                        <option value="1W">1W</option>
+                    <select id="timeframe-select" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                        {% for tf in timeframes %}
+                        <option value="{{ tf.value }}" {% if selected_timeframe == tf.value %}selected{% endif %}>{{ tf.label }}</option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>
+            
             <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
                 <div class="xl:col-span-1 space-y-6">
+                    <!-- Technical Analysis Card -->
                     <div class="bg-white border border-gray-200 rounded-lg shadow p-4 sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                         <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity mr-2">
                                 <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                            </svg>Technical Analysis
+                            </svg>
+                            Technical Analysis - {{ selected_symbol }}
                         </h3>
                         <div class="space-y-4">
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Signal:</span>
-                                <span class="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
+                                <span class="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold 
+                                    {% if analysis.signal == 'BUY' %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300
+                                    {% elif analysis.signal == 'SELL' %}bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300
+                                    {% else %}bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300{% endif %}">
+                                    {% if analysis.signal == 'BUY' %}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up inline mr-1">
                                         <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
                                         <polyline points="16 7 22 7 22 13"></polyline>
-                                    </svg>BUY
+                                    </svg>
+                                    {% elif analysis.signal == 'SELL' %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down inline mr-1">
+                                        <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline>
+                                        <polyline points="16 17 22 17 22 11"></polyline>
+                                    </svg>
+                                    {% endif %}
+                                    {{ analysis.signal }}
                                 </span>
                             </div>
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Strength:</span>
                                 <div class="flex items-center space-x-2">
                                     <div class="w-16 sm:w-24 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                                        <div class="h-2 rounded-full bg-green-600" style="width: 75%"></div>
+                                        <div class="h-2 rounded-full 
+                                            {% if analysis.strength >= 70 %}bg-green-600
+                                            {% elif analysis.strength >= 40 %}bg-yellow-500
+                                            {% else %}bg-red-600{% endif %}" 
+                                            style="width: {{ analysis.strength }}%"></div>
                                     </div>
-                                    <span class="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">75%</span>
+                                    <span class="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">{{ analysis.strength }}%</span>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-4 text-sm">
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 dark:text-gray-300">RSI:</span>
-                                    <span class="font-bold text-gray-900 dark:text-white">62.5</span>
+                                    <span class="font-bold text-gray-900 dark:text-white">{{ analysis.rsi }}</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 dark:text-gray-300">MACD:</span>
-                                    <span class="font-bold text-gray-900 dark:text-white">Bullish</span>
+                                    <span class="font-bold text-gray-900 dark:text-white">{{ analysis.macd }}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600 dark:text-gray-300">MA (50):</span>
+                                    <span class="font-bold text-gray-900 dark:text-white">{{ analysis.ma_50 }}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600 dark:text-gray-300">MA (200):</span>
+                                    <span class="font-bold text-gray-900 dark:text-white">{{ analysis.ma_200 }}</span>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 gap-2 text-sm">
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-600 dark:text-gray-300">Support:</span>
-                                    <span class="font-bold text-green-600">$45,250</span>
+                                    <span class="font-bold text-green-600">${{ analysis.support|floatformat:2 }}</span>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-600 dark:text-gray-300">Resistance:</span>
-                                    <span class="font-bold text-red-600">$48,500</span>
+                                    <span class="font-bold text-red-600">${{ analysis.resistance|floatformat:2 }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Quick Actions Card -->
                     <div class="bg-white border border-gray-200 rounded-lg shadow p-4 sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                         <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target mr-2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <circle cx="12" cy="12" r="6"></circle>
                                 <circle cx="12" cy="12" r="2"></circle>
-                            </svg>Quick Actions
+                            </svg>
+                            Quick Actions
                         </h3>
                         <div class="space-y-2">
-                            <button class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md border border-emerald-600 hover:border-emerald-700 text-sm sm:text-base">
-                                Set Buy Alert
-                            </button>
-                            <button class="w-full bg-red-600 hover:bg-rose-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md border border-rose-600 hover:border-rose-700 text-sm sm:text-base">
-                                Set Sell Alert
-                            </button>
+                            <form action="" method="POST" class="inline-block w-full">
+                                {% csrf_token %}
+                                <input type="hidden" name="symbol" value="{{ selected_symbol }}">
+                                <input type="hidden" name="type" value="buy">
+                                <input type="hidden" name="price" value="{{ analysis.resistance }}">
+                                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md border border-emerald-600 hover:border-emerald-700 text-sm sm:text-base">
+                                    Set Buy Alert at ${{ analysis.resistance|floatformat:2 }}
+                                </button>
+                            </form>
+                            <form action="" method="POST" class="inline-block w-full">
+                                {% csrf_token %}
+                                <input type="hidden" name="symbol" value="{{ selected_symbol }}">
+                                <input type="hidden" name="type" value="sell">
+                                <input type="hidden" name="price" value="{{ analysis.support }}">
+                                <button type="submit" class="w-full bg-red-600 hover:bg-rose-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md border border-rose-600 hover:border-rose-700 text-sm sm:text-base">
+                                    Set Sell Alert at ${{ analysis.support|floatformat:2 }}
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Chart -->
                 <div class="xl:col-span-2">
                     <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-full">
                         <div class="p-4 border-b border-gray-200 dark:border-gray-700">
@@ -111,63 +158,82 @@
                                     <path d="M18 17V9"></path>
                                     <path d="M13 17V5"></path>
                                     <path d="M8 17v-3"></path>
-                                </svg>Symbol Overview - AAPL
+                                </svg>
+                                Symbol Overview - {{ selected_symbol }}
                             </h3>
                         </div>
-                        <div class="h-full max-h-100">
+                        <div class="h-full min-h-[400px]">
                             <div id="tradingview_widget" class="w-full h-full">
-                                <div id="tradingview_149f4-wrapper" style="position: relative;box-sizing: content-box;font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif;margin: 0px auto !important;padding: 0px !important;width: 100%;height: 100%;">
-                                    <iframe title="advanced chart TradingView widget" lang="en" id="tradingview_149f4" frameborder="0" allowtransparency="true" scrolling="no" allowfullscreen="true" src="https://s.tradingview.com/widgetembed/?hideideas=1&amp;overrides={}&amp;enabled_features=[]&amp;disabled_features=[]&amp;locale=en#{&quot;symbol&quot;:&quot;AAPL&quot;,&quot;frameElementId&quot;:&quot;tradingview_149f4&quot;,&quot;interval&quot;:&quot;D&quot;,&quot;allow_symbol_change&quot;:&quot;1&quot;,&quot;save_image&quot;:&quot;1&quot;,&quot;backgroundColor&quot;:&quot;#030712&quot;,&quot;studies&quot;:&quot;[]&quot;,&quot;theme&quot;:&quot;dark&quot;,&quot;style&quot;:&quot;1&quot;,&quot;timezone&quot;:&quot;Etc/UTC&quot;,&quot;studies_overrides&quot;:&quot;{}&quot;,&quot;utm_medium&quot;:&quot;widget&quot;,&quot;utm_campaign&quot;:&quot;chart&quot;,&quot;utm_term&quot;:&quot;AAPL&quot;}" style="width: 100%;height: 100%;margin: 0px !important;padding: 0px !important;"></iframe>
+                                <!-- TradingView widget will be loaded here -->
+                                <div class="tradingview-widget-container" style="height:100%;width:100%">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                                    {
+                                        "autosize": true,
+                                        "symbol": "{{ tradingview_symbol }}",
+                                        "interval": "{{ tradingview_interval }}",
+                                        "timezone": "Etc/UTC",
+                                        "theme": "dark",
+                                        "style": "1",
+                                        "locale": "en",
+                                        "allow_symbol_change": true,
+                                        "calendar": false,
+                                        "support_host": "https://www.tradingview.com"
+                                    }
+                                    </script>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Market Overview -->
             <div class="mt-6 bg-white border border-gray-200 rounded-lg shadow p-4 sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                 <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-triangle mr-2">
                         <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
                         <path d="M12 9v4"></path>
                         <path d="M12 17h.01"></path>
-                    </svg>Market Overview
+                    </svg>
+                    Market Overview
                 </h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {% for market in market_overview %}
                     <div class="p-3 sm:p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-900 dark:text-white text-sm sm:text-base">AAPL</span>
-                            <span class="text-xs sm:text-sm text-green-600">+2.5%</span>
+                            <span class="font-medium text-gray-900 dark:text-white text-sm sm:text-base">{{ market.symbol }}</span>
+                            <span class="text-xs sm:text-sm {% if market.change > 0 %}text-green-600{% else %}text-red-600{% endif %}">
+                                {% if market.change > 0 %}+{% endif %}{{ market.change }}%
+                            </span>
                         </div>
-                        <div class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">$26425.51</div>
-                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Vol: 77425</div>
-                    </div>
-                    <div class="p-3 sm:p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-900 dark:text-white text-sm sm:text-base">MSFT</span>
-                            <span class="text-xs sm:text-sm text-red-600">-1.2%</span>
+                        <div class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">
+                            ${{ market.price|floatformat:2 }}
                         </div>
-                        <div class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">$16212.14</div>
-                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Vol: 860605</div>
-                    </div>
-                    <div class="p-3 sm:p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-900 dark:text-white text-sm sm:text-base">GOOGL</span>
-                            <span class="text-xs sm:text-sm text-green-600">+2.5%</span>
+                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+                            Vol: {{ market.volume|floatformat:0 }}
                         </div>
-                        <div class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">$26632.40</div>
-                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Vol: 209959</div>
                     </div>
-                    <div class="p-3 sm:p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-900 dark:text-white text-sm sm:text-base">AMZN</span>
-                            <span class="text-xs sm:text-sm text-red-600">-1.2%</span>
-                        </div>
-                        <div class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">$25473.18</div>
-                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Vol: 556715</div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+{% block extra_js %}
+<script>
+    document.getElementById('symbol-select')?.addEventListener('change', function() {
+        const symbol = this.value;
+        const timeframe = document.getElementById('timeframe-select').value;
+        window.location.href = `?symbol=${symbol}&timeframe=${timeframe}`;
+    });
+    
+    document.getElementById('timeframe-select')?.addEventListener('change', function() {
+        const timeframe = this.value;
+        const symbol = document.getElementById('symbol-select').value;
+        window.location.href = `?symbol=${symbol}&timeframe=${timeframe}`;
+    });
+</script>
+{% endblock %}
 {% endblock %}

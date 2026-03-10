@@ -1,5 +1,500 @@
 [
     {
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "PaymentMethod",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "PaymentMethodDetail",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "LoyaltyStatus",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "PaymentMethod",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "PaymentMethodDetail",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Trader",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Deposit",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Withdrawal",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "VeltrixApp.views",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "bulk_process_deposits",
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.admin_actions",
+        "documentation": {}
+    },
+    {
+        "label": "bulk_process_withdrawals",
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.admin_actions",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.models",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "AbstractUser",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.validators",
+        "description": "django.contrib.auth.validators",
+        "detail": "django.contrib.auth.validators",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -9,6 +504,30 @@
     },
     {
         "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
         "importPath": "django.contrib",
         "description": "django.contrib",
         "isExtraImport": true,
@@ -32,11 +551,101 @@
         "documentation": {}
     },
     {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
+        "label": "render_to_string",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
         "isExtraImport": true,
-        "detail": "django.db",
+        "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "render_to_string",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
+        "isExtraImport": true,
+        "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "strip_tags",
+        "importPath": "django.utils.html",
+        "description": "django.utils.html",
+        "isExtraImport": true,
+        "detail": "django.utils.html",
+        "documentation": {}
+    },
+    {
+        "label": "mark_safe",
+        "importPath": "django.utils.html",
+        "description": "django.utils.html",
+        "isExtraImport": true,
+        "detail": "django.utils.html",
+        "documentation": {}
+    },
+    {
+        "label": "django",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django",
+        "description": "django",
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "UserCreationForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
+        "label": "AuthenticationForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "post_save",
+        "importPath": "django.db.models.signals",
+        "description": "django.db.models.signals",
+        "isExtraImport": true,
+        "detail": "django.db.models.signals",
+        "documentation": {}
+    },
+    {
+        "label": "pre_save",
+        "importPath": "django.db.models.signals",
+        "description": "django.db.models.signals",
+        "isExtraImport": true,
+        "detail": "django.db.models.signals",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
         "documentation": {}
     },
     {
@@ -72,12 +681,11 @@
         "documentation": {}
     },
     {
-        "label": "VeltrixApp.views",
-        "kind": 6,
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
         "isExtraImport": true,
-        "importPath": "VeltrixApp.views",
-        "description": "VeltrixApp.views",
-        "detail": "VeltrixApp.views",
+        "detail": "django.conf.urls.static",
         "documentation": {}
     },
     {
@@ -89,7 +697,7 @@
         "documentation": {}
     },
     {
-        "label": "render",
+        "label": "redirect",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -97,37 +705,95 @@
         "documentation": {}
     },
     {
-        "label": "json",
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "pyotp",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "importPath": "pyotp",
+        "description": "pyotp",
+        "detail": "pyotp",
         "documentation": {}
     },
     {
-        "label": "os",
+        "label": "qrcode",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
+        "importPath": "qrcode",
+        "description": "qrcode",
+        "detail": "qrcode",
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
+        "label": "qrcode.image.svg",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "django.conf",
+        "importPath": "qrcode.image.svg",
+        "description": "qrcode.image.svg",
+        "detail": "qrcode.image.svg",
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
+        "label": "BytesIO",
+        "importPath": "io",
+        "description": "io",
         "isExtraImport": true,
-        "detail": "django.conf",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
         "documentation": {}
     },
     {
@@ -161,6 +827,14 @@
         "description": "email.headerregistry",
         "isExtraImport": true,
         "detail": "email.headerregistry",
+        "documentation": {}
+    },
+    {
+        "label": "constants",
+        "importPath": "django.contrib.messages",
+        "description": "django.contrib.messages",
+        "isExtraImport": true,
+        "detail": "django.contrib.messages",
         "documentation": {}
     },
     {
@@ -215,20 +889,174 @@
         "documentation": {}
     },
     {
-        "label": "django",
+        "label": "Command",
         "kind": 6,
-        "isExtraImport": true,
-        "importPath": "django",
-        "description": "django",
-        "detail": "django",
+        "importPath": "VeltrixApp.management.commands.load_payment_details",
+        "description": "VeltrixApp.management.commands.load_payment_details",
+        "peekOfCode": "class Command(BaseCommand):\n    help = 'Create initial payment method details and loyalty status'\n    def handle(self, *args, **options):\n        # Create Payment Method Details for existing payment methods\n        self.create_payment_method_details()\n        # Create Loyalty Status tiers\n        self.create_loyalty_tiers()\n        # Update user loyalty status\n        self.update_user_loyalty_status()\n        self.stdout.write(self.style.SUCCESS('Successfully created payment method details and updated loyalty status'))",
+        "detail": "VeltrixApp.management.commands.load_payment_details",
         "documentation": {}
     },
     {
-        "label": "send_mail",
-        "importPath": "django.core.mail",
-        "description": "django.core.mail",
-        "isExtraImport": true,
-        "detail": "django.core.mail",
+        "label": "Command",
+        "kind": 6,
+        "importPath": "VeltrixApp.management.commands.load_payment_option",
+        "description": "VeltrixApp.management.commands.load_payment_option",
+        "peekOfCode": "class Command(BaseCommand):\n    help = 'Create initial payment methods'\n    def handle(self, *args, **options):\n        # Crypto methods\n        btc, _ = PaymentMethod.objects.get_or_create(\n            name='Bitcoin',\n            method_type='crypto',\n            crypto_symbol='BTC',\n            defaults={\n                'min_deposit': 10,",
+        "detail": "VeltrixApp.management.commands.load_payment_option",
+        "documentation": {}
+    },
+    {
+        "label": "Command",
+        "kind": 6,
+        "importPath": "VeltrixApp.management.commands.load_traders",
+        "description": "VeltrixApp.management.commands.load_traders",
+        "peekOfCode": "class Command(BaseCommand):\n    help = 'Load traders from traders.json file'\n    def handle(self, *args, **options):\n        json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n        try:\n            with open(json_file_path, 'r') as file:\n                data = json.load(file)\n                traders_data = data.get('traders', [])\n                for trader_data in traders_data:\n                    Trader.objects.update_or_create(",
+        "detail": "VeltrixApp.management.commands.load_traders",
+        "documentation": {}
+    },
+    {
+        "label": "Command",
+        "kind": 6,
+        "importPath": "VeltrixApp.management.commands.process_transactions",
+        "description": "VeltrixApp.management.commands.process_transactions",
+        "peekOfCode": "class Command(BaseCommand):\n    help = 'Process pending transactions and update user balances'\n    def add_arguments(self, parser):\n        parser.add_argument(\n            '--type',\n            type=str,\n            choices=['deposit', 'withdrawal', 'all'],\n            default='all',\n            help='Type of transactions to process'\n        )",
+        "detail": "VeltrixApp.management.commands.process_transactions",
+        "documentation": {}
+    },
+    {
+        "label": "Command",
+        "kind": 6,
+        "importPath": "VeltrixApp.management.commands.test_email",
+        "description": "VeltrixApp.management.commands.test_email",
+        "peekOfCode": "class Command(BaseCommand):\n    help = 'Test email configuration'\n    def add_arguments(self, parser):\n        parser.add_argument('email', type=str, help='Email address to send test to')\n    def handle(self, *args, **options):\n        email = options['email']\n        try:\n            send_mail(\n                subject='Test Email from Veltrixtraders',\n                message='This is a test email to verify your email configuration is working correctly.',",
+        "detail": "VeltrixApp.management.commands.test_email",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "VeltrixApp.migrations.0001_initial",
+        "description": "VeltrixApp.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Trader',\n            fields=[\n                ('id', models.CharField(max_length=50, primary_key=True, serialize=False)),",
+        "detail": "VeltrixApp.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "VeltrixApp.migrations.0002_paymentmethod_transaction_reference_id_deposit_and_more",
+        "description": "VeltrixApp.migrations.0002_paymentmethod_transaction_reference_id_deposit_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='PaymentMethod',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('name', models.CharField(max_length=100)),",
+        "detail": "VeltrixApp.migrations.0002_paymentmethod_transaction_reference_id_deposit_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "VeltrixApp.migrations.0003_user_loyalty_benefits_user_loyalty_status_and_more",
+        "description": "VeltrixApp.migrations.0003_user_loyalty_benefits_user_loyalty_status_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0002_paymentmethod_transaction_reference_id_deposit_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='user',\n            name='loyalty_benefits',\n            field=models.TextField(blank=True, null=True),\n        ),",
+        "detail": "VeltrixApp.migrations.0003_user_loyalty_benefits_user_loyalty_status_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "VeltrixApp.migrations.0004_loyaltystatus",
+        "description": "VeltrixApp.migrations.0004_loyaltystatus",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0003_user_loyalty_benefits_user_loyalty_status_and_more'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='LoyaltyStatus',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('name', models.CharField(max_length=50, unique=True)),",
+        "detail": "VeltrixApp.migrations.0004_loyaltystatus",
+        "documentation": {}
+    },
+    {
+        "label": "DepositAdmin",
+        "kind": 6,
+        "importPath": "VeltrixApp.admin",
+        "description": "VeltrixApp.admin",
+        "peekOfCode": "class DepositAdmin(admin.ModelAdmin):\n    list_display = ['id', 'user', 'amount_usd', 'status', 'created_at', 'completed_at', 'email_sent_status']\n    list_filter = ['status', 'payment_method', 'created_at']\n    search_fields = ['user__username', 'transaction_id', 'user__email']\n    readonly_fields = ['transaction_id', 'created_at', 'updated_at']\n    actions = [\n        'mark_as_completed', 'mark_as_failed', 'mark_as_processing',\n        'process_selected', 'resend_status_emails'\n    ]\n    fieldsets = (",
+        "detail": "VeltrixApp.admin",
+        "documentation": {}
+    },
+    {
+        "label": "WithdrawalAdmin",
+        "kind": 6,
+        "importPath": "VeltrixApp.admin",
+        "description": "VeltrixApp.admin",
+        "peekOfCode": "class WithdrawalAdmin(admin.ModelAdmin):\n    list_display = ['id', 'user', 'amount_usd', 'status', 'created_at', 'completed_at', 'email_sent_status']\n    list_filter = ['status', 'payment_method', 'created_at']\n    search_fields = ['user__username', 'transaction_id', 'user__email']\n    readonly_fields = ['transaction_id', 'created_at', 'updated_at']\n    actions = [\n        'mark_as_completed', 'mark_as_failed', 'mark_as_processing',\n        'process_selected', 'resend_status_emails'\n    ]\n    fieldsets = (",
+        "detail": "VeltrixApp.admin",
+        "documentation": {}
+    },
+    {
+        "label": "process_completed_deposit",
+        "kind": 2,
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "peekOfCode": "def process_completed_deposit(deposit):\n    \"\"\"Process a single completed deposit\"\"\"\n    with transaction.atomic():\n        user = deposit.user\n        # Update user balance\n        user.balance += deposit.amount_usd\n        user.total_deposit += deposit.amount_usd\n        user.save()\n        # Set completed timestamp\n        deposit.completed_at = timezone.now()",
+        "detail": "VeltrixApp.admin_actions",
+        "documentation": {}
+    },
+    {
+        "label": "process_completed_withdrawal",
+        "kind": 2,
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "peekOfCode": "def process_completed_withdrawal(withdrawal):\n    \"\"\"Process a single completed withdrawal\"\"\"\n    with transaction.atomic():\n        user = withdrawal.user\n        if user.balance >= withdrawal.amount_usd:\n            # Update user balance\n            user.balance -= withdrawal.amount_usd\n            user.total_withdrawal += withdrawal.amount_usd\n            user.save()\n            # Set completed timestamp",
+        "detail": "VeltrixApp.admin_actions",
+        "documentation": {}
+    },
+    {
+        "label": "process_failed_deposit",
+        "kind": 2,
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "peekOfCode": "def process_failed_deposit(deposit, reason=None):\n    \"\"\"Mark a deposit as failed and notify user\"\"\"\n    with transaction.atomic():\n        deposit.status = 'failed'\n        if reason:\n            deposit.notes = reason\n        deposit.save()\n        # Create notification\n        Notification.objects.create(\n            user=deposit.user,",
+        "detail": "VeltrixApp.admin_actions",
+        "documentation": {}
+    },
+    {
+        "label": "process_failed_withdrawal",
+        "kind": 2,
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "peekOfCode": "def process_failed_withdrawal(withdrawal, reason=None):\n    \"\"\"Mark a withdrawal as failed and notify user\"\"\"\n    with transaction.atomic():\n        withdrawal.status = 'failed'\n        withdrawal.save()\n        # Create notification\n        Notification.objects.create(\n            user=withdrawal.user,\n            title='Withdrawal Failed',\n            message=f'Your withdrawal of ${withdrawal.amount_usd} has failed. {\"Reason: \" + reason if reason else \"Please contact support.\"}',",
+        "detail": "VeltrixApp.admin_actions",
+        "documentation": {}
+    },
+    {
+        "label": "update_loyalty_status",
+        "kind": 2,
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "peekOfCode": "def update_loyalty_status(user):\n    \"\"\"Update user loyalty status based on total deposits\"\"\"\n    try:\n        # Get all loyalty tiers\n        loyalty_tiers = LoyaltyStatus.objects.filter(is_active=True).order_by('level')\n        if loyalty_tiers.exists():\n            total_deposits = user.total_deposit or 0\n            # Determine loyalty tier based on total deposits\n            current_tier = loyalty_tiers.first()  # Default to lowest tier\n            for tier in loyalty_tiers:",
+        "detail": "VeltrixApp.admin_actions",
+        "documentation": {}
+    },
+    {
+        "label": "bulk_process_deposits",
+        "kind": 2,
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "peekOfCode": "def bulk_process_deposits(deposit_queryset):\n    \"\"\"Bulk process multiple deposits\"\"\"\n    success_count = 0\n    failed_count = 0\n    for deposit in deposit_queryset:\n        try:\n            if deposit.status == 'completed' and not deposit.completed_at:\n                if process_completed_deposit(deposit):\n                    success_count += 1\n                else:",
+        "detail": "VeltrixApp.admin_actions",
+        "documentation": {}
+    },
+    {
+        "label": "bulk_process_withdrawals",
+        "kind": 2,
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "peekOfCode": "def bulk_process_withdrawals(withdrawal_queryset):\n    \"\"\"Bulk process multiple withdrawals\"\"\"\n    success_count = 0\n    failed_count = 0\n    insufficient_balance_count = 0\n    for withdrawal in withdrawal_queryset:\n        try:\n            if withdrawal.status == 'completed' and not withdrawal.completed_at:\n                success = process_completed_withdrawal(withdrawal)\n                if success:",
+        "detail": "VeltrixApp.admin_actions",
+        "documentation": {}
+    },
+    {
+        "label": "resend_transaction_emails",
+        "kind": 2,
+        "importPath": "VeltrixApp.admin_actions",
+        "description": "VeltrixApp.admin_actions",
+        "peekOfCode": "def resend_transaction_emails(queryset, transaction_type):\n    \"\"\"Resend status emails for transactions\"\"\"\n    sent_count = 0\n    failed_count = 0\n    for item in queryset:\n        try:\n            if transaction_type == 'deposit':\n                send_deposit_status_update_email(item)\n            else:\n                send_withdrawal_status_update_email(item)",
+        "detail": "VeltrixApp.admin_actions",
         "documentation": {}
     },
     {
@@ -236,8 +1064,341 @@
         "kind": 6,
         "importPath": "VeltrixApp.apps",
         "description": "VeltrixApp.apps",
-        "peekOfCode": "class VeltrixappConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'VeltrixApp'",
+        "peekOfCode": "class VeltrixappConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'VeltrixApp'\n    def ready(self):\n        import VeltrixApp.signals",
         "detail": "VeltrixApp.apps",
+        "documentation": {}
+    },
+    {
+        "label": "send_welcome_email",
+        "kind": 2,
+        "importPath": "VeltrixApp.email_utils",
+        "description": "VeltrixApp.email_utils",
+        "peekOfCode": "def send_welcome_email(user):\n    \"\"\"Send welcome email to new user\"\"\"\n    subject = 'Welcome to Veltrixtraders!'\n    html_message = render_to_string('emails/welcome.html', {\n        'user': user,\n        'site_url': settings.SITE_URL,\n    })\n    plain_message = strip_tags(html_message)\n    send_mail(\n        subject,",
+        "detail": "VeltrixApp.email_utils",
+        "documentation": {}
+    },
+    {
+        "label": "send_deposit_confirmation_email",
+        "kind": 2,
+        "importPath": "VeltrixApp.email_utils",
+        "description": "VeltrixApp.email_utils",
+        "peekOfCode": "def send_deposit_confirmation_email(deposit):\n    \"\"\"Send deposit confirmation email\"\"\"\n    subject = 'Deposit Request Received - Veltrixtraders'\n    html_message = render_to_string('emails/deposit_confirmation.html', {\n        'deposit': deposit,\n        'user': deposit.user,\n        'site_url': settings.SITE_URL,\n    })\n    plain_message = strip_tags(html_message)\n    send_mail(",
+        "detail": "VeltrixApp.email_utils",
+        "documentation": {}
+    },
+    {
+        "label": "send_withdrawal_confirmation_email",
+        "kind": 2,
+        "importPath": "VeltrixApp.email_utils",
+        "description": "VeltrixApp.email_utils",
+        "peekOfCode": "def send_withdrawal_confirmation_email(withdrawal):\n    \"\"\"Send withdrawal confirmation email\"\"\"\n    subject = 'Withdrawal Request Received - Veltrixtraders'\n    html_message = render_to_string('emails/withdrawal_confirmation.html', {\n        'withdrawal': withdrawal,\n        'user': withdrawal.user,\n        'site_url': settings.SITE_URL,\n    })\n    plain_message = strip_tags(html_message)\n    send_mail(",
+        "detail": "VeltrixApp.email_utils",
+        "documentation": {}
+    },
+    {
+        "label": "send_deposit_status_update_email",
+        "kind": 2,
+        "importPath": "VeltrixApp.email_utils",
+        "description": "VeltrixApp.email_utils",
+        "peekOfCode": "def send_deposit_status_update_email(deposit, old_status=None):\n    \"\"\"Send deposit status update email\"\"\"\n    subject = f'Deposit {deposit.status.title()} - Veltrixtraders'\n    html_message = render_to_string('emails/deposit_status.html', {\n        'deposit': deposit,\n        'user': deposit.user,\n        'old_status': old_status,\n        'site_url': settings.SITE_URL,\n    })\n    plain_message = strip_tags(html_message)",
+        "detail": "VeltrixApp.email_utils",
+        "documentation": {}
+    },
+    {
+        "label": "send_withdrawal_status_update_email",
+        "kind": 2,
+        "importPath": "VeltrixApp.email_utils",
+        "description": "VeltrixApp.email_utils",
+        "peekOfCode": "def send_withdrawal_status_update_email(withdrawal, old_status=None):\n    \"\"\"Send withdrawal status update email\"\"\"\n    subject = f'Withdrawal {withdrawal.status.title()} - Veltrixtraders'\n    html_message = render_to_string('emails/withdrawal_status.html', {\n        'withdrawal': withdrawal,\n        'user': withdrawal.user,\n        'old_status': old_status,\n        'site_url': settings.SITE_URL,\n    })\n    plain_message = strip_tags(html_message)",
+        "detail": "VeltrixApp.email_utils",
+        "documentation": {}
+    },
+    {
+        "label": "UserRegistrationForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class UserRegistrationForm(UserCreationForm):\n    email = forms.EmailField(required=True)\n    terms_accepted = forms.BooleanField(required=True)\n    class Meta:\n        model = User\n        fields = ['username', 'email', 'password1', 'password2']\n    def clean_email(self):\n        email = self.cleaned_data.get('email')\n        if User.objects.filter(email=email).exists():\n            raise forms.ValidationError('Email already exists')",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "UserLoginForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class UserLoginForm(forms.Form):\n    username = forms.CharField(label=\"Email or Username\")\n    password = forms.CharField(widget=forms.PasswordInput)\nclass ProfileForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = [\n            'title', 'first_name', 'last_name', 'phone', 'date_of_birth',\n            'house_no', 'address', 'city', 'province', 'zip_code', 'country',\n            'email_deposit', 'email_withdrawal', 'email_trade', 'email_account_update',",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ProfileForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class ProfileForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = [\n            'title', 'first_name', 'last_name', 'phone', 'date_of_birth',\n            'house_no', 'address', 'city', 'province', 'zip_code', 'country',\n            'email_deposit', 'email_withdrawal', 'email_trade', 'email_account_update',\n            'push_deposit', 'push_withdrawal', 'push_trade'\n        ]\n        widgets = {",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ProfileImageForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class ProfileImageForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['profile_image']\nclass PasswordChangeForm(forms.Form):\n    current_password = forms.CharField(widget=forms.PasswordInput)\n    new_password = forms.CharField(widget=forms.PasswordInput)\n    confirm_password = forms.CharField(widget=forms.PasswordInput)\n    def clean(self):\n        cleaned_data = super().clean()",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "PasswordChangeForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class PasswordChangeForm(forms.Form):\n    current_password = forms.CharField(widget=forms.PasswordInput)\n    new_password = forms.CharField(widget=forms.PasswordInput)\n    confirm_password = forms.CharField(widget=forms.PasswordInput)\n    def clean(self):\n        cleaned_data = super().clean()\n        new_password = cleaned_data.get('new_password')\n        confirm_password = cleaned_data.get('confirm_password')\n        if new_password and confirm_password and new_password != confirm_password:\n            raise forms.ValidationError(\"Passwords don't match\")",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "TwoFactorForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class TwoFactorForm(forms.Form):\n    otp = forms.CharField(max_length=6, min_length=6)\nclass VerificationForm(forms.Form):\n    DOCUMENT_CHOICES = [\n        ('id', 'ID Card'),\n        ('passport', 'Passport'),\n        ('driver-license', \"Driver's License\"),\n    ]\n    document_type = forms.ChoiceField(choices=DOCUMENT_CHOICES, widget=forms.RadioSelect)\n    document_number = forms.CharField(max_length=100)",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "VerificationForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class VerificationForm(forms.Form):\n    DOCUMENT_CHOICES = [\n        ('id', 'ID Card'),\n        ('passport', 'Passport'),\n        ('driver-license', \"Driver's License\"),\n    ]\n    document_type = forms.ChoiceField(choices=DOCUMENT_CHOICES, widget=forms.RadioSelect)\n    document_number = forms.CharField(max_length=100)\n    expiration_date = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))\n    front_image = forms.ImageField()",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "SetupPersonalForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class SetupPersonalForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['title', 'first_name', 'last_name', 'date_of_birth']\nclass SetupContactForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['house_no', 'address', 'city', 'province', 'zip_code', 'country', 'phone']\nclass SetupExperienceForm(forms.ModelForm):\n    class Meta:",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "SetupContactForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class SetupContactForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['house_no', 'address', 'city', 'province', 'zip_code', 'country', 'phone']\nclass SetupExperienceForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['yrs_experience', 'trading_frequency', 'instrument_traded', 'knowledge_level', 'preferred_market', 'trading_platform']\nclass SetupEarningsForm(forms.ModelForm):\n    class Meta:",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "SetupExperienceForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class SetupExperienceForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['yrs_experience', 'trading_frequency', 'instrument_traded', 'knowledge_level', 'preferred_market', 'trading_platform']\nclass SetupEarningsForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['annual_income', 'source_of_income', 'tax_residence']\nclass DepositForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[])",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "SetupEarningsForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class SetupEarningsForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['annual_income', 'source_of_income', 'tax_residence']\nclass DepositForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[])\n    amount = forms.DecimalField(min_value=1, max_digits=20, decimal_places=2)\n    def __init__(self, *args, **kwargs):\n        payment_choices = kwargs.pop('payment_choices', [])\n        super().__init__(*args, **kwargs)",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "DepositForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class DepositForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[])\n    amount = forms.DecimalField(min_value=1, max_digits=20, decimal_places=2)\n    def __init__(self, *args, **kwargs):\n        payment_choices = kwargs.pop('payment_choices', [])\n        super().__init__(*args, **kwargs)\n        self.fields['payment_method'].choices = payment_choices\nclass DepositProofForm(forms.Form):\n    proof_image = forms.ImageField(required=True)\n    notes = forms.CharField(widget=forms.Textarea, required=False)",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "DepositProofForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class DepositProofForm(forms.Form):\n    proof_image = forms.ImageField(required=True)\n    notes = forms.CharField(widget=forms.Textarea, required=False)\nclass WithdrawalForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    amount = forms.DecimalField(min_value=10, max_digits=20, decimal_places=2)\n    # Crypto fields\n    wallet_address = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter wallet address'}))\n    network = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter network'}))\n    # Bank fields",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "WithdrawalForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class WithdrawalForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    amount = forms.DecimalField(min_value=10, max_digits=20, decimal_places=2)\n    # Crypto fields\n    wallet_address = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter wallet address'}))\n    network = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter network'}))\n    # Bank fields\n    bank_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter bank name'}))\n    account_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter account name'}))\n    account_number = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter account number'}))",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class User(AbstractUser):\n    # Personal Information\n    title = models.CharField(max_length=10, blank=True, null=True)\n    phone = models.CharField(max_length=20, blank=True, null=True)\n    date_of_birth = models.DateField(blank=True, null=True)\n    # Address Information\n    house_no = models.CharField(max_length=50, blank=True, null=True)\n    address = models.TextField(blank=True, null=True)\n    city = models.CharField(max_length=100, blank=True, null=True)\n    province = models.CharField(max_length=100, blank=True, null=True)",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "PaymentMethod",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class PaymentMethod(models.Model):\n    TYPE_CHOICES = [\n        ('crypto', 'Cryptocurrency'),\n        ('bank', 'Bank Transfer'),\n    ]\n    CRYPTO_CHOICES = [\n        ('BTC', 'Bitcoin'),\n        ('ETH', 'Ethereum'),\n        ('USDT_ERC20', 'USDT (ERC20)'),\n        ('USDT_TRC20', 'USDT (TRC20)'),",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "PaymentMethodDetail",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class PaymentMethodDetail(models.Model):\n    payment_method = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE, related_name='details')\n    # Common fields\n    wallet_address = models.CharField(max_length=255, blank=True, null=True)\n    network = models.CharField(max_length=50, blank=True, null=True)\n    # Bank details\n    bank_name = models.CharField(max_length=255, blank=True, null=True)\n    account_name = models.CharField(max_length=255, blank=True, null=True)\n    account_number = models.CharField(max_length=100, blank=True, null=True)\n    routing_number = models.CharField(max_length=100, blank=True, null=True)",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Deposit",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class Deposit(models.Model):\n    STATUS_CHOICES = [\n        ('pending', 'Pending'),\n        ('processing', 'Processing'),\n        ('completed', 'Completed'),\n        ('failed', 'Failed'),\n        ('cancelled', 'Cancelled'),\n    ]\n    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='deposits')\n    payment_method = models.ForeignKey(PaymentMethod, on_delete=models.SET_NULL, null=True)",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Withdrawal",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class Withdrawal(models.Model):\n    STATUS_CHOICES = [\n        ('pending', 'Pending'),\n        ('processing', 'Processing'),\n        ('completed', 'Completed'),\n        ('failed', 'Failed'),\n        ('cancelled', 'Cancelled'),\n    ]\n    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='withdrawals')\n    payment_method = models.ForeignKey(PaymentMethod, on_delete=models.SET_NULL, null=True)",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Trader",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class Trader(models.Model):\n    RISK_CHOICES = [\n        ('Low', 'Low'),\n        ('Medium', 'Medium'),\n        ('High', 'High'),\n    ]\n    id = models.CharField(max_length=50, primary_key=True)\n    name = models.CharField(max_length=255)\n    image_url = models.URLField(max_length=500)\n    risk_level = models.CharField(max_length=20, choices=RISK_CHOICES)",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "CopyTrade",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class CopyTrade(models.Model):\n    STATUS_CHOICES = [\n        ('active', 'Active'),\n        ('paused', 'Paused'),\n        ('stopped', 'Stopped'),\n    ]\n    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='copy_trades')\n    trader = models.ForeignKey(Trader, on_delete=models.CASCADE)\n    amount = models.DecimalField(max_digits=20, decimal_places=2)\n    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Transaction",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class Transaction(models.Model):\n    TYPE_CHOICES = [\n        ('deposit', 'Deposit'),\n        ('withdrawal', 'Withdrawal'),\n        ('commission', 'Commission'),\n        ('trade', 'Trade'),\n    ]\n    STATUS_CHOICES = [\n        ('pending', 'Pending'),\n        ('completed', 'Completed'),",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Referral",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class Referral(models.Model):\n    referrer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='referrer_users')\n    referred_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='referred_by_user')\n    commission_earned = models.DecimalField(max_digits=20, decimal_places=2, default=0)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"{self.referrer.username} referred {self.referred_user.username}\"\nclass LoginHistory(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='login_history')\n    ip_address = models.GenericIPAddressField()",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "LoginHistory",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class LoginHistory(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='login_history')\n    ip_address = models.GenericIPAddressField()\n    user_agent = models.TextField()\n    location = models.CharField(max_length=255, blank=True, null=True)\n    successful = models.BooleanField(default=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"{self.user.username} - {self.created_at}\"\nclass Notification(models.Model):",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Notification",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class Notification(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')\n    title = models.CharField(max_length=255)\n    message = models.TextField()\n    is_read = models.BooleanField(default=False)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"{self.user.username} - {self.title}\"\n# Add this to your models.py file, preferably after the User model\nclass LoyaltyStatus(models.Model):",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "LoyaltyStatus",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class LoyaltyStatus(models.Model):\n    \"\"\"\n    Model to define loyalty tiers/levels\n    \"\"\"\n    name = models.CharField(max_length=50, unique=True)  # Bronze, Silver, Gold, etc.\n    level = models.PositiveIntegerField(unique=True)  # 1, 2, 3, 4, 5\n    min_deposit = models.DecimalField(max_digits=20, decimal_places=2, default=0)\n    max_deposit = models.DecimalField(max_digits=20, decimal_places=2, default=999999)\n    color = models.CharField(max_length=20, default='#CD7F32')  # Hex color code\n    icon = models.CharField(max_length=100, default='images/loyalty/bronze.svg')  # Path to icon",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "track_deposit_status_change",
+        "kind": 2,
+        "importPath": "VeltrixApp.signals",
+        "description": "VeltrixApp.signals",
+        "peekOfCode": "def track_deposit_status_change(sender, instance, **kwargs):\n    \"\"\"Track when deposit status changes\"\"\"\n    if instance.pk:  # If instance already exists\n        try:\n            old_instance = Deposit.objects.get(pk=instance.pk)\n            instance._old_status = old_instance.status\n        except Deposit.DoesNotExist:\n            instance._old_status = None\n    else:\n        instance._old_status = None",
+        "detail": "VeltrixApp.signals",
+        "documentation": {}
+    },
+    {
+        "label": "update_user_balance_on_deposit_completion",
+        "kind": 2,
+        "importPath": "VeltrixApp.signals",
+        "description": "VeltrixApp.signals",
+        "peekOfCode": "def update_user_balance_on_deposit_completion(sender, instance, created, **kwargs):\n    \"\"\"Update user balance when deposit is marked as completed\"\"\"\n    # Send confirmation email for new deposits\n    if created and instance.status == 'pending':\n        try:\n            send_deposit_confirmation_email(instance)\n            print(f\"Deposit confirmation email sent to {instance.user.email}\")\n        except Exception as e:\n            print(f\"Failed to send deposit confirmation email: {e}\")\n    # Check if status changed",
+        "detail": "VeltrixApp.signals",
+        "documentation": {}
+    },
+    {
+        "label": "track_withdrawal_status_change",
+        "kind": 2,
+        "importPath": "VeltrixApp.signals",
+        "description": "VeltrixApp.signals",
+        "peekOfCode": "def track_withdrawal_status_change(sender, instance, **kwargs):\n    \"\"\"Track when withdrawal status changes\"\"\"\n    if instance.pk:  # If instance already exists\n        try:\n            old_instance = Withdrawal.objects.get(pk=instance.pk)\n            instance._old_status = old_instance.status\n            instance._old_amount = old_instance.amount_usd\n        except Withdrawal.DoesNotExist:\n            instance._old_status = None\n            instance._old_amount = None",
+        "detail": "VeltrixApp.signals",
+        "documentation": {}
+    },
+    {
+        "label": "update_user_balance_on_withdrawal_completion",
+        "kind": 2,
+        "importPath": "VeltrixApp.signals",
+        "description": "VeltrixApp.signals",
+        "peekOfCode": "def update_user_balance_on_withdrawal_completion(sender, instance, created, **kwargs):\n    \"\"\"Update user balance when withdrawal is marked as completed\"\"\"\n    # Send confirmation email for new withdrawals\n    if created and instance.status == 'pending':\n        try:\n            send_withdrawal_confirmation_email(instance)\n            print(f\"Withdrawal confirmation email sent to {instance.user.email}\")\n        except Exception as e:\n            print(f\"Failed to send withdrawal confirmation email: {e}\")\n    # Check if status changed",
+        "detail": "VeltrixApp.signals",
+        "documentation": {}
+    },
+    {
+        "label": "update_loyalty_status",
+        "kind": 2,
+        "importPath": "VeltrixApp.signals",
+        "description": "VeltrixApp.signals",
+        "peekOfCode": "def update_loyalty_status(user):\n    \"\"\"Update user loyalty status based on total deposits\"\"\"\n    try:\n        # Get all loyalty tiers\n        loyalty_tiers = LoyaltyStatus.objects.filter(is_active=True).order_by('level')\n        if loyalty_tiers.exists():\n            total_deposits = user.total_deposit or 0\n            # Determine loyalty tier based on total deposits\n            current_tier = loyalty_tiers.first()  # Default to lowest tier\n            for tier in loyalty_tiers:",
+        "detail": "VeltrixApp.signals",
+        "documentation": {}
+    },
+    {
+        "label": "update_user_loyalty_status_on_transaction",
+        "kind": 2,
+        "importPath": "VeltrixApp.signals",
+        "description": "VeltrixApp.signals",
+        "peekOfCode": "def update_user_loyalty_status_on_transaction(sender, instance, **kwargs):\n    \"\"\"Update user loyalty status when a transaction is completed\"\"\"\n    if instance.status == 'completed':\n        update_loyalty_status(instance.user)",
+        "detail": "VeltrixApp.signals",
         "documentation": {}
     },
     {
@@ -245,8 +1406,17 @@
         "kind": 5,
         "importPath": "VeltrixApp.urls",
         "description": "VeltrixApp.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.home, name='home'),\n    path('construction/', views.construction, name='construction'),\n    path('login/', views.login, name='login'),\n    path('register/', views.register, name='register'),\n    path('about/', views.about, name='about'),\n    path('software/', views.software, name='software'),\n    path('insight/', views.insight, name='insight'),\n    path('option-copy-trading/', views.copy_trading, name='copy_trading'),\n    path('advance-trading/', views.advance_trading, name='advance_trading'),",
+        "peekOfCode": "urlpatterns = [\n    path('', views.home, name='home'),\n    path('construction/', views.construction, name='construction'),\n    path('login/', views.login_view, name='login'),\n    path('register/', views.register, name='register'),\n    path('about/', views.about, name='about'),\n    path('software/', views.software, name='software'),\n    path('insight/', views.insight, name='insight'),\n    path('option-copy-trading/', views.copy_trading, name='copy_trading'),\n    path('advance-trading/', views.advance_trading, name='advance_trading'),",
         "detail": "VeltrixApp.urls",
+        "documentation": {}
+    },
+    {
+        "label": "load_traders_from_json",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def load_traders_from_json():\n    traders = []\n    json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n    try:\n        with open(json_file_path, 'r') as file:\n            data = json.load(file)\n            traders_data = data.get('traders', [])\n            for trader_data in traders_data:\n                Trader.objects.update_or_create(\n                    id=trader_data['id'],",
+        "detail": "VeltrixApp.views",
         "documentation": {}
     },
     {
@@ -254,7 +1424,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def home(request):\n    return render(request, 'home.html')\ndef construction(request):\n    return render(request, 'construction.html')\ndef login(request):\n    return render(request, 'login.html')\ndef register(request):\n    return render(request, 'register.html')\ndef about(request):\n    return render(request, 'about.html')",
+        "peekOfCode": "def home(request):\n    return render(request, 'home.html')\ndef construction(request):\n    return render(request, 'construction.html')\ndef about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -263,25 +1433,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def construction(request):\n    return render(request, 'construction.html')\ndef login(request):\n    return render(request, 'login.html')\ndef register(request):\n    return render(request, 'register.html')\ndef about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')",
-        "detail": "VeltrixApp.views",
-        "documentation": {}
-    },
-    {
-        "label": "login",
-        "kind": 2,
-        "importPath": "VeltrixApp.views",
-        "description": "VeltrixApp.views",
-        "peekOfCode": "def login(request):\n    return render(request, 'login.html')\ndef register(request):\n    return render(request, 'register.html')\ndef about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')",
-        "detail": "VeltrixApp.views",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 2,
-        "importPath": "VeltrixApp.views",
-        "description": "VeltrixApp.views",
-        "peekOfCode": "def register(request):\n    return render(request, 'register.html')\ndef about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')\ndef copy_trading(request):\n    return render(request, 'option-copy-trading.html')",
+        "peekOfCode": "def construction(request):\n    return render(request, 'construction.html')\ndef about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')\ndef copy_trading_public(request):\n    return render(request, 'option-copy-trading.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -290,7 +1442,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')\ndef copy_trading(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')",
+        "peekOfCode": "def about(request):\n    return render(request, 'about.html')\ndef software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')\ndef copy_trading_public(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -299,7 +1451,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')\ndef copy_trading(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')",
+        "peekOfCode": "def software(request):\n    return render(request, 'software.html')\ndef insight(request):\n    return render(request, 'insight.html')\ndef copy_trading_public(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -308,16 +1460,16 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def insight(request):\n    return render(request, 'insight.html')\ndef copy_trading(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')\ndef swing_trading(request):\n    return render(request, 'swing-trading.html')",
+        "peekOfCode": "def insight(request):\n    return render(request, 'insight.html')\ndef copy_trading_public(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')\ndef swing_trading(request):\n    return render(request, 'swing-trading.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
     {
-        "label": "copy_trading",
+        "label": "copy_trading_public",
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def copy_trading(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')\ndef swing_trading(request):\n    return render(request, 'swing-trading.html')\ndef feature_trading(request):\n    return render(request, 'futures.html')",
+        "peekOfCode": "def copy_trading_public(request):\n    return render(request, 'option-copy-trading.html')\ndef advance_trading(request):\n    return render(request, 'advance-trading.html')\ndef live_trading(request):\n    return render(request, 'live-trading.html')\ndef swing_trading(request):\n    return render(request, 'swing-trading.html')\ndef feature_trading(request):\n    return render(request, 'futures.html')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -371,7 +1523,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\ndef setup_user_info(request):\n    return render(request, 'setup-user-info.html')",
+        "peekOfCode": "def oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\n# Authentication Views\ndef register(request):",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -380,7 +1532,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\ndef setup_user_info(request):\n    return render(request, 'setup-user-info.html')\ndef setup_contact(request):\n    return render(request, 'setup-contact.html')",
+        "peekOfCode": "def terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -389,7 +1541,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\ndef setup_user_info(request):\n    return render(request, 'setup-user-info.html')\ndef setup_contact(request):\n    return render(request, 'setup-contact.html')\ndef setup_experience(request):\n    return render(request, 'setup-experience.html')",
+        "peekOfCode": "def privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -398,16 +1550,43 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def forgot_password(request):\n    return render(request, 'forgot-password.html')\ndef setup_user_info(request):\n    return render(request, 'setup-user-info.html')\ndef setup_contact(request):\n    return render(request, 'setup-contact.html')\ndef setup_experience(request):\n    return render(request, 'setup-experience.html')\ndef setup_earnings(request):\n    return render(request, 'setup-earnings.html')",
+        "peekOfCode": "def forgot_password(request):\n    return render(request, 'forgot-password.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)\n            user.email = form.cleaned_data['email']\n            user.save()",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
     {
-        "label": "setup_user_info",
+        "label": "register",
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def setup_user_info(request):\n    return render(request, 'setup-user-info.html')\ndef setup_contact(request):\n    return render(request, 'setup-contact.html')\ndef setup_experience(request):\n    return render(request, 'setup-experience.html')\ndef setup_earnings(request):\n    return render(request, 'setup-earnings.html')\ndef setup_declaration(request):\n    return render(request, 'setup-declaration.html')",
+        "peekOfCode": "def register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)\n            user.email = form.cleaned_data['email']\n            user.save()\n            # Send welcome email\n            try:\n                send_welcome_email(user)",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "login_view",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def login_view(request):\n    if request.method == 'POST':\n        form = UserLoginForm(request.POST)\n        if form.is_valid():\n            username = form.cleaned_data['username']\n            password = form.cleaned_data['password']\n            user = None\n            if '@' in username:\n                try:\n                    user_obj = User.objects.get(email=username)",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "logout_view",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def logout_view(request):\n    logout(request)\n    return redirect('home')\n# Setup Views\n@login_required\ndef setup_personal(request):\n    if request.method == 'POST':\n        form = SetupPersonalForm(request.POST, instance=request.user)\n        if form.is_valid():\n            form.save()",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "setup_personal",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def setup_personal(request):\n    if request.method == 'POST':\n        form = SetupPersonalForm(request.POST, instance=request.user)\n        if form.is_valid():\n            form.save()\n            messages.success(request, 'Personal information saved!')\n            return redirect('setup_contact')\n    else:\n        form = SetupPersonalForm(instance=request.user)\n    return render(request, 'setup-user-info.html', {'form': form})",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -416,7 +1595,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def setup_contact(request):\n    return render(request, 'setup-contact.html')\ndef setup_experience(request):\n    return render(request, 'setup-experience.html')\ndef setup_earnings(request):\n    return render(request, 'setup-earnings.html')\ndef setup_declaration(request):\n    return render(request, 'setup-declaration.html')\ndef logout(request):\n    # Implement logout logic here",
+        "peekOfCode": "def setup_contact(request):\n    if request.method == 'POST':\n        form = SetupContactForm(request.POST, instance=request.user)\n        if form.is_valid():\n            form.save()\n            messages.success(request, 'Contact information saved!')\n            return redirect('setup_experience')\n    else:\n        form = SetupContactForm(instance=request.user)\n    return render(request, 'setup-contact.html', {'form': form})",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -425,7 +1604,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def setup_experience(request):\n    return render(request, 'setup-experience.html')\ndef setup_earnings(request):\n    return render(request, 'setup-earnings.html')\ndef setup_declaration(request):\n    return render(request, 'setup-declaration.html')\ndef logout(request):\n    # Implement logout logic here\n    return render(request, 'index.html')\nimport json",
+        "peekOfCode": "def setup_experience(request):\n    if request.method == 'POST':\n        form = SetupExperienceForm(request.POST, instance=request.user)\n        if form.is_valid():\n            form.save()\n            messages.success(request, 'Trading experience saved!')\n            return redirect('setup_earnings')\n    else:\n        form = SetupExperienceForm(instance=request.user)\n    return render(request, 'setup-experience.html', {'form': form})",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -434,7 +1613,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def setup_earnings(request):\n    return render(request, 'setup-earnings.html')\ndef setup_declaration(request):\n    return render(request, 'setup-declaration.html')\ndef logout(request):\n    # Implement logout logic here\n    return render(request, 'index.html')\nimport json\nimport os\nfrom django.conf import settings",
+        "peekOfCode": "def setup_earnings(request):\n    if request.method == 'POST':\n        form = SetupEarningsForm(request.POST, instance=request.user)\n        if form.is_valid():\n            form.save()\n            messages.success(request, 'Earnings information saved!')\n            return redirect('setup_declaration')\n    else:\n        form = SetupEarningsForm(instance=request.user)\n    return render(request, 'setup-earnings.html', {'form': form})",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -443,16 +1622,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def setup_declaration(request):\n    return render(request, 'setup-declaration.html')\ndef logout(request):\n    # Implement logout logic here\n    return render(request, 'index.html')\nimport json\nimport os\nfrom django.conf import settings\nfrom django.shortcuts import render\ndef dashboard(request):",
-        "detail": "VeltrixApp.views",
-        "documentation": {}
-    },
-    {
-        "label": "logout",
-        "kind": 2,
-        "importPath": "VeltrixApp.views",
-        "description": "VeltrixApp.views",
-        "peekOfCode": "def logout(request):\n    # Implement logout logic here\n    return render(request, 'index.html')\nimport json\nimport os\nfrom django.conf import settings\nfrom django.shortcuts import render\ndef dashboard(request):\n    # Load traders from JSON file\n    traders = []",
+        "peekOfCode": "def setup_declaration(request):\n    if request.method == 'POST':\n        # Mark profile as complete\n        request.user.save()\n        messages.success(request, 'Profile completed successfully!')\n        return redirect('dashboard')\n    return render(request, 'setup-declaration.html')\n# Dashboard Views\n@login_required\ndef dashboard(request):",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -461,7 +1631,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def dashboard(request):\n    # Load traders from JSON file\n    traders = []\n    json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n    try:\n        with open(json_file_path, 'r') as file:\n            data = json.load(file)\n            traders = data.get('traders', [])\n    except FileNotFoundError:\n        # Handle file not found - you might want to log this",
+        "peekOfCode": "def dashboard(request):\n    traders = Trader.objects.filter(is_active=True)[:10]\n    context = {\n        'traders': traders,\n        'user': request.user,\n    }\n    return render(request, 'user/dashboard.html', context)\n@login_required\ndef copy_trading(request):\n    if request.method == 'POST':",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -470,7 +1640,16 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def copy_trading(request):\n    # Load traders from JSON file\n    traders = []\n    json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n    try:\n        with open(json_file_path, 'r') as file:\n            data = json.load(file)\n            traders = data.get('traders', [])\n    except FileNotFoundError:\n        # Handle file not found - you might want to log this",
+        "peekOfCode": "def copy_trading(request):\n    if request.method == 'POST':\n        trader_id = request.POST.get('trader_id')\n        amount = request.POST.get('amount')\n        trader = get_object_or_404(Trader, id=trader_id)\n        # Check if amount is provided\n        if not amount:\n            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':\n                return JsonResponse({\n                    'success': False,",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "stop_copy_trade",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def stop_copy_trade(request, trade_id):\n    if request.method == 'POST':\n        copy_trade = get_object_or_404(\n            CopyTrade, \n            id=trade_id, \n            user=request.user,\n            status='active'\n        )\n        # Refund the amount (optional - you might want to implement a different logic)\n        user = request.user",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -479,7 +1658,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def copy_traders(request):\n    # Load traders from JSON file\n    traders = []\n    json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n    try:\n        with open(json_file_path, 'r') as file:\n            data = json.load(file)\n            traders = data.get('traders', [])\n    except FileNotFoundError:\n        # Handle file not found - you might want to log this",
+        "peekOfCode": "def copy_traders(request):\n    traders = Trader.objects.filter(is_active=True)\n    context = {\n        'traders': traders,\n    }\n    return render(request, 'user/copytraders.html', context)\n@login_required\ndef deposit(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    # Prepare payment methods for JSON",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -488,43 +1667,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def deposit(request):\n    return render(request, 'user/deposit.html')\ndef withdrawal(request):\n    return render(request, 'user/withdrawal.html')\ndef technical_insights(request):\n    return render(request, 'user/technical-insights.html')\ndef economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\ndef loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')",
-        "detail": "VeltrixApp.views",
-        "documentation": {}
-    },
-    {
-        "label": "withdrawal",
-        "kind": 2,
-        "importPath": "VeltrixApp.views",
-        "description": "VeltrixApp.views",
-        "peekOfCode": "def withdrawal(request):\n    return render(request, 'user/withdrawal.html')\ndef technical_insights(request):\n    return render(request, 'user/technical-insights.html')\ndef economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\ndef loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')\ndef deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address",
-        "detail": "VeltrixApp.views",
-        "documentation": {}
-    },
-    {
-        "label": "technical_insights",
-        "kind": 2,
-        "importPath": "VeltrixApp.views",
-        "description": "VeltrixApp.views",
-        "peekOfCode": "def technical_insights(request):\n    return render(request, 'user/technical-insights.html')\ndef economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\ndef loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')\ndef deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address\n    context = {\n        'wallet_address': wallet_address,",
-        "detail": "VeltrixApp.views",
-        "documentation": {}
-    },
-    {
-        "label": "economic_calendar",
-        "kind": 2,
-        "importPath": "VeltrixApp.views",
-        "description": "VeltrixApp.views",
-        "peekOfCode": "def economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\ndef loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')\ndef deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address\n    context = {\n        'wallet_address': wallet_address,\n    }\n    return render(request, 'user/deposit-confirmation.html', context)",
-        "detail": "VeltrixApp.views",
-        "documentation": {}
-    },
-    {
-        "label": "loyalty_status",
-        "kind": 2,
-        "importPath": "VeltrixApp.views",
-        "description": "VeltrixApp.views",
-        "peekOfCode": "def loyalty_status(request):\n    return render(request, 'user/loyalty-status.html')\ndef deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address\n    context = {\n        'wallet_address': wallet_address,\n    }\n    return render(request, 'user/deposit-confirmation.html', context)\ndef transactions(request):\n    return render(request, 'user/transactions.html')",
+        "peekOfCode": "def deposit(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    # Prepare payment methods for JSON\n    payment_methods_json = []\n    for pm in payment_methods:\n        payment_methods_json.append({\n            'id': pm.id,\n            'name': pm.name,\n            'method_type': pm.method_type,\n            'crypto_symbol': pm.crypto_symbol,",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -533,7 +1676,52 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def deposit_confirmation(request):\n    wallet_address = \"0x1234567890abcdef1234567890abcdef12345678\"  # Replace with actual wallet address\n    context = {\n        'wallet_address': wallet_address,\n    }\n    return render(request, 'user/deposit-confirmation.html', context)\ndef transactions(request):\n    return render(request, 'user/transactions.html')\ndef verification(request):\n    return render(request, 'user/verification.html')",
+        "peekOfCode": "def deposit_confirmation(request, deposit_id):\n    deposit = get_object_or_404(Deposit, id=deposit_id, user=request.user)\n    # Get payment method details\n    payment_details = PaymentMethodDetail.objects.filter(\n        payment_method=deposit.payment_method, \n        is_default=True\n    ).first()\n    if not payment_details:\n        payment_details = PaymentMethodDetail.objects.filter(\n            payment_method=deposit.payment_method",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "upload_deposit_proof",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def upload_deposit_proof(request, deposit_id):\n    deposit = get_object_or_404(Deposit, id=deposit_id, user=request.user)\n    if request.method == 'POST':\n        form = DepositProofForm(request.POST, request.FILES)\n        if form.is_valid():\n            deposit.proof_image = form.cleaned_data['proof_image']\n            deposit.notes = form.cleaned_data['notes']\n            deposit.save()\n            # Create notification\n            Notification.objects.create(",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "withdrawal",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def withdrawal(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    # Prepare payment methods for JSON with proper Decimal handling\n    payment_methods_json = []\n    for pm in payment_methods:\n        payment_methods_json.append({\n            'id': pm.id,\n            'name': pm.name,\n            'method_type': pm.method_type,\n            'crypto_symbol': pm.crypto_symbol,",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "technical_insights",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def technical_insights(request):\n    return render(request, 'user/technical-insights.html')\n@login_required\ndef economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\n@login_required\ndef loyalty_status(request):\n    user = request.user\n    # Get all active loyalty tiers\n    loyalty_levels = LoyaltyStatus.objects.filter(is_active=True).order_by('level')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "economic_calendar",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def economic_calendar(request):\n    return render(request, 'user/economic-calendar.html')\n@login_required\ndef loyalty_status(request):\n    user = request.user\n    # Get all active loyalty tiers\n    loyalty_levels = LoyaltyStatus.objects.filter(is_active=True).order_by('level')\n    # Get current user's tier\n    current_tier = loyalty_levels.filter(name=user.loyalty_status).first()\n    if not current_tier:",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "loyalty_status",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def loyalty_status(request):\n    user = request.user\n    # Get all active loyalty tiers\n    loyalty_levels = LoyaltyStatus.objects.filter(is_active=True).order_by('level')\n    # Get current user's tier\n    current_tier = loyalty_levels.filter(name=user.loyalty_status).first()\n    if not current_tier:\n        current_tier = loyalty_levels.first()  # Default to lowest tier\n    # Calculate next tier\n    next_tier = loyalty_levels.filter(level__gt=current_tier.level).first()",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -542,7 +1730,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def transactions(request):\n    return render(request, 'user/transactions.html')\ndef verification(request):\n    return render(request, 'user/verification.html')\ndef login_history(request):\n    return render(request, 'user/login-history.html')\ndef profile(request):\n    return render(request, 'user/profile.html')\ndef referral(request):\n    return render(request, 'user/referral.html')",
+        "peekOfCode": "def transactions(request):\n    user_transactions = Transaction.objects.filter(user=request.user).order_by('-created_at')\n    context = {\n        'transactions': user_transactions,\n    }\n    print(f\"User {request.user.username} has {user_transactions.count()} transactions\")\n    return render(request, 'user/transactions.html', context)\n@login_required\ndef verification(request):\n    if request.method == 'POST':",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -551,7 +1739,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def verification(request):\n    return render(request, 'user/verification.html')\ndef login_history(request):\n    return render(request, 'user/login-history.html')\ndef profile(request):\n    return render(request, 'user/profile.html')\ndef referral(request):\n    return render(request, 'user/referral.html')\ndef password(request):\n    return render(request, 'user/password.html')",
+        "peekOfCode": "def verification(request):\n    if request.method == 'POST':\n        form = VerificationForm(request.POST, request.FILES)\n        if form.is_valid():\n            user = request.user\n            user.document_type = form.cleaned_data['document_type']\n            user.document_number = form.cleaned_data['document_number']\n            user.document_expiry = form.cleaned_data.get('expiration_date')\n            user.document_front = form.cleaned_data['front_image']\n            user.document_back = form.cleaned_data['back_image']",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -560,7 +1748,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def login_history(request):\n    return render(request, 'user/login-history.html')\ndef profile(request):\n    return render(request, 'user/profile.html')\ndef referral(request):\n    return render(request, 'user/referral.html')\ndef password(request):\n    return render(request, 'user/password.html')\ndef two_factor(request):\n    return render(request, 'user/two-factor.html')",
+        "peekOfCode": "def login_history(request):\n    history = LoginHistory.objects.filter(user=request.user).order_by('-created_at')\n    context = {\n        'login_history': history,\n    }\n    return render(request, 'user/login-history.html', context)\n@login_required\ndef profile(request):\n    if request.method == 'POST':\n        form = ProfileForm(request.POST, instance=request.user)",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -569,7 +1757,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def profile(request):\n    return render(request, 'user/profile.html')\ndef referral(request):\n    return render(request, 'user/referral.html')\ndef password(request):\n    return render(request, 'user/password.html')\ndef two_factor(request):\n    return render(request, 'user/two-factor.html')\ndef copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')",
+        "peekOfCode": "def profile(request):\n    if request.method == 'POST':\n        form = ProfileForm(request.POST, instance=request.user)\n        if form.is_valid():\n            form.save()\n            messages.success(request, 'Profile updated successfully')\n            return redirect('profile')\n    else:\n        form = ProfileForm(instance=request.user)\n    context = {",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -578,7 +1766,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def referral(request):\n    return render(request, 'user/referral.html')\ndef password(request):\n    return render(request, 'user/password.html')\ndef two_factor(request):\n    return render(request, 'user/two-factor.html')\ndef copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')\ndef demo_history(request):\n    return render(request, 'user/demo-history.html')",
+        "peekOfCode": "def referral(request):\n    referrals = Referral.objects.filter(referrer=request.user).select_related('referred_user')\n    total_referrals = referrals.count()\n    active_referrals = referrals.filter(referred_user__is_kyc_verified=True).count()\n    total_commission = sum(r.commission_earned for r in referrals)\n    context = {\n        'referrals': [{\n            'username': r.referred_user.username,\n            'created_at': r.created_at,\n            'status': 'active' if r.referred_user.is_kyc_verified else 'pending',",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -587,7 +1775,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def password(request):\n    return render(request, 'user/password.html')\ndef two_factor(request):\n    return render(request, 'user/two-factor.html')\ndef copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')\ndef demo_history(request):\n    return render(request, 'user/demo-history.html')\ndef demo(request):\n    return render(request, 'user/demo.html')",
+        "peekOfCode": "def password(request):\n    if request.method == 'POST':\n        form = PasswordChangeForm(request.POST)\n        if form.is_valid():\n            if not request.user.check_password(form.cleaned_data['current_password']):\n                messages.error(request, 'Current password is incorrect')\n            else:\n                request.user.set_password(form.cleaned_data['new_password'])\n                request.user.save()\n                messages.success(request, 'Password changed successfully')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -596,7 +1784,16 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def two_factor(request):\n    return render(request, 'user/two-factor.html')\ndef copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')\ndef demo_history(request):\n    return render(request, 'user/demo-history.html')\ndef demo(request):\n    return render(request, 'user/demo.html')",
+        "peekOfCode": "def two_factor(request):\n    if request.method == 'POST':\n        if 'enable' in request.POST:\n            # Generate secret\n            secret = pyotp.random_base32()\n            request.user.two_factor_secret = secret\n            request.user.save()\n            # Generate QR code\n            totp = pyotp.TOTP(secret)\n            uri = totp.provisioning_uri(request.user.email, issuer_name=\"Veltrixtraders\")",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "two_factor_verify",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def two_factor_verify(request):\n    if request.method == 'POST':\n        form = TwoFactorForm(request.POST)\n        if form.is_valid():\n            totp = pyotp.TOTP(request.user.two_factor_secret)\n            if totp.verify(form.cleaned_data['otp']):\n                request.session.pop('2fa_required', None)\n                return redirect('dashboard')\n            else:\n                messages.error(request, 'Invalid OTP')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -605,7 +1802,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def copy_trading_history(request):\n    return render(request, 'user/copytrading-history.html')\ndef demo_history(request):\n    return render(request, 'user/demo-history.html')\ndef demo(request):\n    return render(request, 'user/demo.html')",
+        "peekOfCode": "def copy_trading_history(request):\n    copy_trades = CopyTrade.objects.filter(user=request.user).select_related('trader')\n    context = {\n        'copy_trades': copy_trades,\n    }\n    return render(request, 'user/copytrading-history.html', context)\n@login_required\ndef demo_history(request):\n    return render(request, 'user/demo-history.html')\n@login_required",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -614,7 +1811,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def demo_history(request):\n    return render(request, 'user/demo-history.html')\ndef demo(request):\n    return render(request, 'user/demo.html')",
+        "peekOfCode": "def demo_history(request):\n    return render(request, 'user/demo-history.html')\n@login_required\ndef demo(request):\n    return render(request, 'user/demo.html')\n# Management Command to load traders\ndef load_traders(request):\n    if not request.user.is_superuser:\n        return redirect('home')\n    load_traders_from_json()",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -623,7 +1820,16 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def demo(request):\n    return render(request, 'user/demo.html')",
+        "peekOfCode": "def demo(request):\n    return render(request, 'user/demo.html')\n# Management Command to load traders\ndef load_traders(request):\n    if not request.user.is_superuser:\n        return redirect('home')\n    load_traders_from_json()\n    messages.success(request, 'Traders loaded successfully')\n    return redirect('dashboard')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_traders",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def load_traders(request):\n    if not request.user.is_superuser:\n        return redirect('home')\n    load_traders_from_json()\n    messages.success(request, 'Traders loaded successfully')\n    return redirect('dashboard')",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -700,6 +1906,87 @@
         "documentation": {}
     },
     {
+        "label": "AUTH_USER_MODEL",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "AUTH_USER_MODEL = \"VeltrixApp.User\"\n# Login/Logout URLs\nLOGIN_URL = 'login'\nLOGIN_REDIRECT_URL = 'dashboard'\nLOGOUT_REDIRECT_URL = 'home'\n# Media files\nMEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Messages\nfrom django.contrib.messages import constants as messages",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_URL",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "LOGIN_URL = 'login'\nLOGIN_REDIRECT_URL = 'dashboard'\nLOGOUT_REDIRECT_URL = 'home'\n# Media files\nMEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Messages\nfrom django.contrib.messages import constants as messages\nMESSAGE_TAGS = {\n    messages.ERROR: 'danger',",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "LOGIN_REDIRECT_URL = 'dashboard'\nLOGOUT_REDIRECT_URL = 'home'\n# Media files\nMEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Messages\nfrom django.contrib.messages import constants as messages\nMESSAGE_TAGS = {\n    messages.ERROR: 'danger',\n}",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGOUT_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "LOGOUT_REDIRECT_URL = 'home'\n# Media files\nMEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Messages\nfrom django.contrib.messages import constants as messages\nMESSAGE_TAGS = {\n    messages.ERROR: 'danger',\n}\n# Session settings",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "MEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Messages\nfrom django.contrib.messages import constants as messages\nMESSAGE_TAGS = {\n    messages.ERROR: 'danger',\n}\n# Session settings\nSESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds\nSESSION_SAVE_EVERY_REQUEST = True",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Messages\nfrom django.contrib.messages import constants as messages\nMESSAGE_TAGS = {\n    messages.ERROR: 'danger',\n}\n# Session settings\nSESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds\nSESSION_SAVE_EVERY_REQUEST = True\nROOT_URLCONF = 'core.urls'",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MESSAGE_TAGS",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "MESSAGE_TAGS = {\n    messages.ERROR: 'danger',\n}\n# Session settings\nSESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds\nSESSION_SAVE_EVERY_REQUEST = True\nROOT_URLCONF = 'core.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SESSION_COOKIE_AGE",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "SESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds\nSESSION_SAVE_EVERY_REQUEST = True\nROOT_URLCONF = 'core.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SESSION_SAVE_EVERY_REQUEST",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "SESSION_SAVE_EVERY_REQUEST = True\nROOT_URLCONF = 'core.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
         "label": "ROOT_URLCONF",
         "kind": 5,
         "importPath": "core.settings",
@@ -767,7 +2054,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.2/howto/static-files/\nMEDIA_URL = 'media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\n# Default primary key field type",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.2/howto/static-files/\nMEDIA_URL = 'media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\nMEDIA_URL = '/media/'",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -776,7 +2063,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.2/howto/static-files/\nMEDIA_URL = 'media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.2/howto/static-files/\nMEDIA_URL = 'media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -785,7 +2072,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "MEDIA_URL = 'media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [\n    os.path.join(BASE_DIR, 'VeltrixApp/static'),\n    '/var/www/static/',",
+        "peekOfCode": "MEDIA_URL = 'media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -794,7 +2081,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR, 'media')\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [\n    os.path.join(BASE_DIR, 'VeltrixApp/static'),\n    '/var/www/static/',\n]",
+        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR, 'media')\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [\n    os.path.join(BASE_DIR, 'VeltrixApp/static'),",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -803,7 +2090,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [\n    os.path.join(BASE_DIR, 'VeltrixApp/static'),\n    '/var/www/static/',\n]\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'",
+        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, 'static')\nSTATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [\n    os.path.join(BASE_DIR, 'VeltrixApp/static'),\n    '/var/www/static/',",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -812,7 +2099,25 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "STATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [\n    os.path.join(BASE_DIR, 'VeltrixApp/static'),\n    '/var/www/static/',\n]\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nJAZZMIN_SETTINGS = {",
+        "peekOfCode": "STATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [\n    os.path.join(BASE_DIR, 'VeltrixApp/static'),\n    '/var/www/static/',\n]",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "MEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [\n    os.path.join(BASE_DIR, 'VeltrixApp/static'),\n    '/var/www/static/',\n]\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nSTATICFILES_DIRS = [\n    os.path.join(BASE_DIR, 'VeltrixApp/static'),\n    '/var/www/static/',\n]\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nJAZZMIN_SETTINGS = {",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -857,7 +2162,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = env('EMAIL_HOST',default=\"mail.privateemail.com\")\nEMAIL_PORT = env('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")",
+        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = env('EMAIL_HOST',default=\"mail.privateemail.com\")\nEMAIL_PORT = env('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -866,7 +2171,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_HOST = env('EMAIL_HOST',default=\"mail.privateemail.com\")\nEMAIL_PORT = env('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")",
+        "peekOfCode": "EMAIL_HOST = env('EMAIL_HOST',default=\"mail.privateemail.com\")\nEMAIL_PORT = env('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -875,7 +2180,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_PORT = env('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")",
+        "peekOfCode": "EMAIL_PORT = env('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -884,7 +2189,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")",
+        "peekOfCode": "EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -893,7 +2198,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")",
+        "peekOfCode": "EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -902,7 +2207,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")",
+        "peekOfCode": "EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -911,7 +2216,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -920,7 +2225,16 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "DEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")",
+        "peekOfCode": "DEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SITE_URL",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "SITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
         "detail": "core.settings",
         "documentation": {}
     },
