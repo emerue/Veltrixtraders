@@ -99,3 +99,40 @@ def send_withdrawal_status_update_email(withdrawal, old_status=None):
         html_message=html_message,
         fail_silently=False,
     )
+
+def send_password_reset_email(user, reset_url):
+    """Send password reset email"""
+    subject = 'Reset Your Password - Veltrixtraders'
+    html_message = render_to_string('emails/password_reset.html', {
+        'user': user,
+        'reset_url': reset_url,
+        'site_url': settings.SITE_URL,
+    })
+    plain_message = strip_tags(html_message)
+    
+    send_mail(
+        subject,
+        plain_message,
+        settings.DEFAULT_FROM_EMAIL,
+        [user.email],
+        html_message=html_message,
+        fail_silently=False,
+    )
+
+def send_password_changed_email(user):
+    """Send password changed confirmation email"""
+    subject = 'Password Changed Successfully - Veltrixtraders'
+    html_message = render_to_string('emails/password_changed.html', {
+        'user': user,
+        'site_url': settings.SITE_URL,
+    })
+    plain_message = strip_tags(html_message)
+    
+    send_mail(
+        subject,
+        plain_message,
+        settings.DEFAULT_FROM_EMAIL,
+        [user.email],
+        html_message=html_message,
+        fail_silently=False,
+    )

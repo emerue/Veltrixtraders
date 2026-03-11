@@ -8,6 +8,139 @@
     <!-- Toast Container -->
     <div id="toast-container" class="fixed top-5 right-5 z-50 space-y-2"></div>
 
+    <!-- Amount Input Modal -->
+    <div id="amountModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background overlay with blur -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="closeAmountModal()"></div>
+            
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <!-- Modal panel -->
+            <div class="inline-block align-bottom bg-white dark:bg-gray-900 rounded-2xl text-left overflow-hidden shadow-xl transform transition-all my-8 align-middle sm:max-w-lg sm:w-full">
+                <div class="px-6 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                    
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h2 class="text-xl leading-6 font-semibold text-gray-900 dark:text-white" id="modal-title">
+                               Are you sure you want to copy <span id="amount-modal-trader-name" class="font-semibold"></span> ?
+                            </h2>
+                            <div class="mt-4">
+                                
+                                <div class="relative rounded-md shadow-sm">
+                                   
+                                    <p 
+                                           id="investment-amount" 
+                                           class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-lg border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    ></p>
+                                </div>
+                                
+                                <div id="amount-error" class="mt-2 text-sm text-red-600 dark:text-red-400 hidden"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse lg:mr-4">
+                    <button type="button" onclick="processAmount()" id="amount-confirm-btn" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm transition-all duration-200">
+                        Continue
+                    </button>
+                    <button type="button" onclick="closeAmountModal()" class="mt-3 lg:mt-0 lg:ml-3 w-full inline-flex justify-center rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 lg:ml-3 sm:w-auto sm:text-sm transition-all duration-200">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="closeConfirmationModal()"></div>
+            
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white dark:bg-gray-900 rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="px-6 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-semibold text-gray-900 dark:text-white">
+                                Confirm Copy Trade
+                            </h3>
+                            <div class="mt-3">
+                                <p class="text-sm text-gray-600 dark:text-gray-400">
+                                    Are you sure you want to copy <span id="modal-trader-name" class="font-semibold"></span> with <span id="modal-amount" class="font-semibold text-green-600 dark:text-green-400"></span>?
+                                </p>
+                            </div>
+                            <div class="mt-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
+                                <div class="flex justify-between text-xs text-gray-600 dark:text-gray-400 mb-1">
+                                    <span>Your balance after:</span>
+                                    <span id="modal-new-balance" class="font-semibold"></span>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-600 dark:text-gray-400">
+                                    <span>Fee:</span>
+                                    <span id="modal-fee" class="font-semibold"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="confirmCopy()" id="modal-confirm-btn" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm transition-all duration-200">
+                        Confirm
+                    </button>
+                   <button type="button" onclick="closeConfirmationModal()" class="mt-3 lg:mt-0 lg:ml-3 w-full inline-flex justify-center rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 lg:ml-3 sm:w-auto sm:text-sm transition-all duration-200">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stop Confirmation Modal -->
+    <div id="stopModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="closeStopModal()"></div>
+            
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white dark:bg-gray-900 rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="px-6 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 dark:bg-yellow-900/30 sm:mx-0 sm:h-10 sm:w-10">
+                            <svg class="h-6 w-6 text-yellow-600 dark:text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-semibold text-gray-900 dark:text-white">
+                                Stop Copy Trade
+                            </h3>
+                            <div class="mt-3">
+                                <p class="text-sm text-gray-600 dark:text-gray-400" id="stop-modal-message">
+                                    Are you sure you want to stop copying <span id="stop-trader-name" class="font-semibold"></span>?
+                                </p>
+                            </div>
+                            <div class="mt-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
+                                <p class="text-xs text-gray-500 dark:text-gray-400">
+                                    The trade will be stopped but no funds will be refunded.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="confirmStop()" id="stop-confirm-btn" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm transition-all duration-200">
+                        Stop Copying
+                    </button>
+                    <button type="button" onclick="closeStopModal()" class="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm transition-all duration-200">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% if messages %}
     <div class="mb-6">
         {% for message in messages %}
@@ -73,15 +206,6 @@
         <!-- TradingView Widget -->
         <div class="w-full h-56 flex items-center justify-center mb-4 rounded-3xl shadow-1 bg-white bg-opacity-90 dark:bg-gray-950">
             <div class="tradingview-widget-container" style="width: 100%; height: 100%">
-                <style>
-                    .tradingview-widget-copyright { font-size: 13px !important; line-height: 32px !important; text-align: center !important; vertical-align: middle !important; font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif !important; color: #b2b5be !important; }
-                    .tradingview-widget-copyright .blue-text { color: #2962ff !important; }
-                    .tradingview-widget-copyright a { text-decoration: none !important; color: #b2b5be !important; }
-                    .tradingview-widget-copyright a:visited { color: #b2b5be !important; }
-                    .tradingview-widget-copyright a:hover .blue-text { color: #1e53e5 !important; }
-                    .tradingview-widget-copyright a:active .blue-text { color: #1848cc !important; }
-                    .tradingview-widget-copyright a:visited .blue-text { color: #2962ff !important; }
-                </style>
                 <iframe scrolling="no" allowtransparency="true" frameborder="0" 
                         src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=en#%7B%22symbols%22%3A%5B%5B%22Apple%22%2C%22AAPL%7C1M%22%5D%2C%5B%22Google%22%2C%22GOOGL%7C1M%22%5D%2C%5B%22Microsoft%22%2C%22MSFT%7C1M%22%5D%2C%5B%22NASDAQ%3ANVDA%7C1M%22%5D%2C%5B%22NASDAQ%3AAMZN%7C1M%22%5D%2C%5B%22NASDAQ%3ATSLA%7C1M%22%5D%2C%5B%22NASDAQ%3AMETA%7C1M%22%5D%5D%2C%22chartOnly%22%3Afalse%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22colorTheme%22%3A%22dark%22%2C%22showVolume%22%3Afalse%2C%22showMA%22%3Afalse%2C%22hideDateRanges%22%3Atrue%2C%22hideMarketStatus%22%3Afalse%2C%22hideSymbolLogo%22%3Atrue%2C%22scalePosition%22%3A%22right%22%2C%22scaleMode%22%3A%22Normal%22%2C%22fontFamily%22%3A%22-apple-system%2C%20BlinkMacSystemFont%2C%20Trebuchet%20MS%2C%20Roboto%2C%20Ubuntu%2C%20sans-serif%22%2C%22fontSize%22%3A%228%22%2C%22noTimeScale%22%3Afalse%2C%22valuesTracking%22%3A%221%22%2C%22changeMode%22%3A%22price-and-percent%22%2C%22chartType%22%3A%22line%22%2C%22maLineColor%22%3A%22%232962FF%22%2C%22maLineWidth%22%3A1%2C%22maLength%22%3A9%2C%22backgroundColor%22%3A%22rgba(255%2C%20255%2C%20255%2C%200)%22%2C%22widgetFontColor%22%3A%22rgba(149%2C%20152%2C%20161%2C%201)%22%2C%22lineWidth%22%3A2%2C%22lineType%22%3A0%2C%22dateRanges%22%3A%5B%221d%7C1%22%2C%221m%7C30%22%2C%223m%7C60%22%2C%2212m%7C1D%22%2C%2260m%7C1W%22%2C%22all%7C1M%22%5D%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22symbol-overview%22%7D"
                         title="symbol overview TradingView widget" lang="en"
@@ -150,20 +274,11 @@
                                 </div>
                             </div>
                             <div class="flex-shrink-0">
-                                <!-- Copy button with amount input field -->
-                                <div class="flex items-center gap-2">
-                                    <input type="number" 
-                                           id="amount-{{ trader.id }}" 
-                                           placeholder="Amount"
-                                           value="{{ trader.min_investment }}"
-                                           class="w-20 px-2 py-1 text-xs border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                                           min="{{ trader.min_investment }}"
-                                           step="0.01" readonly>
-                                    <button onclick="copyTrader('{{ trader.id }}', '{{ trader.name }}', {{ trader.min_investment }})" 
-                                            class="px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-200 min-w-[70px] bg-slate-100 hover:bg-slate-200 text-slate-900 shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white hover:shadow-md">
-                                        Copy
-                                    </button>
-                                </div>
+                                <!-- Copy button -->
+                                <button onclick="openAmountModal('{{ trader.id }}', '{{ trader.name }}', {{ trader.min_investment }}, {{ trader.fee_percentage }})" 
+                                        class="px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-200 min-w-[70px] bg-slate-100 hover:bg-slate-200 text-slate-900 shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white hover:shadow-md">
+                                    Copy
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -193,7 +308,7 @@
                     <th scope="col" class="px-6 py-3">Amount</th>
                     <th scope="col" class="px-6 py-3">Started</th>
                     <th scope="col" class="px-6 py-3">Status</th>
-                    <!--<th scope="col" class="px-6 py-3 rounded-e-lg">Actions</th>-->
+                    <th scope="col" class="px-6 py-3 rounded-e-lg">Actions</th>
                 </tr>
             </thead>
             <tbody id="active-trades-table">
@@ -207,12 +322,12 @@
                             {{ copy_trade.status|title }}
                         </span>
                     </td>
-                   <!--<td class="px-6 py-4">
-                        <button onclick="stopCopyTrade('{{ copy_trade.id }}')" 
-                                class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 text-xs font-medium">
+                    <td class="px-6 py-4">
+                        <button onclick="openStopModal('{{ copy_trade.id }}', '{{ copy_trade.trader.name }}')" 
+                                class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 text-xs font-medium transition-all duration-200 hover:scale-105">
                             Stop Copying
                         </button>
-                    </td>-->
+                    </td>
                 </tr>
                 {% empty %}
                 <tr id="no-trades-row">
@@ -230,22 +345,27 @@
 // Toast notification function
 function showToast(message, type = 'success') {
     const container = document.getElementById('toast-container');
+    if (!container) return;
+    
     const toast = document.createElement('div');
     
     const bgColor = type === 'success' ? 'bg-green-500' : 
                     type === 'error' ? 'bg-red-500' : 
                     type === 'warning' ? 'bg-yellow-500' : 'bg-blue-500';
     
-    toast.className = `${bgColor} text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 translate-x-0 opacity-100 flex items-center justify-between min-w-[300px]`;
-    
     const icon = type === 'success' ? '✓' : 
                  type === 'error' ? '✗' : 
                  type === 'warning' ? '⚠' : 'ℹ';
     
+    toast.className = `${bgColor} text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 translate-x-0 opacity-100 flex items-center justify-between min-w-[300px] max-w-md`;
+    toast.setAttribute('role', 'alert');
+    
     toast.innerHTML = `
-        <span class="mr-3 font-bold text-lg">${icon}</span>
-        <span class="flex-1">${message}</span>
-        <button onclick="this.parentElement.remove()" class="ml-3 text-white hover:text-gray-200">
+        <div class="flex items-center flex-1">
+            <span class="mr-3 font-bold text-lg flex-shrink-0">${icon}</span>
+            <span class="flex-1 text-sm">${message}</span>
+        </div>
+        <button onclick="this.parentElement.remove()" class="ml-3 text-white hover:text-gray-200 focus:outline-none flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -255,54 +375,121 @@ function showToast(message, type = 'success') {
     
     container.appendChild(toast);
     
-    // Auto remove after 5 seconds
     setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100%)';
-        setTimeout(() => toast.remove(), 500);
+        if (toast && toast.parentNode) {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (toast && toast.parentNode) {
+                    toast.remove();
+                }
+            }, 500);
+        }
     }, 5000);
 }
 
-// Copy trader function
-async function copyTrader(traderId, traderName, minInvestment) {
-    const amountInput = document.getElementById(`amount-${traderId}`);
-    const amount = parseFloat(amountInput.value);
+// Modal state
+let currentTraderId = null;
+let currentTraderName = null;
+let currentMinInvestment = null;
+let currentFeePercentage = null;
+let currentAmount = null;
+let currentTradeId = null;
+
+// Amount Modal functions
+function openAmountModal(traderId, traderName, minInvestment, feePercentage) {
+    currentTraderId = traderId;
+    currentTraderName = traderName;
+    currentMinInvestment = minInvestment;
+    currentFeePercentage = feePercentage;
+    
     const balance = parseFloat(document.querySelector('[data-balance]').textContent);
     
-    // Validate amount
-    if (!amount || amount <= 0) {
-        showToast('Please enter a valid amount', 'error');
-        amountInput.focus();
-        return;
+    document.getElementById('amount-modal-trader-name').textContent = traderName;
+
+    document.getElementById('investment-amount').value = minInvestment;
+    document.getElementById('investment-amount').min = minInvestment;
+    document.getElementById('investment-amount').max = balance;
+    
+    document.getElementById('amount-error').classList.add('hidden');
+    document.getElementById('amount-error').textContent = '';
+    
+    document.getElementById('amountModal').classList.remove('hidden');
+    
+    // Focus on input
+    setTimeout(() => {
+        document.getElementById('investment-amount').focus();
+    }, 100);
+}
+
+function closeAmountModal() {
+    document.getElementById('amountModal').classList.add('hidden');
+    document.getElementById('investment-amount').value = '';
+}
+
+function validateAmount() {
+    const amount = parseFloat(document.getElementById('investment-amount').value);
+    const balance = parseFloat(document.querySelector('[data-balance]').textContent);
+    const errorDiv = document.getElementById('amount-error');
+    
+    if (!amount || isNaN(amount) || amount <= 0) {
+        errorDiv.textContent = 'Please enter a valid amount';
+        errorDiv.classList.remove('hidden');
+        return false;
     }
     
-    if (amount < minInvestment) {
-        showToast(`Minimum investment for ${traderName} is $${minInvestment}`, 'warning');
-        amountInput.focus();
-        return;
+    if (amount < currentMinInvestment) {
+        errorDiv.textContent = `Minimum investment is $${currentMinInvestment.toFixed(2)}`;
+        errorDiv.classList.remove('hidden');
+        return false;
     }
     
     if (amount > balance) {
-        showToast(`Insufficient balance. You need $${(amount - balance).toFixed(2)} more.`, 'error');
-        amountInput.focus();
+        errorDiv.textContent = `Insufficient balance. You need $${(amount - balance).toFixed(2)} more.`;
+        errorDiv.classList.remove('hidden');
+        return false;
+    }
+    
+    errorDiv.classList.add('hidden');
+    return true;
+}
+
+function processAmount() {
+    if (!validateAmount()) return;
+    
+    currentAmount = parseFloat(document.getElementById('investment-amount').value);
+    const balance = parseFloat(document.querySelector('[data-balance]').textContent);
+    
+    // Update confirmation modal
+    document.getElementById('modal-trader-name').textContent = currentTraderName;
+    document.getElementById('modal-amount').textContent = `$${currentAmount.toFixed(2)}`;
+    document.getElementById('modal-new-balance').textContent = `$${(balance - currentAmount).toFixed(2)}`;
+    document.getElementById('modal-fee').textContent = `${currentFeePercentage}% ($${(currentAmount * currentFeePercentage / 100).toFixed(2)})`;
+    
+    closeAmountModal();
+    document.getElementById('confirmationModal').classList.remove('hidden');
+}
+
+// Confirmation Modal functions
+function closeConfirmationModal() {
+    document.getElementById('confirmationModal').classList.add('hidden');
+}
+
+async function confirmCopy() {
+    if (!currentTraderId || !currentAmount) {
+        closeConfirmationModal();
         return;
     }
     
-    // Confirm with user
-    if (!confirm(`Are you sure you want to copy ${traderName} with $${amount.toFixed(2)}?`)) {
-        return;
-    }
-    
-    // Show loading state
-    const button = event.target;
+    const button = document.getElementById('modal-confirm-btn');
     const originalText = button.textContent;
     button.textContent = 'Processing...';
     button.disabled = true;
     
     try {
         const formData = new FormData();
-        formData.append('trader_id', traderId);
-        formData.append('amount', amount);
+        formData.append('trader_id', currentTraderId);
+        formData.append('amount', currentAmount);
         formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
         
         const response = await fetch('{% url "copy_trading" %}', {
@@ -318,16 +505,11 @@ async function copyTrader(traderId, traderName, minInvestment) {
         if (data.success) {
             showToast(data.message, 'success');
             
-            // Update balance display
             if (data.new_balance) {
                 document.querySelector('[data-balance]').textContent = data.new_balance.toFixed(2);
             }
             
-            // Clear input
-            amountInput.value = '';
-            
-            // Add new trade to table if it doesn't exist
-            if (data.copy_trade && document.getElementById('no-trades-row')) {
+            if (data.copy_trade) {
                 const noTradesRow = document.getElementById('no-trades-row');
                 if (noTradesRow) {
                     noTradesRow.remove();
@@ -347,8 +529,8 @@ async function copyTrader(traderId, traderName, minInvestment) {
                         </span>
                     </td>
                     <td class="px-6 py-4">
-                        <button onclick="stopCopyTrade('${data.copy_trade.id}')" 
-                                class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 text-xs font-medium">
+                        <button onclick="openStopModal('${data.copy_trade.id}', '${data.copy_trade.trader}')" 
+                                class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 text-xs font-medium transition-all duration-200 hover:scale-105">
                             Stop Copying
                         </button>
                     </td>
@@ -362,23 +544,42 @@ async function copyTrader(traderId, traderName, minInvestment) {
         showToast('An error occurred. Please try again.', 'error');
         console.error('Error:', error);
     } finally {
-        // Reset button state
         button.textContent = originalText;
         button.disabled = false;
+        closeConfirmationModal();
     }
 }
 
-// Stop copy trade function
-async function stopCopyTrade(tradeId) {
-    if (!confirm('Are you sure you want to stop copying this trader? The remaining balance will be refunded.')) {
+// Stop Modal functions
+function openStopModal(tradeId, traderName) {
+    currentTradeId = tradeId;
+    document.getElementById('stop-trader-name').textContent = traderName;
+    document.getElementById('stopModal').classList.remove('hidden');
+}
+
+function closeStopModal() {
+    document.getElementById('stopModal').classList.add('hidden');
+    currentTradeId = null;
+}
+
+async function confirmStop() {
+    if (!currentTradeId) {
+        closeStopModal();
         return;
     }
     
+    const button = document.getElementById('stop-confirm-btn');
+    const originalText = button.textContent;
+    button.textContent = 'Processing...';
+    button.disabled = true;
+    
     try {
         const formData = new FormData();
+        formData.append('trade_id', currentTradeId);
+        formData.append('action', 'stop');
         formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
         
-        const response = await fetch(`/stop-copy-trade/${tradeId}/`, {
+        const response = await fetch('{% url "copy_trading" %}', {
             method: 'POST',
             body: formData,
             headers: {
@@ -391,18 +592,11 @@ async function stopCopyTrade(tradeId) {
         if (data.success) {
             showToast(data.message, 'success');
             
-            // Update balance
-            if (data.new_balance) {
-                document.querySelector('[data-balance]').textContent = data.new_balance.toFixed(2);
-            }
-            
-            // Remove row from table
-            const tradeRow = document.getElementById(`trade-${tradeId}`);
+            const tradeRow = document.getElementById(`trade-${currentTradeId}`);
             if (tradeRow) {
                 tradeRow.remove();
             }
             
-            // Check if table is empty
             const tbody = document.getElementById('active-trades-table');
             if (tbody.children.length === 0) {
                 tbody.innerHTML = `
@@ -419,26 +613,66 @@ async function stopCopyTrade(tradeId) {
     } catch (error) {
         showToast('An error occurred. Please try again.', 'error');
         console.error('Error:', error);
+    } finally {
+        button.textContent = originalText;
+        button.disabled = false;
+        closeStopModal();
     }
 }
 
+// Real-time validation on input
+document.getElementById('investment-amount')?.addEventListener('input', validateAmount);
+
 // Enter key to submit
-document.querySelectorAll('input[id^="amount-"]').forEach(input => {
-    input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            const traderId = this.id.replace('amount-', '');
-            const traderName = this.closest('.min-w-90').querySelector('h3').textContent;
-            const minInvestment = parseFloat(this.min);
-            copyTrader(traderId, traderName, minInvestment);
-        }
-    });
+document.getElementById('investment-amount')?.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        processAmount();
+    }
+});
+
+// Close modals when clicking outside
+document.addEventListener('click', function(e) {
+    const amountModal = document.getElementById('amountModal');
+    const confirmationModal = document.getElementById('confirmationModal');
+    const stopModal = document.getElementById('stopModal');
+    
+    if (e.target === amountModal) {
+        closeAmountModal();
+    }
+    if (e.target === confirmationModal) {
+        closeConfirmationModal();
+    }
+    if (e.target === stopModal) {
+        closeStopModal();
+    }
+});
+
+// Close modals with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeAmountModal();
+        closeConfirmationModal();
+        closeStopModal();
+    }
 });
 </script>
 
 <style>
     /* Toast animations */
+    #toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        pointer-events: none;
+    }
+    
     #toast-container > div {
+        pointer-events: auto;
         animation: slideIn 0.3s ease-out;
+        margin-bottom: 10px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
     
     @keyframes slideIn {
@@ -452,10 +686,47 @@ document.querySelectorAll('input[id^="amount-"]').forEach(input => {
         }
     }
     
+    /* Modal transitions */
+    #amountModal,
+    #confirmationModal,
+    #stopModal {
+        transition: opacity 0.3s ease-out;
+    }
+    
+    #amountModal.hidden,
+    #confirmationModal.hidden,
+    #stopModal.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    #amountModal:not(.hidden),
+    #confirmationModal:not(.hidden),
+    #stopModal:not(.hidden) {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
     /* Loading state */
     button:disabled {
         opacity: 0.5;
         cursor: not-allowed;
+    }
+    
+    /* Backdrop blur */
+    .backdrop-blur-sm {
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+    
+    /* Input styling */
+    #investment-amount {
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    
+    #investment-amount:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
     }
 </style>
 {% endblock %}

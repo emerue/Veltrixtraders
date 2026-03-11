@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User, Trader, PaymentMethod
+from django.contrib.auth.password_validation import validate_password
+
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -146,5 +148,75 @@ class WithdrawalForm(forms.Form):
                         self.add_error('account_number', 'Account number is required for bank withdrawals')
             except PaymentMethod.DoesNotExist:
                 self.add_error('payment_method', 'Invalid payment method')
+        
+        return cleaned_data
+class ForgotPasswordForm(forms.Form):
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            'class': 'w-full px-4 py-2 rounded-md border text-sm border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 placeholder:opacity-50',
+            'placeholder': 'Enter your email'
+        })
+    )
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not User.objects.filter(email=email).exists():
+            # Don't reveal that email doesn't exist for security
+            pass
+        return email
+
+class ResetPasswordForm(forms.Form):
+    new_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white',
+            'placeholder': 'Enter new password'
+        }),
+        validators=[validate_password]
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white',
+            'placeholder': 'Confirm new password'
+        })
+    )
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password = cleaned_data.get('new_password')
+        confirm_password = cleaned_data.get('confirm_password')
+        
+        if new_password and confirm_password and new_password != confirm_password:
+            raise forms.ValidationError("Passwords do not match")
+        
+        return cleaned_data
+
+class PasswordChangeForm(forms.Form):
+    current_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white',
+            'placeholder': 'Enter your current password'
+        })
+    )
+    new_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white',
+            'placeholder': 'Enter new password'
+        }),
+        validators=[validate_password]
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white',
+            'placeholder': 'Confirm new password'
+        })
+    )
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password = cleaned_data.get('new_password')
+        confirm_password = cleaned_data.get('confirm_password')
+        
+        if new_password and confirm_password and new_password != confirm_password:
+            raise forms.ValidationError("Passwords do not match")
         
         return cleaned_data

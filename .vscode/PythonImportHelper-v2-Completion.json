@@ -289,6 +289,14 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
@@ -471,6 +479,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "transaction",
         "importPath": "django.db",
         "description": "django.db",
@@ -492,6 +516,31 @@
         "description": "django.db",
         "isExtraImport": true,
         "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "django",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django",
+        "description": "django",
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
         "documentation": {}
     },
     {
@@ -583,23 +632,6 @@
         "documentation": {}
     },
     {
-        "label": "django",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "django",
-        "description": "django",
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "forms",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
         "label": "UserCreationForm",
         "importPath": "django.contrib.auth.forms",
         "description": "django.contrib.auth.forms",
@@ -616,12 +648,29 @@
         "documentation": {}
     },
     {
+        "label": "validate_password",
+        "importPath": "django.contrib.auth.password_validation",
+        "description": "django.contrib.auth.password_validation",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.password_validation",
+        "documentation": {}
+    },
+    {
         "label": "uuid",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "uuid",
         "description": "uuid",
         "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "secrets",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "secrets",
+        "description": "secrets",
+        "detail": "secrets",
         "documentation": {}
     },
     {
@@ -658,6 +707,14 @@
     },
     {
         "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -794,6 +851,22 @@
         "importPath": "base64",
         "description": "base64",
         "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "Paginator",
+        "importPath": "django.core.paginator",
+        "description": "django.core.paginator",
+        "isExtraImport": true,
+        "detail": "django.core.paginator",
+        "documentation": {}
+    },
+    {
+        "label": "Q",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
         "documentation": {}
     },
     {
@@ -970,6 +1043,33 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "VeltrixApp.migrations.0005_passwordresettoken",
+        "description": "VeltrixApp.migrations.0005_passwordresettoken",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0004_loyaltystatus'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='PasswordResetToken',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('token', models.CharField(max_length=100, unique=True)),",
+        "detail": "VeltrixApp.migrations.0005_passwordresettoken",
+        "documentation": {}
+    },
+    {
+        "label": "url_replace",
+        "kind": 2,
+        "importPath": "VeltrixApp.templatetags.url_replace",
+        "description": "VeltrixApp.templatetags.url_replace",
+        "peekOfCode": "def url_replace(context, **kwargs):\n    \"\"\"\n    Replace or add a query parameter in the current URL\n    Usage: {% url_replace page=1 %}\n    \"\"\"\n    request = context.get('request')\n    if not request:\n        return ''\n    # Get current query parameters\n    params = request.GET.copy()",
+        "detail": "VeltrixApp.templatetags.url_replace",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "VeltrixApp.templatetags.url_replace",
+        "description": "VeltrixApp.templatetags.url_replace",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag(takes_context=True)\ndef url_replace(context, **kwargs):\n    \"\"\"\n    Replace or add a query parameter in the current URL\n    Usage: {% url_replace page=1 %}\n    \"\"\"\n    request = context.get('request')\n    if not request:\n        return ''",
+        "detail": "VeltrixApp.templatetags.url_replace",
+        "documentation": {}
+    },
+    {
         "label": "DepositAdmin",
         "kind": 6,
         "importPath": "VeltrixApp.admin",
@@ -1114,6 +1214,24 @@
         "documentation": {}
     },
     {
+        "label": "send_password_reset_email",
+        "kind": 2,
+        "importPath": "VeltrixApp.email_utils",
+        "description": "VeltrixApp.email_utils",
+        "peekOfCode": "def send_password_reset_email(user, reset_url):\n    \"\"\"Send password reset email\"\"\"\n    subject = 'Reset Your Password - Veltrixtraders'\n    html_message = render_to_string('emails/password_reset.html', {\n        'user': user,\n        'reset_url': reset_url,\n        'site_url': settings.SITE_URL,\n    })\n    plain_message = strip_tags(html_message)\n    send_mail(",
+        "detail": "VeltrixApp.email_utils",
+        "documentation": {}
+    },
+    {
+        "label": "send_password_changed_email",
+        "kind": 2,
+        "importPath": "VeltrixApp.email_utils",
+        "description": "VeltrixApp.email_utils",
+        "peekOfCode": "def send_password_changed_email(user):\n    \"\"\"Send password changed confirmation email\"\"\"\n    subject = 'Password Changed Successfully - Veltrixtraders'\n    html_message = render_to_string('emails/password_changed.html', {\n        'user': user,\n        'site_url': settings.SITE_URL,\n    })\n    plain_message = strip_tags(html_message)\n    send_mail(\n        subject,",
+        "detail": "VeltrixApp.email_utils",
+        "documentation": {}
+    },
+    {
         "label": "UserRegistrationForm",
         "kind": 6,
         "importPath": "VeltrixApp.forms",
@@ -1240,6 +1358,33 @@
         "documentation": {}
     },
     {
+        "label": "ForgotPasswordForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class ForgotPasswordForm(forms.Form):\n    email = forms.EmailField(\n        widget=forms.EmailInput(attrs={\n            'class': 'w-full px-4 py-2 rounded-md border text-sm border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 placeholder:opacity-50',\n            'placeholder': 'Enter your email'\n        })\n    )\n    def clean_email(self):\n        email = self.cleaned_data.get('email')\n        if not User.objects.filter(email=email).exists():",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ResetPasswordForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class ResetPasswordForm(forms.Form):\n    new_password = forms.CharField(\n        widget=forms.PasswordInput(attrs={\n            'class': 'bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white',\n            'placeholder': 'Enter new password'\n        }),\n        validators=[validate_password]\n    )\n    confirm_password = forms.CharField(\n        widget=forms.PasswordInput(attrs={",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "PasswordChangeForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class PasswordChangeForm(forms.Form):\n    current_password = forms.CharField(\n        widget=forms.PasswordInput(attrs={\n            'class': 'bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white',\n            'placeholder': 'Enter your current password'\n        })\n    )\n    new_password = forms.CharField(\n        widget=forms.PasswordInput(attrs={\n            'class': 'bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white',",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
         "label": "User",
         "kind": 6,
         "importPath": "VeltrixApp.models",
@@ -1344,6 +1489,15 @@
         "importPath": "VeltrixApp.models",
         "description": "VeltrixApp.models",
         "peekOfCode": "class LoyaltyStatus(models.Model):\n    \"\"\"\n    Model to define loyalty tiers/levels\n    \"\"\"\n    name = models.CharField(max_length=50, unique=True)  # Bronze, Silver, Gold, etc.\n    level = models.PositiveIntegerField(unique=True)  # 1, 2, 3, 4, 5\n    min_deposit = models.DecimalField(max_digits=20, decimal_places=2, default=0)\n    max_deposit = models.DecimalField(max_digits=20, decimal_places=2, default=999999)\n    color = models.CharField(max_length=20, default='#CD7F32')  # Hex color code\n    icon = models.CharField(max_length=100, default='images/loyalty/bronze.svg')  # Path to icon",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "PasswordResetToken",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class PasswordResetToken(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='password_reset_tokens')\n    token = models.CharField(max_length=100, unique=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    expires_at = models.DateTimeField()\n    used = models.BooleanField(default=False)\n    def save(self, *args, **kwargs):\n        if not self.token:\n            self.token = secrets.token_urlsafe(32)\n        if not self.expires_at:",
         "detail": "VeltrixApp.models",
         "documentation": {}
     },
@@ -1514,7 +1668,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def options_trading(request):\n    return render(request, 'option-trading.html')\ndef oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')",
+        "peekOfCode": "def options_trading(request):\n    return render(request, 'option-trading.html')\ndef oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Authentication Views\ndef register(request):",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1523,7 +1677,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\n# Authentication Views\ndef register(request):",
+        "peekOfCode": "def oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1532,7 +1686,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)",
+        "peekOfCode": "def terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1541,16 +1695,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def privacy_policy(request):\n    return render(request, 'privacy-policy.html')\ndef forgot_password(request):\n    return render(request, 'forgot-password.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)",
-        "detail": "VeltrixApp.views",
-        "documentation": {}
-    },
-    {
-        "label": "forgot_password",
-        "kind": 2,
-        "importPath": "VeltrixApp.views",
-        "description": "VeltrixApp.views",
-        "peekOfCode": "def forgot_password(request):\n    return render(request, 'forgot-password.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)\n            user.email = form.cleaned_data['email']\n            user.save()",
+        "peekOfCode": "def privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)\n            user.email = form.cleaned_data['email']\n            user.save()",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1640,7 +1785,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def copy_trading(request):\n    if request.method == 'POST':\n        trader_id = request.POST.get('trader_id')\n        amount = request.POST.get('amount')\n        trader = get_object_or_404(Trader, id=trader_id)\n        # Check if amount is provided\n        if not amount:\n            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':\n                return JsonResponse({\n                    'success': False,",
+        "peekOfCode": "def copy_trading(request):\n    if request.method == 'POST':\n        trader_id = request.POST.get('trader_id')\n        amount = request.POST.get('amount')\n        action = request.POST.get('action', 'start')  # 'start' or 'stop'\n        if action == 'stop':\n            # Handle stop copy trade\n            trade_id = request.POST.get('trade_id')\n            copy_trade = get_object_or_404(CopyTrade, id=trade_id, user=request.user, status='active')\n            copy_trade.status = 'stopped'",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1658,7 +1803,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def copy_traders(request):\n    traders = Trader.objects.filter(is_active=True)\n    context = {\n        'traders': traders,\n    }\n    return render(request, 'user/copytraders.html', context)\n@login_required\ndef deposit(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    # Prepare payment methods for JSON",
+        "peekOfCode": "def copy_traders(request):\n    # Get all active traders\n    traders = Trader.objects.filter(is_active=True)\n    # Get filter parameters from request\n    search_query = request.GET.get('search', '')\n    sort_by = request.GET.get('sort', 'monthly_return')\n    sort_direction = request.GET.get('direction', 'desc')\n    risk_levels = request.GET.getlist('risk')\n    specialties = request.GET.getlist('specialty')\n    status = request.GET.getlist('status', ['active'])",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1771,11 +1916,29 @@
         "documentation": {}
     },
     {
+        "label": "forgot_password",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def forgot_password(request):\n    \"\"\"Handle forgot password request - for non-authenticated users\"\"\"\n    if request.user.is_authenticated:\n        return redirect('dashboard')\n    if request.method == 'POST':\n        form = ForgotPasswordForm(request.POST)\n        if form.is_valid():\n            email = form.cleaned_data['email']\n            try:\n                user = User.objects.get(email=email)",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "reset_password",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def reset_password(request, token):\n    \"\"\"Handle password reset with token\"\"\"\n    if request.user.is_authenticated:\n        return redirect('dashboard')\n    # Get and validate token\n    try:\n        reset_token = PasswordResetToken.objects.get(token=token, used=False)\n        if not reset_token.is_valid():\n            messages.error(request, 'This password reset link has expired.')\n            return redirect('forgot_password')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
         "label": "password",
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def password(request):\n    if request.method == 'POST':\n        form = PasswordChangeForm(request.POST)\n        if form.is_valid():\n            if not request.user.check_password(form.cleaned_data['current_password']):\n                messages.error(request, 'Current password is incorrect')\n            else:\n                request.user.set_password(form.cleaned_data['new_password'])\n                request.user.save()\n                messages.success(request, 'Password changed successfully')",
+        "peekOfCode": "def password(request):\n    \"\"\"Handle password change for logged in users\"\"\"\n    if request.method == 'POST':\n        form = PasswordChangeForm(request.POST)\n        if form.is_valid():\n            # Verify current password\n            if not request.user.check_password(form.cleaned_data['current_password']):\n                messages.error(request, 'Current password is incorrect')\n            else:\n                # Update password",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },

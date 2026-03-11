@@ -21,7 +21,6 @@ urlpatterns = [
     path('oil-and-gas/', views.oil_and_gas, name='oil_and_gas'),
     path('terms-and-conditions/', views.terms_and_conditions, name='terms_and_conditions'),
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
-    path('forgot-password/', views.forgot_password, name='forgot_password'),
     path('setup/', views.setup_personal, name='setup_personal'),
     path('setup-contact/', views.setup_contact, name='setup_contact'),
     path('setup-experience/', views.setup_experience, name='setup_experience'),
@@ -43,12 +42,14 @@ urlpatterns = [
     path('login-history/', views.login_history, name='login_history'),
     path('profile/', views.profile, name='profile'),
     path('referral/', views.referral, name='referral'),
-    path('password/', views.password, name='password'),
     path('two-factor-authentication/', views.two_factor, name='two_factor'),
     path('copytrading/history/', views.copy_trading_history, name='copy_trading_history'),
     path('demo/history/', views.demo_history, name='demo_history'),
     path('demo/', views.demo, name='demo'),
     path('stop-copy-trade/<int:trade_id>/', views.stop_copy_trade, name='stop_copy_trade'),
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('reset-password/<str:token>/', views.reset_password, name='reset_password'),
+    path('password/', views.password, name='password'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

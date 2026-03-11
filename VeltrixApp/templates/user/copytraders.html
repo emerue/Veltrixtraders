@@ -1,6 +1,6 @@
 {% extends "user/includes/header.html" %}
 {% load static %}
-
+{% load url_replace %}
 {% block title %}Copy Traders - Veltrixtraders{% endblock %}
 
 {% block content %}
@@ -25,113 +25,160 @@
             </p>
         </div>
         
-        <div class="mb-6 space-y-4" x-data="{ show: false, filters: { risk: [], status: ['active'], specialty: [], minMonthly: 0, maxFee: 100 } }">
-            <div class="flex flex-col sm:flex-row gap-4">
-                <div class="relative flex-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.3-4.3"></path>
-                    </svg>
-                    <input type="text" id="search-input" placeholder="Search traders by name, bio, or specialization..." 
-                           class="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900/50 text-slate-900 dark:text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           x-model="searchQuery">
-                </div>
-                <div class="flex gap-2">
-                    <select id="sort-select" class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500" x-model="sortBy">
-                        <option value="monthly_return">Monthly Profit</option>
-                        <option value="yearly_return">Yearly Profit</option>
-                        <option value="win_rate">Win Rate</option>
-                        <option value="experience_years">Experience</option>
-                        <option value="followers">Copiers</option>
-                        <option value="name">Name</option>
-                    </select>
-                    <button @click="sortDirection = sortDirection === 'desc' ? 'asc' : 'desc'" 
-                            class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700">
-                        <span x-show="sortDirection === 'desc'">↓</span>
-                        <span x-show="sortDirection === 'asc'">↑</span>
+        <!-- Filter Form -->
+        <form method="GET" action="{% url 'copy_traders' %}" id="filter-form">
+            <div class="mb-6 space-y-4" x-data="traderFilters()" x-init="initFilters()">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="relative flex-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </svg>
+                        <input type="text" 
+                               name="search" 
+                               id="search-input" 
+                               placeholder="Search traders by name, bio, or specialization..." 
+                               class="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900/50 text-slate-900 dark:text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               x-model="searchQuery"
+                               @input.debounce.500ms="submitForm()">
+                    </div>
+                    <div class="flex gap-2">
+                        <select name="sort" id="sort-select" class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500" x-model="sortBy" @change="submitForm()">
+                            <option value="monthly_return">Monthly Profit</option>
+                            <option value="yearly_return">Yearly Profit</option>
+                            <option value="win_rate">Win Rate</option>
+                            <option value="experience_years">Experience</option>
+                            <option value="followers">Copiers</option>
+                            <option value="name">Name</option>
+                        </select>
+                        <input type="hidden" name="direction" x-model="sortDirection">
+                        <button type="button" 
+                                @click="sortDirection = sortDirection === 'desc' ? 'asc' : 'desc'; submitForm()" 
+                                class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700">
+                            <span x-show="sortDirection === 'desc'">↓</span>
+                            <span x-show="sortDirection === 'asc'">↑</span>
+                        </button>
+                    </div>
+                    <button type="button" @click="show = !show" class="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-filter w-4 h-4">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                        </svg>
+                        Filters
+                        <span x-show="hasActiveFilters()" class="ml-1 px-1.5 py-0.5 text-xs bg-blue-500 text-white rounded-full" x-text="activeFilterCount()"></span>
                     </button>
                 </div>
-                <button @click="show = !show" class="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-filter w-4 h-4">
-                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                    </svg>
-                    Filters
-                </button>
-            </div>
-            
-            <div x-show="show" x-cloak class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900/50">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="font-semibold text-slate-900 dark:text-white">Filters</h3>
-                    <button @click="filters = { risk: [], status: ['active'], specialty: [], minMonthly: 0, maxFee: 100 }" 
-                            class="text-sm text-blue-600 dark:text-blue-400 hover:underline">Clear All</button>
+                
+                <!-- Filters Panel -->
+                <div x-show="show" x-cloak class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900/50">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-semibold text-slate-900 dark:text-white">Filters</h3>
+                        <button type="button" @click="clearFilters()" 
+                                class="text-sm text-blue-600 dark:text-blue-400 hover:underline">Clear All</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Risk Level Filter -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Risk Level</label>
+                            <div class="space-y-1">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="risk" value="Low" x-model="filters.risk" @change="submitForm()" class="mr-2 rounded text-blue-600">
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">Low</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="risk" value="Medium" x-model="filters.risk" @change="submitForm()" class="mr-2 rounded text-blue-600">
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">Medium</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Status Filter -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Status</label>
+                            <div class="space-y-1">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="status" value="active" x-model="filters.status" @change="submitForm()" class="mr-2 rounded text-blue-600">
+                                    <span class="text-sm text-slate-600 dark:text-slate-400 capitalize">Active</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Specialization Filter -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Specialization</label>
+                            <div class="space-y-1">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="specialty" value="Stocks" x-model="filters.specialty" @change="submitForm()" class="mr-2 rounded text-blue-600">
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">Stocks</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="specialty" value="Mixed" x-model="filters.specialty" @change="submitForm()" class="mr-2 rounded text-blue-600">
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">Mixed</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="specialty" value="Forex" x-model="filters.specialty" @change="submitForm()" class="mr-2 rounded text-blue-600">
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">Forex</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="specialty" value="Options" x-model="filters.specialty" @change="submitForm()" class="mr-2 rounded text-blue-600">
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">Options</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Min Monthly Profit Filter -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                Min Monthly Profit (%)
+                            </label>
+                            <input type="number" 
+                                   name="min_monthly" 
+                                   x-model="filters.minMonthly" 
+                                   @change.debounce.500ms="submitForm()"
+                                   class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white" 
+                                   min="0" 
+                                   max="100"
+                                   step="0.1">
+                        </div>
+                        
+                        <!-- Max Fee Filter -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                Max Fee (%)
+                            </label>
+                            <input type="number" 
+                                   name="max_fee" 
+                                   x-model="filters.maxFee" 
+                                   @change.debounce.500ms="submitForm()"
+                                   class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white" 
+                                   min="0" 
+                                   max="100"
+                                   step="0.1">
+                        </div>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Risk Level</label>
-                        <div class="space-y-1">
-                            <label class="flex items-center">
-                                <input type="checkbox" value="Medium" x-model="filters.risk" class="mr-2 rounded text-blue-600">
-                                <span class="text-sm text-slate-600 dark:text-slate-400">Medium</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" value="Low" x-model="filters.risk" class="mr-2 rounded text-blue-600">
-                                <span class="text-sm text-slate-600 dark:text-slate-400">Low</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Status</label>
-                        <div class="space-y-1">
-                            <label class="flex items-center">
-                                <input type="checkbox" value="active" x-model="filters.status" class="mr-2 rounded text-blue-600" checked>
-                                <span class="text-sm text-slate-600 dark:text-slate-400 capitalize">active</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Specialization</label>
-                        <div class="space-y-1">
-                            <label class="flex items-center">
-                                <input type="checkbox" value="Stocks" x-model="filters.specialty" class="mr-2 rounded text-blue-600">
-                                <span class="text-sm text-slate-600 dark:text-slate-400">Stocks</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" value="Mixed" x-model="filters.specialty" class="mr-2 rounded text-blue-600">
-                                <span class="text-sm text-slate-600 dark:text-slate-400">Mixed</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" value="Forex" x-model="filters.specialty" class="mr-2 rounded text-blue-600">
-                                <span class="text-sm text-slate-600 dark:text-slate-400">Forex</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" value="Options" x-model="filters.specialty" class="mr-2 rounded text-blue-600">
-                                <span class="text-sm text-slate-600 dark:text-slate-400">Options</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Min Monthly Profit (%)</label>
-                        <input type="number" x-model="filters.minMonthly" class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white" min="0" max="100">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Max Fee (%)</label>
-                        <input type="number" x-model="filters.maxFee" class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-900 dark:text-white" min="0" max="100" value="100">
-                    </div>
-                </div>
             </div>
-        </div>
+        </form>
         
+        <!-- Results Count -->
         <div class="mb-4">
-            <p class="text-sm text-slate-600 dark:text-slate-400">Showing {{ traders|length }} of {{ total_traders }} traders</p>
+            <p class="text-sm text-slate-600 dark:text-slate-400">
+                Showing {{ traders|length }} of {{ total_traders }} traders
+                {% if current_filters.search or current_filters.risk or current_filters.specialty or current_filters.min_monthly or current_filters.max_fee %}
+                <button onclick="clearAllFilters()" class="ml-2 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                    Clear all filters
+                </button>
+                {% endif %}
+            </p>
         </div>
         
+        <!-- Traders Grid -->
         <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for trader in traders %}
             <div class="h-fit">
                 <div class="relative rounded-xl shadow-sm transition-all duration-200 overflow-hidden h-full border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md bg-white dark:bg-gray-900/30">
                     <div class="absolute top-3 right-3 z-10">
                         <span class="px-2.5 py-1 text-xs font-semibold rounded-lg uppercase tracking-wide bg-green-50 text-green-700 ring-1 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30">
-                            Active
+                            {{ trader.risk_level }}
                         </span>
                     </div>
                     <div class="p-4">
@@ -208,46 +255,157 @@
             {% endfor %}
         </div>
         
-        {% if traders.has_other_pages %}
-        <div class="flex justify-center mt-8">
-            <nav class="inline-flex rounded-md shadow">
-                {% if traders.has_previous %}
-                <a href="?page={{ traders.previous_page_number }}" class="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-l-md">
-                    Previous
-                </a>
-                {% endif %}
-                
-                <span class="px-3 py-2 bg-blue-600 border border-gray-300 dark:border-gray-600 text-sm font-medium text-white">
-                    Page {{ traders.number }} of {{ traders.paginator.num_pages }}
-                </span>
-                
-                {% if traders.has_next %}
-                <a href="?page={{ traders.next_page_number }}" class="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-r-md">
-                    Next
-                </a>
-                {% endif %}
-            </nav>
-        </div>
+       <!-- Pagination -->
+{% if traders.has_other_pages %}
+<div class="flex justify-center mt-8">
+    <nav class="inline-flex rounded-md shadow" aria-label="Pagination">
+        {% if traders.has_previous %}
+        <a href="?{% url_replace page=traders.previous_page_number %}" 
+           class="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-l-md">
+            Previous
+        </a>
         {% endif %}
-    </div>
+        
+        {% for i in traders.paginator.page_range %}
+            {% if traders.number == i %}
+            <span class="px-3 py-2 bg-blue-600 border border-gray-300 dark:border-gray-600 text-sm font-medium text-white">
+                {{ i }}
+            </span>
+            {% elif i > traders.number|add:'-3' and i < traders.number|add:'3' %}
+            <a href="?{% url_replace page=i %}" 
+               class="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                {{ i }}
+            </a>
+            {% endif %}
+        {% endfor %}
+        
+        {% if traders.has_next %}
+        <a href="?{% url_replace page=traders.next_page_number %}" 
+           class="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-r-md">
+            Next
+        </a>
+        {% endif %}
+    </nav>
+</div>
+{% endif %}
 </div>
 
 {% block extra_js %}
 <script>
+    // Helper function to replace URL parameters
+    function urlReplaceParam(url, param, value) {
+        var regex = new RegExp("([?&])" + param + "=.*?(&|$)");
+        if (url.match(regex)) {
+            return url.replace(regex, '$1' + param + "=" + value + '$2');
+        }
+        return url + (url.indexOf('?') > -1 ? '&' : '?') + param + "=" + value;
+    }
+
     document.addEventListener('alpine:init', () => {
         Alpine.data('traderFilters', () => ({
-            searchQuery: '',
-            sortBy: 'monthly_return',
-            sortDirection: 'desc',
+            show: false,
+            searchQuery: '{{ current_filters.search|default:"" }}',
+            sortBy: '{{ current_filters.sort|default:"monthly_return" }}',
+            sortDirection: '{{ current_filters.direction|default:"desc" }}',
             filters: {
-                risk: [],
-                status: ['active'],
-                specialty: [],
-                minMonthly: 0,
-                maxFee: 100
+                risk: {{ current_filters.risk|safe|default:"[]" }},
+                status: {{ current_filters.status|safe|default:"['active']" }},
+                specialty: {{ current_filters.specialty|safe|default:"[]" }},
+                minMonthly: {{ current_filters.min_monthly|default:0 }},
+                maxFee: {{ current_filters.max_fee|default:100 }}
+            },
+            
+            initFilters() {
+                // Initialize filters from URL params
+                const urlParams = new URLSearchParams(window.location.search);
+                this.filters.risk = urlParams.getAll('risk');
+                this.filters.status = urlParams.getAll('status');
+                this.filters.specialty = urlParams.getAll('specialty');
+                this.filters.minMonthly = urlParams.get('min_monthly') || 0;
+                this.filters.maxFee = urlParams.get('max_fee') || 100;
+                this.searchQuery = urlParams.get('search') || '';
+                this.sortBy = urlParams.get('sort') || 'monthly_return';
+                this.sortDirection = urlParams.get('direction') || 'desc';
+            },
+            
+            submitForm() {
+                const form = document.getElementById('filter-form');
+                
+                // Remove all existing filter inputs
+                document.querySelectorAll('#filter-form input[name], #filter-form select[name]').forEach(el => {
+                    if (el.type !== 'hidden' && el.name !== 'csrfmiddlewaretoken') {
+                        el.remove();
+                    }
+                });
+                
+                // Add current filters as hidden inputs
+                this.addHiddenInput('search', this.searchQuery);
+                this.addHiddenInput('sort', this.sortBy);
+                this.addHiddenInput('direction', this.sortDirection);
+                
+                // Add array filters
+                this.filters.risk.forEach(value => this.addHiddenInput('risk', value));
+                this.filters.status.forEach(value => this.addHiddenInput('status', value));
+                this.filters.specialty.forEach(value => this.addHiddenInput('specialty', value));
+                
+                // Add numeric filters
+                if (this.filters.minMonthly > 0) {
+                    this.addHiddenInput('min_monthly', this.filters.minMonthly);
+                }
+                if (this.filters.maxFee < 100) {
+                    this.addHiddenInput('max_fee', this.filters.maxFee);
+                }
+                
+                form.submit();
+            },
+            
+            addHiddenInput(name, value) {
+                if (!value) return;
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = name;
+                input.value = value;
+                document.getElementById('filter-form').appendChild(input);
+            },
+            
+            hasActiveFilters() {
+                return this.filters.risk.length > 0 || 
+                       this.filters.specialty.length > 0 || 
+                       this.filters.minMonthly > 0 || 
+                       this.filters.maxFee < 100 ||
+                       this.searchQuery;
+            },
+            
+            activeFilterCount() {
+                let count = 0;
+                count += this.filters.risk.length;
+                count += this.filters.specialty.length;
+                if (this.filters.minMonthly > 0) count++;
+                if (this.filters.maxFee < 100) count++;
+                if (this.searchQuery) count++;
+                return count;
+            },
+            
+            clearFilters() {
+                this.filters = {
+                    risk: [],
+                    status: ['active'],
+                    specialty: [],
+                    minMonthly: 0,
+                    maxFee: 100
+                };
+                this.searchQuery = '';
+                this.submitForm();
             }
         }))
     })
+    
+    function clearAllFilters() {
+        const alpineData = Alpine.$data(document.querySelector('[x-data]'));
+        if (alpineData) {
+            alpineData.clearFilters();
+        }
+    }
 </script>
 {% endblock %}
 {% endblock %}

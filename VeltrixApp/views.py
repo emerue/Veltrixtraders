@@ -27,8 +27,12 @@ from .forms import (
 )
 from .email_utils import (
     send_welcome_email, send_deposit_confirmation_email, 
-    send_withdrawal_confirmation_email
+    send_withdrawal_confirmation_email, send_password_changed_email, send_password_reset_email
 )
+from django.urls import reverse
+from .models import User, PasswordResetToken
+from .forms import ForgotPasswordForm, ResetPasswordForm, PasswordChangeForm
+
 
 # Helper function to load traders from JSON
 def load_traders_from_json():
@@ -108,9 +112,6 @@ def terms_and_conditions(request):
 
 def privacy_policy(request):
     return render(request, 'privacy-policy.html')
-
-def forgot_password(request):
-    return render(request, 'forgot-password.html')
 
 # Authentication Views
 def register(request):
@@ -262,126 +263,166 @@ def copy_trading(request):
     if request.method == 'POST':
         trader_id = request.POST.get('trader_id')
         amount = request.POST.get('amount')
-        trader = get_object_or_404(Trader, id=trader_id)
+        action = request.POST.get('action', 'start')  # 'start' or 'stop'
         
-        # Check if amount is provided
-        if not amount:
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                return JsonResponse({
-                    'success': False,
-                    'error': 'Amount is required',
-                    'type': 'error'
-                })
-            messages.error(request, 'Amount is required')
-            return redirect('copy_trading')
-        
-        try:
-            amount = Decimal(amount)
-        except:
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                return JsonResponse({
-                    'success': False,
-                    'error': 'Invalid amount format',
-                    'type': 'error'
-                })
-            messages.error(request, 'Invalid amount format')
-            return redirect('copy_trading')
-        
-        # Check minimum investment
-        if amount < trader.min_investment:
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                return JsonResponse({
-                    'success': False,
-                    'error': f'Minimum investment is ${trader.min_investment}',
-                    'type': 'error',
-                    'min_investment': float(trader.min_investment)
-                })
-            messages.error(request, f'Minimum investment for {trader.name} is ${trader.min_investment}')
-            return redirect('copy_trading')
-        
-        # Check if already copying
-        existing = CopyTrade.objects.filter(
-            user=request.user, 
-            trader=trader, 
-            status='active'
-        ).first()
-        
-        if existing:
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                return JsonResponse({
-                    'success': False,
-                    'error': f'You are already copying {trader.name}',
-                    'type': 'warning'
-                })
-            messages.warning(request, f'You are already copying {trader.name}')
-            return redirect('copy_trading')
-        
-        # Check balance
-        if request.user.balance < amount:
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                return JsonResponse({
-                    'success': False,
-                    'error': f'Insufficient balance. You need ${amount - request.user.balance} more.',
-                    'type': 'error',
-                    'balance': float(request.user.balance),
-                    'required': float(amount)
-                })
-            messages.error(
-                request, 
-                f'Insufficient balance. You need ${amount - request.user.balance:,.2f} more.'
+        if action == 'stop':
+            # Handle stop copy trade
+            trade_id = request.POST.get('trade_id')
+            copy_trade = get_object_or_404(CopyTrade, id=trade_id, user=request.user, status='active')
+            
+            copy_trade.status = 'stopped'
+            copy_trade.save()
+            
+            # Create transaction record for stopping (optional - you can remove this if no refund)
+            Transaction.objects.create(
+                user=request.user,
+                transaction_type='trade',
+                amount=copy_trade.amount,
+                status='completed',
+                reference_id=f"STOP-{copy_trade.id}",
+                description=f'Stopped copy trade with {copy_trade.trader.name}'
             )
+            
+            # Create notification
+            Notification.objects.create(
+                user=request.user,
+                title='Copy Trade Stopped',
+                message=f'You have stopped copying {copy_trade.trader.name}.'
+            )
+            
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'success': True,
+                    'message': f'Stopped copying {copy_trade.trader.name}',
+                    'type': 'success',
+                    'trade_id': copy_trade.id
+                })
+            
+            messages.success(request, f'Stopped copying {copy_trade.trader.name}')
             return redirect('copy_trading')
         
-        # Deduct balance and create copy trade
-        user = request.user
-        user.balance -= amount
-        user.save()
-        
-        copy_trade = CopyTrade.objects.create(
-            user=user,
-            trader=trader,
-            amount=amount,
-            status='active'
-        )
-        
-        # Create transaction record
-        Transaction.objects.create(
-            user=user,
-            transaction_type='trade',
-            amount=amount,
-            status='completed',
-            reference_id=f"COPY-{copy_trade.id}",
-            description=f'Copy trading investment in {trader.name}'
-        )
-        
-        # Create notification
-        Notification.objects.create(
-            user=user,
-            title='Copy Trade Started',
-            message=f'You have started copying {trader.name} with ${amount:,.2f}'
-        )
-        
-        # Update trader followers count
-        trader.followers += 1
-        trader.save()
-        
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({
-                'success': True,
-                'message': f'Now copying {trader.name} with ${amount:,.2f}',
-                'type': 'success',
-                'new_balance': float(user.balance),
-                'copy_trade': {
-                    'id': copy_trade.id,
-                    'trader': trader.name,
-                    'amount': float(amount),
-                    'started_at': copy_trade.started_at.strftime('%Y-%m-%d %H:%M:%S'),
-                    'status': copy_trade.status
-                }
-            })
-        
-        messages.success(request, f'Now copying {trader.name} with ${amount:,.2f}')
-        return redirect('copy_trading')
+        else:
+            # Handle start copy trade (existing code)
+            trader = get_object_or_404(Trader, id=trader_id)
+            
+            # Check if amount is provided
+            if not amount:
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'Amount is required',
+                        'type': 'error'
+                    })
+                messages.error(request, 'Amount is required')
+                return redirect('copy_trading')
+            
+            try:
+                amount = Decimal(amount)
+            except:
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'Invalid amount format',
+                        'type': 'error'
+                    })
+                messages.error(request, 'Invalid amount format')
+                return redirect('copy_trading')
+            
+            # Check minimum investment
+            if amount < trader.min_investment:
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': False,
+                        'error': f'Minimum investment is ${trader.min_investment}',
+                        'type': 'error',
+                        'min_investment': float(trader.min_investment)
+                    })
+                messages.error(request, f'Minimum investment for {trader.name} is ${trader.min_investment}')
+                return redirect('copy_trading')
+            
+            # Check if already copying
+            existing = CopyTrade.objects.filter(
+                user=request.user, 
+                trader=trader, 
+                status='active'
+            ).first()
+            
+            if existing:
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': False,
+                        'error': f'You are already copying {trader.name}',
+                        'type': 'warning'
+                    })
+                messages.warning(request, f'You are already copying {trader.name}')
+                return redirect('copy_trading')
+            
+            # Check balance
+            if request.user.balance < amount:
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': False,
+                        'error': f'Insufficient balance. You need ${amount - request.user.balance} more.',
+                        'type': 'error',
+                        'balance': float(request.user.balance),
+                        'required': float(amount)
+                    })
+                messages.error(
+                    request, 
+                    f'Insufficient balance. You need ${amount - request.user.balance:,.2f} more.'
+                )
+                return redirect('copy_trading')
+            
+            # Deduct balance and create copy trade
+            user = request.user
+            user.balance -= amount
+            user.save()
+            
+            copy_trade = CopyTrade.objects.create(
+                user=user,
+                trader=trader,
+                amount=amount,
+                status='active'
+            )
+            
+            # Create transaction record
+            Transaction.objects.create(
+                user=user,
+                transaction_type='trade',
+                amount=amount,
+                status='completed',
+                reference_id=f"COPY-{copy_trade.id}",
+                description=f'Copy trading investment in {trader.name}'
+            )
+            
+            # Create notification
+            Notification.objects.create(
+                user=user,
+                title='Copy Trade Started',
+                message=f'You have started copying {trader.name} with ${amount:,.2f}'
+            )
+            
+            # Update trader followers count
+            trader.followers += 1
+            trader.save()
+            
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'success': True,
+                    'message': f'Now copying {trader.name} with ${amount:,.2f}',
+                    'type': 'success',
+                    'new_balance': float(user.balance),
+                    'copy_trade': {
+                        'id': copy_trade.id,
+                        'trader': trader.name,
+                        'amount': float(amount),
+                        'started_at': copy_trade.started_at.strftime('%Y-%m-%d %H:%M:%S'),
+                        'status': copy_trade.status
+                    }
+                })
+            
+            messages.success(request, f'Now copying {trader.name} with ${amount:,.2f}')
+            return redirect('copy_trading')
     
     # GET request
     traders = Trader.objects.filter(is_active=True)[:15]
@@ -397,7 +438,6 @@ def copy_trading(request):
         'user': request.user,
     }
     return render(request, 'user/copytrading.html', context)
-
 
 @login_required
 def stop_copy_trade(request, trade_id):
@@ -441,12 +481,86 @@ def stop_copy_trade(request, trade_id):
     
     return redirect('copy_trading')
 
+from django.core.paginator import Paginator
+from django.db.models import Q
+
 @login_required
 def copy_traders(request):
+    # Get all active traders
     traders = Trader.objects.filter(is_active=True)
     
+    # Get filter parameters from request
+    search_query = request.GET.get('search', '')
+    sort_by = request.GET.get('sort', 'monthly_return')
+    sort_direction = request.GET.get('direction', 'desc')
+    risk_levels = request.GET.getlist('risk')
+    specialties = request.GET.getlist('specialty')
+    status = request.GET.getlist('status', ['active'])
+    min_monthly = request.GET.get('min_monthly', 0)
+    max_fee = request.GET.get('max_fee', 100)
+    
+    # Apply search filter
+    if search_query:
+        traders = traders.filter(
+            Q(name__icontains=search_query) |
+            Q(description__icontains=search_query) |
+            Q(specialty__icontains=search_query)
+        )
+    
+    # Apply risk level filter
+    if risk_levels:
+        traders = traders.filter(risk_level__in=risk_levels)
+    
+    # Apply specialty filter
+    if specialties:
+        traders = traders.filter(specialty__in=specialties)
+    
+    # Apply status filter
+    if 'active' in status:
+        traders = traders.filter(is_active=True)
+    
+    # Apply minimum monthly return filter
+    if min_monthly:
+        try:
+            min_monthly = float(min_monthly)
+            traders = traders.filter(monthly_return__gte=min_monthly)
+        except ValueError:
+            pass
+    
+    # Apply maximum fee filter
+    if max_fee:
+        try:
+            max_fee = float(max_fee)
+            traders = traders.filter(fee_percentage__lte=max_fee)
+        except ValueError:
+            pass
+    
+    # Apply sorting
+    if sort_direction == 'desc':
+        sort_field = f'-{sort_by}'
+    else:
+        sort_field = sort_by
+    
+    traders = traders.order_by(sort_field)
+    
+    # Pagination
+    paginator = Paginator(traders, 12)  # Show 12 traders per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     context = {
-        'traders': traders,
+        'traders': page_obj,
+        'total_traders': traders.count(),
+        'current_filters': {
+            'search': search_query,
+            'sort': sort_by,
+            'direction': sort_direction,
+            'risk': risk_levels,
+            'specialty': specialties,
+            'status': status,
+            'min_monthly': min_monthly,
+            'max_fee': max_fee,
+        }
     }
     return render(request, 'user/copytraders.html', context)
 
@@ -832,16 +946,123 @@ def referral(request):
     }
     return render(request, 'user/referral.html', context)
 
+
+def forgot_password(request):
+    """Handle forgot password request - for non-authenticated users"""
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+    
+    if request.method == 'POST':
+        form = ForgotPasswordForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            try:
+                user = User.objects.get(email=email)
+                
+                # Invalidate any existing unused tokens
+                PasswordResetToken.objects.filter(
+                    user=user, used=False, expires_at__gt=timezone.now()
+                ).update(used=True)
+                
+                # Create new token
+                token = PasswordResetToken.objects.create(user=user)
+                
+                # Generate reset URL
+                reset_url = request.build_absolute_uri(
+                    reverse('reset_password', kwargs={'token': token.token})
+                )
+                
+                # Send email
+                try:
+                    send_password_reset_email(user, reset_url)
+                    messages.success(
+                        request, 
+                        'If an account exists with this email, you will receive password reset instructions.'
+                    )
+                except Exception as e:
+                    # Log error but don't reveal to user
+                    print(f"Email sending failed: {e}")
+                    messages.success(
+                        request,
+                        'If an account exists with this email, you will receive password reset instructions.'
+                    )
+                    
+            except User.DoesNotExist:
+                # Don't reveal that user doesn't exist
+                messages.success(
+                    request,
+                    'If an account exists with this email, you will receive password reset instructions.'
+                )
+            
+            return redirect('login')
+    else:
+        form = ForgotPasswordForm()
+    
+    return render(request, 'forgot-password.html', {'form': form})
+
+def reset_password(request, token):
+    """Handle password reset with token"""
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+    
+    # Get and validate token
+    try:
+        reset_token = PasswordResetToken.objects.get(token=token, used=False)
+        if not reset_token.is_valid():
+            messages.error(request, 'This password reset link has expired.')
+            return redirect('forgot_password')
+    except PasswordResetToken.DoesNotExist:
+        messages.error(request, 'Invalid password reset link.')
+        return redirect('forgot_password')
+    
+    if request.method == 'POST':
+        form = ResetPasswordForm(request.POST)
+        if form.is_valid():
+            user = reset_token.user
+            user.set_password(form.cleaned_data['new_password'])
+            user.save()
+            
+            # Mark token as used
+            reset_token.used = True
+            reset_token.save()
+            
+            # Send confirmation email
+            try:
+                send_password_changed_email(user)
+            except Exception as e:
+                print(f"Password changed email failed: {e}")
+            
+            messages.success(request, 'Your password has been reset successfully. You can now login.')
+            return redirect('login')
+    else:
+        form = ResetPasswordForm()
+    
+    return render(request, 'reset-password.html', {
+        'form': form,
+        'valid_token': True,
+        'email': reset_token.user.email
+    })
+
 @login_required
 def password(request):
+    """Handle password change for logged in users"""
     if request.method == 'POST':
         form = PasswordChangeForm(request.POST)
         if form.is_valid():
+            # Verify current password
             if not request.user.check_password(form.cleaned_data['current_password']):
                 messages.error(request, 'Current password is incorrect')
             else:
+                # Update password
                 request.user.set_password(form.cleaned_data['new_password'])
                 request.user.save()
+                
+                # Send confirmation email
+                try:
+                    send_password_changed_email(request.user)
+                except Exception as e:
+                    print(f"Password changed email failed: {e}")
+                
                 messages.success(request, 'Password changed successfully')
                 return redirect('profile')
     else:
