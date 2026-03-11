@@ -2162,7 +2162,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = env('EMAIL_HOST',default=\"mail.privateemail.com\")\nEMAIL_PORT = env('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = env('EMAIL_HOST')\nEMAIL_PORT = env.int('EMAIL_PORT', default=465)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)\nEMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2171,7 +2171,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_HOST = env('EMAIL_HOST',default=\"mail.privateemail.com\")\nEMAIL_PORT = env('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "peekOfCode": "EMAIL_HOST = env('EMAIL_HOST')\nEMAIL_PORT = env.int('EMAIL_PORT', default=465)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)\nEMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2180,7 +2180,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_PORT = env('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "peekOfCode": "EMAIL_PORT = env.int('EMAIL_PORT', default=465)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)\nEMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2189,7 +2189,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "peekOfCode": "EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)\nEMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2198,7 +2198,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True) \nEMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "peekOfCode": "EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)\nEMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2207,7 +2207,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='support@veltrixtraders.com')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "peekOfCode": "EMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2216,7 +2216,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')\nDEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2225,7 +2225,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "DEFAULT_FROM_EMAIL = Address(display_name=\"Veltrixtraders\", addr_spec=\"support@veltrixtraders.com\")\nSITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "peekOfCode": "DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2234,7 +2234,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "SITE_URL = env('SITE_URL', default='https://veltrixtraders.com')",
+        "peekOfCode": "SITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
