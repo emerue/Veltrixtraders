@@ -1,0 +1,97 @@
+{% extends "user/includes/header.html" %}
+{% load static %}
+
+{% block title %}Access Denied - Veltrixtraders{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20 min-h-screen flex items-center justify-center">
+    <div class="text-center">
+        <!-- Error Illustration -->
+        <div class="mb-8 flex justify-center">
+            <div class="relative">
+                <div class="w-48 h-48 rounded-full bg-gradient-to-b from-red-500/20 to-red-500/5 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-red-500">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <div class="absolute -top-4 -right-4">
+                    <span class="text-8xl font-bold text-red-500/20">403</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Access Denied
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-4 max-w-md mx-auto">
+            You don't have permission to access this page.
+        </p>
+        
+        {% if user.is_authenticated %}
+        <p class="text-sm text-gray-500 dark:text-gray-500 mb-8">
+            Your account level doesn't have the required permissions.
+            {% if user.is_kyc_verified %}
+            Please contact support if you believe this is an error.
+            {% else %}
+            Complete your KYC verification to access this feature.
+            {% endif %}
+        </p>
+        {% else %}
+        <p class="text-sm text-gray-500 dark:text-gray-500 mb-8">
+            Please log in to access this page.
+        </p>
+        {% endif %}
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            {% if user.is_authenticated %}
+                {% if not user.is_kyc_verified %}
+                <a href="{% url 'kyc' %}" 
+                   class="inline-flex items-center justify-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Complete KYC
+                </a>
+                {% endif %}
+                <a href="{% url 'dashboard' %}" 
+                   class="inline-flex items-center justify-center px-6 py-3 bg-brandblue hover:bg-blue-600 text-white font-semibold rounded-lg transition-all duration-200">
+                    Go to Dashboard
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" 
+                   class="inline-flex items-center justify-center px-6 py-3 bg-brandblue hover:bg-blue-600 text-white font-semibold rounded-lg transition-all duration-200">
+                    Log In
+                </a>
+                <a href="{% url 'register' %}" 
+                   class="inline-flex items-center justify-center px-6 py-3 bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200">
+                    Create Account
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- Support Section -->
+        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+            <p class="text-sm text-gray-500 dark:text-gray-500">
+                Need help? <a href="#" onclick="showSupport()" class="text-brandblue hover:underline">Contact Support</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+function showSupport() {
+    if (window.Smartsupp) {
+        window.Smartsupp('chat:open');
+    } else {
+        window.location.href = "mailto:support@veltrixtraders.com";
+    }
+}
+</script>
+{% endblock %}

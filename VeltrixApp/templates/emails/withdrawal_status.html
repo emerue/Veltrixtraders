@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,35 +117,35 @@
                 <h3>Transaction Details:</h3>
                 
                 <div class="detail-row">
-                    <span class="label">Transaction ID:</span>
+                    <span class="label">Transaction ID: </span>
                     <span class="value">{{ withdrawal.transaction_id }}</span>
                 </div>
                 
                 <div class="detail-row">
-                    <span class="label">Amount:</span>
+                    <span class="label">Amount: </span>
                     <span class="value">${{ withdrawal.amount_usd|floatformat:2 }}</span>
                 </div>
                 
                 <div class="detail-row">
-                    <span class="label">Payment Method:</span>
+                    <span class="label">Payment Method: </span>
                     <span class="value">{{ withdrawal.payment_method.name }}</span>
                 </div>
                 
                 <div class="detail-row">
-                    <span class="label">Date:</span>
+                    <span class="label">Date: </span>
                     <span class="value">{{ withdrawal.created_at|date:"F j, Y, g:i a" }}</span>
                 </div>
                 
                 {% if withdrawal.completed_at %}
                 <div class="detail-row">
-                    <span class="label">Processed Date:</span>
+                    <span class="label">Processed Date: </span>
                     <span class="value">{{ withdrawal.completed_at|date:"F j, Y, g:i a" }}</span>
                 </div>
                 {% endif %}
                 
                 {% if withdrawal.status == 'completed' %}
                 <div class="detail-row">
-                    <span class="label">Destination:</span>
+                    <span class="label">Destination: </span>
                     <span class="value">
                         {% if withdrawal.wallet_address %}
                             {{ withdrawal.wallet_address }}
@@ -155,7 +156,7 @@
                 </div>
                 
                 <div class="detail-row">
-                    <span class="label">Updated Balance:</span>
+                    <span class="label">Updated Balance: </span>
                     <span class="value">${{ user.balance|floatformat:2 }}</span>
                 </div>
                 {% endif %}

@@ -770,6 +770,14 @@
         "documentation": {}
     },
     {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "login",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -1565,6 +1573,78 @@
         "documentation": {}
     },
     {
+        "label": "custom_404",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def custom_404(request, exception):\n    \"\"\"Custom 404 error handler\"\"\"\n    return render(request, '404.html', status=404)\ndef custom_403(request, exception):\n    \"\"\"Custom 403 error handler\"\"\"\n    return render(request, '403.html', status=403)\ndef custom_500(request):\n    \"\"\"Custom 500 error handler\"\"\"\n    return render(request, '500.html', status=500)\ndef custom_400(request, exception):",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "custom_403",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def custom_403(request, exception):\n    \"\"\"Custom 403 error handler\"\"\"\n    return render(request, '403.html', status=403)\ndef custom_500(request):\n    \"\"\"Custom 500 error handler\"\"\"\n    return render(request, '500.html', status=500)\ndef custom_400(request, exception):\n    \"\"\"Custom 400 error handler\"\"\"\n    return render(request, '400.html', {'error': 'Bad Request'}, status=400)\ndef custom_405(request, exception):",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "custom_500",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def custom_500(request):\n    \"\"\"Custom 500 error handler\"\"\"\n    return render(request, '500.html', status=500)\ndef custom_400(request, exception):\n    \"\"\"Custom 400 error handler\"\"\"\n    return render(request, '400.html', {'error': 'Bad Request'}, status=400)\ndef custom_405(request, exception):\n    \"\"\"Custom 405 error handler\"\"\"\n    return render(request, '405.html', {'error': 'Method Not Allowed'}, status=405)\n# Add these test views temporarily",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "custom_400",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def custom_400(request, exception):\n    \"\"\"Custom 400 error handler\"\"\"\n    return render(request, '400.html', {'error': 'Bad Request'}, status=400)\ndef custom_405(request, exception):\n    \"\"\"Custom 405 error handler\"\"\"\n    return render(request, '405.html', {'error': 'Method Not Allowed'}, status=405)\n# Add these test views temporarily\ndef test_404(request):\n    from django.http import Http404\n    raise Http404(\"Test 404 page\")",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "custom_405",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def custom_405(request, exception):\n    \"\"\"Custom 405 error handler\"\"\"\n    return render(request, '405.html', {'error': 'Method Not Allowed'}, status=405)\n# Add these test views temporarily\ndef test_404(request):\n    from django.http import Http404\n    raise Http404(\"Test 404 page\")\ndef test_403(request):\n    from django.core.exceptions import PermissionDenied\n    raise PermissionDenied(\"Test 403 page\")",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "test_404",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def test_404(request):\n    from django.http import Http404\n    raise Http404(\"Test 404 page\")\ndef test_403(request):\n    from django.core.exceptions import PermissionDenied\n    raise PermissionDenied(\"Test 403 page\")\ndef test_500(request):\n    raise Exception(\"Test 500 page\")\n# Helper function to load traders from JSON\ndef load_traders_from_json():",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "test_403",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def test_403(request):\n    from django.core.exceptions import PermissionDenied\n    raise PermissionDenied(\"Test 403 page\")\ndef test_500(request):\n    raise Exception(\"Test 500 page\")\n# Helper function to load traders from JSON\ndef load_traders_from_json():\n    traders = []\n    json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n    try:",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "test_500",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def test_500(request):\n    raise Exception(\"Test 500 page\")\n# Helper function to load traders from JSON\ndef load_traders_from_json():\n    traders = []\n    json_file_path = os.path.join(settings.BASE_DIR, 'traders.json')\n    try:\n        with open(json_file_path, 'r') as file:\n            data = json.load(file)\n            traders_data = data.get('traders', [])",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
         "label": "load_traders_from_json",
         "kind": 2,
         "importPath": "VeltrixApp.views",
@@ -1920,7 +2000,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def forgot_password(request):\n    \"\"\"Handle forgot password request - for non-authenticated users\"\"\"\n    if request.user.is_authenticated:\n        return redirect('dashboard')\n    if request.method == 'POST':\n        form = ForgotPasswordForm(request.POST)\n        if form.is_valid():\n            email = form.cleaned_data['email']\n            try:\n                user = User.objects.get(email=email)",
+        "peekOfCode": "def forgot_password(request):\n    \"\"\"Handle forgot password request - for non-authenticated users\"\"\"\n    if request.user.is_authenticated:\n        return redirect('dashboard')\n    if request.method == 'POST':\n        form = ForgotPasswordForm(request.POST)\n        if form.is_valid():\n            email = form.cleaned_data['email']\n            print(email)\n            try:",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -2019,7 +2099,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "env = environ.Env()\nENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True",
+        "peekOfCode": "env = environ.Env()\nENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2028,7 +2108,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "ENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]",
+        "peekOfCode": "ENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False\nALLOWED_HOSTS = [\"*\"]",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2037,7 +2117,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2046,7 +2126,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "peekOfCode": "DEBUG = False\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2408,6 +2488,51 @@
         "description": "core.settings",
         "peekOfCode": "SITE_URL = env('SITE_URL')",
         "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "handler404",
+        "kind": 5,
+        "importPath": "core.urls",
+        "description": "core.urls",
+        "peekOfCode": "handler404 = 'VeltrixApp.views.custom_404'\nhandler403 = 'VeltrixApp.views.custom_403'\nhandler500 = 'VeltrixApp.views.custom_500'\nhandler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "detail": "core.urls",
+        "documentation": {}
+    },
+    {
+        "label": "handler403",
+        "kind": 5,
+        "importPath": "core.urls",
+        "description": "core.urls",
+        "peekOfCode": "handler403 = 'VeltrixApp.views.custom_403'\nhandler500 = 'VeltrixApp.views.custom_500'\nhandler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "detail": "core.urls",
+        "documentation": {}
+    },
+    {
+        "label": "handler500",
+        "kind": 5,
+        "importPath": "core.urls",
+        "description": "core.urls",
+        "peekOfCode": "handler500 = 'VeltrixApp.views.custom_500'\nhandler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "detail": "core.urls",
+        "documentation": {}
+    },
+    {
+        "label": "handler400",
+        "kind": 5,
+        "importPath": "core.urls",
+        "description": "core.urls",
+        "peekOfCode": "handler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "detail": "core.urls",
+        "documentation": {}
+    },
+    {
+        "label": "handler405",
+        "kind": 5,
+        "importPath": "core.urls",
+        "description": "core.urls",
+        "peekOfCode": "handler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "detail": "core.urls",
         "documentation": {}
     },
     {

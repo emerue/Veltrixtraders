@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,45 +114,45 @@
             </div>
             
             <div class="details-box">
-                <h3>Transaction Details:</h3>
+                <h3>Transaction Details: </h3>
                 
                 <div class="detail-row">
-                    <span class="label">Transaction ID:</span>
+                    <span class="label">Transaction ID: </span>
                     <span class="value">{{ deposit.transaction_id }}</span>
                 </div>
                 
                 <div class="detail-row">
-                    <span class="label">Amount:</span>
+                    <span class="label">Amount: </span>
                     <span class="value">${{ deposit.amount_usd|floatformat:2 }}</span>
                 </div>
                 
                 <div class="detail-row">
-                    <span class="label">Payment Method:</span>
+                    <span class="label">Payment Method: </span>
                     <span class="value">{{ deposit.payment_method.name }}</span>
                 </div>
                 
                 <div class="detail-row">
-                    <span class="label">Date:</span>
+                    <span class="label">Date: </span>
                     <span class="value">{{ deposit.created_at|date:"F j, Y, g:i a" }}</span>
                 </div>
                 
                 {% if deposit.completed_at %}
                 <div class="detail-row">
-                    <span class="label">Processed Date:</span>
+                    <span class="label">Processed Date: </span>
                     <span class="value">{{ deposit.completed_at|date:"F j, Y, g:i a" }}</span>
                 </div>
                 {% endif %}
                 
                 {% if deposit.status == 'completed' %}
                 <div class="detail-row">
-                    <span class="label">Updated Balance:</span>
+                    <span class="label">Updated Balance: </span>
                     <span class="value">${{ user.balance|floatformat:2 }}</span>
                 </div>
                 {% endif %}
                 
                 {% if deposit.status == 'failed' and deposit.notes %}
                 <div class="detail-row">
-                    <span class="label">Reason:</span>
+                    <span class="label">Reason: </span>
                     <span class="value">{{ deposit.notes }}</span>
                 </div>
                 {% endif %}

@@ -33,6 +33,40 @@ from django.urls import reverse
 from .models import User, PasswordResetToken
 from .forms import ForgotPasswordForm, ResetPasswordForm, PasswordChangeForm
 
+from django.shortcuts import render
+
+def custom_404(request, exception):
+    """Custom 404 error handler"""
+    return render(request, '404.html', status=404)
+
+def custom_403(request, exception):
+    """Custom 403 error handler"""
+    return render(request, '403.html', status=403)
+
+def custom_500(request):
+    """Custom 500 error handler"""
+    return render(request, '500.html', status=500)
+
+def custom_400(request, exception):
+    """Custom 400 error handler"""
+    return render(request, '400.html', {'error': 'Bad Request'}, status=400)
+
+def custom_405(request, exception):
+    """Custom 405 error handler"""
+    return render(request, '405.html', {'error': 'Method Not Allowed'}, status=405)
+
+
+# Add these test views temporarily
+def test_404(request):
+    from django.http import Http404
+    raise Http404("Test 404 page")
+
+def test_403(request):
+    from django.core.exceptions import PermissionDenied
+    raise PermissionDenied("Test 403 page")
+
+def test_500(request):
+    raise Exception("Test 500 page")
 
 # Helper function to load traders from JSON
 def load_traders_from_json():
@@ -956,6 +990,7 @@ def forgot_password(request):
         form = ForgotPasswordForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
+            print(email)
             try:
                 user = User.objects.get(email=email)
                 
@@ -1037,7 +1072,7 @@ def reset_password(request, token):
     else:
         form = ResetPasswordForm()
     
-    return render(request, 'reset-password.html', {
+    return render(request, 'user/reset-password.html', {
         'form': form,
         'valid_token': True,
         'email': reset_token.user.email
