@@ -1843,20 +1843,29 @@
         "documentation": {}
     },
     {
-        "label": "env",
-        "kind": 5,
-        "importPath": "core.settings",
-        "description": "core.settings",
-        "peekOfCode": "env = environ.Env()\nenviron.Env.read_env()\nBASE_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]",
-        "detail": "core.settings",
-        "documentation": {}
-    },
-    {
         "label": "BASE_DIR",
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "BASE_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "BASE_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nenv = environ.Env()\nENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "env",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "env = environ.Env()\nENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ENV_FILE",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "ENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2162,7 +2171,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = env('EMAIL_HOST')\nEMAIL_PORT = env.int('EMAIL_PORT', default=465)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)\nEMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
+        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = env('EMAIL_HOST', default='mail.privateemail.com')\nEMAIL_PORT = env.int('EMAIL_PORT', default=465)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)\nEMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2171,7 +2180,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "EMAIL_HOST = env('EMAIL_HOST')\nEMAIL_PORT = env.int('EMAIL_PORT', default=465)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)\nEMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
+        "peekOfCode": "EMAIL_HOST = env('EMAIL_HOST', default='mail.privateemail.com')\nEMAIL_PORT = env.int('EMAIL_PORT', default=465)\nEMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)\nEMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)\nEMAIL_HOST_USER = env('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='Veltrix Traders <support@veltrixtraders.com>')\nSITE_URL = env('SITE_URL')",
         "detail": "core.settings",
         "documentation": {}
     },

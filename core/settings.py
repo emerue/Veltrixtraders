@@ -14,13 +14,15 @@ from pathlib import Path
 import os
 from email.headerregistry import Address
 
-# Initialize environment variables
-env = environ.Env()
-environ.Env.read_env()
-
 BASE_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+env = environ.Env()
+
+ENV_FILE = os.path.join(BASE_DIR, ".env")
+if os.path.exists(ENV_FILE):
+    environ.Env.read_env(ENV_FILE)
+    
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -198,7 +200,7 @@ JAZZMIN_SETTINGS = {
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST = env('EMAIL_HOST', default='mail.privateemail.com')
 EMAIL_PORT = env.int('EMAIL_PORT', default=465)
 EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=False)
 EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=True)
