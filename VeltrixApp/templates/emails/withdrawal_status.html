@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Withdrawal Status Update - Veltrixtraders</title>
+    <title>Withdrawal Status Update</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -123,7 +123,7 @@
                 
                 <div class="detail-row">
                     <span class="label">Amount: </span>
-                    <span class="value">${{ withdrawal.amount_usd|floatformat:2 }}</span>
+                    <span class="value">{{ withdrawal.payment_method.currency.symbol }}{{ withdrawal.amount_usd|floatformat:2 }}</span>
                 </div>
                 
                 <div class="detail-row">

@@ -33,7 +33,7 @@
                                         <table style="width: 100%; border-collapse: collapse;">
                                             <tr>
                                                 <td style="padding: 8px 0; border-bottom: 1px solid #ddd;"><strong>Amount:</strong></td>
-                                                <td style="padding: 8px 0; border-bottom: 1px solid #ddd;">${{ deposit.amount_usd|floatformat:2 }} USD</td>
+                                                <td style="padding: 8px 0; border-bottom: 1px solid #ddd;"> {{ deposit.payment_method.currency.symbol }}{{ deposit.amount_usd|floatformat:2 }}</td>
                                             </tr>
                                             <tr>
                                                 <td style="padding: 8px 0; border-bottom: 1px solid #ddd;"><strong>Payment Method:</strong></td>

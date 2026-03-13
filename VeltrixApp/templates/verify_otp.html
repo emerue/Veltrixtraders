@@ -1,0 +1,209 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - Veltrixtraders</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'img/fav.svg' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" crossorigin="" href="{% static 'css/index-main.css' %}">
+    <style>
+        [x-cloak] { display: none !important; }
+        .otp-input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            margin: 0 5px;
+        }
+        .otp-input:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .dark .otp-input {
+            background: #1f2937;
+            border-color: #374151;
+            color: white;
+        }
+        .countdown {
+            font-size: 14px;
+            color: #ef4444;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body style="font-family: Montserrat, sans-serif;" x-data="themeHandler()" x-init="initTheme()" :class="{ 'dark': isDark }">
+    <div id="root">
+        <div class="min-h-screen grid grid-cols-5 overflow-hidden bg-gray-50 dark:bg-bodydark">
+            <div class="md:col-span-2 relative bg-bodydark hidden md:flex flex-col justify-center">
+                <div class="absolute top-0 left-0 z-[4] w-full h-full bg-gradient-to-b from-brandblue/30 via-brandblue/10 to-bodydark"></div>
+                <div class="absolute z-10 top-0 left-0 pt-10 lg:pl-10 pl-5 flex flex-col gap-6">
+                    <a class="" href="/">
+                        <img src="{% static 'img/logo.svg' %}" alt="logo" class="w-35" />
+                    </a>
+                    <p class="text-gray-300 text-sm mt-10 leading-6 max-w-80">
+                        Verify your email to complete registration and start your trading journey with Veltrixtraders.
+                    </p>
+                    <div class="flex" style="transform: translateY(-8.67777px)">
+                        <img src="https://res.cloudinary.com/ddb1vjioq/image/upload/v1747727915/Adobe_Express_-_file_6_aore83.png" alt="Verify OTP" class="w-[100%]">
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-3 col-span-5 p-8 space-y-6">
+                <div class="flex items-center justify-end gap-3">
+                    <a class="text-sm font-semibold text-brandblue" href="{% url 'login' %}">Login</a>
+                    <div class="grid place-content-center">
+                        <label :class="{ 'bg-black border-gray-800': isDark, 'bg-gray-300 border-gray-300': !isDark }" class="relative m-0 block h-6.5 w-12 rounded-full border-2 cursor-pointer bg-black border-gray-800">
+                            <input @click="toggleTheme()" type="checkbox" class="absolute top-0 z-50 m-0 h-full w-full cursor-pointer opacity-0">
+                            <span :class="{ '!right-[2px] !translate-x-[110%]': isDark, 'translate-x-0 left-[2px]': !isDark }" class="absolute top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-white dark:bg-gray-800 duration-75 ease-linear">
+                                <span x-show="!isDark">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                                </span>
+                                <span x-show="isDark" x-cloak>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-200"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="w-full max-w-100 mx-auto">
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">Verify Your Email</h2>
+                    <p class="text-gray-500 text-sm dark:text-gray-500 mb-6">
+                        We've sent a 6-digit verification code to <strong>{{ email }}</strong>
+                    </p>
+                    
+                    <form method="POST" action="{% url 'verify_otp' %}" class="space-y-6">
+                        {% csrf_token %}
+                        <input type="hidden" name="email" value="{{ email }}">
+                        
+                        <div>
+                            <label class="inputLabel">Enter Verification Code</label>
+                            <div class="flex justify-center items-center space-x-2 mt-2" x-data="otpHandler()">
+                                <input type="text" maxlength="1" class="otp-input" x-ref="input1" @keyup="handleKeyUp($event, 1)" @keydown="handleKeyDown($event, 1)" @paste="handlePaste($event)">
+                                <input type="text" maxlength="1" class="otp-input" x-ref="input2" @keyup="handleKeyUp($event, 2)" @keydown="handleKeyDown($event, 2)">
+                                <input type="text" maxlength="1" class="otp-input" x-ref="input3" @keyup="handleKeyUp($event, 3)" @keydown="handleKeyDown($event, 3)">
+                                <input type="text" maxlength="1" class="otp-input" x-ref="input4" @keyup="handleKeyUp($event, 4)" @keydown="handleKeyDown($event, 4)">
+                                <input type="text" maxlength="1" class="otp-input" x-ref="input5" @keyup="handleKeyUp($event, 5)" @keydown="handleKeyDown($event, 5)">
+                                <input type="text" maxlength="1" class="otp-input" x-ref="input6" @keyup="handleKeyUp($event, 6)" @keydown="handleKeyDown($event, 6)">
+                            </div>
+                            <input type="hidden" name="otp" id="otp-hidden">
+                        </div>
+                        
+                        <div class="countdown text-center" x-data="countdownHandler(600)" x-init="startCountdown()">
+                            <span x-show="timeLeft > 0">Code expires in <span x-text="formatTime()"></span></span>
+                            <span x-show="timeLeft <= 0">
+                                <a href="{% url 'resend_otp' %}?email={{ email }}" class="text-brandblue hover:underline">Resend Code</a>
+                            </span>
+                        </div>
+                        
+                        <button type="submit" class="font-semibold w-full hover:bg-blue-600 bg-brandblue text-white py-2 rounded-md transition-colors duration-300 flex items-center justify-center">
+                            Verify Email
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script>
+        function themeHandler() {
+            return {
+                isDark: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches),
+                initTheme() {
+                    if (this.isDark) document.documentElement.classList.add('dark');
+                    else document.documentElement.classList.remove('dark');
+                },
+                toggleTheme() {
+                    this.isDark = !this.isDark;
+                    localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+                    if (this.isDark) document.documentElement.classList.add('dark');
+                    else document.documentElement.classList.remove('dark');
+                }
+            }
+        }
+        
+        function otpHandler() {
+            return {
+                handleKeyUp(event, index) {
+                    const input = event.target;
+                    const value = input.value;
+                    
+                    // Collect all OTP values
+                    let otp = '';
+                    for (let i = 1; i <= 6; i++) {
+                        const val = this.$refs[`input${i}`].value;
+                        otp += val || '';
+                    }
+                    document.getElementById('otp-hidden').value = otp;
+                    
+                    // Auto-focus next input
+                    if (value.length === 1 && index < 6) {
+                        this.$refs[`input${index + 1}`].focus();
+                    }
+                },
+                handleKeyDown(event, index) {
+                    // Handle backspace
+                    if (event.key === 'Backspace' && !event.target.value && index > 1) {
+                        this.$refs[`input${index - 1}`].focus();
+                    }
+                },
+                handlePaste(event) {
+                    event.preventDefault();
+                    const pastedData = event.clipboardData.getData('text').slice(0, 6);
+                    if (/^\d+$/.test(pastedData)) {
+                        for (let i = 0; i < pastedData.length; i++) {
+                            if (i < 6) {
+                                this.$refs[`input${i + 1}`].value = pastedData[i];
+                            }
+                        }
+                        // Focus last filled or next empty
+                        const lastIndex = Math.min(pastedData.length, 6);
+                        if (lastIndex < 6) {
+                            this.$refs[`input${lastIndex + 1}`].focus();
+                        } else {
+                            this.$refs.input6.focus();
+                        }
+                        
+                        // Update hidden input
+                        document.getElementById('otp-hidden').value = pastedData;
+                    }
+                }
+            }
+        }
+        
+        function countdownHandler(seconds) {
+            return {
+                timeLeft: seconds,
+                startCountdown() {
+                    const interval = setInterval(() => {
+                        if (this.timeLeft > 0) {
+                            this.timeLeft--;
+                        } else {
+                            clearInterval(interval);
+                        }
+                    }, 1000);
+                },
+                formatTime() {
+                    const minutes = Math.floor(this.timeLeft / 60);
+                    const seconds = this.timeLeft % 60;
+                    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

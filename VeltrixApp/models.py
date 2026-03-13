@@ -32,6 +32,12 @@ class User(AbstractUser):
     two_factor_secret = models.CharField(max_length=255, blank=True, null=True)
     is_kyc_verified = models.BooleanField(default=False)
     
+    # OTP verification fields
+    email_otp = models.CharField(max_length=6, blank=True, null=True)
+    email_otp_created_at = models.DateTimeField(blank=True, null=True)
+    is_email_verified = models.BooleanField(default=False)
+    
+    
     # Notification Preferences
     email_deposit = models.BooleanField(default=True)
     email_withdrawal = models.BooleanField(default=True)
@@ -88,6 +94,28 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+# Add to your models.py - replace the existing PaymentMethod and PaymentMethodDetail
+
+class Currency(models.Model):
+    """Currency model to store different currency options"""
+    CURRENCY_CHOICES = [
+        ('USD', 'US Dollar'),
+        ('GBP', 'British Pound'),
+        ('EUR', 'Euro'),
+        ('CZK', 'Czech Koruna'),
+        ('CNY', 'Chinese Yuan'),
+        ('CAD', 'Canadian Dollar'),
+        ('JPY', 'Japanese Yen'),
+    ]
+    
+    code = models.CharField(max_length=3, choices=CURRENCY_CHOICES, unique=True)
+    name = models.CharField(max_length=50)
+    symbol = models.CharField(max_length=10)
+    is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"{self.code} - {self.name}"
+
 
 class PaymentMethod(models.Model):
     TYPE_CHOICES = [
@@ -127,12 +155,13 @@ class PaymentMethod(models.Model):
 
 class PaymentMethodDetail(models.Model):
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE, related_name='details')
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE, related_name='payment_details', null=True, blank=True)
     
-    # Common fields
+    # Common fields for crypto
     wallet_address = models.CharField(max_length=255, blank=True, null=True)
     network = models.CharField(max_length=50, blank=True, null=True)
     
-    # Bank details
+    # Bank details - now associated with specific currency
     bank_name = models.CharField(max_length=255, blank=True, null=True)
     account_name = models.CharField(max_length=255, blank=True, null=True)
     account_number = models.CharField(max_length=100, blank=True, null=True)
@@ -140,6 +169,9 @@ class PaymentMethodDetail(models.Model):
     swift_code = models.CharField(max_length=50, blank=True, null=True)
     iban = models.CharField(max_length=100, blank=True, null=True)
     beneficiary_address = models.TextField(blank=True, null=True)
+    
+    # Currency-specific bank details
+    currency_specific_instructions = models.TextField(blank=True, null=True)
     
     # QR Code
     qr_code = models.ImageField(upload_to='payment_qr/', blank=True, null=True)
@@ -149,7 +181,11 @@ class PaymentMethodDetail(models.Model):
     is_default = models.BooleanField(default=False)
     
     def __str__(self):
-        return f"{self.payment_method.name} Details"
+        currency_str = f" - {self.currency.code}" if self.currency else ""
+        return f"{self.payment_method.name}{currency_str} Details"
+    
+    class Meta:
+        unique_together = ['payment_method', 'currency']  # One detail per currency per method
 
 
 class Deposit(models.Model):
@@ -163,11 +199,21 @@ class Deposit(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='deposits')
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.SET_NULL, null=True)
-    amount_usd = models.DecimalField(max_digits=20, decimal_places=2)
+    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True)  # Add currency field
+    amount = models.DecimalField(max_digits=20, decimal_places=2)  # Changed from amount_usd
+    amount_usd = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)  # Keep for conversion
     crypto_amount = models.DecimalField(max_digits=20, decimal_places=8, blank=True, null=True)
     transaction_id = models.CharField(max_length=100, unique=True, blank=True)
     wallet_address = models.CharField(max_length=255, blank=True, null=True)
     network = models.CharField(max_length=50, blank=True, null=True)
+    
+    # Bank details for bank transfers
+    bank_name = models.CharField(max_length=255, blank=True, null=True)
+    account_name = models.CharField(max_length=255, blank=True, null=True)
+    account_number = models.CharField(max_length=100, blank=True, null=True)
+    routing_number = models.CharField(max_length=100, blank=True, null=True)
+    swift_code = models.CharField(max_length=50, blank=True, null=True)
+    iban = models.CharField(max_length=100, blank=True, null=True)
     
     # Proof of payment
     proof_image = models.ImageField(upload_to='deposit_proofs/', blank=True, null=True)
@@ -184,7 +230,8 @@ class Deposit(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f"{self.user.username} - ${self.amount_usd} - {self.status}"
+        currency_code = self.currency.code if self.currency else 'USD'
+        return f"{self.user.username} - {self.amount} {currency_code} - {self.status}"
 
 
 class Withdrawal(models.Model):
@@ -198,7 +245,9 @@ class Withdrawal(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='withdrawals')
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.SET_NULL, null=True)
-    amount_usd = models.DecimalField(max_digits=20, decimal_places=2)
+    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True)
+    amount = models.DecimalField(max_digits=20, decimal_places=2)
+    amount_usd = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
     crypto_amount = models.DecimalField(max_digits=20, decimal_places=8, blank=True, null=True)
     transaction_id = models.CharField(max_length=100, unique=True, blank=True)
     
@@ -225,9 +274,8 @@ class Withdrawal(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f"{self.user.username} - ${self.amount_usd} - {self.status}"
-
-
+        currency_code = self.currency.code if self.currency else 'USD'
+        return f"{self.user.username} - {self.amount} {currency_code} - {self.status}"
 class Trader(models.Model):
     RISK_CHOICES = [
         ('Low', 'Low'),
@@ -238,6 +286,7 @@ class Trader(models.Model):
     id = models.CharField(max_length=50, primary_key=True)
     name = models.CharField(max_length=255)
     image_url = models.URLField(max_length=500)
+    image = models.ImageField(upload_to="traders", null=True, blank=True)
     risk_level = models.CharField(max_length=20, choices=RISK_CHOICES)
     specialty = models.CharField(max_length=100)
     monthly_return = models.DecimalField(max_digits=10, decimal_places=2)

@@ -1,8 +1,6 @@
 from django.contrib import admin
 from django.urls import path
 import VeltrixApp.views as views
-from django.conf import settings
-from django.conf.urls.static import static
 
 
 
@@ -51,10 +49,10 @@ urlpatterns = [
     path('stop-copy-trade/<int:trade_id>/', views.stop_copy_trade, name='stop_copy_trade'),
     path('forgot-password/', views.forgot_password, name='forgot_password'),
     path('reset-password/<str:token>/', views.reset_password, name='reset_password'),
+    path('verify-otp/', views.verify_otp, name='verify_otp'),
+    path('resend-otp/', views.resend_otp, name='resend_otp'),
     path('password/', views.password, name='password'),
     path('test-404/', views.test_404, name='test_404'),
     path('test-403/', views.test_403, name='test_403'),
     path('test-500/', views.test_500, name='test_500'),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

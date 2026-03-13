@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deposit Status Update - Veltrixtraders</title>
+    <title>Deposit Status Update</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -123,7 +123,7 @@
                 
                 <div class="detail-row">
                     <span class="label">Amount: </span>
-                    <span class="value">${{ deposit.amount_usd|floatformat:2 }}</span>
+                    <span class="value"> {{ deposit.payment_method.currency.symbol }}{{ deposit.amount_usd|floatformat:2 }}</span>
                 </div>
                 
                 <div class="detail-row">
@@ -143,12 +143,6 @@
                 </div>
                 {% endif %}
                 
-                {% if deposit.status == 'completed' %}
-                <div class="detail-row">
-                    <span class="label">Updated Balance: </span>
-                    <span class="value">${{ user.balance|floatformat:2 }}</span>
-                </div>
-                {% endif %}
                 
                 {% if deposit.status == 'failed' and deposit.notes %}
                 <div class="detail-row">

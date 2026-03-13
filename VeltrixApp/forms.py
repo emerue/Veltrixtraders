@@ -90,22 +90,26 @@ class SetupEarningsForm(forms.ModelForm):
         model = User
         fields = ['annual_income', 'source_of_income', 'tax_residence']
 
-class DepositForm(forms.Form):
-    payment_method = forms.ChoiceField(choices=[])
-    amount = forms.DecimalField(min_value=1, max_digits=20, decimal_places=2)
-    
-    def __init__(self, *args, **kwargs):
-        payment_choices = kwargs.pop('payment_choices', [])
-        super().__init__(*args, **kwargs)
-        self.fields['payment_method'].choices = payment_choices
-
 class DepositProofForm(forms.Form):
     proof_image = forms.ImageField(required=True)
     notes = forms.CharField(widget=forms.Textarea, required=False)
 
+class DepositForm(forms.Form):
+    payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))
+    currency = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))
+    amount = forms.DecimalField(min_value=1, max_digits=20, decimal_places=2)
+    
+    def __init__(self, *args, **kwargs):
+        payment_choices = kwargs.pop('payment_choices', [])
+        currency_choices = kwargs.pop('currency_choices', [])
+        super().__init__(*args, **kwargs)
+        self.fields['payment_method'].choices = payment_choices
+        self.fields['currency'].choices = currency_choices
+
 
 class WithdrawalForm(forms.Form):
     payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))
+    currency = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))
     amount = forms.DecimalField(min_value=10, max_digits=20, decimal_places=2)
     
     # Crypto fields
@@ -122,8 +126,10 @@ class WithdrawalForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
         payment_choices = kwargs.pop('payment_choices', [])
+        currency_choices = kwargs.pop('currency_choices', [])
         super().__init__(*args, **kwargs)
         self.fields['payment_method'].choices = payment_choices
+        self.fields['currency'].choices = currency_choices
     
     def clean(self):
         cleaned_data = super().clean()

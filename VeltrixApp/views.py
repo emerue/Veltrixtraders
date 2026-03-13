@@ -14,10 +14,12 @@ import qrcode.image.svg
 from io import BytesIO
 import base64
 from django.utils.html import mark_safe
+from .otp_utils import generate_otp, send_otp_email, is_otp_valid
+
 
 from .models import (
     User, Trader, CopyTrade, Transaction, Referral, LoginHistory, 
-    Notification, PaymentMethod, PaymentMethodDetail, Deposit, Withdrawal, LoyaltyStatus
+    Notification, PaymentMethod, PaymentMethodDetail, Deposit, Withdrawal, LoyaltyStatus, Currency
 )
 from .forms import (
     UserRegistrationForm, UserLoginForm, ProfileForm, ProfileImageForm,
@@ -147,14 +149,90 @@ def terms_and_conditions(request):
 def privacy_policy(request):
     return render(request, 'privacy-policy.html')
 
-# Authentication Views
+# Update your register function
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.email = form.cleaned_data['email']
+            user.is_email_verified = False  # Not verified yet
             user.save()
+            
+            # Generate and save OTP
+            otp = generate_otp()
+            user.email_otp = otp
+            user.email_otp_created_at = timezone.now()
+            user.save()
+            
+            # Send OTP email
+            try:
+                send_otp_email(user, otp)
+                messages.success(request, 'Registration successful! Please check your email for verification code.')
+                
+                # Store email in session for OTP verification
+                request.session['verification_email'] = user.email
+                
+                # Redirect to OTP verification page instead of login
+                return redirect('verify_otp')
+            except Exception as e:
+                print(f"Error sending OTP email: {e}")
+                messages.error(request, 'Failed to send verification email. Please try again.')
+                user.delete()  # Rollback user creation if email fails
+                return redirect('register')
+    else:
+        form = UserRegistrationForm()
+    
+    # Check if referred
+    ref_code = request.GET.get('ref')
+    if ref_code:
+        try:
+            referrer = User.objects.get(referral_code=ref_code)
+            request.session['referrer_code'] = ref_code
+        except User.DoesNotExist:
+            pass
+    
+    return render(request, 'register.html', {'form': form})
+
+# New OTP verification view
+def verify_otp(request):
+    # Get email from session or GET parameter
+    email = request.session.get('verification_email') or request.GET.get('email')
+    
+    if not email:
+        messages.error(request, 'Verification session expired. Please register again.')
+        return redirect('register')
+    
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        messages.error(request, 'User not found.')
+        return redirect('register')
+    
+    # If already verified, redirect to setup
+    if user.is_email_verified:
+        login(request, user)
+        return redirect('setup_personal')
+    
+    if request.method == 'POST':
+        otp = request.POST.get('otp', '').strip()
+        
+        if is_otp_valid(user, otp):
+            # Mark email as verified
+            user.is_email_verified = True
+            user.email_otp = None  # Clear OTP
+            user.email_otp_created_at = None
+            user.save()
+            
+            # Check if referred
+            ref_code = request.session.get('referrer_code')
+            if ref_code:
+                try:
+                    referrer = User.objects.get(referral_code=ref_code)
+                    Referral.objects.create(referrer=referrer, referred_user=user)
+                    del request.session['referrer_code']
+                except User.DoesNotExist:
+                    pass
             
             # Send welcome email
             try:
@@ -162,22 +240,54 @@ def register(request):
             except Exception as e:
                 print(f"Error sending welcome email: {e}")
             
-            # Check if referred
-            ref_code = request.GET.get('ref')
-            if ref_code:
-                try:
-                    referrer = User.objects.get(referral_code=ref_code)
-                    Referral.objects.create(referrer=referrer, referred_user=user)
-                except User.DoesNotExist:
-                    pass
-            
+            # Log the user in
             login(request, user)
-            messages.success(request, 'Registration successful! Please complete your profile.')
+            
+            # Clear session
+            if 'verification_email' in request.session:
+                del request.session['verification_email']
+            
+            messages.success(request, 'Email verified successfully! Please complete your profile.')
             return redirect('setup_personal')
-    else:
-        form = UserRegistrationForm()
+        else:
+            messages.error(request, 'Invalid or expired verification code. Please try again.')
+            return redirect('verify_otp')
     
-    return render(request, 'register.html', {'form': form})
+    context = {
+        'email': email,
+    }
+    return render(request, 'verify_otp.html', context)
+
+# Resend OTP view
+def resend_otp(request):
+    email = request.GET.get('email') or request.session.get('verification_email')
+    
+    if not email:
+        messages.error(request, 'Session expired. Please register again.')
+        return redirect('register')
+    
+    try:
+        user = User.objects.get(email=email)
+        
+        # Generate new OTP
+        otp = generate_otp()
+        user.email_otp = otp
+        user.email_otp_created_at = timezone.now()
+        user.save()
+        
+        # Send new OTP
+        send_otp_email(user, otp)
+        
+        messages.success(request, 'A new verification code has been sent to your email.')
+    except User.DoesNotExist:
+        messages.error(request, 'User not found.')
+        return redirect('register')
+    except Exception as e:
+        print(f"Error resending OTP: {e}")
+        messages.error(request, 'Failed to resend verification code. Please try again.')
+    
+    return redirect('verify_otp')
+
 def login_view(request):
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
@@ -598,9 +708,12 @@ def copy_traders(request):
     }
     return render(request, 'user/copytraders.html', context)
 
+# Add to your views.py - replace the deposit and withdrawal views
+
 @login_required
 def deposit(request):
     payment_methods = PaymentMethod.objects.filter(is_active=True)
+    currencies = Currency.objects.filter(is_active=True)
     
     # Prepare payment methods for JSON
     payment_methods_json = []
@@ -615,34 +728,80 @@ def deposit(request):
             'withdrawal_fee': float(pm.withdrawal_fee),
         })
     
-    # Mock exchange rates
+    # Prepare currencies for JSON
+    currencies_json = []
+    for curr in currencies:
+        currencies_json.append({
+            'id': curr.id,
+            'code': curr.code,
+            'name': curr.name,
+            'symbol': curr.symbol,
+        })
+    
+    # Mock exchange rates to USD
     exchange_rates = {
-        'BTC': 0.000014,
-        'ETH': 0.0005,
-        'USDT': 1.0,
-        'SOL': 0.012,
-        'XRP': 0.73,
+        'USD': 1.0,
+        'GBP': 1.25,
+        'EUR': 1.08,
+        'CZK': 0.043,
+        'CNY': 0.14,
+        'CAD': 0.73,
+        'JPY': 0.0067,
     }
     
     if request.method == 'POST':
-        form = DepositForm(request.POST, payment_choices=[(pm.id, pm.name) for pm in payment_methods])
+        form = DepositForm(
+            request.POST, 
+            payment_choices=[(pm.id, pm.name) for pm in payment_methods],
+            currency_choices=[(curr.id, f"{curr.code} - {curr.name}") for curr in currencies]
+        )
         if form.is_valid():
             payment_method_id = form.cleaned_data['payment_method']
+            currency_id = form.cleaned_data['currency']
             amount = form.cleaned_data['amount']
             
             payment_method = get_object_or_404(PaymentMethod, id=payment_method_id)
+            currency = get_object_or_404(Currency, id=currency_id)
+            
+            # Calculate USD equivalent
+            usd_amount = amount * Decimal(str(exchange_rates.get(currency.code, 1.0)))
+            
+            # Get payment details for this method and currency
+            payment_details = PaymentMethodDetail.objects.filter(
+                payment_method=payment_method,
+                currency=currency,
+                is_default=True
+            ).first()
+            
+            if not payment_details:
+                payment_details = PaymentMethodDetail.objects.filter(
+                    payment_method=payment_method,
+                    currency=currency
+                ).first()
             
             # Create deposit record
             deposit = Deposit.objects.create(
                 user=request.user,
                 payment_method=payment_method,
-                amount_usd=amount,
+                currency=currency,
+                amount=amount,
+                amount_usd=usd_amount,
                 status='pending'
             )
             
-            # Calculate crypto amount if applicable
-            if payment_method.method_type == 'crypto' and payment_method.crypto_symbol in exchange_rates:
-                deposit.crypto_amount = amount * Decimal(str(exchange_rates[payment_method.crypto_symbol]))
+            # Add bank details if available from payment_details
+            if payment_details:
+                if payment_method.method_type == 'bank':
+                    deposit.bank_name = payment_details.bank_name
+                    deposit.account_name = payment_details.account_name
+                    deposit.account_number = payment_details.account_number
+                    deposit.routing_number = payment_details.routing_number
+                    deposit.swift_code = payment_details.swift_code
+                    deposit.iban = payment_details.iban
+                else:  # crypto
+                    deposit.wallet_address = payment_details.wallet_address
+                    deposit.network = payment_details.network
+                
                 deposit.save()
             
             # Send confirmation email
@@ -654,12 +813,18 @@ def deposit(request):
             # Redirect to confirmation page
             return redirect('deposit_confirmation', deposit_id=deposit.id)
     else:
-        form = DepositForm(payment_choices=[(pm.id, pm.name) for pm in payment_methods])
+        form = DepositForm(
+            payment_choices=[(pm.id, pm.name) for pm in payment_methods],
+            currency_choices=[(curr.id, f"{curr.code} - {curr.name}") for curr in currencies]
+        )
     
+    print("Currencies:", currencies)  # Debug print
     context = {
         'form': form,
         'payment_methods': payment_methods,
+        'currencies': currencies,
         'payment_methods_json': json.dumps(payment_methods_json),
+        'currencies_json': json.dumps(currencies_json),
         'exchange_rates_json': json.dumps(exchange_rates),
     }
     return render(request, 'user/deposit.html', context)
@@ -668,21 +833,34 @@ def deposit(request):
 def deposit_confirmation(request, deposit_id):
     deposit = get_object_or_404(Deposit, id=deposit_id, user=request.user)
     
-    # Get payment method details
     payment_details = PaymentMethodDetail.objects.filter(
-        payment_method=deposit.payment_method, 
+        payment_method=deposit.payment_method,
+        currency=deposit.currency,
         is_default=True
     ).first()
     
     if not payment_details:
         payment_details = PaymentMethodDetail.objects.filter(
-            payment_method=deposit.payment_method
+            payment_method=deposit.payment_method,
+            currency=deposit.currency
         ).first()
     
+    if not payment_details:
+        payment_details = PaymentMethodDetail.objects.filter(
+            payment_method=deposit.payment_method,
+            currency__isnull=True
+        ).first()
+    
+    # Pre-calculate values for the template
     context = {
         'deposit': deposit,
         'payment_details': payment_details,
+        'currency_code': deposit.currency.code if deposit.currency else 'USD',
+        'currency_symbol': deposit.currency.symbol if deposit.currency else '$',
+        'has_crypto': deposit.payment_method.method_type == 'crypto' if deposit.payment_method else False,
+        'has_bank': deposit.payment_method.method_type == 'bank' if deposit.payment_method else False,
     }
+    
     return render(request, 'user/deposit-confirmation.html', context)
 
 @login_required
@@ -711,12 +889,12 @@ def upload_deposit_proof(request, deposit_id):
     
     return redirect('deposit_confirmation', deposit_id=deposit.id)
 
-
 @login_required
 def withdrawal(request):
     payment_methods = PaymentMethod.objects.filter(is_active=True)
+    currencies = Currency.objects.filter(is_active=True)
     
-    # Prepare payment methods for JSON with proper Decimal handling
+    # Prepare payment methods for JSON
     payment_methods_json = []
     for pm in payment_methods:
         payment_methods_json.append({
@@ -728,52 +906,63 @@ def withdrawal(request):
             'withdrawal_fee': float(pm.withdrawal_fee),
         })
     
-    # Mock exchange rates
+    # Prepare currencies for JSON
+    currencies_json = []
+    for curr in currencies:
+        currencies_json.append({
+            'id': curr.id,
+            'code': curr.code,
+            'name': curr.name,
+            'symbol': curr.symbol,
+        })
+    
+    # Mock exchange rates (USD to other currencies)
     exchange_rates = {
-        'BTC': 0.000014,
-        'ETH': 0.0005,
-        'USDT': 1.0,
-        'SOL': 0.012,
-        'XRP': 0.73,
+        'USD': 1.0,
+        'GBP': 0.8,  # 1 USD = 0.8 GBP
+        'EUR': 0.93,
+        'CZK': 23.2,
+        'CNY': 7.2,
+        'CAD': 1.37,
+        'JPY': 149.5,
     }
     
     if request.method == 'POST':
-        form = WithdrawalForm(request.POST, payment_choices=[(pm.id, pm.name) for pm in payment_methods])
+        form = WithdrawalForm(
+            request.POST, 
+            payment_choices=[(pm.id, pm.name) for pm in payment_methods],
+            currency_choices=[(curr.id, f"{curr.code} - {curr.name}") for curr in currencies]
+        )
         if form.is_valid():
             payment_method_id = form.cleaned_data['payment_method']
+            currency_id = form.cleaned_data['currency']
             amount = form.cleaned_data['amount']
             
             payment_method = get_object_or_404(PaymentMethod, id=payment_method_id)
+            currency = get_object_or_404(Currency, id=currency_id)
             
-            # Check balance
-            if request.user.balance < amount:
-                messages.error(request, 'Insufficient balance')
+            # Calculate USD equivalent for balance check (assuming balance is in USD)
+            usd_amount = amount * Decimal(str(exchange_rates.get(currency.code, 1.0)))
+            
+            # Check balance (in USD)
+            if request.user.balance < usd_amount:
+                messages.error(request, f'Insufficient balance. You need ${usd_amount - request.user.balance:,.2f} more.')
                 return redirect('withdrawal')
             
             # Create withdrawal record
             withdrawal = Withdrawal.objects.create(
                 user=request.user,
                 payment_method=payment_method,
-                amount_usd=amount,
+                currency=currency,
+                amount=amount,
+                amount_usd=usd_amount,
                 status='pending'
             )
             
-            # Set withdrawal details based on method type
+            # Set withdrawal details based on form input
             if payment_method.method_type == 'crypto':
                 withdrawal.wallet_address = form.cleaned_data.get('wallet_address', '')
                 withdrawal.network = form.cleaned_data.get('network', '')
-                
-                # Calculate crypto amount
-                crypto_symbol = payment_method.crypto_symbol
-                # Handle USDT which might have different variants
-                if crypto_symbol and crypto_symbol.startswith('USDT'):
-                    crypto_key = 'USDT'
-                else:
-                    crypto_key = crypto_symbol
-                    
-                if crypto_key in exchange_rates:
-                    rate = Decimal(str(exchange_rates[crypto_key]))
-                    withdrawal.crypto_amount = amount * rate
             else:  # bank
                 withdrawal.bank_name = form.cleaned_data.get('bank_name', '')
                 withdrawal.account_name = form.cleaned_data.get('account_name', '')
@@ -788,10 +977,10 @@ def withdrawal(request):
             Transaction.objects.create(
                 user=request.user,
                 transaction_type='withdrawal',
-                amount=amount,
+                amount=usd_amount,
                 status='pending',
                 reference_id=withdrawal.transaction_id,
-                description=f'Withdrawal of ${amount} via {payment_method.name}'
+                description=f'Withdrawal of {amount} {currency.code} via {payment_method.name}'
             )
             
             # Send confirmation email
@@ -800,21 +989,27 @@ def withdrawal(request):
             except Exception as e:
                 print(f"Error sending withdrawal email: {e}")
             
-            messages.success(request, 'Withdrawal request submitted successfully')
+            messages.success(request, f'Withdrawal request for {amount} {currency.code} submitted successfully')
             return redirect('transactions')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
-        form = WithdrawalForm(payment_choices=[(pm.id, pm.name) for pm in payment_methods])
+        form = WithdrawalForm(
+            payment_choices=[(pm.id, pm.name) for pm in payment_methods],
+            currency_choices=[(curr.id, f"{curr.code} - {curr.name}") for curr in currencies]
+        )
     
     # Convert to JSON strings
     payment_methods_json_str = json.dumps(payment_methods_json)
+    currencies_json_str = json.dumps(currencies_json)
     exchange_rates_json_str = json.dumps(exchange_rates)
     
     context = {
         'form': form,
         'payment_methods': payment_methods,
+        'currencies': currencies,
         'payment_methods_json': mark_safe(payment_methods_json_str),
+        'currencies_json': mark_safe(currencies_json_str),
         'exchange_rates_json': mark_safe(exchange_rates_json_str),
         'user': request.user,
     }

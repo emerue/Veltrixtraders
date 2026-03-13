@@ -15,10 +15,80 @@
     </div>
     {% endif %}
 
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+
     <div class="w-full flex justify-center shadow-1 m-auto">
         <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-950 dark:border-gray-900">
-            <form class="space-y-6" action="{% url 'deposit' %}" method="POST" 
-                >
+            
+            <!-- Define data in a separate script tag -->
+            <script>
+                window.depositData = {
+                    paymentMethods: {{ payment_methods_json|safe }},
+                    currencies: {{ currencies_json|safe }},
+                    exchangeRates: {{ exchange_rates_json|safe }}
+                };
+                console.log('Deposit data loaded:', window.depositData);
+            </script>
+            
+            <form class="space-y-6" action="{% url 'deposit' %}" method="POST"
+                  x-data="{
+                    amount: '',
+                    selectedMethod: '',
+                    selectedCurrency: '',
+                    cryptoAmount: 0,
+                    methodType: '',
+                    paymentMethods: window.depositData.paymentMethods || [],
+                    currencies: window.depositData.currencies || [],
+                    exchangeRates: window.depositData.exchangeRates || {},
+                    
+                    getSelectedMethod() {
+                        if (!this.selectedMethod) return null;
+                        return this.paymentMethods.find(m => m.id == this.selectedMethod);
+                    },
+                    
+                    getSelectedCurrency() {
+                        if (!this.selectedCurrency) return null;
+                        return this.currencies.find(c => c.id == this.selectedCurrency);
+                    },
+                    
+                    updateCryptoAmount() {
+                        if (!this.selectedMethod || !this.amount || isNaN(parseFloat(this.amount))) {
+                            this.cryptoAmount = 0;
+                            return;
+                        }
+                        
+                        const method = this.getSelectedMethod();
+                        if (!method) return;
+                        
+                        this.methodType = method.method_type || '';
+                        
+                        if (method.method_type !== 'crypto' || !method.crypto_symbol) {
+                            this.cryptoAmount = 0;
+                            return;
+                        }
+                        
+                        // For crypto, we'd need actual exchange rates
+                        // This is a placeholder - you'd need real rates
+                        const placeholderRate = 0.000014; // Example for BTC
+                        const usdAmount = parseFloat(this.amount);
+                        this.cryptoAmount = (usdAmount * placeholderRate).toFixed(8);
+                    },
+                    
+                    getCurrencySymbol() {
+                        const currency = this.getSelectedCurrency();
+                        return currency ? currency.symbol : '$';
+                    }
+                  }"
+                  x-init="
+                    $watch('amount', () => updateCryptoAmount());
+                    $watch('selectedMethod', () => updateCryptoAmount());
+                  ">
+                
                 {% csrf_token %}
                 
                 {% if form.non_field_errors %}
@@ -33,17 +103,18 @@
                     Start Deposit
                 </h5>
                 
+                <!-- Payment Method Selection -->
                 <div>
                     <label for="payment_method" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Select Payment Method
                     </label>
                     <select name="payment_method" id="payment_method" 
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white"
                             required x-model="selectedMethod">
                         <option value="">Select payment method</option>
                         {% for method in payment_methods %}
                         <option value="{{ method.id }}" data-type="{{ method.method_type }}" data-symbol="{{ method.crypto_symbol }}">
-                            {{ method.name }} {% if method.method_type == 'crypto' %}({{ method.crypto_symbol }}){% endif %}
+                            {{ method.name }} {% if method.method_type == 'crypto' %}({{ method.get_crypto_symbol_display }}){% endif %}
                         </option>
                         {% endfor %}
                     </select>
@@ -52,9 +123,30 @@
                     {% endif %}
                 </div>
                 
+                <!-- Currency Selection -->
+                <div>
+                    <label for="currency" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Select Currency
+                    </label>
+                    <select name="currency" id="currency" 
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white"
+                            required x-model="selectedCurrency">
+                        <option value="">Select currency</option>
+                        {% for currency in currencies %}
+                        <option value="{{ currency.id }}">
+                            {{ currency.code }} - {{ currency.name }} ({{ currency.symbol }})
+                        </option>
+                        {% endfor %}
+                    </select>
+                    {% if form.currency.errors %}
+                    <p class="text-red-500 text-xs mt-1">{{ form.currency.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                
+                <!-- Amount Input -->
                 <div>
                     <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Amount In USD
+                        Amount <span x-text="getCurrencySymbol() ? '(' + getCurrencySymbol() + ')' : ''"></span>
                     </label>
                     <input type="number" name="amount" id="amount" 
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white {% if form.amount.errors %}border-red-500{% endif %}"
@@ -75,7 +167,7 @@
                 </div>
                 
                 <!-- Payment Instructions -->
-                <div x-show="selectedMethod" x-cloak class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div x-show="selectedMethod && selectedCurrency" x-cloak class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                     <h6 class="text-sm font-semibold text-gray-900 dark:text-white mb-2">Payment Instructions:</h6>
                     <div x-html="getSelectedMethod()?.instructions" class="text-xs text-gray-600 dark:text-gray-400"></div>
                 </div>

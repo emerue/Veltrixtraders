@@ -8,7 +8,23 @@
         "documentation": {}
     },
     {
+        "label": "CommandError",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
         "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "CommandError",
         "importPath": "django.core.management.base",
         "description": "django.core.management.base",
         "isExtraImport": true,
@@ -37,6 +53,222 @@
         "description": "django.core.management.base",
         "isExtraImport": true,
         "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "Currency",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "PaymentMethod",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "Currency",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "PaymentMethodDetail",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "isExtraImport": true,
+        "detail": "VeltrixApp.models",
         "documentation": {}
     },
     {
@@ -120,59 +352,29 @@
         "documentation": {}
     },
     {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
+        "label": "ContentFile",
+        "importPath": "django.core.files.base",
+        "description": "django.core.files.base",
         "isExtraImport": true,
-        "detail": "django.utils",
+        "detail": "django.core.files.base",
         "documentation": {}
     },
     {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
+        "label": "random",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "django.utils",
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
         "documentation": {}
     },
     {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
+        "label": "string",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
+        "importPath": "string",
+        "description": "string",
+        "detail": "string",
         "documentation": {}
     },
     {
@@ -205,6 +407,78 @@
         "description": "decimal",
         "isExtraImport": true,
         "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
         "documentation": {}
     },
     {
@@ -214,6 +488,14 @@
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
         "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -339,6 +621,22 @@
         "documentation": {}
     },
     {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
         "label": "send_mail",
         "importPath": "django.core.mail",
         "description": "django.core.mail",
@@ -412,110 +710,6 @@
         "importPath": "django.utils.timezone",
         "description": "django.utils.timezone",
         "detail": "django.utils.timezone",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "transaction",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "transaction",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -613,6 +807,22 @@
         "description": "django.template.loader",
         "isExtraImport": true,
         "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "render_to_string",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
+        "isExtraImport": true,
+        "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "strip_tags",
+        "importPath": "django.utils.html",
+        "description": "django.utils.html",
+        "isExtraImport": true,
+        "detail": "django.utils.html",
         "documentation": {}
     },
     {
@@ -738,11 +948,11 @@
         "documentation": {}
     },
     {
-        "label": "static",
-        "importPath": "django.conf.urls.static",
-        "description": "django.conf.urls.static",
+        "label": "re_path",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "detail": "django.conf.urls.static",
+        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -919,6 +1129,22 @@
         "documentation": {}
     },
     {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "serve",
+        "importPath": "django.views.static",
+        "description": "django.views.static",
+        "isExtraImport": true,
+        "detail": "django.views.static",
+        "documentation": {}
+    },
+    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
@@ -967,6 +1193,33 @@
         "description": "jmespath",
         "isExtraImport": true,
         "detail": "jmespath",
+        "documentation": {}
+    },
+    {
+        "label": "Command",
+        "kind": 6,
+        "importPath": "VeltrixApp.management.commands.create_currencies",
+        "description": "VeltrixApp.management.commands.create_currencies",
+        "peekOfCode": "class Command(BaseCommand):\n    help = 'Creates initial currency records for the payment system'\n    def add_arguments(self, parser):\n        parser.add_argument(\n            '--force',\n            action='store_true',\n            help='Force recreation of currencies even if they exist',\n        )\n        parser.add_argument(\n            '--activate-all',",
+        "detail": "VeltrixApp.management.commands.create_currencies",
+        "documentation": {}
+    },
+    {
+        "label": "CommandWithProgress",
+        "kind": 6,
+        "importPath": "VeltrixApp.management.commands.create_currencies",
+        "description": "VeltrixApp.management.commands.create_currencies",
+        "peekOfCode": "class CommandWithProgress(Command):\n    \"\"\"Alternative version with progress bar for large datasets\"\"\"\n    def handle(self, *args, **options):\n        from tqdm import tqdm  # Optional: pip install tqdm for progress bars\n        force = options['force']\n        specific_currencies = options.get('specific')\n        all_currencies = [\n            {'code': 'USD', 'name': 'US Dollar', 'symbol': '$', 'is_active': True},\n            {'code': 'GBP', 'name': 'British Pound', 'symbol': '£', 'is_active': True},\n            {'code': 'EUR', 'name': 'Euro', 'symbol': '€', 'is_active': True},",
+        "detail": "VeltrixApp.management.commands.create_currencies",
+        "documentation": {}
+    },
+    {
+        "label": "Command",
+        "kind": 6,
+        "importPath": "VeltrixApp.management.commands.create_payment_details",
+        "description": "VeltrixApp.management.commands.create_payment_details",
+        "peekOfCode": "class Command(BaseCommand):\n    help = 'Creates mock payment details for payment methods and currencies'\n    def add_arguments(self, parser):\n        parser.add_argument(\n            '--force',\n            action='store_true',\n            help='Force recreate payment details even if they exist',\n        )\n        parser.add_argument(\n            '--method',",
+        "detail": "VeltrixApp.management.commands.create_payment_details",
         "documentation": {}
     },
     {
@@ -1057,6 +1310,33 @@
         "description": "VeltrixApp.migrations.0005_passwordresettoken",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0004_loyaltystatus'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='PasswordResetToken',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('token', models.CharField(max_length=100, unique=True)),",
         "detail": "VeltrixApp.migrations.0005_passwordresettoken",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "VeltrixApp.migrations.0006_trader_image",
+        "description": "VeltrixApp.migrations.0006_trader_image",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0005_passwordresettoken'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='trader',\n            name='image',\n            field=models.ImageField(blank=True, null=True, upload_to='traders'),\n        ),",
+        "detail": "VeltrixApp.migrations.0006_trader_image",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "VeltrixApp.migrations.0007_user_email_otp_user_email_otp_created_at_and_more",
+        "description": "VeltrixApp.migrations.0007_user_email_otp_user_email_otp_created_at_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0006_trader_image'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='user',\n            name='email_otp',\n            field=models.CharField(blank=True, max_length=6, null=True),\n        ),",
+        "detail": "VeltrixApp.migrations.0007_user_email_otp_user_email_otp_created_at_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "VeltrixApp.migrations.0008_currency_deposit_account_name_deposit_account_number_and_more",
+        "description": "VeltrixApp.migrations.0008_currency_deposit_account_name_deposit_account_number_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0007_user_email_otp_user_email_otp_created_at_and_more'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Currency',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('code', models.CharField(choices=[('USD', 'US Dollar'), ('GBP', 'British Pound'), ('EUR', 'Euro'), ('CZK', 'Czech Koruna'), ('CNY', 'Chinese Yuan'), ('CAD', 'Canadian Dollar'), ('JPY', 'Japanese Yen')], max_length=3, unique=True)),",
+        "detail": "VeltrixApp.migrations.0008_currency_deposit_account_name_deposit_account_number_and_more",
         "documentation": {}
     },
     {
@@ -1325,7 +1605,7 @@
         "kind": 6,
         "importPath": "VeltrixApp.forms",
         "description": "VeltrixApp.forms",
-        "peekOfCode": "class SetupExperienceForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['yrs_experience', 'trading_frequency', 'instrument_traded', 'knowledge_level', 'preferred_market', 'trading_platform']\nclass SetupEarningsForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['annual_income', 'source_of_income', 'tax_residence']\nclass DepositForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[])",
+        "peekOfCode": "class SetupExperienceForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['yrs_experience', 'trading_frequency', 'instrument_traded', 'knowledge_level', 'preferred_market', 'trading_platform']\nclass SetupEarningsForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['annual_income', 'source_of_income', 'tax_residence']\nclass DepositProofForm(forms.Form):\n    proof_image = forms.ImageField(required=True)",
         "detail": "VeltrixApp.forms",
         "documentation": {}
     },
@@ -1334,16 +1614,7 @@
         "kind": 6,
         "importPath": "VeltrixApp.forms",
         "description": "VeltrixApp.forms",
-        "peekOfCode": "class SetupEarningsForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['annual_income', 'source_of_income', 'tax_residence']\nclass DepositForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[])\n    amount = forms.DecimalField(min_value=1, max_digits=20, decimal_places=2)\n    def __init__(self, *args, **kwargs):\n        payment_choices = kwargs.pop('payment_choices', [])\n        super().__init__(*args, **kwargs)",
-        "detail": "VeltrixApp.forms",
-        "documentation": {}
-    },
-    {
-        "label": "DepositForm",
-        "kind": 6,
-        "importPath": "VeltrixApp.forms",
-        "description": "VeltrixApp.forms",
-        "peekOfCode": "class DepositForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[])\n    amount = forms.DecimalField(min_value=1, max_digits=20, decimal_places=2)\n    def __init__(self, *args, **kwargs):\n        payment_choices = kwargs.pop('payment_choices', [])\n        super().__init__(*args, **kwargs)\n        self.fields['payment_method'].choices = payment_choices\nclass DepositProofForm(forms.Form):\n    proof_image = forms.ImageField(required=True)\n    notes = forms.CharField(widget=forms.Textarea, required=False)",
+        "peekOfCode": "class SetupEarningsForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ['annual_income', 'source_of_income', 'tax_residence']\nclass DepositProofForm(forms.Form):\n    proof_image = forms.ImageField(required=True)\n    notes = forms.CharField(widget=forms.Textarea, required=False)\nclass DepositForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    currency = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))",
         "detail": "VeltrixApp.forms",
         "documentation": {}
     },
@@ -1352,7 +1623,16 @@
         "kind": 6,
         "importPath": "VeltrixApp.forms",
         "description": "VeltrixApp.forms",
-        "peekOfCode": "class DepositProofForm(forms.Form):\n    proof_image = forms.ImageField(required=True)\n    notes = forms.CharField(widget=forms.Textarea, required=False)\nclass WithdrawalForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    amount = forms.DecimalField(min_value=10, max_digits=20, decimal_places=2)\n    # Crypto fields\n    wallet_address = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter wallet address'}))\n    network = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter network'}))\n    # Bank fields",
+        "peekOfCode": "class DepositProofForm(forms.Form):\n    proof_image = forms.ImageField(required=True)\n    notes = forms.CharField(widget=forms.Textarea, required=False)\nclass DepositForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    currency = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    amount = forms.DecimalField(min_value=1, max_digits=20, decimal_places=2)\n    def __init__(self, *args, **kwargs):\n        payment_choices = kwargs.pop('payment_choices', [])\n        currency_choices = kwargs.pop('currency_choices', [])",
+        "detail": "VeltrixApp.forms",
+        "documentation": {}
+    },
+    {
+        "label": "DepositForm",
+        "kind": 6,
+        "importPath": "VeltrixApp.forms",
+        "description": "VeltrixApp.forms",
+        "peekOfCode": "class DepositForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    currency = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    amount = forms.DecimalField(min_value=1, max_digits=20, decimal_places=2)\n    def __init__(self, *args, **kwargs):\n        payment_choices = kwargs.pop('payment_choices', [])\n        currency_choices = kwargs.pop('currency_choices', [])\n        super().__init__(*args, **kwargs)\n        self.fields['payment_method'].choices = payment_choices\n        self.fields['currency'].choices = currency_choices",
         "detail": "VeltrixApp.forms",
         "documentation": {}
     },
@@ -1361,7 +1641,7 @@
         "kind": 6,
         "importPath": "VeltrixApp.forms",
         "description": "VeltrixApp.forms",
-        "peekOfCode": "class WithdrawalForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    amount = forms.DecimalField(min_value=10, max_digits=20, decimal_places=2)\n    # Crypto fields\n    wallet_address = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter wallet address'}))\n    network = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter network'}))\n    # Bank fields\n    bank_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter bank name'}))\n    account_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter account name'}))\n    account_number = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter account number'}))",
+        "peekOfCode": "class WithdrawalForm(forms.Form):\n    payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    currency = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))\n    amount = forms.DecimalField(min_value=10, max_digits=20, decimal_places=2)\n    # Crypto fields\n    wallet_address = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter wallet address'}))\n    network = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter network'}))\n    # Bank fields\n    bank_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter bank name'}))\n    account_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Enter account name'}))",
         "detail": "VeltrixApp.forms",
         "documentation": {}
     },
@@ -1402,6 +1682,15 @@
         "documentation": {}
     },
     {
+        "label": "Currency",
+        "kind": 6,
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
+        "peekOfCode": "class Currency(models.Model):\n    \"\"\"Currency model to store different currency options\"\"\"\n    CURRENCY_CHOICES = [\n        ('USD', 'US Dollar'),\n        ('GBP', 'British Pound'),\n        ('EUR', 'Euro'),\n        ('CZK', 'Czech Koruna'),\n        ('CNY', 'Chinese Yuan'),\n        ('CAD', 'Canadian Dollar'),\n        ('JPY', 'Japanese Yen'),",
+        "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
         "label": "PaymentMethod",
         "kind": 6,
         "importPath": "VeltrixApp.models",
@@ -1415,7 +1704,7 @@
         "kind": 6,
         "importPath": "VeltrixApp.models",
         "description": "VeltrixApp.models",
-        "peekOfCode": "class PaymentMethodDetail(models.Model):\n    payment_method = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE, related_name='details')\n    # Common fields\n    wallet_address = models.CharField(max_length=255, blank=True, null=True)\n    network = models.CharField(max_length=50, blank=True, null=True)\n    # Bank details\n    bank_name = models.CharField(max_length=255, blank=True, null=True)\n    account_name = models.CharField(max_length=255, blank=True, null=True)\n    account_number = models.CharField(max_length=100, blank=True, null=True)\n    routing_number = models.CharField(max_length=100, blank=True, null=True)",
+        "peekOfCode": "class PaymentMethodDetail(models.Model):\n    payment_method = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE, related_name='details')\n    currency = models.ForeignKey(Currency, on_delete=models.CASCADE, related_name='payment_details', null=True, blank=True)\n    # Common fields for crypto\n    wallet_address = models.CharField(max_length=255, blank=True, null=True)\n    network = models.CharField(max_length=50, blank=True, null=True)\n    # Bank details - now associated with specific currency\n    bank_name = models.CharField(max_length=255, blank=True, null=True)\n    account_name = models.CharField(max_length=255, blank=True, null=True)\n    account_number = models.CharField(max_length=100, blank=True, null=True)",
         "detail": "VeltrixApp.models",
         "documentation": {}
     },
@@ -1442,7 +1731,7 @@
         "kind": 6,
         "importPath": "VeltrixApp.models",
         "description": "VeltrixApp.models",
-        "peekOfCode": "class Trader(models.Model):\n    RISK_CHOICES = [\n        ('Low', 'Low'),\n        ('Medium', 'Medium'),\n        ('High', 'High'),\n    ]\n    id = models.CharField(max_length=50, primary_key=True)\n    name = models.CharField(max_length=255)\n    image_url = models.URLField(max_length=500)\n    risk_level = models.CharField(max_length=20, choices=RISK_CHOICES)",
+        "peekOfCode": "class Trader(models.Model):\n    RISK_CHOICES = [\n        ('Low', 'Low'),\n        ('Medium', 'Medium'),\n        ('High', 'High'),\n    ]\n    id = models.CharField(max_length=50, primary_key=True)\n    name = models.CharField(max_length=255)\n    image_url = models.URLField(max_length=500)\n    image = models.ImageField(upload_to=\"traders\", null=True, blank=True)",
         "detail": "VeltrixApp.models",
         "documentation": {}
     },
@@ -1507,6 +1796,33 @@
         "description": "VeltrixApp.models",
         "peekOfCode": "class PasswordResetToken(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='password_reset_tokens')\n    token = models.CharField(max_length=100, unique=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    expires_at = models.DateTimeField()\n    used = models.BooleanField(default=False)\n    def save(self, *args, **kwargs):\n        if not self.token:\n            self.token = secrets.token_urlsafe(32)\n        if not self.expires_at:",
         "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "generate_otp",
+        "kind": 2,
+        "importPath": "VeltrixApp.otp_utils",
+        "description": "VeltrixApp.otp_utils",
+        "peekOfCode": "def generate_otp():\n    \"\"\"Generate a 6-digit OTP\"\"\"\n    return ''.join(random.choices(string.digits, k=6))\ndef send_otp_email(user, otp):\n    \"\"\"Send OTP verification email\"\"\"\n    subject = 'Verify Your Email - Veltrixtraders'\n    context = {\n        'user': user,\n        'otp': otp,\n        'site_url': settings.SITE_URL,",
+        "detail": "VeltrixApp.otp_utils",
+        "documentation": {}
+    },
+    {
+        "label": "send_otp_email",
+        "kind": 2,
+        "importPath": "VeltrixApp.otp_utils",
+        "description": "VeltrixApp.otp_utils",
+        "peekOfCode": "def send_otp_email(user, otp):\n    \"\"\"Send OTP verification email\"\"\"\n    subject = 'Verify Your Email - Veltrixtraders'\n    context = {\n        'user': user,\n        'otp': otp,\n        'site_url': settings.SITE_URL,\n        'expiry_minutes': 10\n    }\n    html_message = render_to_string('emails/otp_verification.html', context)",
+        "detail": "VeltrixApp.otp_utils",
+        "documentation": {}
+    },
+    {
+        "label": "is_otp_valid",
+        "kind": 2,
+        "importPath": "VeltrixApp.otp_utils",
+        "description": "VeltrixApp.otp_utils",
+        "peekOfCode": "def is_otp_valid(user, otp):\n    \"\"\"Check if OTP is valid and not expired (10 minutes expiry)\"\"\"\n    if not user.email_otp or not user.email_otp_created_at:\n        return False\n    # Check if OTP matches\n    if user.email_otp != otp:\n        return False\n    # Check if OTP is expired (10 minutes)\n    expiry_time = user.email_otp_created_at + timedelta(minutes=10)\n    if timezone.now() > expiry_time:",
+        "detail": "VeltrixApp.otp_utils",
         "documentation": {}
     },
     {
@@ -1748,7 +2064,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def options_trading(request):\n    return render(request, 'option-trading.html')\ndef oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Authentication Views\ndef register(request):",
+        "peekOfCode": "def options_trading(request):\n    return render(request, 'option-trading.html')\ndef oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Update your register function\ndef register(request):",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1757,7 +2073,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)",
+        "peekOfCode": "def oil_and_gas(request):\n    return render(request, 'oil-and-gas.html')\ndef terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Update your register function\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1766,7 +2082,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)",
+        "peekOfCode": "def terms_and_conditions(request):\n    return render(request, 'terms-and-conditions.html')\ndef privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Update your register function\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1775,7 +2091,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Authentication Views\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)\n            user.email = form.cleaned_data['email']\n            user.save()",
+        "peekOfCode": "def privacy_policy(request):\n    return render(request, 'privacy-policy.html')\n# Update your register function\ndef register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)\n            user.email = form.cleaned_data['email']\n            user.is_email_verified = False  # Not verified yet",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1784,7 +2100,25 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)\n            user.email = form.cleaned_data['email']\n            user.save()\n            # Send welcome email\n            try:\n                send_welcome_email(user)",
+        "peekOfCode": "def register(request):\n    if request.method == 'POST':\n        form = UserRegistrationForm(request.POST)\n        if form.is_valid():\n            user = form.save(commit=False)\n            user.email = form.cleaned_data['email']\n            user.is_email_verified = False  # Not verified yet\n            user.save()\n            # Generate and save OTP\n            otp = generate_otp()",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "verify_otp",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def verify_otp(request):\n    # Get email from session or GET parameter\n    email = request.session.get('verification_email') or request.GET.get('email')\n    if not email:\n        messages.error(request, 'Verification session expired. Please register again.')\n        return redirect('register')\n    try:\n        user = User.objects.get(email=email)\n    except User.DoesNotExist:\n        messages.error(request, 'User not found.')",
+        "detail": "VeltrixApp.views",
+        "documentation": {}
+    },
+    {
+        "label": "resend_otp",
+        "kind": 2,
+        "importPath": "VeltrixApp.views",
+        "description": "VeltrixApp.views",
+        "peekOfCode": "def resend_otp(request):\n    email = request.GET.get('email') or request.session.get('verification_email')\n    if not email:\n        messages.error(request, 'Session expired. Please register again.')\n        return redirect('register')\n    try:\n        user = User.objects.get(email=email)\n        # Generate new OTP\n        otp = generate_otp()\n        user.email_otp = otp",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1892,7 +2226,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def deposit(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    # Prepare payment methods for JSON\n    payment_methods_json = []\n    for pm in payment_methods:\n        payment_methods_json.append({\n            'id': pm.id,\n            'name': pm.name,\n            'method_type': pm.method_type,\n            'crypto_symbol': pm.crypto_symbol,",
+        "peekOfCode": "def deposit(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    currencies = Currency.objects.filter(is_active=True)\n    # Prepare payment methods for JSON\n    payment_methods_json = []\n    for pm in payment_methods:\n        payment_methods_json.append({\n            'id': pm.id,\n            'name': pm.name,\n            'method_type': pm.method_type,",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1901,7 +2235,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def deposit_confirmation(request, deposit_id):\n    deposit = get_object_or_404(Deposit, id=deposit_id, user=request.user)\n    # Get payment method details\n    payment_details = PaymentMethodDetail.objects.filter(\n        payment_method=deposit.payment_method, \n        is_default=True\n    ).first()\n    if not payment_details:\n        payment_details = PaymentMethodDetail.objects.filter(\n            payment_method=deposit.payment_method",
+        "peekOfCode": "def deposit_confirmation(request, deposit_id):\n    deposit = get_object_or_404(Deposit, id=deposit_id, user=request.user)\n    payment_details = PaymentMethodDetail.objects.filter(\n        payment_method=deposit.payment_method,\n        currency=deposit.currency,\n        is_default=True\n    ).first()\n    if not payment_details:\n        payment_details = PaymentMethodDetail.objects.filter(\n            payment_method=deposit.payment_method,",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -1919,7 +2253,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def withdrawal(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    # Prepare payment methods for JSON with proper Decimal handling\n    payment_methods_json = []\n    for pm in payment_methods:\n        payment_methods_json.append({\n            'id': pm.id,\n            'name': pm.name,\n            'method_type': pm.method_type,\n            'crypto_symbol': pm.crypto_symbol,",
+        "peekOfCode": "def withdrawal(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    currencies = Currency.objects.filter(is_active=True)\n    # Prepare payment methods for JSON\n    payment_methods_json = []\n    for pm in payment_methods:\n        payment_methods_json.append({\n            'id': pm.id,\n            'name': pm.name,\n            'method_type': pm.method_type,",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -2495,7 +2829,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "handler404 = 'VeltrixApp.views.custom_404'\nhandler403 = 'VeltrixApp.views.custom_403'\nhandler500 = 'VeltrixApp.views.custom_500'\nhandler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "peekOfCode": "handler404 = 'VeltrixApp.views.custom_404'\nhandler403 = 'VeltrixApp.views.custom_403'\nhandler500 = 'VeltrixApp.views.custom_500'\nhandler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]\nif settings.DEBUG == False:",
         "detail": "core.urls",
         "documentation": {}
     },
@@ -2504,7 +2838,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "handler403 = 'VeltrixApp.views.custom_403'\nhandler500 = 'VeltrixApp.views.custom_500'\nhandler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "peekOfCode": "handler403 = 'VeltrixApp.views.custom_403'\nhandler500 = 'VeltrixApp.views.custom_500'\nhandler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]\nif settings.DEBUG == False:\n    urlpatterns += [",
         "detail": "core.urls",
         "documentation": {}
     },
@@ -2513,7 +2847,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "handler500 = 'VeltrixApp.views.custom_500'\nhandler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "peekOfCode": "handler500 = 'VeltrixApp.views.custom_500'\nhandler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]\nif settings.DEBUG == False:\n    urlpatterns += [\n        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),",
         "detail": "core.urls",
         "documentation": {}
     },
@@ -2522,7 +2856,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "handler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "peekOfCode": "handler400 = 'VeltrixApp.views.custom_400'\nhandler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]\nif settings.DEBUG == False:\n    urlpatterns += [\n        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),\n    ]",
         "detail": "core.urls",
         "documentation": {}
     },
@@ -2531,7 +2865,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "handler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "peekOfCode": "handler405 = 'VeltrixApp.views.custom_405'\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]\nif settings.DEBUG == False:\n    urlpatterns += [\n        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),\n    ]\nelse:",
         "detail": "core.urls",
         "documentation": {}
     },
@@ -2540,7 +2874,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('VeltrixApp.urls')),\n]\nif settings.DEBUG == False:\n    urlpatterns += [\n        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),\n    ]\nelse:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
         "detail": "core.urls",
         "documentation": {}
     },

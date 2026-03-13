@@ -228,9 +228,15 @@
                     </div>
                     <div class="p-4">
                         <div class="flex items-center gap-3 mb-3">
+                            {% if trader.image %}
+                            <div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-900 flex-shrink-0 ring-1 ring-slate-200 dark:ring-slate-700">
+                                <img src="{{ trader.image.url }}" alt="{{ trader.name }}" class="w-full h-full object-cover">
+                            </div>
+                            {% elif trader.image_url %}
                             <div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-900 flex-shrink-0 ring-1 ring-slate-200 dark:ring-slate-700">
                                 <img src="{{ trader.image_url }}" alt="{{ trader.name }}" class="w-full h-full object-cover">
                             </div>
+                            {% endif %}
                             <div class="flex-1 min-w-0">
                                 <h3 class="text-base font-bold text-slate-900 dark:text-white truncate">{{ trader.name }}</h3>
                                 <div class="flex flex-wrap gap-1 mt-1">

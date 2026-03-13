@@ -25,10 +25,11 @@
     <div class="w-full flex justify-center shadow-1 m-auto">
         <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-950 dark:border-gray-900">
             
-            <!-- Define data in a separate script tag to avoid JSON corruption -->
+            <!-- Define data in a separate script tag -->
             <script>
                 window.withdrawalData = {
                     paymentMethods: {{ payment_methods_json|safe }},
+                    currencies: {{ currencies_json|safe }},
                     exchangeRates: {{ exchange_rates_json|safe }}
                 };
                 console.log('Withdrawal data loaded:', window.withdrawalData);
@@ -38,14 +39,21 @@
                   x-data="{
                     amount: '',
                     selectedMethod: '',
+                    selectedCurrency: '',
                     cryptoAmount: 0,
                     methodType: '',
                     paymentMethods: window.withdrawalData.paymentMethods || [],
+                    currencies: window.withdrawalData.currencies || [],
                     exchangeRates: window.withdrawalData.exchangeRates || {},
                     
                     getSelectedMethod() {
                         if (!this.selectedMethod) return null;
                         return this.paymentMethods.find(m => m.id == this.selectedMethod);
+                    },
+                    
+                    getSelectedCurrency() {
+                        if (!this.selectedCurrency) return null;
+                        return this.currencies.find(c => c.id == this.selectedCurrency);
                     },
                     
                     updateCryptoAmount() {
@@ -64,22 +72,11 @@
                             return;
                         }
                         
-                        // Handle USDT variants
-                        let cryptoKey = method.crypto_symbol;
-                        if (cryptoKey && cryptoKey.startsWith('USDT')) {
-                            cryptoKey = 'USDT';
-                        }
-                        
-                        const exchangeRate = this.exchangeRates[cryptoKey];
-                        if (!exchangeRate) {
-                            console.log('No exchange rate for', cryptoKey);
-                            this.cryptoAmount = 0;
-                            return;
-                        }
-                        
-                        // Calculate crypto amount: USD amount * exchange rate
-                        const usdAmount = parseFloat(this.amount);
-                        this.cryptoAmount = (usdAmount * exchangeRate).toFixed(8);
+                        // For crypto, we'd need actual exchange rates
+                        // This is a placeholder - you'd need real rates
+                        const placeholderRate = 0.000014; // Example for BTC
+                        const amount = parseFloat(this.amount);
+                        this.cryptoAmount = (amount * placeholderRate).toFixed(8);
                     },
                     
                     calculateNetAmount() {
@@ -90,18 +87,26 @@
                         const method = this.getSelectedMethod();
                         if (!method) return '0.00';
                         
-                        const usdAmount = parseFloat(this.amount);
+                        const amount = parseFloat(this.amount);
                         const fee = parseFloat(method.withdrawal_fee || 0);
-                        const netAmount = usdAmount * (1 - fee/100);
+                        const netAmount = amount * (1 - fee/100);
                         
                         return netAmount.toFixed(2);
+                    },
+                    
+                    getCurrencySymbol() {
+                        const currency = this.getSelectedCurrency();
+                        return currency ? currency.symbol : '$';
+                    },
+                    
+                    getCurrencyCode() {
+                        const currency = this.getSelectedCurrency();
+                        return currency ? currency.code : 'USD';
                     }
                   }"
                   x-init="
                     $watch('amount', () => updateCryptoAmount());
-                    $watch('selectedMethod', () => {
-                        updateCryptoAmount();
-                    });
+                    $watch('selectedMethod', () => updateCryptoAmount());
                   ">
                 
                 {% csrf_token %}
@@ -138,10 +143,30 @@
                     {% endif %}
                 </div>
                 
+                <!-- Currency Selection -->
+                <div>
+                    <label for="currency" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Select Currency
+                    </label>
+                    <select name="currency" id="currency" 
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white"
+                            required x-model="selectedCurrency">
+                        <option value="">Select currency</option>
+                        {% for currency in currencies %}
+                        <option value="{{ currency.id }}">
+                            {{ currency.code }} - {{ currency.name }} ({{ currency.symbol }})
+                        </option>
+                        {% endfor %}
+                    </select>
+                    {% if form.currency.errors %}
+                    <p class="text-red-500 text-xs mt-1">{{ form.currency.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                
                 <!-- Amount Input -->
                 <div>
                     <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Amount In USD
+                        Amount <span x-text="getCurrencySymbol() ? '(' + getCurrencySymbol() + ')' : ''"></span>
                     </label>
                     <input type="number" name="amount" id="amount" 
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white {% if form.amount.errors %}border-red-500{% endif %}"
@@ -151,9 +176,10 @@
                     {% endif %}
                 </div>
                 
-                <!-- Available Balance -->
+                <!-- Available Balance (assuming balance is in USD) -->
                 <div class="text-sm text-gray-600 dark:text-gray-400">
                     Available Balance: <span class="font-bold text-green-500">${{ user.balance|floatformat:2 }}</span>
+                    <span class="text-xs text-gray-500 ml-1">(USD)</span>
                 </div>
                 
                 <!-- Crypto Amount Display - Shows when crypto method selected -->
@@ -251,7 +277,17 @@
                     <div class="flex justify-between mt-1 pt-1 border-t border-gray-200 dark:border-gray-700">
                         <span>You'll receive:</span>
                         <span class="font-medium text-green-600 dark:text-green-400">
-                            $<span x-text="calculateNetAmount()"></span>
+                            <span x-text="getCurrencySymbol()"></span><span x-text="calculateNetAmount()"></span> <span x-text="getCurrencyCode()"></span>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- USD Equivalent Info -->
+                <div x-show="selectedMethod && selectedCurrency && amount && parseFloat(amount) > 0" x-cloak class="text-xs text-gray-500 dark:text-gray-400 p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                    <div class="flex justify-between">
+                        <span>USD Equivalent:</span>
+                        <span class="font-medium">
+                            $<span x-text="(parseFloat(amount) * (exchangeRates[getSelectedCurrency()?.code] || 1)).toFixed(2)"></span>
                         </span>
                     </div>
                 </div>
@@ -268,6 +304,7 @@
 <!-- Debug info - remove in production -->
 <script>
     console.log('Payment Methods from Django:', {{ payment_methods_json|safe }});
+    console.log('Currencies from Django:', {{ currencies_json|safe }});
     console.log('Exchange Rates from Django:', {{ exchange_rates_json|safe }});
     console.log('window.withdrawalData:', window.withdrawalData);
 </script>

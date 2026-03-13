@@ -2,9 +2,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Password Changed</title>
+    <title>Verify Your Email</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        @media only screen and (max-width: 600px) {
+            table[role="presentation"] {
+                width: 100% !important;
+            }
+        }
+        .otp-code {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            color: #13160F;
+            background: #f5f5f5;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f9f9f9;">
     <table role="presentation" width="100%" bgcolor="#f9f9f9" style="padding: 20px 0;">
@@ -21,27 +39,21 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding: 20px; line-height: 1.8;">
+                                <td style="padding: 20px; line-height: 1.8; text-align: center;">
+                                    <h2 style="margin-bottom: 20px; color: #333;">Email Verification</h2>
+                                    
                                     <p>Dear {{ user.first_name|default:user.username }},</p>
-
-                                    <p>Your Veltrixtraders account password has been successfully changed.</p>
-
-                                    <p>If you made this change, no further action is required. If you did not request this change, please contact our support team immediately.</p>
-
-                                    <div style="margin: 25px 0; text-align: center;">
-                                        <a href="{{ site_url }}/login"
-                                           style="background-color: #13160F;
-                                                  color: white;
-                                                  padding: 10px 20px;
-                                                  text-decoration: none;
-                                                  border-radius: 4px;
-                                                  font-weight: bold;">
-                                            Go to Login
-                                        </a>
-                                    </div>
-
-                                    <p>For your security, we recommend enabling two-factor authentication if you haven't already.</p>
-
+                                    
+                                    <p>Thank you for registering with Veltrixtraders. To complete your registration, please use the following OTP code:</p>
+                                    
+                                    <div class="otp-code">{{ otp }}</div>
+                                    
+                                    <p>This code will expire in <strong>{{ expiry_minutes }} minutes</strong>.</p>
+                                    
+                                    <p>If you didn't request this verification, please ignore this email.</p>
+                                    
+                                    <p style="margin-top: 30px; font-size: 14px; color: #666;">For security reasons, never share this code with anyone.</p>
+                                    
                                     <p>Best regards,<br>The Veltrixtraders Team</p>
                                 </td>
                             </tr>
@@ -49,6 +61,7 @@
                                 <td align="center"
                                     style="padding: 20px; background: #13160F; color: #fafafa; font-size: 12px;">
                                     <p style="margin: 0;">© {% now "Y" %} Veltrixtraders | All Rights Reserved</p>
+                                    <p style="margin: 5px 0 0; font-size: 11px;">This is an automated message, please do not reply.</p>
                                 </td>
                             </tr>
                         </tbody>
