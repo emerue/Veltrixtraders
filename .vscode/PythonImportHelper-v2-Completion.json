@@ -2181,7 +2181,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def setup_declaration(request):\n    if request.method == 'POST':\n        # Mark profile as complete\n        request.user.save()\n        messages.success(request, 'Profile completed successfully!')\n        return redirect('dashboard')\n    return render(request, 'setup-declaration.html')\n# Dashboard Views\n@login_required\ndef dashboard(request):",
+        "peekOfCode": "def setup_declaration(request):\n    if request.method == 'POST':\n        # Mark profile as complete\n        request.user.save()\n        messages.success(request, 'Profile completed successfully!')\n        return redirect('dashboard')\n    return render(request, 'setup-declaration.html')\n@login_required\ndef dashboard(request):\n    traders = Trader.objects.filter(is_active=True)[:10]",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -2190,7 +2190,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def dashboard(request):\n    traders = Trader.objects.filter(is_active=True)[:10]\n    context = {\n        'traders': traders,\n        'user': request.user,\n    }\n    return render(request, 'user/dashboard.html', context)\n@login_required\ndef copy_trading(request):\n    if request.method == 'POST':",
+        "peekOfCode": "def dashboard(request):\n    traders = Trader.objects.filter(is_active=True)[:10]\n    # Get recent copy trades (active and history)\n    recent_trades = CopyTrade.objects.filter(\n        user=request.user\n    ).select_related('trader').order_by('-started_at')[:5]\n    # Get recent transactions\n    recent_transactions = Transaction.objects.filter(\n        user=request.user\n    ).order_by('-created_at')[:5]",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },

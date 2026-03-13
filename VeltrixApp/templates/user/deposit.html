@@ -1,7 +1,7 @@
 {% extends "user/includes/header.html" %}
 {% load static %}
 
-{% block title %}Deposit - Veltrixtraders{% endblock %}
+{% block title %}Dashboard - Veltrixtraders{% endblock %}
 
 {% block content %}
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 mb-20">
@@ -15,169 +15,512 @@
     </div>
     {% endif %}
 
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <style>
-        [x-cloak] { display: none !important; }
-    </style>
+    <!-- Alert Messages -->
+    {% if user.balance == 0 %}
+    <div x-data="{ open: true }" x-show="open" class="flex items-center p-3 mb-2 text-yellow-700 rounded-xl shadow bg-yellow-50/20 dark:bg-gray-900/50 dark:text-yellow-500">
+        <svg class="flex-shrink-0 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div class="ms-3 text-xs font-medium">
+            Your balance is empty. Please make
+            <a class="font-semibold text-green-500" href="{% url 'deposit' %}">Deposit</a>
+            for your next trade.
+        </div>
+        <button @click="open = false" class="ms-auto -mx-1.5 -my-1.5 bg-yellow-50 text-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-400 p-1.5 hover:bg-yellow-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-yellow-300 dark:hover:bg-gray-700">
+            <span class="sr-only">Close</span>
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+            </svg>
+        </button>
+    </div>
+    {% endif %}
 
-    <div class="w-full flex justify-center shadow-1 m-auto">
-        <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-950 dark:border-gray-900">
-            
-            <!-- Define data in a separate script tag -->
-            <script>
-                window.depositData = {
-                    paymentMethods: {{ payment_methods_json|safe }},
-                    currencies: {{ currencies_json|safe }},
-                    exchangeRates: {{ exchange_rates_json|safe }}
-                };
-                console.log('Deposit data loaded:', window.depositData);
-            </script>
-            
-            <form class="space-y-6" action="{% url 'deposit' %}" method="POST"
-                  x-data="{
-                    amount: '',
-                    selectedMethod: '',
-                    selectedCurrency: '',
-                    cryptoAmount: 0,
-                    methodType: '',
-                    paymentMethods: window.depositData.paymentMethods || [],
-                    currencies: window.depositData.currencies || [],
-                    exchangeRates: window.depositData.exchangeRates || {},
-                    
-                    getSelectedMethod() {
-                        if (!this.selectedMethod) return null;
-                        return this.paymentMethods.find(m => m.id == this.selectedMethod);
-                    },
-                    
-                    getSelectedCurrency() {
-                        if (!this.selectedCurrency) return null;
-                        return this.currencies.find(c => c.id == this.selectedCurrency);
-                    },
-                    
-                    updateCryptoAmount() {
-                        if (!this.selectedMethod || !this.amount || isNaN(parseFloat(this.amount))) {
-                            this.cryptoAmount = 0;
-                            return;
-                        }
-                        
-                        const method = this.getSelectedMethod();
-                        if (!method) return;
-                        
-                        this.methodType = method.method_type || '';
-                        
-                        if (method.method_type !== 'crypto' || !method.crypto_symbol) {
-                            this.cryptoAmount = 0;
-                            return;
-                        }
-                        
-                        // For crypto, we'd need actual exchange rates
-                        // This is a placeholder - you'd need real rates
-                        const placeholderRate = 0.000014; // Example for BTC
-                        const usdAmount = parseFloat(this.amount);
-                        this.cryptoAmount = (usdAmount * placeholderRate).toFixed(8);
-                    },
-                    
-                    getCurrencySymbol() {
-                        const currency = this.getSelectedCurrency();
-                        return currency ? currency.symbol : '$';
-                    }
-                  }"
-                  x-init="
-                    $watch('amount', () => updateCryptoAmount());
-                    $watch('selectedMethod', () => updateCryptoAmount());
-                  ">
-                
-                {% csrf_token %}
-                
-                {% if form.non_field_errors %}
-                <div class="p-3 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg text-sm">
-                    {% for error in form.non_field_errors %}
-                        {{ error }}
-                    {% endfor %}
+    {% if not user.is_kyc_verified %}
+    <div x-data="{ open: true }" x-show="open" class="flex items-center p-3 mb-2 text-yellow-700 rounded-xl shadow bg-yellow-50/20 dark:bg-gray-900/50 dark:text-yellow-500">
+        <svg class="flex-shrink-0 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div class="ms-3 text-xs font-medium">
+            We need your KYC Data for some action. Provide
+            <a class="font-semibold text-green-500" href="{% url 'verification' %}">KYC Data.</a>
+        </div>
+        <button @click="open = false" class="ms-auto -mx-1.5 -my-1.5 bg-yellow-50 text-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-400 p-1.5 hover:bg-yellow-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-yellow-300 dark:hover:bg-gray-700">
+            <span class="sr-only">Close</span>
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+            </svg>
+        </button>
+    </div>
+    {% endif %}
+
+    <!-- Balance Card and Traders Section -->
+    <div class="w-full flex gap-5 my-5 max-[900px]:flex-col">
+        <div class="flex-shrink-0">
+            <div class="w-96 h-56 rounded-3xl overflow-hidden shadow-xl bgRadial">
+                <div class="h-full w-full p-6 relative">
+                    <div class="absolute top-0 left-0 w-full h-full bg-white/60 opacity-5 z-0"></div>
+                    <div class="w-full z-10 relative flex justify-between">
+                        <div class="flex flex-col items-baseline mb-1">
+                            <p class="text-xs text-gray-400 font-light">Total Balance</p>
+                            <h1 class="text-4xl font-semibold text-white tracking-tight">
+                                {{ user.balance|floatformat:2 }}<span class="text-lg font-mono text-gray-300 ml-1">$</span>
+                            </h1>
+                        </div>
+                        <img src="{% static 'img/fav.svg' %}" alt="logo" class="w-8" />
+                    </div>
+                    <div class="flex justify-between mt-5 mb-6 z-10 relative">
+                        <div class="flex flex-col">
+                            <div class="flex items-center gap-1 mb-1">
+                                <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                                <span class="text-xs text-gray-400">Deposit</span>
+                            </div>
+                            <span class="text-sm font-medium text-white">{{ user.total_deposit|floatformat:2 }}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex items-center gap-1 mb-1">
+                                <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                                <span class="text-xs text-gray-400">Bonus</span>
+                            </div>
+                            <span class="text-sm font-medium text-white">{{ user.bonus_balance|floatformat:2 }}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex items-center gap-1 mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity text-gray-400">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                </svg>
+                                <span class="text-xs text-gray-400">Trades</span>
+                            </div>
+                            <span class="text-sm font-medium text-white">{{ copy_trades_count|default:0 }}</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between z-10 relative">
+                        <a href="{% url 'withdrawal' %}" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-gray-700 text-white transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+                                <path d="M7 7h10v10"></path>
+                                <path d="M7 17 17 7"></path>
+                            </svg>
+                            <span class="text-xs font-medium">Withdraw</span>
+                        </a>
+                        <a href="{% url 'deposit' %}" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-brandblue hover:bg-opacity-20 text-white transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-left">
+                                <path d="M17 7 7 17"></path>
+                                <path d="M17 17H7V7"></path>
+                            </svg>
+                            <span class="text-xs font-medium">Deposit</span>
+                        </a>
+                    </div>
                 </div>
-                {% endif %}
+            </div>
+        </div>
+
+        <!-- Traders Carousel -->
+        <div class="flex-grow overflow-x-auto">
+            <div class="max-ctn flex gap-2 overflow-x-auto no-scrollbar">
+                <!-- Trader Cards -->
+                {% for trader in traders %}
+                <div class="min-w-90 h-fit flex-shrink-0">
+                    <div class="relative rounded-xl shadow-sm transition-all duration-200 overflow-hidden h-full border border-slate-200 dark:border-slate-700 bg-white bgRadialDark">
+                        <div class="absolute top-3 right-3">
+                            <span class="px-2.5 py-0.5 text-[10px] font-ibold rounded-lg bg-green-50 text-green-700 ring-1 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30">
+                                Active
+                            </span>
+                        </div>
+                        <div class="p-4 pb-5">
+                            <div class="flex items-center gap-3">
+                                {% if trader.image %}
+                                <div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-900 flex-shrink-0 ring-1 ring-slate-200 dark:ring-slate-700">
+                                    <img src="{{ trader.image.url }}" alt="{{ trader.name }}" class="w-full h-full object-cover">
+                                </div>
+                                {% elif trader.image_url %}
+                                <div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-900 flex-shrink-0 ring-1 ring-slate-200 dark:ring-slate-700">
+                                    <img src="{{ trader.image_url }}" alt="{{ trader.name }}" class="w-full h-full object-cover">
+                                </div>
+                                {% endif %}
+                                <div class="flex-1 min-w-0">
+                                    <h2 class="text-sm font-semibold text-slate-900 dark:text-white truncate">{{ trader.name }}</h2>
+                                    <div class="flex flex-wrap gap-2 mt-1.5">
+                                        <span class="px-1.5 py-0.5 text-xs font-semibold rounded {% if trader.risk_level == 'Low' %}bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30{% elif trader.risk_level == 'Medium' %}bg-amber-50 text-amber-700 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-400/30{% else %}bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-950/50 dark:text-red-300 dark:ring-red-400/30{% endif %}">
+                                            {{ trader.risk_level }}
+                                        </span>
+                                        <span class="px-1.5 py-0.5 text-xs font-semibold rounded bg-blue-50 text-blue-700 ring-1 ring-blue-600/20 dark:bg-blue-950/50 dark:text-blue-300 dark:ring-blue-400/30">
+                                            {{ trader.specialty }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 grid grid-cols-2 gap-3 text-xs">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500 dark:text-slate-400">Monthly</span>
+                                    <span class="font-semibold text-green-400">+{{ trader.monthly_return }}%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500 dark:text-slate-400">Yearly</span>
+                                    <span class="font-semibold text-green-400">+{{ trader.yearly_return }}%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500 dark:text-slate-400">Win Rate</span>
+                                    <span class="font-semibold text-green-400">{{ trader.win_rate }}%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500 dark:text-slate-400">Experience</span>
+                                    <span class="font-semibold text-green-400">{{ trader.experience_years }} Yrs</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">{{ trader.description }}</p>
+                            </div>
+                            <div class="mt-4 flex items-center justify-between gap-3">
+                                <div class="flex items-center gap-3 text-xs">
+                                    <div class="flex items-center gap-1">
+                                        Fee:<span class="font-semibold text-slate-900 dark:text-white">{{ trader.fee_percentage }}%</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet w-3.5 h-3.5 stroke-1 text-blue-500">
+                                            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                                            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                                            <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                                        </svg>
+                                        Min:<span class="font-semibold text-slate-900 dark:text-white">${{ trader.min_investment|floatformat:0 }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-3.5 h-3.5 stroke-1 text-blue-500">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        </svg>
+                                        <span class="font-semibold text-slate-900 dark:text-white">{{ trader.followers }}</span>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <form action="{% url 'copy_trading' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="trader_id" value="{{ trader.id }}" />
+                                        <button type="submit" class="px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-200 min-w-[70px] bg-slate-100 hover:bg-slate-200 text-slate-900 shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white hover:shadow-md">
+                                            Copy
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="w-full my-5">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            <div class="flex flex-col gap-2 p-4 rounded-lg bg-white bgRadialDark shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Deposit</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet text-green-500">
+                        <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                        <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                        <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-100">
+                    {{ user.total_deposit|floatformat:2 }}<span class="font-mono font-normal text-base ml-1">$</span>
+                </h2>
+            </div>
+            <div class="flex flex-col gap-2 p-4 rounded-lg bg-white bgRadialDark shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Bonus</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift text-sky-500">
+                        <rect x="3" y="8" width="18" height="12" rx="2"></rect>
+                        <path d="M12 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2"></path>
+                        <path d="M12 8v10"></path>
+                        <path d="M20 12H4"></path>
+                        <path d="M22 8H2"></path>
+                        <path d="M12 18v2"></path>
+                        <path d="M8 18h8"></path>
+                    </svg>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-100">
+                    {{ user.bonus_balance|floatformat:2 }}<span class="font-mono font-normal text-base ml-1">$</span>
+                </h2>
+            </div>
+            <div class="flex flex-col gap-2 p-4 rounded-lg bg-white bgRadialDark shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Withdrawal</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-circle text-rose-500">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 8v8"></path>
+                        <path d="m8 12 4 4 4-4"></path>
+                    </svg>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-100">
+                    {{ user.total_withdrawal|floatformat:2 }}<span class="font-mono font-normal text-base ml-1">$</span>
+                </h2>
+            </div>
+            <div class="flex flex-col gap-2 p-4 rounded-lg bg-white bgRadialDark shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Trades</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart2 text-blue-600">
+                        <line x1="18" x2="18" y1="20" y2="10"></line>
+                        <line x1="12" x2="12" y1="20" y2="4"></line>
+                        <line x1="6" x2="6" y1="20" y2="14"></line>
+                    </svg>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-100">{{ copy_trades_count|default:0 }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Trades and Transactions -->
+    <div class="w-full flex flex-wrap gap-5 my-5 max-[900px]:flex-col">
+        <!-- Recent Trades Section -->
+        <div class="w-full flex-1">
+            <div class="w-full bg-white dark:bg-gray-950 rounded-lg shadow-sm overflow-hidden">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-900">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-base font-semibold text-gray-800 dark:text-white">Recent Trades</h2>
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                            <span>Updated {% now "H:i" %}</span>
+                            <button onclick="window.location.reload()" class="ml-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                                <svg class="h-3.5 w-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-2 relative">
+                        <input type="text" id="trade-search" placeholder="Search by trader name..." 
+                               class="w-full pl-8 pr-3 py-1.5 bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-gray-800 rounded-md text-xs text-gray-700 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-400">
+                        <svg class="absolute left-2 top-2 h-3.5 w-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
                 
-                <h5 class="text-xl font-medium text-gray-900 dark:text-white">
-                    Start Deposit
-                </h5>
-                
-                <!-- Payment Method Selection -->
-                <div>
-                    <label for="payment_method" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Select Payment Method
-                    </label>
-                    <select name="payment_method" id="payment_method" 
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white"
-                            required x-model="selectedMethod">
-                        <option value="">Select payment method</option>
-                        {% for method in payment_methods %}
-                        <option value="{{ method.id }}" data-type="{{ method.method_type }}" data-symbol="{{ method.crypto_symbol }}">
-                            {{ method.name }} {% if method.method_type == 'crypto' %}({{ method.get_crypto_symbol_display }}){% endif %}
-                        </option>
+                <div class="max-h-96 overflow-y-auto" id="trade-list">
+                    {% if recent_trades %}
+                    <ul class="divide-y divide-gray-100 dark:divide-gray-700">
+                        {% for trade in recent_trades %}
+                        <li class="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-150 ease-in-out trade-item">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="p-1.5 rounded-full {% if trade.status == 'active' %}bg-green-50 dark:bg-green-900/30{% else %}bg-gray-50 dark:bg-gray-700{% endif %}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity h-4 w-4 {% if trade.status == 'active' %}text-green-500 dark:text-green-400{% else %}text-gray-500 dark:text-gray-400{% endif %}">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-800 dark:text-white trader-name">{{ trade.trader.name }}</h3>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ trade.started_at|date:"M d, Y H:i" }}</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-sm font-medium text-green-600 dark:text-green-400">
+                                        {% if trade.status == 'active' %}+{% endif %}${{ trade.amount|floatformat:2 }}
+                                    </span>
+                                    <p class="text-xs mt-0.5">
+                                        <span class="inline-block px-1.5 py-0.5 rounded-sm text-xs 
+                                            {% if trade.status == 'active' %}bg-green-50 text-green-700 ring-1 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30
+                                            {% elif trade.status == 'paused' %}bg-amber-50 text-amber-700 ring-1 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-400/30
+                                            {% else %}bg-gray-50 text-gray-700 ring-1 ring-gray-600/20 dark:bg-gray-800 dark:text-gray-300 dark:ring-gray-400/30{% endif %}">
+                                            {{ trade.status|title }}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
                         {% endfor %}
-                    </select>
-                    {% if form.payment_method.errors %}
-                    <p class="text-red-500 text-xs mt-1">{{ form.payment_method.errors.0 }}</p>
+                    </ul>
+                    {% else %}
+                    <div class="py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-6 w-6 mb-2 text-gray-300 dark:text-gray-600">
+                            <path d="M3 3v18h18"></path>
+                            <path d="M18 17V9"></path>
+                            <path d="M13 17V5"></path>
+                            <path d="M8 17v-3"></path>
+                        </svg>
+                        <p class="text-sm">No trades found</p>
+                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Start copying a trader to begin</p>
+                    </div>
                     {% endif %}
                 </div>
                 
-                <!-- Currency Selection -->
-                <div>
-                    <label for="currency" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Select Currency
-                    </label>
-                    <select name="currency" id="currency" 
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white"
-                            required x-model="selectedCurrency">
-                        <option value="">Select currency</option>
-                        {% for currency in currencies %}
-                        <option value="{{ currency.id }}">
-                            {{ currency.code }} - {{ currency.name }} ({{ currency.symbol }})
-                        </option>
+                <div class="p-3 bg-gray-50 dark:bg-transparent border-t border-gray-200 dark:border-gray-900">
+                    <a href="{% url 'copy_trading_history' %}">
+                        <button class="w-full flex items-center justify-center text-xs font-medium text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300">
+                            View trade history
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-3.5 w-3.5 ml-1">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Transactions Section -->
+        <div class="w-full flex-1">
+            <div class="w-full bg-white dark:bg-gray-950 rounded-lg shadow-sm overflow-hidden">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-900">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-base font-semibold text-gray-800 dark:text-white">Recent Transactions</h2>
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                            <span>Updated {% now "h:i A" %}</span>
+                            <button onclick="window.location.reload()" class="ml-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw h-3.5 w-3.5 text-gray-400">
+                                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                    <path d="M21 3v5h-5"></path>
+                                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                    <path d="M8 16H3v5"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-2 relative">
+                        <input type="text" id="transaction-search" placeholder="Search transactions..." 
+                               class="w-full pl-8 pr-3 py-1.5 bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-gray-900 rounded-md text-xs text-gray-700 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-2 top-2 h-3.5 w-3.5 text-gray-400">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="max-h-96 overflow-y-auto" id="transaction-list">
+                    {% if recent_transactions %}
+                    <ul class="divide-y divide-gray-100 dark:divide-gray-700">
+                        {% for transaction in recent_transactions %}
+                        <li class="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-150 ease-in-out transaction-item">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="p-1.5 rounded-full 
+                                        {% if transaction.transaction_type == 'deposit' %}bg-green-50 dark:bg-green-900/30
+                                        {% elif transaction.transaction_type == 'withdrawal' %}bg-red-50 dark:bg-red-900/30
+                                        {% elif transaction.transaction_type == 'commission' %}bg-blue-50 dark:bg-blue-900/30
+                                        {% else %}bg-gray-50 dark:bg-gray-700{% endif %}">
+                                        {% if transaction.transaction_type == 'deposit' %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-left h-4 w-4 text-green-500 dark:text-green-400">
+                                            <path d="M17 7 7 17"></path>
+                                            <path d="M17 17H7V7"></path>
+                                        </svg>
+                                        {% elif transaction.transaction_type == 'withdrawal' %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right h-4 w-4 text-red-500 dark:text-red-400">
+                                            <path d="M7 7h10v10"></path>
+                                            <path d="M7 17 17 7"></path>
+                                        </svg>
+                                        {% elif transaction.transaction_type == 'commission' %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity h-4 w-4 text-blue-500 dark:text-blue-400">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                        </svg>
+                                        {% else %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity h-4 w-4 text-gray-500 dark:text-gray-400">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                        </svg>
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-800 dark:text-white capitalize transaction-type">{{ transaction.transaction_type }}</h3>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ transaction.created_at|date:"M d, Y \a\t h:i A" }}</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-sm font-medium 
+                                        {% if transaction.transaction_type == 'deposit' %}text-green-600 dark:text-green-400
+                                        {% elif transaction.transaction_type == 'withdrawal' %}text-red-600 dark:text-red-400
+                                        {% else %}text-blue-600 dark:text-blue-400{% endif %}">
+                                        {% if transaction.transaction_type == 'deposit' %}+{% elif transaction.transaction_type == 'withdrawal' %}-{% endif %}${{ transaction.amount|floatformat:2 }}
+                                    </span>
+                                    <p class="text-xs mt-0.5">
+                                        <span class="inline-block px-1.5 py-0.5 rounded-sm text-xs 
+                                            {% if transaction.status == 'completed' %}bg-green-50 text-green-700 ring-1 ring-green-600/20 dark:bg-green-950/50 dark:text-green-300 dark:ring-green-400/30
+                                            {% elif transaction.status == 'pending' %}bg-amber-50 text-amber-700 ring-1 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-400/30
+                                            {% elif transaction.status == 'failed' %}bg-red-50 text-red-700 ring-1 ring-red-600/20 dark:bg-red-950/50 dark:text-red-300 dark:ring-red-400/30
+                                            {% else %}bg-gray-50 text-gray-700 ring-1 ring-gray-600/20 dark:bg-gray-800 dark:text-gray-300 dark:ring-gray-400/30{% endif %}">
+                                            {{ transaction.status|title }}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            {% if transaction.description %}
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 ml-10">{{ transaction.description }}</p>
+                            {% endif %}
+                        </li>
                         {% endfor %}
-                    </select>
-                    {% if form.currency.errors %}
-                    <p class="text-red-500 text-xs mt-1">{{ form.currency.errors.0 }}</p>
+                    </ul>
+                    {% else %}
+                    <div class="py-12 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-8 w-8 mb-2 text-gray-300 dark:text-gray-600">
+                            <path d="M3 3v18h18"></path>
+                            <path d="M18 17V9"></path>
+                            <path d="M13 17V5"></path>
+                            <path d="M8 17v-3"></path>
+                        </svg>
+                        <p class="text-sm">No transactions found</p>
+                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Make a deposit to start trading</p>
+                    </div>
                     {% endif %}
                 </div>
                 
-                <!-- Amount Input -->
-                <div>
-                    <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Amount <span x-text="getCurrencySymbol() ? '(' + getCurrencySymbol() + ')' : ''"></span>
-                    </label>
-                    <input type="number" name="amount" id="amount" 
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white {% if form.amount.errors %}border-red-500{% endif %}"
-                           placeholder="0.00" required min="1" step="0.01" x-model="amount" />
-                    {% if form.amount.errors %}
-                    <p class="text-red-500 text-xs mt-1">{{ form.amount.errors.0 }}</p>
-                    {% endif %}
+                <div class="p-3 bg-gray-50 dark:bg-transparent border-t border-gray-200 dark:border-gray-900">
+                    <a href="{% url 'transactions' %}">
+                        <button class="w-full flex items-center justify-center text-xs font-medium text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300">
+                            View all transactions
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right h-3.5 w-3.5 ml-1">
+                                <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                        </button>
+                    </a>
                 </div>
-                
-                <!-- Crypto Amount Display (only for crypto methods) -->
-                <div x-show="selectedMethod && getSelectedMethod()?.method_type === 'crypto'" x-cloak>
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Amount in <span x-text="getSelectedMethod()?.crypto_symbol"></span>
-                    </label>
-                    <input type="text" readonly
-                           class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                           x-bind:value="cryptoAmount" />
-                </div>
-                
-                <!-- Payment Instructions -->
-                <div x-show="selectedMethod && selectedCurrency" x-cloak class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                    <h6 class="text-sm font-semibold text-gray-900 dark:text-white mb-2">Payment Instructions:</h6>
-                    <div x-html="getSelectedMethod()?.instructions" class="text-xs text-gray-600 dark:text-gray-400"></div>
-                </div>
-                
-                <button type="submit" 
-                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Proceed to Deposit
-                </button>
-            </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- TradingView Widget -->
+    <div class="h-125 flex items-center justify-center mb-4 rounded-3xl shadow-1 bg-white bg-opacity-90 dark:bg-gray-950">
+        <div class="tradingview-widget-container" style="width: 100%; height: 100%">
+            <iframe scrolling="no" allowtransparency="true" frameborder="0" 
+                    src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=en#%7B%22symbols%22%3A%5B%5B%22Apple%22%2C%22AAPL%7C1M%22%5D%2C%5B%22Google%22%2C%22GOOGL%7C1M%22%5D%2C%5B%22Microsoft%22%2C%22MSFT%7C1M%22%5D%2C%5B%22NASDAQ%3ANVDA%7C1M%22%5D%2C%5B%22NASDAQ%3AAMZN%7C1M%22%5D%2C%5B%22NASDAQ%3ATSLA%7C1M%22%5D%2C%5B%22NASDAQ%3AMETA%7C1M%22%5D%5D%2C%22chartOnly%22%3Afalse%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22colorTheme%22%3A%22dark%22%2C%22showVolume%22%3Atrue%2C%22showMA%22%3Afalse%2C%22hideDateRanges%22%3Afalse%2C%22hideMarketStatus%22%3Afalse%2C%22hideSymbolLogo%22%3Afalse%2C%22scalePosition%22%3A%22right%22%2C%22scaleMode%22%3A%22Normal%22%2C%22fontFamily%22%3A%22-apple-system%2C%20BlinkMacSystemFont%2C%20Trebuchet%20MS%2C%20Roboto%2C%20Ubuntu%2C%20sans-serif%22%2C%22fontSize%22%3A%2214%22%2C%22noTimeScale%22%3Afalse%2C%22valuesTracking%22%3A%221%22%2C%22changeMode%22%3A%22price-and-percent%22%2C%22chartType%22%3A%22candlesticks%22%2C%22maLineColor%22%3A%22%232962FF%22%2C%22maLineWidth%22%3A1%2C%22maLength%22%3A9%2C%22backgroundColor%22%3A%22rgba(255%2C%20255%2C%20255%2C%200)%22%2C%22widgetFontColor%22%3A%22rgba(149%2C%20152%2C%20161%2C%201)%22%2C%22lineWidth%22%3A2%2C%22lineType%22%3A0%2C%22dateRanges%22%3A%5B%221d%7C1%22%2C%221m%7C30%22%2C%223m%7C60%22%2C%2212m%7C1D%22%2C%2260m%7C1W%22%2C%22all%7C1M%22%5D%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22symbol-overview%22%7D"
+                    title="symbol overview TradingView widget" lang="en"
+                    style="box-sizing: border-box; display: block; height: 100%; width: 100%;">
+            </iframe>
         </div>
     </div>
 </div>
+
+{% block extra_js %}
+<script>
+    // Search functionality for trades
+    document.getElementById('trade-search')?.addEventListener('keyup', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const items = document.querySelectorAll('#trade-list .trade-item');
+        
+        items.forEach(item => {
+            const traderName = item.querySelector('.trader-name')?.textContent.toLowerCase() || '';
+            if (traderName.includes(searchTerm)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+
+    // Search functionality for transactions
+    document.getElementById('transaction-search')?.addEventListener('keyup', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const items = document.querySelectorAll('#transaction-list .transaction-item');
+        
+        items.forEach(item => {
+            const transactionType = item.querySelector('.transaction-type')?.textContent.toLowerCase() || '';
+            const text = item.textContent.toLowerCase();
+            if (transactionType.includes(searchTerm) || text.includes(searchTerm)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}
 {% endblock %}

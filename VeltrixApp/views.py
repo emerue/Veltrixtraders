@@ -391,14 +391,33 @@ def setup_declaration(request):
     
     return render(request, 'setup-declaration.html')
 
-# Dashboard Views
 @login_required
 def dashboard(request):
     traders = Trader.objects.filter(is_active=True)[:10]
     
+    # Get recent copy trades (active and history)
+    recent_trades = CopyTrade.objects.filter(
+        user=request.user
+    ).select_related('trader').order_by('-started_at')[:5]
+    
+    # Get recent transactions
+    recent_transactions = Transaction.objects.filter(
+        user=request.user
+    ).order_by('-created_at')[:5]
+    
+    # Get count of active copy trades
+    copy_trades_count = CopyTrade.objects.filter(
+        user=request.user, 
+        status='active'
+    ).count()
+    
     context = {
         'traders': traders,
+        'recent_trades': recent_trades,
+        'recent_transactions': recent_transactions,
+        'copy_trades_count': copy_trades_count,
         'user': request.user,
+        'now': timezone.now(),  # For the "Updated" timestamp
     }
     return render(request, 'user/dashboard.html', context)
 
