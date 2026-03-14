@@ -8,14 +8,6 @@
         "documentation": {}
     },
     {
-        "label": "CommandError",
-        "importPath": "django.core.management.base",
-        "description": "django.core.management.base",
-        "isExtraImport": true,
-        "detail": "django.core.management.base",
-        "documentation": {}
-    },
-    {
         "label": "BaseCommand",
         "importPath": "django.core.management.base",
         "description": "django.core.management.base",
@@ -40,7 +32,7 @@
         "documentation": {}
     },
     {
-        "label": "BaseCommand",
+        "label": "CommandError",
         "importPath": "django.core.management.base",
         "description": "django.core.management.base",
         "isExtraImport": true,
@@ -72,171 +64,43 @@
         "documentation": {}
     },
     {
-        "label": "transaction",
-        "importPath": "django.db",
-        "description": "django.db",
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
         "isExtraImport": true,
-        "detail": "django.db",
+        "detail": "django.core.management.base",
         "documentation": {}
     },
     {
-        "label": "transaction",
-        "importPath": "django.db",
-        "description": "django.db",
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
         "isExtraImport": true,
-        "detail": "django.db",
+        "detail": "django.core.management.base",
         "documentation": {}
     },
     {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
+        "label": "PaymentMethod",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
         "isExtraImport": true,
-        "detail": "django.db",
+        "detail": "VeltrixApp.models",
         "documentation": {}
     },
     {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
+        "label": "PaymentMethodDetail",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
         "isExtraImport": true,
-        "detail": "django.db",
+        "detail": "VeltrixApp.models",
         "documentation": {}
     },
     {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
+        "label": "Currency",
+        "importPath": "VeltrixApp.models",
+        "description": "VeltrixApp.models",
         "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "transaction",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "transaction",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
+        "detail": "VeltrixApp.models",
         "documentation": {}
     },
     {
@@ -349,6 +213,190 @@
         "description": "VeltrixApp.models",
         "isExtraImport": true,
         "detail": "VeltrixApp.models",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -1198,6 +1246,15 @@
     {
         "label": "Command",
         "kind": 6,
+        "importPath": "VeltrixApp.management.commands.add_payment_methods",
+        "description": "VeltrixApp.management.commands.add_payment_methods",
+        "peekOfCode": "class Command(BaseCommand):\n    help = 'Adds CashApp and PayPal payment methods'\n    def add_arguments(self, parser):\n        parser.add_argument(\n            '--force',\n            action='store_true',\n            help='Force update existing payment methods',\n        )\n    def handle(self, *args, **options):\n        force = options['force']",
+        "detail": "VeltrixApp.management.commands.add_payment_methods",
+        "documentation": {}
+    },
+    {
+        "label": "Command",
+        "kind": 6,
         "importPath": "VeltrixApp.management.commands.create_currencies",
         "description": "VeltrixApp.management.commands.create_currencies",
         "peekOfCode": "class Command(BaseCommand):\n    help = 'Creates initial currency records for the payment system'\n    def add_arguments(self, parser):\n        parser.add_argument(\n            '--force',\n            action='store_true',\n            help='Force recreation of currencies even if they exist',\n        )\n        parser.add_argument(\n            '--activate-all',",
@@ -1337,6 +1394,15 @@
         "description": "VeltrixApp.migrations.0008_currency_deposit_account_name_deposit_account_number_and_more",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0007_user_email_otp_user_email_otp_created_at_and_more'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Currency',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('code', models.CharField(choices=[('USD', 'US Dollar'), ('GBP', 'British Pound'), ('EUR', 'Euro'), ('CZK', 'Czech Koruna'), ('CNY', 'Chinese Yuan'), ('CAD', 'Canadian Dollar'), ('JPY', 'Japanese Yen')], max_length=3, unique=True)),",
         "detail": "VeltrixApp.migrations.0008_currency_deposit_account_name_deposit_account_number_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "VeltrixApp.migrations.0009_deposit_cashapp_tag_deposit_paypal_email_and_more",
+        "description": "VeltrixApp.migrations.0009_deposit_cashapp_tag_deposit_paypal_email_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('VeltrixApp', '0008_currency_deposit_account_name_deposit_account_number_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='deposit',\n            name='cashapp_tag',\n            field=models.CharField(blank=True, max_length=100, null=True),\n        ),",
+        "detail": "VeltrixApp.migrations.0009_deposit_cashapp_tag_deposit_paypal_email_and_more",
         "documentation": {}
     },
     {
@@ -1695,7 +1761,7 @@
         "kind": 6,
         "importPath": "VeltrixApp.models",
         "description": "VeltrixApp.models",
-        "peekOfCode": "class PaymentMethod(models.Model):\n    TYPE_CHOICES = [\n        ('crypto', 'Cryptocurrency'),\n        ('bank', 'Bank Transfer'),\n    ]\n    CRYPTO_CHOICES = [\n        ('BTC', 'Bitcoin'),\n        ('ETH', 'Ethereum'),\n        ('USDT_ERC20', 'USDT (ERC20)'),\n        ('USDT_TRC20', 'USDT (TRC20)'),",
+        "peekOfCode": "class PaymentMethod(models.Model):\n    TYPE_CHOICES = [\n        ('crypto', 'Cryptocurrency'),\n        ('bank', 'Bank Transfer'),\n        ('cashapp', 'CashApp'),\n        ('paypal', 'PayPal'),\n    ]\n    CRYPTO_CHOICES = [\n        ('BTC', 'Bitcoin'),\n        ('ETH', 'Ethereum'),",
         "detail": "VeltrixApp.models",
         "documentation": {}
     },
@@ -1704,7 +1770,7 @@
         "kind": 6,
         "importPath": "VeltrixApp.models",
         "description": "VeltrixApp.models",
-        "peekOfCode": "class PaymentMethodDetail(models.Model):\n    payment_method = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE, related_name='details')\n    currency = models.ForeignKey(Currency, on_delete=models.CASCADE, related_name='payment_details', null=True, blank=True)\n    # Common fields for crypto\n    wallet_address = models.CharField(max_length=255, blank=True, null=True)\n    network = models.CharField(max_length=50, blank=True, null=True)\n    # Bank details - now associated with specific currency\n    bank_name = models.CharField(max_length=255, blank=True, null=True)\n    account_name = models.CharField(max_length=255, blank=True, null=True)\n    account_number = models.CharField(max_length=100, blank=True, null=True)",
+        "peekOfCode": "class PaymentMethodDetail(models.Model):\n    payment_method = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE, related_name='details')\n    currency = models.ForeignKey(Currency, on_delete=models.CASCADE, related_name='payment_details', null=True, blank=True)\n    # Common fields for crypto\n    wallet_address = models.CharField(max_length=255, blank=True, null=True)\n    network = models.CharField(max_length=50, blank=True, null=True)\n    # Bank details\n    bank_name = models.CharField(max_length=255, blank=True, null=True)\n    account_name = models.CharField(max_length=255, blank=True, null=True)\n    account_number = models.CharField(max_length=100, blank=True, null=True)",
         "detail": "VeltrixApp.models",
         "documentation": {}
     },

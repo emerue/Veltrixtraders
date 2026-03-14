@@ -106,7 +106,6 @@ class DepositForm(forms.Form):
         self.fields['payment_method'].choices = payment_choices
         self.fields['currency'].choices = currency_choices
 
-
 class WithdrawalForm(forms.Form):
     payment_method = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))
     currency = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))

@@ -870,7 +870,6 @@ def deposit_confirmation(request, deposit_id):
             currency__isnull=True
         ).first()
     
-    # Pre-calculate values for the template
     context = {
         'deposit': deposit,
         'payment_details': payment_details,
@@ -878,6 +877,8 @@ def deposit_confirmation(request, deposit_id):
         'currency_symbol': deposit.currency.symbol if deposit.currency else '$',
         'has_crypto': deposit.payment_method.method_type == 'crypto' if deposit.payment_method else False,
         'has_bank': deposit.payment_method.method_type == 'bank' if deposit.payment_method else False,
+        'has_cashapp': deposit.payment_method.method_type == 'cashapp' if deposit.payment_method else False,
+        'has_paypal': deposit.payment_method.method_type == 'paypal' if deposit.payment_method else False,
     }
     
     return render(request, 'user/deposit-confirmation.html', context)

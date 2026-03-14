@@ -121,6 +121,8 @@ class PaymentMethod(models.Model):
     TYPE_CHOICES = [
         ('crypto', 'Cryptocurrency'),
         ('bank', 'Bank Transfer'),
+        ('cashapp', 'CashApp'),
+        ('paypal', 'PayPal'),
     ]
     
     CRYPTO_CHOICES = [
@@ -130,6 +132,15 @@ class PaymentMethod(models.Model):
         ('USDT_TRC20', 'USDT (TRC20)'),
         ('SOL', 'Solana'),
         ('XRP', 'XRP'),
+    ]
+    
+    # Add CashApp and PayPal specific fields
+    CASHAPP_CHOICES = [
+        ('cashapp', 'CashApp'),
+    ]
+    
+    PAYPAL_CHOICES = [
+        ('paypal', 'PayPal'),
     ]
     
     name = models.CharField(max_length=100)
@@ -152,7 +163,6 @@ class PaymentMethod(models.Model):
     class Meta:
         ordering = ['method_type', 'name']
 
-
 class PaymentMethodDetail(models.Model):
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE, related_name='details')
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE, related_name='payment_details', null=True, blank=True)
@@ -161,7 +171,7 @@ class PaymentMethodDetail(models.Model):
     wallet_address = models.CharField(max_length=255, blank=True, null=True)
     network = models.CharField(max_length=50, blank=True, null=True)
     
-    # Bank details - now associated with specific currency
+    # Bank details
     bank_name = models.CharField(max_length=255, blank=True, null=True)
     account_name = models.CharField(max_length=255, blank=True, null=True)
     account_number = models.CharField(max_length=100, blank=True, null=True)
@@ -170,10 +180,19 @@ class PaymentMethodDetail(models.Model):
     iban = models.CharField(max_length=100, blank=True, null=True)
     beneficiary_address = models.TextField(blank=True, null=True)
     
+    # CashApp fields
+    cashapp_tag = models.CharField(max_length=100, blank=True, null=True, help_text="CashApp $Cashtag")
+    cashapp_qr_code = models.ImageField(upload_to='payment_qr/cashapp/', blank=True, null=True)
+    
+    # PayPal fields
+    paypal_email = models.EmailField(blank=True, null=True, help_text="PayPal email address")
+    paypal_me_link = models.URLField(blank=True, null=True, help_text="PayPal.Me link")
+    paypal_qr_code = models.ImageField(upload_to='payment_qr/paypal/', blank=True, null=True)
+    
     # Currency-specific bank details
     currency_specific_instructions = models.TextField(blank=True, null=True)
     
-    # QR Code
+    # QR Code (generic)
     qr_code = models.ImageField(upload_to='payment_qr/', blank=True, null=True)
     
     # Additional info
@@ -186,8 +205,6 @@ class PaymentMethodDetail(models.Model):
     
     class Meta:
         unique_together = ['payment_method', 'currency']  # One detail per currency per method
-
-
 class Deposit(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),
@@ -199,21 +216,29 @@ class Deposit(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='deposits')
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.SET_NULL, null=True)
-    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True)  # Add currency field
-    amount = models.DecimalField(max_digits=20, decimal_places=2)  # Changed from amount_usd
-    amount_usd = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)  # Keep for conversion
+    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True)
+    amount = models.DecimalField(max_digits=20, decimal_places=2)
+    amount_usd = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
     crypto_amount = models.DecimalField(max_digits=20, decimal_places=8, blank=True, null=True)
     transaction_id = models.CharField(max_length=100, unique=True, blank=True)
+    
+    # Crypto fields
     wallet_address = models.CharField(max_length=255, blank=True, null=True)
     network = models.CharField(max_length=50, blank=True, null=True)
     
-    # Bank details for bank transfers
+    # Bank fields
     bank_name = models.CharField(max_length=255, blank=True, null=True)
     account_name = models.CharField(max_length=255, blank=True, null=True)
     account_number = models.CharField(max_length=100, blank=True, null=True)
     routing_number = models.CharField(max_length=100, blank=True, null=True)
     swift_code = models.CharField(max_length=50, blank=True, null=True)
     iban = models.CharField(max_length=100, blank=True, null=True)
+    
+    # CashApp fields
+    cashapp_tag = models.CharField(max_length=100, blank=True, null=True)
+    
+    # PayPal fields
+    paypal_email = models.EmailField(blank=True, null=True)
     
     # Proof of payment
     proof_image = models.ImageField(upload_to='deposit_proofs/', blank=True, null=True)
@@ -232,7 +257,6 @@ class Deposit(models.Model):
     def __str__(self):
         currency_code = self.currency.code if self.currency else 'USD'
         return f"{self.user.username} - {self.amount} {currency_code} - {self.status}"
-
 
 class Withdrawal(models.Model):
     STATUS_CHOICES = [
