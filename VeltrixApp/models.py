@@ -94,8 +94,6 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-# Add to your models.py - replace the existing PaymentMethod and PaymentMethodDetail
-
 class Currency(models.Model):
     """Currency model to store different currency options"""
     CURRENCY_CHOICES = [
@@ -307,9 +305,9 @@ class Trader(models.Model):
         ('High', 'High'),
     ]
     
-    id = models.CharField(max_length=50, primary_key=True)
+    id = models.CharField(max_length=50, primary_key=True, editable=False)
     name = models.CharField(max_length=255)
-    image_url = models.URLField(max_length=500)
+    image_url = models.URLField(max_length=500, default='https://res.cloudinary.com/ddb1vjioq/image/uploads/trader/01KJT9R9GDZ88BWEXAP4JK1HQM.jpeg')
     image = models.ImageField(upload_to="traders", null=True, blank=True)
     risk_level = models.CharField(max_length=20, choices=RISK_CHOICES)
     specialty = models.CharField(max_length=100)
@@ -328,6 +326,12 @@ class Trader(models.Model):
     def __str__(self):
         return self.name
     
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # Generate a unique ID (you can customize this logic)
+            import uuid
+            self.id = f"TRADER-{uuid.uuid4().hex[:8].upper()}"
+        super().save(*args, **kwargs)
     class Meta:
         ordering = ['-followers']
 

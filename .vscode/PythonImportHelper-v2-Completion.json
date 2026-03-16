@@ -1797,7 +1797,7 @@
         "kind": 6,
         "importPath": "VeltrixApp.models",
         "description": "VeltrixApp.models",
-        "peekOfCode": "class Trader(models.Model):\n    RISK_CHOICES = [\n        ('Low', 'Low'),\n        ('Medium', 'Medium'),\n        ('High', 'High'),\n    ]\n    id = models.CharField(max_length=50, primary_key=True)\n    name = models.CharField(max_length=255)\n    image_url = models.URLField(max_length=500)\n    image = models.ImageField(upload_to=\"traders\", null=True, blank=True)",
+        "peekOfCode": "class Trader(models.Model):\n    RISK_CHOICES = [\n        ('Low', 'Low'),\n        ('Medium', 'Medium'),\n        ('High', 'High'),\n    ]\n    id = models.CharField(max_length=50, primary_key=True, editable=False)\n    name = models.CharField(max_length=255)\n    image_url = models.URLField(max_length=500, default='https://res.cloudinary.com/ddb1vjioq/image/uploads/trader/01KJT9R9GDZ88BWEXAP4JK1HQM.jpeg')\n    image = models.ImageField(upload_to=\"traders\", null=True, blank=True)",
         "detail": "VeltrixApp.models",
         "documentation": {}
     },
@@ -2292,7 +2292,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def deposit(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    currencies = Currency.objects.filter(is_active=True)\n    # Prepare payment methods for JSON\n    payment_methods_json = []\n    for pm in payment_methods:\n        payment_methods_json.append({\n            'id': pm.id,\n            'name': pm.name,\n            'method_type': pm.method_type,",
+        "peekOfCode": "def deposit(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    currencies = Currency.objects.filter(is_active=True)\n    # Get USD currency ID for default\n    usd_currency = Currency.objects.filter(code='USD').first()\n    usd_currency_id = usd_currency.id if usd_currency else None\n    # Prepare payment methods for JSON\n    payment_methods_json = []\n    for pm in payment_methods:\n        payment_methods_json.append({",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -2499,7 +2499,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "env = environ.Env()\nENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False",
+        "peekOfCode": "env = environ.Env()\nENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2508,7 +2508,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "ENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False\nALLOWED_HOSTS = [\"*\"]",
+        "peekOfCode": "ENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2517,7 +2517,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2526,7 +2526,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "DEBUG = False\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
         "detail": "core.settings",
         "documentation": {}
     },

@@ -727,12 +727,14 @@ def copy_traders(request):
     }
     return render(request, 'user/copytraders.html', context)
 
-# Add to your views.py - replace the deposit and withdrawal views
-
 @login_required
 def deposit(request):
     payment_methods = PaymentMethod.objects.filter(is_active=True)
     currencies = Currency.objects.filter(is_active=True)
+    
+    # Get USD currency ID for default
+    usd_currency = Currency.objects.filter(code='USD').first()
+    usd_currency_id = usd_currency.id if usd_currency else None
     
     # Prepare payment methods for JSON
     payment_methods_json = []
@@ -780,10 +782,18 @@ def deposit(request):
             amount = form.cleaned_data['amount']
             
             payment_method = get_object_or_404(PaymentMethod, id=payment_method_id)
-            currency = get_object_or_404(Currency, id=currency_id)
             
-            # Calculate USD equivalent
-            usd_amount = amount * Decimal(str(exchange_rates.get(currency.code, 1.0)))
+            # For non-bank methods, ensure currency is USD
+            if payment_method.method_type != 'bank':
+                # Force currency to USD
+                currency = get_object_or_404(Currency, code='USD')
+                # The amount is already in USD
+                usd_amount = amount
+            else:
+                # For bank transfers, use selected currency
+                currency = get_object_or_404(Currency, id=currency_id)
+                # Calculate USD equivalent
+                usd_amount = amount * Decimal(str(exchange_rates.get(currency.code, 1.0)))
             
             # Get payment details for this method and currency
             payment_details = PaymentMethodDetail.objects.filter(
@@ -808,7 +818,7 @@ def deposit(request):
                 status='pending'
             )
             
-            # Add bank details if available from payment_details
+            # Add payment details if available
             if payment_details:
                 if payment_method.method_type == 'bank':
                     deposit.bank_name = payment_details.bank_name
@@ -817,9 +827,13 @@ def deposit(request):
                     deposit.routing_number = payment_details.routing_number
                     deposit.swift_code = payment_details.swift_code
                     deposit.iban = payment_details.iban
-                else:  # crypto
+                elif payment_method.method_type == 'crypto':
                     deposit.wallet_address = payment_details.wallet_address
                     deposit.network = payment_details.network
+                elif payment_method.method_type == 'cashapp':
+                    deposit.cashapp_tag = payment_details.cashapp_tag
+                elif payment_method.method_type == 'paypal':
+                    deposit.paypal_email = payment_details.paypal_email
                 
                 deposit.save()
             
@@ -842,6 +856,7 @@ def deposit(request):
         'form': form,
         'payment_methods': payment_methods,
         'currencies': currencies,
+        'usd_currency_id': usd_currency_id,
         'payment_methods_json': json.dumps(payment_methods_json),
         'currencies_json': json.dumps(currencies_json),
         'exchange_rates_json': json.dumps(exchange_rates),

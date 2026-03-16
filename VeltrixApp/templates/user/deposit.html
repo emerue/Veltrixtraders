@@ -42,6 +42,7 @@
                     selectedCurrency: '',
                     cryptoAmount: 0,
                     methodType: '',
+                    showCurrencySelector: false,
                     paymentMethods: window.depositData.paymentMethods || [],
                     currencies: window.depositData.currencies || [],
                     exchangeRates: window.depositData.exchangeRates || {},
@@ -66,6 +67,7 @@
                         if (!method) return;
                         
                         this.methodType = method.method_type || '';
+                        this.showCurrencySelector = (method.method_type === 'bank');
                         
                         if (method.method_type !== 'crypto' || !method.crypto_symbol) {
                             this.cryptoAmount = 0;
@@ -82,11 +84,23 @@
                     getCurrencySymbol() {
                         const currency = this.getSelectedCurrency();
                         return currency ? currency.symbol : '$';
+                    },
+                    
+                    getDisplayCurrency() {
+                        if (this.showCurrencySelector) {
+                            const currency = this.getSelectedCurrency();
+                            return currency ? currency.code : 'USD';
+                        }
+                        return 'USD';
                     }
                   }"
                   x-init="
                     $watch('amount', () => updateCryptoAmount());
-                    $watch('selectedMethod', () => updateCryptoAmount());
+                    $watch('selectedMethod', () => {
+                        updateCryptoAmount();
+                        // Reset currency selection when method changes
+                        this.selectedCurrency = '';
+                    });
                   ">
                 
                 {% csrf_token %}
@@ -123,14 +137,14 @@
                     {% endif %}
                 </div>
                 
-                <!-- Currency Selection -->
-                <div>
+                <!-- Currency Selection - Only for Bank Transfers -->
+                <div x-show="showCurrencySelector" x-cloak>
                     <label for="currency" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Select Currency
                     </label>
                     <select name="currency" id="currency" 
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white"
-                            required x-model="selectedCurrency">
+                            :required="showCurrencySelector" x-model="selectedCurrency">
                         <option value="">Select currency</option>
                         {% for currency in currencies %}
                         <option value="{{ currency.id }}">
@@ -143,10 +157,15 @@
                     {% endif %}
                 </div>
                 
+                <!-- Hidden Currency Field for Non-Bank Methods (default to USD) -->
+                <input type="hidden" name="currency" x-bind:value="showCurrencySelector ? selectedCurrency : '1'" />
+                <!-- Note: '1' should be the ID of USD currency in your database -->
+                
                 <!-- Amount Input -->
                 <div>
                     <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Amount <span x-text="getCurrencySymbol() ? '(' + getCurrencySymbol() + ')' : ''"></span>
+                        Amount 
+                        <span x-text="showCurrencySelector ? (getCurrencySymbol() ? '(' + getCurrencySymbol() + ')' : '') : '($)'"></span>
                     </label>
                     <input type="number" name="amount" id="amount" 
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white {% if form.amount.errors %}border-red-500{% endif %}"
@@ -154,6 +173,17 @@
                     {% if form.amount.errors %}
                     <p class="text-red-500 text-xs mt-1">{{ form.amount.errors.0 }}</p>
                     {% endif %}
+                </div>
+                
+                <!-- USD Equivalent Display (for non-USD currencies) -->
+                <div x-show="showCurrencySelector && selectedCurrency && getSelectedCurrency()?.code !== 'USD' && amount && parseFloat(amount) > 0" 
+                     x-cloak class="text-xs text-gray-500 dark:text-gray-400 p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                    <div class="flex justify-between">
+                        <span>USD Equivalent:</span>
+                        <span class="font-medium">
+                            $<span x-text="(parseFloat(amount) * (exchangeRates[getSelectedCurrency()?.code] || 1)).toFixed(2)"></span>
+                        </span>
+                    </div>
                 </div>
                 
                 <!-- Crypto Amount Display (only for crypto methods) -->
@@ -167,7 +197,7 @@
                 </div>
                 
                 <!-- Payment Instructions -->
-                <div x-show="selectedMethod && selectedCurrency" x-cloak class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div x-show="selectedMethod && (selectedCurrency || !showCurrencySelector)" x-cloak class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                     <h6 class="text-sm font-semibold text-gray-900 dark:text-white mb-2">Payment Instructions:</h6>
                     <div x-html="getSelectedMethod()?.instructions" class="text-xs text-gray-600 dark:text-gray-400"></div>
                 </div>
