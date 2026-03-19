@@ -47,6 +47,33 @@
                     currencies: window.depositData.currencies || [],
                     exchangeRates: window.depositData.exchangeRates || {},
                     
+                    init() {
+                        this.$watch('selectedMethod', (value) => {
+                            this.updateMethodType();
+                            // Clear currency selection when method changes
+                            this.selectedCurrency = '';
+                        });
+                        
+                        this.$watch('selectedCurrency', () => {
+                            this.updateCryptoAmount();
+                        });
+                        
+                        this.$watch('amount', () => {
+                            this.updateCryptoAmount();
+                        });
+                    },
+                    
+                    updateMethodType() {
+                        const method = this.getSelectedMethod();
+                        if (method) {
+                            this.methodType = method.method_type;
+                            this.showCurrencySelector = (method.method_type === 'bank');
+                        } else {
+                            this.methodType = '';
+                            this.showCurrencySelector = false;
+                        }
+                    },
+                    
                     getSelectedMethod() {
                         if (!this.selectedMethod) return null;
                         return this.paymentMethods.find(m => m.id == this.selectedMethod);
@@ -66,19 +93,14 @@
                         const method = this.getSelectedMethod();
                         if (!method) return;
                         
-                        this.methodType = method.method_type || '';
-                        this.showCurrencySelector = (method.method_type === 'bank');
-                        
-                        if (method.method_type !== 'crypto' || !method.crypto_symbol) {
+                        if (method.method_type === 'crypto') {
+                            // Calculate crypto amount using real exchange rate
+                            const cryptoRate = method.exchange_rate || 1;
+                            const usdAmount = parseFloat(this.amount);
+                            this.cryptoAmount = (usdAmount / cryptoRate).toFixed(8);
+                        } else {
                             this.cryptoAmount = 0;
-                            return;
                         }
-                        
-                        // For crypto, we'd need actual exchange rates
-                        // This is a placeholder - you'd need real rates
-                        const placeholderRate = 0.000014; // Example for BTC
-                        const usdAmount = parseFloat(this.amount);
-                        this.cryptoAmount = (usdAmount * placeholderRate).toFixed(8);
                     },
                     
                     getCurrencySymbol() {
@@ -86,22 +108,33 @@
                         return currency ? currency.symbol : '$';
                     },
                     
-                    getDisplayCurrency() {
-                        if (this.showCurrencySelector) {
+                    getCurrencyCode() {
+                        const currency = this.getSelectedCurrency();
+                        return currency ? currency.code : 'USD';
+                    },
+                    
+                    getExchangeRate() {
+                        if (this.showCurrencySelector && this.selectedCurrency) {
                             const currency = this.getSelectedCurrency();
-                            return currency ? currency.code : 'USD';
+                            return currency?.exchange_rate || 1;
                         }
-                        return 'USD';
+                        return 1;
+                    },
+                    
+                    getUSDAmount() {
+                        if (!this.amount || isNaN(parseFloat(this.amount))) return '0.00';
+                        
+                        if (this.showCurrencySelector && this.selectedCurrency) {
+                            // For bank transfers with selected currency
+                            const rate = this.getExchangeRate();
+                            return (parseFloat(this.amount) / rate).toFixed(2);
+                        }
+                        
+                        // For all other methods, amount is already in USD
+                        return parseFloat(this.amount).toFixed(2);
                     }
                   }"
-                  x-init="
-                    $watch('amount', () => updateCryptoAmount());
-                    $watch('selectedMethod', () => {
-                        updateCryptoAmount();
-                        // Reset currency selection when method changes
-                        this.selectedCurrency = '';
-                    });
-                  ">
+                  x-init="init()">
                 
                 {% csrf_token %}
                 
@@ -127,8 +160,17 @@
                             required x-model="selectedMethod">
                         <option value="">Select payment method</option>
                         {% for method in payment_methods %}
-                        <option value="{{ method.id }}" data-type="{{ method.method_type }}" data-symbol="{{ method.crypto_symbol }}">
-                            {{ method.name }} {% if method.method_type == 'crypto' %}({{ method.get_crypto_symbol_display }}){% endif %}
+                        <option value="{{ method.id }}">
+                            {{ method.name }} 
+                            {% if method.method_type == 'crypto' %}
+                                ({{ method.get_crypto_symbol_display }})
+                            {% elif method.method_type == 'bank' %}
+                                (Bank Transfer)
+                            {% elif method.method_type == 'cashapp' %}
+                                (CashApp)
+                            {% elif method.method_type == 'paypal' %}
+                                (PayPal)
+                            {% endif %}
                         </option>
                         {% endfor %}
                     </select>
@@ -158,14 +200,14 @@
                 </div>
                 
                 <!-- Hidden Currency Field for Non-Bank Methods (default to USD) -->
-                <input type="hidden" name="currency" x-bind:value="showCurrencySelector ? selectedCurrency : '1'" />
-                <!-- Note: '1' should be the ID of USD currency in your database -->
+                <input type="hidden" name="currency" x-bind:value="showCurrencySelector ? selectedCurrency : '{{ usd_currency_id }}'" />
                 
                 <!-- Amount Input -->
                 <div>
                     <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Amount 
-                        <span x-text="showCurrencySelector ? (getCurrencySymbol() ? '(' + getCurrencySymbol() + ')' : '') : '($)'"></span>
+                        <span x-show="!showCurrencySelector">(USD $)</span>
+                        <span x-show="showCurrencySelector" x-text="'(' + getCurrencySymbol() + ' ' + getCurrencyCode() + ')'"></span>
                     </label>
                     <input type="number" name="amount" id="amount" 
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white {% if form.amount.errors %}border-red-500{% endif %}"
@@ -175,13 +217,19 @@
                     {% endif %}
                 </div>
                 
-                <!-- USD Equivalent Display (for non-USD currencies) -->
+                <!-- USD Equivalent Display (for non-USD bank transfers) -->
                 <div x-show="showCurrencySelector && selectedCurrency && getSelectedCurrency()?.code !== 'USD' && amount && parseFloat(amount) > 0" 
-                     x-cloak class="text-xs text-gray-500 dark:text-gray-400 p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                     x-cloak class="text-xs text-gray-500 dark:text-gray-400 p-2 bg-blue-50 dark:bg-green-900/20 rounded-lg">
                     <div class="flex justify-between">
                         <span>USD Equivalent:</span>
                         <span class="font-medium">
-                            $<span x-text="(parseFloat(amount) * (exchangeRates[getSelectedCurrency()?.code] || 1)).toFixed(2)"></span>
+                            $<span x-text="getUSDAmount()"></span>
+                        </span>
+                    </div>
+                    <div class="flex justify-between text-xs mt-1">
+                        <span>Exchange Rate:</span>
+                        <span class="font-medium">
+                            1 <span x-text="getCurrencyCode()"></span> = $<span x-text="(1 / getExchangeRate()).toFixed(4)"></span>
                         </span>
                     </div>
                 </div>
@@ -189,15 +237,24 @@
                 <!-- Crypto Amount Display (only for crypto methods) -->
                 <div x-show="selectedMethod && getSelectedMethod()?.method_type === 'crypto'" x-cloak>
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Amount in <span x-text="getSelectedMethod()?.crypto_symbol"></span>
+                        You'll receive approximately
                     </label>
-                    <input type="text" readonly
-                           class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                           x-bind:value="cryptoAmount" />
+                    <div class="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">
+                                <span x-text="getSelectedMethod()?.crypto_symbol"></span> Amount:
+                            </span>
+                            <span class="text-lg font-bold text-green-600 dark:text-green-400" x-text="cryptoAmount"></span>
+                        </div>
+                        <div class="flex justify-between text-xs mt-2 text-gray-500 dark:text-gray-400">
+                            <span>Exchange Rate:</span>
+                            <span>1 <span x-text="getSelectedMethod()?.crypto_symbol"></span> = $<span x-text="getSelectedMethod()?.exchange_rate?.toFixed(2) || 'N/A'"></span></span>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Payment Instructions -->
-                <div x-show="selectedMethod && (selectedCurrency || !showCurrencySelector)" x-cloak class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div x-show="selectedMethod && (!showCurrencySelector || (showCurrencySelector && selectedCurrency))" x-cloak class="mt-4 p-4 bg-blue-50 dark:bg-green-900/20 rounded-lg">
                     <h6 class="text-sm font-semibold text-gray-900 dark:text-white mb-2">Payment Instructions:</h6>
                     <div x-html="getSelectedMethod()?.instructions" class="text-xs text-gray-600 dark:text-gray-400"></div>
                 </div>

@@ -60,92 +60,25 @@
       href="{% static 'css/index-main.css' %}"
     />
 
+
     <style>
       [x-cloak] {
         display: none !important;
       }
 
-      /* GTranslate fixes */
-      .gt_float_switcher {
-        font-family: Arial;
-        font-size: 16px;
-        border-radius: 4px;
-        display: inline-block;
-        line-height: 20px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        background: #fff;
-        overflow: hidden;
-        transition: all 0.3s ease;
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      .gtranslate_wrapper > div:after {
+        content: "▼";
+        position: absolute;
+        right: 1px;
+        top: 60%;
+        transform: translateY(-60%);
+        font-size: 18px;
+        color: #555;
       }
-      .gt_float_switcher img {
-        vertical-align: middle;
-        display: inline-block;
-        width: 24px;
-        height: auto;
-        margin: 0 5px 0 0;
-        border-radius: 3px;
-      }
-      .gt_float_switcher .gt_options {
-        position: relative;
-        z-index: 777;
-        max-height: 250px;
-        overflow-y: auto;
-        opacity: 0;
-        cursor: pointer;
-        transition: opacity 0.3s ease;
-        display: none;
-      }
-      .gt_float_switcher .gt_options.gt-open {
-        opacity: 1;
-        display: block;
-      }
-      .gt_float_switcher .gt_options a {
-        display: block;
-        text-decoration: none;
-        padding: 8px 12px;
-        color: #444;
-        font-size: 14px;
-        transition: all 0.2s;
-      }
-      .gt_float_switcher .gt-selected {
-        position: relative;
-        z-index: 888;
-        background-color: #fff;
-        cursor: pointer;
-        overflow: hidden;
-      }
-      .gt_float_switcher .gt-selected .gt-current-lang {
-        padding: 8px 12px;
-        color: #333;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-      }
-      .gt_float_switcher
-        .gt-selected
-        .gt-current-lang
-        span.gt_float_switcher-arrow {
-        display: inline-block;
-        height: 20px;
-        width: 15px;
-        margin-left: auto;
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 285 285'><path d='M282 76.5l-14.2-14.3a9 9 0 0 0-13.1 0L142.5 174.4 30.3 62.2a9 9 0 0 0-13.2 0L3 76.5a9 9 0 0 0 0 13.1l133 133a9 9 0 0 0 13.1 0l133-133a9 9 0 0 0 0-13z' style='fill:%23666'/></svg>");
-        background-position: 50%;
-        background-size: 12px;
-        background-repeat: no-repeat;
-        transition: transform 0.3s;
-        transform: rotate(0deg);
-      }
-      .gt_float_switcher
-        .gt-selected
-        .gt-current-lang
-        span.gt_float_switcher-arrow.gt_arrow_rotate {
-        transform: rotate(180deg);
-      }
-      div.skiptranslate,
-      #google_translate_element2 {
-        display: none !important;
-      }
+     
       
       /* Message Styles */
       .messages {
@@ -242,6 +175,22 @@
               href="{% url 'register' %}"
               >Register</a
             >
+            <!-- Google Translate Script -->
+            <script>
+                window.gtranslateSettings = {
+                    default_language: "en",
+                    wrapper_selector: ".gtranslate_wrapper",
+                    switcher_horizontal_position: "inline",
+                    float_switcher_open_direction: "bottom",
+                    alt_flags: { en: "usa" },
+                };
+            </script>
+            <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+    
+                    <!-- Google Translate - Desktop & Tablet only -->
+                    <div class="w-[68px] h-[24px] py-1 relative bg-gray-50 rounded">
+                        <div class="gtranslate_wrapper absolute left-1 top-[0px]"></div>
+                    </div>
 
             <!-- Theme Toggle -->
             <div class="grid place-content-center">

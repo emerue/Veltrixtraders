@@ -466,6 +466,14 @@
         "documentation": {}
     },
     {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
         "label": "timezone",
         "importPath": "django.utils",
         "description": "django.utils",
@@ -839,6 +847,32 @@
         "description": "django.apps",
         "isExtraImport": true,
         "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "cache",
+        "importPath": "django.core.cache",
+        "description": "django.core.cache",
+        "isExtraImport": true,
+        "detail": "django.core.cache",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
         "documentation": {}
     },
     {
@@ -1520,6 +1554,96 @@
         "description": "VeltrixApp.apps",
         "peekOfCode": "class VeltrixappConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'VeltrixApp'\n    def ready(self):\n        import VeltrixApp.signals",
         "detail": "VeltrixApp.apps",
+        "documentation": {}
+    },
+    {
+        "label": "get_crypto_price",
+        "kind": 2,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "def get_crypto_price(crypto_symbol, vs_currency='usd'):\n    \"\"\"\n    Get real-time price for a cryptocurrency (price in USD)\n    \"\"\"\n    cache_key = f'crypto_price_{crypto_symbol}_{vs_currency}'\n    cached_price = cache.get(cache_key)\n    if cached_price is not None:\n        return Decimal(str(cached_price))\n    try:\n        coin_id = CRYPTO_IDS.get(crypto_symbol)",
+        "detail": "VeltrixApp.coin_gecko_utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_crypto_prices",
+        "kind": 2,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "def get_crypto_prices(crypto_symbols, vs_currency='usd'):\n    \"\"\"\n    Get real-time prices for multiple cryptocurrencies (prices in USD)\n    \"\"\"\n    cache_key = f'crypto_prices_{\"_\".join(crypto_symbols)}_{vs_currency}'\n    cached_prices = cache.get(cache_key)\n    if cached_prices is not None:\n        return {k: Decimal(str(v)) for k, v in cached_prices.items()}\n    try:\n        coin_ids = []",
+        "detail": "VeltrixApp.coin_gecko_utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_fiat_exchange_rates",
+        "kind": 2,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "def get_fiat_exchange_rates(base_currency='USD'):\n    \"\"\"\n    Get real-time fiat exchange rates\n    Returns rates in format: 1 USD = X Foreign Currency\n    \"\"\"\n    cache_key = f'fiat_rates_{base_currency}'\n    cached_rates = cache.get(cache_key)\n    if cached_rates is not None:\n        return cached_rates\n    try:",
+        "detail": "VeltrixApp.coin_gecko_utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_all_exchange_rates",
+        "kind": 2,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "def get_all_exchange_rates():\n    \"\"\"\n    Get all exchange rates with USD as base\n    Returns: {\n        'USD': 1.0,\n        'GBP': 0.77,  # 1 USD = 0.77 GBP\n        'EUR': 0.92,  # 1 USD = 0.92 EUR\n        'BTC': 65000, # 1 BTC = 65000 USD\n        ...\n    }",
+        "detail": "VeltrixApp.coin_gecko_utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_conversion_rate",
+        "kind": 2,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "def get_conversion_rate(from_currency, to_currency='USD'):\n    \"\"\"\n    Get conversion rate from one currency to another\n    Example: from_currency='GBP', to_currency='USD' returns how many USD per 1 GBP\n    \"\"\"\n    rates = get_all_exchange_rates()\n    if from_currency == to_currency:\n        return 1.0\n    if from_currency in rates and to_currency == 'USD':\n        # If we have rate for from_currency (1 USD = X from_currency)",
+        "detail": "VeltrixApp.coin_gecko_utils",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# CoinGecko API configuration\nCOINGECKO_API_KEY = 'CG-k68RgDHSekjAzcGZufi7huD6'\nCOINGECKO_BASE_URL = 'https://api.coingecko.com/api/v3'\n# Mapping of our crypto symbols to CoinGecko IDs\nCRYPTO_IDS = {\n    'BTC': 'bitcoin',\n    'ETH': 'ethereum',\n    'USDT_ERC20': 'tether',\n    'USDT_TRC20': 'tether',",
+        "detail": "VeltrixApp.coin_gecko_utils",
+        "documentation": {}
+    },
+    {
+        "label": "COINGECKO_API_KEY",
+        "kind": 5,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "COINGECKO_API_KEY = 'CG-k68RgDHSekjAzcGZufi7huD6'\nCOINGECKO_BASE_URL = 'https://api.coingecko.com/api/v3'\n# Mapping of our crypto symbols to CoinGecko IDs\nCRYPTO_IDS = {\n    'BTC': 'bitcoin',\n    'ETH': 'ethereum',\n    'USDT_ERC20': 'tether',\n    'USDT_TRC20': 'tether',\n    'SOL': 'solana',\n    'XRP': 'ripple',",
+        "detail": "VeltrixApp.coin_gecko_utils",
+        "documentation": {}
+    },
+    {
+        "label": "COINGECKO_BASE_URL",
+        "kind": 5,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "COINGECKO_BASE_URL = 'https://api.coingecko.com/api/v3'\n# Mapping of our crypto symbols to CoinGecko IDs\nCRYPTO_IDS = {\n    'BTC': 'bitcoin',\n    'ETH': 'ethereum',\n    'USDT_ERC20': 'tether',\n    'USDT_TRC20': 'tether',\n    'SOL': 'solana',\n    'XRP': 'ripple',\n}",
+        "detail": "VeltrixApp.coin_gecko_utils",
+        "documentation": {}
+    },
+    {
+        "label": "CRYPTO_IDS",
+        "kind": 5,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "CRYPTO_IDS = {\n    'BTC': 'bitcoin',\n    'ETH': 'ethereum',\n    'USDT_ERC20': 'tether',\n    'USDT_TRC20': 'tether',\n    'SOL': 'solana',\n    'XRP': 'ripple',\n}\n# Fiat currency codes for exchange rates\nFIAT_CURRENCIES = ['USD', 'GBP', 'EUR', 'CZK', 'CNY', 'CAD', 'JPY']",
+        "detail": "VeltrixApp.coin_gecko_utils",
+        "documentation": {}
+    },
+    {
+        "label": "FIAT_CURRENCIES",
+        "kind": 5,
+        "importPath": "VeltrixApp.coin_gecko_utils",
+        "description": "VeltrixApp.coin_gecko_utils",
+        "peekOfCode": "FIAT_CURRENCIES = ['USD', 'GBP', 'EUR', 'CZK', 'CNY', 'CAD', 'JPY']\ndef get_crypto_price(crypto_symbol, vs_currency='usd'):\n    \"\"\"\n    Get real-time price for a cryptocurrency (price in USD)\n    \"\"\"\n    cache_key = f'crypto_price_{crypto_symbol}_{vs_currency}'\n    cached_price = cache.get(cache_key)\n    if cached_price is not None:\n        return Decimal(str(cached_price))\n    try:",
+        "detail": "VeltrixApp.coin_gecko_utils",
         "documentation": {}
     },
     {
@@ -2292,7 +2416,7 @@
         "kind": 2,
         "importPath": "VeltrixApp.views",
         "description": "VeltrixApp.views",
-        "peekOfCode": "def deposit(request):\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    currencies = Currency.objects.filter(is_active=True)\n    # Get USD currency ID for default\n    usd_currency = Currency.objects.filter(code='USD').first()\n    usd_currency_id = usd_currency.id if usd_currency else None\n    # Prepare payment methods for JSON\n    payment_methods_json = []\n    for pm in payment_methods:\n        payment_methods_json.append({",
+        "peekOfCode": "def deposit(request):\n    from .coin_gecko_utils import get_all_exchange_rates, get_crypto_price\n    payment_methods = PaymentMethod.objects.filter(is_active=True)\n    currencies = Currency.objects.filter(is_active=True)\n    # Get USD currency ID for default\n    usd_currency = Currency.objects.filter(code='USD').first()\n    usd_currency_id = usd_currency.id if usd_currency else None\n    # Get real-time exchange rates\n    try:\n        exchange_rates = get_all_exchange_rates()",
         "detail": "VeltrixApp.views",
         "documentation": {}
     },
@@ -2499,7 +2623,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "env = environ.Env()\nENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True",
+        "peekOfCode": "env = environ.Env()\nENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2508,7 +2632,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "ENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]",
+        "peekOfCode": "ENV_FILE = os.path.join(BASE_DIR, \".env\")\nif os.path.exists(ENV_FILE):\n    environ.Env.read_env(ENV_FILE)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False\nALLOWED_HOSTS = [\"*\"]",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2517,7 +2641,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-rs5g3cs1veus$k9#p!9rg%kz-^s8vt#x-+&in4#98ow3t*p(t5'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -2526,7 +2650,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "peekOfCode": "DEBUG = False\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    'VeltrixApp',\n    'jazzmin',\n    'widget_tweaks',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
         "detail": "core.settings",
         "documentation": {}
     },

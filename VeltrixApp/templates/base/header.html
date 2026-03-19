@@ -1,5 +1,17 @@
 {% load static %}
 <header class="page__container">
+
+  <style>
+    .gtranslate_wrapper > div:after {
+        content: "▼";
+        position: absolute;
+        right: 1px;
+        top: 60%;
+        transform: translateY(-60%);
+        font-size: 18px;
+        color: #555;
+      }
+  </style>
   <div
     class="FvJ-85Xh7Y"
     style="
@@ -150,6 +162,22 @@
       </nav>
     </div>
     <div class="com-header__buttons-wrap">
+      <script>
+                window.gtranslateSettings = {
+                    default_language: "en",
+                    wrapper_selector: ".gtranslate_wrapper",
+                    switcher_horizontal_position: "inline",
+                    float_switcher_open_direction: "bottom",
+                    alt_flags: { en: "usa" },
+                };
+            </script>
+            <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+    
+            <div>
+                    <!-- Google Translate - Desktop & Tablet only -->
+                    <div class="w-[68px] h-[24px] py-1 relative bg-gray-50 rounded">
+                        <div class="gtranslate_wrapper absolute left-1 top-[0px]"></div>
+                    </div></div>
       <div class="com-header__button-login">
         <button
           class="d8xr7lLwBE FgFzN3XuSe o9rFZdBYLp BRenn248Ra n8TxI6D5e-"

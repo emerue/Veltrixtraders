@@ -729,6 +729,8 @@ def copy_traders(request):
 
 @login_required
 def deposit(request):
+    from .coin_gecko_utils import get_all_exchange_rates, get_crypto_price
+    
     payment_methods = PaymentMethod.objects.filter(is_active=True)
     currencies = Currency.objects.filter(is_active=True)
     
@@ -736,10 +738,33 @@ def deposit(request):
     usd_currency = Currency.objects.filter(code='USD').first()
     usd_currency_id = usd_currency.id if usd_currency else None
     
-    # Prepare payment methods for JSON
+    # Get real-time exchange rates
+    try:
+        exchange_rates = get_all_exchange_rates()
+        print("Exchange rates loaded:", exchange_rates)  # Debug
+    except Exception as e:
+        print(f"Error loading exchange rates: {e}")
+        # Fallback rates
+        exchange_rates = {
+            'USD': 1.0,
+            'GBP': 0.8,
+            'EUR': 0.93,
+            'CZK': 23.2,
+            'CNY': 7.2,
+            'CAD': 1.37,
+            'JPY': 149.5,
+            'BTC': 65000,
+            'ETH': 3500,
+            'USDT_ERC20': 1.0,
+            'USDT_TRC20': 1.0,
+            'SOL': 150,
+            'XRP': 0.6,
+        }
+    
+    # Prepare payment methods for JSON with real-time rates
     payment_methods_json = []
     for pm in payment_methods:
-        payment_methods_json.append({
+        method_data = {
             'id': pm.id,
             'name': pm.name,
             'method_type': pm.method_type,
@@ -747,28 +772,32 @@ def deposit(request):
             'instructions': pm.instructions,
             'processing_time': pm.processing_time,
             'withdrawal_fee': float(pm.withdrawal_fee),
-        })
+        }
+        
+        # Add exchange rate if it's crypto
+        if pm.method_type == 'crypto' and pm.crypto_symbol:
+            rate = exchange_rates.get(pm.crypto_symbol)
+            if rate:
+                method_data['exchange_rate'] = float(rate)
+        
+        payment_methods_json.append(method_data)
     
-    # Prepare currencies for JSON
+    # Prepare currencies for JSON with real-time rates
     currencies_json = []
     for curr in currencies:
-        currencies_json.append({
+        currency_data = {
             'id': curr.id,
             'code': curr.code,
             'name': curr.name,
             'symbol': curr.symbol,
-        })
-    
-    # Mock exchange rates to USD
-    exchange_rates = {
-        'USD': 1.0,
-        'GBP': 1.25,
-        'EUR': 1.08,
-        'CZK': 0.043,
-        'CNY': 0.14,
-        'CAD': 0.73,
-        'JPY': 0.0067,
-    }
+        }
+        
+        # Add exchange rate for this currency
+        rate = exchange_rates.get(curr.code)
+        if rate:
+            currency_data['exchange_rate'] = float(rate)
+        
+        currencies_json.append(currency_data)
     
     if request.method == 'POST':
         form = DepositForm(
@@ -783,29 +812,38 @@ def deposit(request):
             
             payment_method = get_object_or_404(PaymentMethod, id=payment_method_id)
             
-            # For non-bank methods, ensure currency is USD
+            # Get the appropriate exchange rate
             if payment_method.method_type != 'bank':
-                # Force currency to USD
+                # For non-bank methods, force currency to USD
                 currency = get_object_or_404(Currency, code='USD')
-                # The amount is already in USD
-                usd_amount = amount
+                
+                if payment_method.method_type == 'crypto' and payment_method.crypto_symbol:
+                    # Get crypto price in USD
+                    crypto_rate = exchange_rates.get(payment_method.crypto_symbol, 1)
+                    crypto_amount = amount / Decimal(str(crypto_rate))
+                    usd_amount = amount
+                else:
+                    # For CashApp, PayPal, etc. - amount is already in USD
+                    usd_amount = amount
+                    crypto_amount = None
             else:
                 # For bank transfers, use selected currency
                 currency = get_object_or_404(Currency, id=currency_id)
-                # Calculate USD equivalent
-                usd_amount = amount * Decimal(str(exchange_rates.get(currency.code, 1.0)))
+                rate = exchange_rates.get(currency.code, 1)
+                usd_amount = amount / Decimal(str(rate))
+                crypto_amount = None
             
             # Get payment details for this method and currency
             payment_details = PaymentMethodDetail.objects.filter(
                 payment_method=payment_method,
-                currency=currency,
+                currency=currency if payment_method.method_type == 'bank' else None,
                 is_default=True
             ).first()
             
             if not payment_details:
                 payment_details = PaymentMethodDetail.objects.filter(
                     payment_method=payment_method,
-                    currency=currency
+                    currency=currency if payment_method.method_type == 'bank' else None
                 ).first()
             
             # Create deposit record
@@ -817,6 +855,10 @@ def deposit(request):
                 amount_usd=usd_amount,
                 status='pending'
             )
+            
+            # Set crypto amount if applicable
+            if payment_method.method_type == 'crypto':
+                deposit.crypto_amount = crypto_amount
             
             # Add payment details if available
             if payment_details:
@@ -851,7 +893,6 @@ def deposit(request):
             currency_choices=[(curr.id, f"{curr.code} - {curr.name}") for curr in currencies]
         )
     
-    print("Currencies:", currencies)  # Debug print
     context = {
         'form': form,
         'payment_methods': payment_methods,
