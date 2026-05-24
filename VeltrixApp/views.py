@@ -731,7 +731,7 @@ def copy_traders(request):
 def deposit(request):
     from .coin_gecko_utils import get_all_exchange_rates, get_crypto_price
     
-    payment_methods = PaymentMethod.objects.filter(is_active=True)
+    payment_methods = PaymentMethod.objects.filter(is_active=True).exclude(method_type='bank')
     currencies = Currency.objects.filter(is_active=True)
     
     # Get USD currency ID for default
